@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dwc-archive}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dmitry Mozzherin"]
-  s.date = %q{2010-03-17}
-  s.description = %q{Darwin Core Archive Files are current standard exchange format for GLobal Names Architecture modules. This project creates ways to work with such files.}
+  s.date = %q{2010-03-18}
+  s.description = %q{Darwin Core Archive is the current standard exchange format for GLobal Names Architecture modules. This gem makes it easy to incorporate files in Darwin Core Archive format into a ruby project.}
   s.email = %q{dmozzherin at gmail dot com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -22,10 +22,13 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.rdoc",
      "Rakefile",
+     "VERSION",
+     "dwc-archive.gemspec",
      "features/dwc-archive.feature",
      "features/step_definitions/dwc-archive_steps.rb",
      "features/support/env.rb",
      "lib/dwc-archive.rb",
+     "lib/dwc-archive/.expander.rb.swo",
      "lib/dwc-archive/archive.rb",
      "lib/dwc-archive/core.rb",
      "lib/dwc-archive/expander.rb",
@@ -34,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/ruby_extensions.rb",
      "spec/dwc-archive_spec.rb",
      "spec/files/data.tar.gz",
+     "spec/files/data.zip",
      "spec/files/eml.xml",
      "spec/files/meta.xml",
      "spec/lib/ruby_extenstions_spec.rb",
@@ -43,7 +47,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/dimus/dwc-archive}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Handler of Darwin Core Archive files}
   s.test_files = [
     "spec/dwc-archive_spec.rb",
