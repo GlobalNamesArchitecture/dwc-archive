@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "dwc-archive"
     gem.summary = %Q{Handler of Darwin Core Archive files}
-    gem.description = %Q{Darwin Core Archive Files are current standard exchange format for GLobal Names Architecture modules. This project creates ways to work with such files.}
+    gem.description = %q{Darwin Core Archive is the current standard exchange format for GLobal Names Architecture modules. This gem makes it easy to incorporate files in Darwin Core Archive format into a ruby project.}
     gem.email = "dmozzherin at gmail dot com"
     gem.homepage = "http://github.com/dimus/dwc-archive"
     gem.authors = ["Dmitry Mozzherin"]
