@@ -13,14 +13,16 @@ Update to latest rubygems (v >= 1.3.6) which adds gemcutter sources by default.
     require 'rubygems'
     require 'dwc-archive'
 
-    dwc = DWCA::DarwinCore.new('/path_to_file/archive_file.tar.gz')
-    dwc.archive.files             # the archive file list
-    dwc.metadata.data             # summary of metadata from eml.xml if it exists
-    dwc.metadata.authors          # authors of the archive
-    dwc.core.data                 # summary of DarwinCore main file
-    dwc.core.file_path            # path to the DarwinCore main file
-    dwc.core.extensions           # array of DarwinCore Star extensions
-    dwc.core.extensions[0].data   # summary for an extension
+    dwc = DarwinCore.new('/path_to_file/archive_file.tar.gz')
+    dwc.archive.files      # the archive file list
+    dwc.metadata.data      # summary of metadata from eml.xml if it exists
+    dwc.metadata.authors   # authors of the archive
+    dwc.core.data          # summary of DarwinCore main file
+    dwc.core.file_path     # path to the DarwinCore main file
+    dwc.extensions         # array of DarwinCore Star extensions
+    dwc.extensions[0].data # summary for an extension
+
+    DarwinCore.clean_all   # remove all expanded archives
 
 == Note on Patches/Pull Requests
  

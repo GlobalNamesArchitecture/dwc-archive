@@ -32,3 +32,8 @@ Feature: Creation of a Darwing Core Archive
     Given path to a dwc file "data.zip"
     When I create a new DarwinCore instance 
     Then instance should have a valid archive
+
+  Scenario: Cleaning temporary directory from expanded archives
+    Given acces to DarwinCore gem
+    When I use DarwinCore.clean_all method
+    Then all temporary directories created by DarwinCore are deleted

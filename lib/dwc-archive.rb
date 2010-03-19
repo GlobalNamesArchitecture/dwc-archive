@@ -8,15 +8,29 @@ require 'dwc-archive/core'
 require 'dwc-archive/extension'
 require 'dwc-archive/metadata'
 
+
 class DarwinCore
   attr_reader :archive, :core, :metadata, :extensions
   alias :eml :metadata
-  def initialize(dwc_path, tmp_dir = "/tmp")
+  
+  DEFAULT_TMP_DIR = "/tmp"
+  
+  def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
     @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 
     @core = DarwinCore::Core.new(@archive)
     @metadata = DarwinCore::Metadata.new(@archive)
     @extensions = get_extensions
   end
+
+  def self.clean_all(tmp_dir = DEFAULT_TMP_DIR)
+    Dir.entries(tmp_dir).each do |entry|
+      path = File.join(tmp_dir, entry)
+      if FileTest.directory?(path) && entry.match(/^dwc_[\d]+$/)
+        FileUtils.rm_rf(path)
+      end
+    end
+  end
+
   private
   def get_extensions
     res = []
@@ -24,6 +38,6 @@ class DarwinCore
     ext = @archive.meta[root_key][:extension]
     return [] unless ext
     ext = [ext] unless ext.class == Array
-    ext.map {|e| DarwinCore::Extension.new(@archive, e)}
+    ext.map { |e| DarwinCore::Extension.new(@archive, e) }
   end
 end

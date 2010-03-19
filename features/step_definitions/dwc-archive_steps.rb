@@ -93,3 +93,16 @@ Then /^extension should have properties, data, file_path, coreid, fields$/ do
   ext.coreid.should == {:index=>0}
   ext.fields.should == [{:term=>"http://rs.gbif.org/ecat/terms/vernacularName", :index=>1}, {:term=>"http://rs.gbif.org/thesaurus/languageCode", :index=>2}]
 end
+
+Given /^acces to DarwinCore gem$/ do
+end
+
+When /^I use DarwinCore\.clean_all method$/ do
+  Dir.entries("/tmp").select {|e| e.match(/^dwc_/) }.size.should > 0
+  DarwinCore.clean_all
+end
+
+Then /^all temporary directories created by DarwinCore are deleted$/ do
+  Dir.entries("/tmp").select {|e| e.match(/^dwc_/) }.should == []
+end
+

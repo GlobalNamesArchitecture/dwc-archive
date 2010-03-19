@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dmitry Mozzherin"]
-  s.date = %q{2010-03-18}
+  s.date = %q{2010-03-19}
   s.description = %q{Darwin Core Archive is the current standard exchange format for GLobal Names Architecture modules. This gem makes it easy to incorporate files in Darwin Core Archive format into a ruby project.}
   s.email = %q{dmozzherin at gmail dot com}
   s.extra_rdoc_files = [

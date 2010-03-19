@@ -32,7 +32,7 @@ class DarwinCore
       if file_type.match(/tar.*gzip/i)
         return proc do |tmp_path, archive_path| 
           FileUtils.mkdir tmp_path
-          system "tar -zxvf #{archive_path} -C #{tmp_path}"
+          system "tar -zxf #{archive_path} -C #{tmp_path}"
         end
       end
 
