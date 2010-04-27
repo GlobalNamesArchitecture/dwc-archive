@@ -4,6 +4,7 @@ require 'rubygems'
 require 'dwc-archive'
 require 'spec'
 require 'spec/autorun'
+require 'ruby-debug'
 
 Spec::Runner.configure do |config|
   
