@@ -26,7 +26,12 @@ Then /^they should disappear$/ do
 end
 
 When /^I create a new DarwinCore instance$/ do
-  @dwc = DarwinCore.new(@dwca_file)
+  begin
+    @dwc = DarwinCore.new(@dwca_file)
+  rescue
+    @dwca_broken_file = @dwca_file
+    @dwc_error = $!
+  end
 end
 
 Then /^instance should have a valid archive$/ do
@@ -104,5 +109,18 @@ end
 
 Then /^all temporary directories created by DarwinCore are deleted$/ do
   Dir.entries("/tmp").select {|e| e.match(/^dwc_/) }.should == []
+end
+
+Then /^I receive "([^\"]*)" exception with "([^\"]*)" message$/ do |arg1, arg2|
+   @dwc_error.class.to_s.should == arg1
+   @dwc_error.message.should == arg2
+   @dwca_broken_file.should == @dwca_file
+   @dwc_error = nil
+   @dwca_broken_file = nil
+end
+
+Then /^"([^\"]*)" should send instance of "([^\"]*)" back$/ do |arg1, arg2|
+  res = eval(arg1.gsub(/DarwinCore_instance/, "@dwc"))
+  res.class.to_s.should == arg2
 end
 

@@ -12,6 +12,11 @@ Feature: Creation of a Darwing Core Archive
     When I delete expanded files
     Then they should disappear
 
+  Scenario: Instantiating DarwinCore with a file without "eml.xml"
+    Given path to a dwc file "minimal.tar.gz"
+    When I create a new DarwinCore instance
+    Then "DarwinCore_instance.metadata.data" should send instance of "NilClass" back
+
   Scenario: Instantiating DarwinCore with tar.gz file
     Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore instance 

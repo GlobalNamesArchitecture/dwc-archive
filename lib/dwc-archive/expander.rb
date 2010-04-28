@@ -9,7 +9,9 @@ class DarwinCore
 
     def unpack
       clean
-      @unpacker.call(@path, @archive_path) if @unpacker
+      raise FileNotFoundError unless File.exists?(@archive_path)
+      success = @unpacker.call(@path, @archive_path) if @unpacker
+      (@unpacker && success && $?.exitstatus == 0) ? success : (clean; raise UnpackingError)
     end
 
     def path
@@ -32,12 +34,12 @@ class DarwinCore
       if file_type.match(/tar.*gzip/i)
         return proc do |tmp_path, archive_path| 
           FileUtils.mkdir tmp_path
-          system "tar -zxf #{archive_path} -C #{tmp_path}"
+          system("tar -zxf #{archive_path} -C #{tmp_path} > /dev/null 2>&1")
         end
       end
 
       if file_type.match(/Zip/)
-        return proc { |tmp_path, archive_path| system "unzip -qq -d #{tmp_path} #{archive_path}" }
+        return proc { |tmp_path, archive_path| system("unzip -qq -d #{tmp_path} #{archive_path} > /dev/null 2>&1") }
       end
       
       return nil

@@ -12,13 +12,13 @@ class DarwinCore
         @eml = files.include?("eml.xml") ? Hash.from_xml(open(File.join(@expander.path, 'eml.xml'))) : nil
       else
         clean
-        raise 'not a valid Darwin Core Archive File'
+        raise InvalidArchiveError
       end
     end
 
     def valid?
       valid = true
-      valid = valid && FileTest.exists?(@archive_path)
+      valid = valid && @expander.path && FileTest.exists?(@expander.path)
       valid = valid && files && files.include?('meta.xml')
     end
     

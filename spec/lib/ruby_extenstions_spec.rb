@@ -2,8 +2,6 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe "Hash" do 
   it "should parse xml to hash" do
-    debugger
-    puts 'test'
     Hash.public_methods.map { |i| i.to_s }.include?("from_xml").should be_true
   end
 

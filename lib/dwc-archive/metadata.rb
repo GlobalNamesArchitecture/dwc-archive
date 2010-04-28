@@ -10,11 +10,11 @@ class DarwinCore
     end
 
     def id
-      @metadata[:eml][:dataset][:attributes][:id]
+      @metadata[:eml][:dataset][:attributes][:id] rescue nil
     end
 
     def title
-      @metadata[:eml][:dataset][:title]
+      @metadata[:eml][:dataset][:title] rescue nil
     end
 
     def authors
