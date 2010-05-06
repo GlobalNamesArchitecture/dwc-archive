@@ -28,18 +28,23 @@ class DarwinCore
     end
     
     private
+
+    def esc(a_str)
+      "'" + a_str.gsub(92.chr, '\\\\\\').gsub("'", "\\\\'") + "'"
+    end
+
     def get_unpacker
-      file_type = IO.popen("file -z " + @archive_path).read
+      file_type = IO.popen("file -z " + esc(@archive_path)).read
       
       if file_type.match(/tar.*gzip/i)
         return proc do |tmp_path, archive_path| 
           FileUtils.mkdir tmp_path
-          system("tar -zxf #{archive_path} -C #{tmp_path} > /dev/null 2>&1")
+          system("tar -zxf #{esc(archive_path)} -C #{tmp_path} > /dev/null 2>&1")
         end
       end
 
       if file_type.match(/Zip/)
-        return proc { |tmp_path, archive_path| system("unzip -qq -d #{tmp_path} #{archive_path} > /dev/null 2>&1") }
+        return proc { |tmp_path, archive_path| system("unzip -qq -d #{tmp_path} #{esc(archive_path)} > /dev/null 2>&1") }
       end
       
       return nil

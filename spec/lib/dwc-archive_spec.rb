@@ -29,5 +29,12 @@ describe DarwinCore do
       file = File.join(@file_dir, 'invalid.tar.gz')
       lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::InvalidArchiveError)
     end
+
+    it "should work with files that have non-alfanumeric characters and spaces" do
+      file = File.join(@file_dir, 'file with characters(3).gz')
+      dwc = DarwinCore.new(file)
+      dwc.archive.valid?.should be_true
+    end
+
   end
 end
