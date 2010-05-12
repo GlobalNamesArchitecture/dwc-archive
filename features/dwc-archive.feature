@@ -42,3 +42,8 @@ Feature: Creation of a Darwing Core Archive
     Given acces to DarwinCore gem
     When I use DarwinCore.clean_all method
     Then all temporary directories created by DarwinCore are deleted
+
+  Scenario: Importing data into memory
+    Given path to a dwc file "data.zip"
+    When I create a new DarwinCore instance
+    Then I can read its content into memory

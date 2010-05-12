@@ -17,7 +17,7 @@ class DarwinCore
     end
 
     def file_path
-      file = @core[:files][:location] || @core[:location]
+      file = @core[:location] || @core[:attributes][:location] || @core[:files][:location]
       File.join(@path, file)
     end
 
@@ -26,8 +26,13 @@ class DarwinCore
     end
 
     def fields
-      @core[:field] = [@core[:field]] unless @core[:field].class == Array
+      @core[:field] = Array(@core[:field])
       @core[:field].map {|f| f[:attributes]}
+    end
+
+    def read(check_encoding = false)
+      debugger
+      f = open(file_path)
     end
     
   end

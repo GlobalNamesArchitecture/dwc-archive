@@ -124,3 +124,9 @@ Then /^"([^\"]*)" should send instance of "([^\"]*)" back$/ do |arg1, arg2|
   res.class.to_s.should == arg2
 end
 
+Then /^I can read its content into memory$/ do
+  core_data = @dwc.core.read
+  core_data.class.should == Array
+  core_data.size.should == 44
+end
+
