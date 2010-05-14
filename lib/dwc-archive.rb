@@ -3,6 +3,7 @@ $:.unshift(File.dirname(__FILE__)) unless
    $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))   
 require 'ruby_extensions'
 require 'fileutils'
+require 'csv'
 require 'dwc-archive/errors'
 require 'dwc-archive/expander'
 require 'dwc-archive/archive'
