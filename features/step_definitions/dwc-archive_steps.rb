@@ -125,8 +125,18 @@ Then /^"([^\"]*)" should send instance of "([^\"]*)" back$/ do |arg1, arg2|
 end
 
 Then /^I can read its content into memory$/ do
-  core_data = @dwc.core.read
+  core_data, core_errors = @dwc.core.read
   core_data.class.should == Array
-  core_data.size.should == 44
+  core_data.size.should == 584
+  core_errors.size.should == 1
 end
 
+Then /^I can read its content using block$/ do
+  res = []
+  @dwc.core.ignore_headers.should be_true
+  tail_data, tail_errors = @dwc.core.read(200) do |r, err|
+    res << [r.size, err.size]
+  end
+  res << [tail_data.size, tail_errors.size]
+  res.should == [[200,0],[200,0],[184,1]]
+end

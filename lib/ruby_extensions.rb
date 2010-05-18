@@ -52,7 +52,10 @@ class Hash
     end          
 
     def prepare(data)
-      (data.class == String && data.to_i.to_s == data) ? data.to_i : data
+      return data if data.class != String
+      data = true if data.strip == "true"
+      data = false if data.strip == "false"
+      data.to_i.to_s == data ? data.to_i : data
     end
   end
   

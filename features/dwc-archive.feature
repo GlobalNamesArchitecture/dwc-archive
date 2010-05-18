@@ -44,6 +44,11 @@ Feature: Creation of a Darwing Core Archive
     Then all temporary directories created by DarwinCore are deleted
 
   Scenario: Importing data into memory
-    Given path to a dwc file "data.zip"
+    Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore instance
     Then I can read its content into memory
+  
+  Scenario: Importing data using block
+    Given path to a dwc file "data.tar.gz"
+    When I create a new DarwinCore instance
+    Then I can read its content using block

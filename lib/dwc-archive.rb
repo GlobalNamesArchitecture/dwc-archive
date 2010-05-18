@@ -3,7 +3,11 @@ $:.unshift(File.dirname(__FILE__)) unless
    $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))   
 require 'ruby_extensions'
 require 'fileutils'
-require 'csv'
+if RUBY_VERSION.split('.')[0..1].join('').to_i > 18
+  require 'csv'
+else
+  require 'fastercsv'
+end
 require 'dwc-archive/errors'
 require 'dwc-archive/expander'
 require 'dwc-archive/archive'
@@ -16,6 +20,7 @@ class DarwinCore
   alias :eml :metadata
   
   DEFAULT_TMP_DIR = "/tmp"
+  RUBY_CODE = RUBY_VERSION.split 
   
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
     @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 

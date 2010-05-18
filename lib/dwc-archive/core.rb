@@ -17,21 +17,28 @@ class DarwinCore
       @field_separator = get_field_separator
       @quote_character = @properties[:fieldsEnclosedBy] || ""
       @line_separator = @properties[:linesTerminatedBy] || "\n"
-      @ignore_headers = @properties[:ignoreHeaderLines] ? ["1", "true"].include?(properties[:ignoreHeaderLines]) : false
+      @ignore_headers = @properties[:ignoreHeaderLines] ? [1, true].include?(@properties[:ignoreHeaderLines]) : false
       @file_path = get_file_path
       @fields = get_fields
     end
 
-    def read(check_encoding = false, batch_size = 10000)
-      debugger
+    def read(batch_size = 10000)
       res = []
-      args = {col_sep:@field_separator}
-      args.merge!({quote_char:@quote_character}) if @quote_character != ''
-      CSV.open(open(@file_path), args).each do |r|
+      errors = []
+      index_fix = 1
+      args = {:col_sep => @field_separator}
+      args.merge!({:quote_char => @quote_character}) if @quote_character != ''
+      CSV.open(open(@file_path), args).each_with_index do |r, i|
+        index_fix = 0; next if @ignore_headers && i == 0
         str = r.join('').force_encoding('utf-8')
-        str.encoding.name == "UTF-8" && str.valid_encoding? ? res << r : puts("#{r} is wrong")
+        str.encoding.name == "UTF-8" && str.valid_encoding? ? res << r : errors << r
+        if block_given? && (i + index_fix) % batch_size == 0
+          yield [res, errors]
+          res = []
+          errors = []
+        end
       end
-      res
+      [res, errors]
     end
     
     private
