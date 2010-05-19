@@ -12,6 +12,7 @@ class DarwinCore
         index_fix = 0; next if @ignore_headers && i == 0
         str = r.join('')
         if defined? FasterCSV
+          require File.join(File.dirname(__FILE__), 'utf_regex_ruby18')
           UTF8RGX === str ? res << r : errors << r
         else
           str = str.force_encoding('utf-8')
