@@ -47,8 +47,10 @@ Feature: Creation of a Darwing Core Archive
     Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore instance
     Then I can read its content into memory
+    Then I can read extensions content into memory
   
   Scenario: Importing data using block
     Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore instance
-    Then I can read its content using block
+    Then I can read its core content using block
+    Then I can read extensions content using block

@@ -1,5 +1,7 @@
 class DarwinCore
   module Ingester
+    attr_reader :data, :properties, :encoding, :fields_separator
+    attr_reader :file_path, :fields, :line_separator, :quote_character, :ignore_headers
     def read(batch_size = 10000)
       res = []
       errors = []
@@ -26,13 +28,13 @@ class DarwinCore
     
     private
     def get_file_path
-      file = @core[:location] || @core[:attributes][:location] || @core[:files][:location]
+      file = @data[:location] || @data[:attributes][:location] || @data[:files][:location]
       File.join(@path, file)
     end
 
     def get_fields
-      @core[:field] = Array(@core[:field]) 
-      @core[:field].map {|f| f[:attributes]}
+      @data[:field] = [data[:field]] if data[:field].class != Array
+      @data[:field].map {|f| f[:attributes]}
     end
 
     def get_field_separator

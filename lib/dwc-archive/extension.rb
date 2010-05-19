@@ -1,31 +1,22 @@
 class DarwinCore
   class Extension
-    def initialize(archive, extension)
+    include DarwinCore::Ingester
+    attr_reader :coreid
+
+    def initialize(archive, data)
       @archive = archive
       @path = @archive.files_path
-      @extension = extension
+      @data = data
+      @properties = @data[:attributes]
+      @coreid = @data[:coreid][:attributes]
+      @encoding = @properties[:encoding] || 'UTF-8'
+      @quote_character = @properties[:fieldsEnclosedBy] || ""
+      @line_separator = @properties[:linesTerminatedBy] || "\n"
+      @ignore_headers = @properties[:ignoreHeaderLines] ? [1, true].include?(@properties[:ignoreHeaderLines]) : false
+      @field_separator = get_field_separator
+      @file_path = get_file_path
+      @fields = get_fields
     end
 
-    def data
-      @extension
-    end
-
-    def properties
-      @extension[:attributes]
-    end
-    
-    def file_path
-      file = @extension[:files][:location] 
-      File.join(@path, file)
-    end
-
-    def coreid
-      @extension[:coreid][:attributes]
-    end
-
-    def fields
-      @extension[:field] = [@extension[:field]] unless @extension[:field].class == Array
-      @extension[:field].map {|f| f[:attributes]}
-    end
   end
 end

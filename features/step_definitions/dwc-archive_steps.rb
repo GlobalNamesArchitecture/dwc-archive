@@ -131,7 +131,16 @@ Then /^I can read its content into memory$/ do
   core_errors.size.should == 1
 end
 
-Then /^I can read its content using block$/ do
+Then /^I can read extensions content into memory$/ do
+  ext = @dwc.extensions
+  ext.class.should == Array
+  ext_data, ext_errors = ext[0].read
+  ext_data.class.should == Array
+  ext_data.size.should == 1
+  ext_errors.size.should == 0
+end
+
+Then /^I can read its core content using block$/ do
   res = []
   @dwc.core.ignore_headers.should be_true
   tail_data, tail_errors = @dwc.core.read(200) do |r, err|
@@ -140,3 +149,15 @@ Then /^I can read its content using block$/ do
   res << [tail_data.size, tail_errors.size]
   res.should == [[200,0],[200,0],[184,1]]
 end
+
+Then /^I can read extensions content using block$/ do
+  res = []
+  ext = @dwc.extensions[0]
+  ext.ignore_headers.should be_true
+  tail_data, tail_errors = ext.read(200) do |r, err|
+    res << [r.size, err.size]
+  end
+  res << [tail_data.size, tail_errors.size]
+  res.should == [[1,0]]
+end
+

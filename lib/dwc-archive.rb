@@ -56,7 +56,7 @@ class DarwinCore
     root_key = @archive.meta.keys[0]
     ext = @archive.meta[root_key][:extension]
     return [] unless ext
-    ext = [ext] unless ext.class == Array
+    ext = [ext] if ext.class != Array
     ext.map { |e| DarwinCore::Extension.new(@archive, e) }
   end
 end

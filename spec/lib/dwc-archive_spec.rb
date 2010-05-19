@@ -6,7 +6,6 @@ describe DarwinCore do
   end
 
   describe ".new" do 
-
     it "should create DarwinCore instance out of archive file" do
       ['data.zip', 'data.tar.gz', 'minimal.tar.gz', 'junk_dir_inside.zip'].each do |file|
         file = File.join(@file_dir, file)
@@ -35,6 +34,5 @@ describe DarwinCore do
       dwc = DarwinCore.new(file)
       dwc.archive.valid?.should be_true
     end
-
   end
 end
