@@ -128,7 +128,7 @@ Then /^I can read its content into memory$/ do
   core_data, core_errors = @dwc.core.read
   core_data.class.should == Array
   core_data.size.should == 584
-  core_errors.size.should == 1
+  core_errors.size.should == 3
 end
 
 Then /^I can read extensions content into memory$/ do
@@ -147,7 +147,7 @@ Then /^I can read its core content using block$/ do
     res << [r.size, err.size]
   end
   res << [tail_data.size, tail_errors.size]
-  res.should == [[200,0],[200,0],[184,1]]
+  res.should == [[200,0],[200,0],[184,3]]
 end
 
 Then /^I can read extensions content using block$/ do
