@@ -147,7 +147,7 @@ Then /^I can read its core content using block$/ do
     res << [r.size, err.size]
   end
   res << [tail_data.size, tail_errors.size]
-  res.should == [[200,0],[200,0],[184,3]]
+  res.should == [[198,2],[200,0],[186,1]]
 end
 
 Then /^I can read extensions content using block$/ do

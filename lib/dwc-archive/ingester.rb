@@ -1,4 +1,4 @@
-class DarwinCore
+class DarwinCore 
   module Ingester
     attr_reader :data, :properties, :encoding, :fields_separator
     attr_reader :file_path, :fields, :line_separator, :quote_character, :ignore_headers
@@ -10,14 +10,7 @@ class DarwinCore
       args.merge!({:quote_char => @quote_character}) if @quote_character != ''
       CSV.open(@file_path, args).each_with_index do |r, i|
         index_fix = 0; next if @ignore_headers && i == 0
-        str = r.join('')
-        if defined? FasterCSV
-          require File.join(File.dirname(__FILE__), 'utf_regex_ruby18')
-          UTF8RGX === str ? res << r : errors << r
-        else
-          str = str.force_encoding('utf-8')
-          str.encoding.name == "UTF-8" && str.valid_encoding? ? res << r : errors << r
-        end
+        @fields.size > (r.size - 1) ? errors << r : process_csv_row(res, errors, r)
         if block_given? && (i + index_fix) % batch_size == 0
           yield [res, errors]
           res = []
@@ -28,6 +21,31 @@ class DarwinCore
     end
     
     private
+    def process_csv_row(result, errors, row)
+      str = row.join('')
+      if defined? FasterCSV
+        require File.join(File.dirname(__FILE__), 'utf_regex_ruby18')
+        UTF8RGX === str ? result << row : errors << row
+      else
+        str = str.force_encoding('utf-8')
+        str.encoding.name == "UTF-8" && str.valid_encoding? ? result << row : errors << row
+      end
+    end
+
+    def get_attributes(exception)
+      @properties = @data[:attributes]
+      @encoding = @properties[:encoding] || 'UTF-8'
+      raise exception("No support for encodings other than utf-8 or utf-16 at the moment") unless ["utf-8", "utf8", "utf-16", "utf16"].include? @encoding.downcase
+      @field_separator = get_field_separator
+      @quote_character = @properties[:fieldsEnclosedBy] || ""
+      @line_separator = @properties[:linesTerminatedBy] || "\n"
+      @ignore_headers = @properties[:ignoreHeaderLines] ? [1, true].include?(@properties[:ignoreHeaderLines]) : false
+      @file_path = get_file_path
+      raise exception("No file data") unless @file_path
+      @fields = get_fields
+      raise exception("No data fields are found") if @fields.empty?
+    end
+    
     def get_file_path
       file = @data[:location] || @data[:attributes][:location] || @data[:files][:location]
       File.join(@path, file)

@@ -4,4 +4,5 @@ class DarwinCore
   class UnpackingError < Error; end
   class InvalidArchiveError < Error; end
   class CoreFileError < Error; end
+  class ExtensionFileError < Error; end
 end
