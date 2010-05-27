@@ -14,17 +14,17 @@ describe DarwinCore do
       end
     end
 
-    it "should raise error if archive file does not exist" do
+    it "should raise an error if archive file does not exist" do
       file = 'not_a_file'
       lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::FileNotFoundError)
     end
 
-    it "should raise  error if archive is broken" do
+    it "should raise an error if archive is broken" do
       file = File.join(@file_dir, 'broken.tar.gz')
       lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::UnpackingError)
     end
 
-    it "should raise error if archive is invalid" do
+    it "should raise an error if archive is invalid" do
       file = File.join(@file_dir, 'invalid.tar.gz')
       lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::InvalidArchiveError)
     end

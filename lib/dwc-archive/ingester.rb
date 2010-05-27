@@ -8,9 +8,10 @@ class DarwinCore
       index_fix = 1
       args = {:col_sep => @field_separator}
       args.merge!({:quote_char => @quote_character}) if @quote_character != ''
+      min_size = @fields.map {|f| f[:index].to_i || 0}.sort[-1] + 1
       CSV.open(@file_path, args).each_with_index do |r, i|
         index_fix = 0; next if @ignore_headers && i == 0
-        @fields.size > (r.size - 1) ? errors << r : process_csv_row(res, errors, r)
+        min_size > r.size ? errors << r : process_csv_row(res, errors, r)
         if block_given? && (i + index_fix) % batch_size == 0
           yield [res, errors]
           res = []
