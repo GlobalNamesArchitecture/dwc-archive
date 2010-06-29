@@ -16,6 +16,7 @@ require 'dwc-archive/archive'
 require 'dwc-archive/core'
 require 'dwc-archive/extension'
 require 'dwc-archive/metadata'
+require 'dwc-archive/generator'
 
 class DarwinCore
   attr_reader :archive, :core, :metadata, :extensions

@@ -5,4 +5,5 @@ class DarwinCore
   class InvalidArchiveError < Error; end
   class CoreFileError < Error; end
   class ExtensionFileError < Error; end
+  class GeneratorError < Error; end
 end

@@ -1,4 +1,4 @@
-Feature: Creation of a Darwing Core Archive
+Feature: Reading of a Darwing Core Archive
   In order to start working with Darwin Core Archive file
   A user should be able initiate dwc object from a file
   So I want to implement handling of dwc object creation
