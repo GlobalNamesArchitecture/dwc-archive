@@ -1,12 +1,14 @@
 class DarwinCore
   class Generator
+    attr_reader :eml_xml_data
+
     #TODO refactor -- for now copying expander methods
     def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
       @dwc_path = dwc_path
-      @path = File.join(tmp_dir, 'dwc_gen_' + rand(10000000000).to_s)
+      @path = File.join(tmp_dir, 'dwc_' + rand(10000000000).to_s)
       FileUtils.mkdir(@path)
       @meta_xml_data = {:extensions => []}
-      @eml_xml_data = {}
+      @eml_xml_data = {:id => nil, :title => nil, :authors => [], :abstract => nil, :citation => nil, :url => nil}
     end
     
     #TODO refactor!
@@ -14,8 +16,8 @@ class DarwinCore
       FileUtils.rm_rf(@path) if FileTest.exists?(@path)
     end
 
-    def core=(data, keep_headers = true)
-      c = CSV.open(File.join(@path, "dwc_archive.txt"), 'w:utf-8')
+    def add_core(data, file_name, keep_headers = true)
+      c = CSV.open(File.join(@path,file_name), 'w:utf-8')
       header = data.shift
       fields = header.map do |f|
         f.strip!
@@ -23,10 +25,33 @@ class DarwinCore
         f.split("/")[-1]
       end
       data.unshift(fields) if keep_headers
-      debugger
-      @meta_xml_data[:core] = {:fields => header, :ignoreHeaderLines => keep_headers}
+      @meta_xml_data[:core] = {:fields => header, :ignoreHeaderLines => keep_headers, :location => file_name}
       data.each {|d| c << d}
       c.close
+    end
+
+    def add_extension(data, file_name, keep_headers = true)
+      c = CSV.open(File.join(@path,file_name), 'w:utf-8')
+      header = data.shift
+      fields = header.map do |f|
+        f.strip!
+        raise GeneratorError("No header in core data, or header fields are not urls") unless f.match(/^http:\/\//)
+        f.split("/")[-1]
+      end
+      data.unshift(fields) if keep_headers
+      @meta_xml_data[:extensions] << { :fields => header, :ignoreHeaderLines => keep_headers, :location => file_name }
+      data.each { |d| c << d }
+      c.close
+    end
+
+    def add_meta_xml
+      meta = DarwinCore::Generator::MetaXml.new(@meta_xml_data, @path)
+      meta.create
+    end
+
+    def add_eml_xml
+      eml = DarwinCore::Generator::EmlXml.new(@eml_xml_data, @path)
+      eml.create
     end
 
     def path

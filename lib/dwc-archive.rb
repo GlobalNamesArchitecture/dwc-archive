@@ -3,6 +3,8 @@ $:.unshift(File.dirname(__FILE__)) unless
    $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))   
 require 'ruby_extensions'
 require 'fileutils'
+require 'openStruct'
+
 begin
   require 'fastercsv'
   CSV = FasterCSV
@@ -17,6 +19,8 @@ require 'dwc-archive/core'
 require 'dwc-archive/extension'
 require 'dwc-archive/metadata'
 require 'dwc-archive/generator'
+require 'dwc-archive/generator_meta_xml'
+require 'dwc-archive/generator_eml_xml'
 
 class DarwinCore
   attr_reader :archive, :core, :metadata, :extensions

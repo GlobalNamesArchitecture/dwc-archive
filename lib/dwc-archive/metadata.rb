@@ -1,6 +1,6 @@
 class DarwinCore
   class Metadata
-    def initialize(archive)
+    def initialize(archive = nil)
       @archive = archive
       @metadata = @archive.eml
     end
