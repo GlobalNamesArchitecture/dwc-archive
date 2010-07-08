@@ -50,7 +50,7 @@ class DarwinCore
     end
 
     def add_eml_xml(data)
-      @eml_xml_data.merge!(data)
+      @eml_xml_data = data
       eml = DarwinCore::Generator::EmlXml.new(@eml_xml_data, @path)
       eml.create
     end
@@ -62,6 +62,13 @@ class DarwinCore
     def files
       return nil unless @path && FileTest.exists?(@path)
       Dir.entries(@path).select {|e| e !~ /[\.]{1,2}$/}.sort
+    end
+
+    def pack
+      debugger
+      a = "cd #{@path}; tar -zcf #{@dwc_path} *"
+      puts a
+      system(a)
     end
   end
 end

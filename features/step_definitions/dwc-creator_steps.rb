@@ -42,7 +42,7 @@ Given /^2 sets of data with terms as urls in the header$/ do
 end
 
 When /^User creates generator$/ do
-  @gen = DarwinCore::Generator.new('dwc.tar.gz')
+  @gen = DarwinCore::Generator.new('/tmp/dwc.tar.gz')
 end
 
 When /^User adds extensions with file names "([^\"]*)" and "([^\"]*)"$/ do |file_name_1, file_name_2|
@@ -81,13 +81,25 @@ Then /^there should be "([^\"]*)" file with core and extensions informations$/ d
   meta = File.join(@gen.path, file_name)
   @gen.files.include?(file_name).should be_true
   dom = Nokogiri::XML(open(File.join(@gen.path, file_name)))
-  debugger
   dom.xpath('//xmlns:core//xmlns:location').text.should == 'darwin_core.txt'
   dom.xpath('//xmlns:extension[1]//xmlns:location').text.should == 'vernacular.txt'
 end
-
 
 Then /^there should be "([^\"]*)" file with authoriship information$/ do |file_name|
   eml = File.join(@gen.path, file_name)
   @gen.files.include?(file_name).should be_true
 end
+
+Given /^a path to a new file \- "([^\"]*)"$/ do |file_name|
+  @dwca_file = file_name
+end
+
+When /^generates archive$/ do
+  @gen.pack
+end
+
+Then /^there should be a valid new archive file$/ do
+  dwc = DarwinCore.new('/tmp/dwc.tar.gz')
+  dwc.valid?.should be_true
+end
+
