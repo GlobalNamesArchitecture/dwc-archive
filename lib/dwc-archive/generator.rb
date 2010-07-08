@@ -49,7 +49,8 @@ class DarwinCore
       meta.create
     end
 
-    def add_eml_xml
+    def add_eml_xml(data)
+      @eml_xml_data.merge!(data)
       eml = DarwinCore::Generator::EmlXml.new(@eml_xml_data, @path)
       eml.create
     end
@@ -62,7 +63,5 @@ class DarwinCore
       return nil unless @path && FileTest.exists?(@path)
       Dir.entries(@path).select {|e| e !~ /[\.]{1,2}$/}.sort
     end
-
-
   end
 end

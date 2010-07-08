@@ -60,7 +60,21 @@ end
 
 When /^User generates meta\.xml and eml.xml$/ do
   @gen.add_meta_xml
-  @gen.add_eml_xml
+  @gen.add_eml_xml({
+    :id => '1234',
+    :title => 'Test Classification',
+    :authors => [
+      { :first_name => 'John',
+        :last_name => 'Doe',
+        :email => 'jdoe@example.com' },
+      { :first_name => 'Jane',
+        :last_name => 'Doe', 
+        :email => 'jane@example.com' }
+      ],
+    :abstract => 'test classification',
+    :citation => 'Test classification: Doe John, Doe Jane, Taxnonmy, 10, 1, 2010',
+    :url => 'http://example.com'
+  })
 end
 
 Then /^there should be "([^\"]*)" file with core and extensions informations$/ do |file_name|
