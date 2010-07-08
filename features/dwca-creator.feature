@@ -25,4 +25,4 @@ Feature: Creating and writing a Darwin Core Archive
     And User adds extensions with file names "vernacular.txt" and "synonyms.txt"
     And User generates meta.xml and eml.xml
     Then there should be "meta.xml" file with core and extensions informations
-    # And there should be "eml.xml" file with authoriship information
+    And there should be "eml.xml" file with authoriship information

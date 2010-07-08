@@ -33,7 +33,7 @@ class DarwinCore
           end
         end
         data = builder.to_xml
-        f = open(File.join(@path, 'meta.xml'), 'w:utf-8')
+        f = open(File.join(@path, 'eml.xml'), 'w:utf-8')
         f.write(data)
         f.close
       end

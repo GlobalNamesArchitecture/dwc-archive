@@ -81,6 +81,7 @@ Then /^there should be "([^\"]*)" file with core and extensions informations$/ d
   meta = File.join(@gen.path, file_name)
   @gen.files.include?(file_name).should be_true
   dom = Nokogiri::XML(open(File.join(@gen.path, file_name)))
+  debugger
   dom.xpath('//xmlns:core//xmlns:location').text.should == 'darwin_core.txt'
   dom.xpath('//xmlns:extension[1]//xmlns:location').text.should == 'vernacular.txt'
 end
