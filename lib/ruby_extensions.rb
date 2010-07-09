@@ -9,7 +9,7 @@ class Hash
         result = Nokogiri::XML(xml_io)
         return { result.root.name.to_sym => xml_node_to_hash(result.root)} 
       rescue Exception => e
-        # raise your custom exception here
+        raise e
       end
     end 
 
@@ -53,8 +53,8 @@ class Hash
 
     def prepare(data)
       return data if data.class != String
-      data = true if data.strip == "true"
-      data = false if data.strip == "false"
+      data = true if data.respond_to?('strip') && data.strip == "true"
+      data = false if data.respond_to?('strip') && data.strip == "false"
       data.to_i.to_s == data ? data.to_i : data
     end
   end

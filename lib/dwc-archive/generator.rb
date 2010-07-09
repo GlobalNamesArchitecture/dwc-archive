@@ -65,9 +65,7 @@ class DarwinCore
     end
 
     def pack
-      debugger
       a = "cd #{@path}; tar -zcf #{@dwc_path} *"
-      puts a
       system(a)
     end
   end

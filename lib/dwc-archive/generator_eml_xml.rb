@@ -12,11 +12,13 @@ class DarwinCore
                  'xmlns:eml' => "eml://ecoinformatics.org/eml-2.1.0", 
                  'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
                  'xsi:schemaLocation' => "eml://ecoinformatics.org/eml-2.1.0 eml.xsd" ) do
-            #xml.parent.namespace = xml.parent.namespace_definitions.first
             xml.dataset(:id => @data[:id]) do
               xml.title (@data[:title])
+              contacts = []
               @data[:authors].each_with_index do |a, i|
-                xml.creator(:id => i, :scope => 'document') do
+                creator_id = i + 1
+                contacts << creator_id
+                xml.creator(:id => creator_id, :scope => 'document') do
                   xml.individualName do
                     xml.givenName (a[:first_name])
                     xml.surName (a[:last_name])
@@ -25,12 +27,16 @@ class DarwinCore
                 end
               end
               xml.abstract (@data[:abstract])
+              contacts.each do |contact|
+                xml.contact { xml.references(contact) }
+              end
             end
             xml.additionalMetadata do
               xml.metadata do
                 xml.citation (@data[:citation])
               end
             end
+            xml.parent.namespace = xml.parent.namespace_definitions.first
           end
         end
         data = builder.to_xml

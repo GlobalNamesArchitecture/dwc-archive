@@ -8,6 +8,7 @@ class DarwinCore
       @expander = DarwinCore::Expander.new(@archive_path, @tmp_dir)
       @expander.unpack
       if valid?
+        debugger
         @meta = Hash.from_xml(open(File.join(@expander.path, 'meta.xml')))
         @eml = files.include?("eml.xml") ? Hash.from_xml(open(File.join(@expander.path, 'eml.xml'))) : nil
       else
