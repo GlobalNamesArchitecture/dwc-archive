@@ -9,6 +9,7 @@ class DarwinCore
       FileUtils.mkdir(@path)
       @meta_xml_data = {:extensions => []}
       @eml_xml_data = {:id => nil, :title => nil, :authors => [], :abstract => nil, :citation => nil, :url => nil}
+      @write = R19 ? 'w:utf-8' : 'w'
     end
     
     #TODO refactor!
@@ -17,7 +18,7 @@ class DarwinCore
     end
 
     def add_core(data, file_name, keep_headers = true)
-      c = CSV.open(File.join(@path,file_name), 'w:utf-8')
+      c = CSV.open(File.join(@path,file_name), @write)
       header = data.shift
       fields = header.map do |f|
         f.strip!
@@ -31,7 +32,7 @@ class DarwinCore
     end
 
     def add_extension(data, file_name, keep_headers = true)
-      c = CSV.open(File.join(@path,file_name), 'w:utf-8')
+      c = CSV.open(File.join(@path,file_name), @write)
       header = data.shift
       fields = header.map do |f|
         f.strip!

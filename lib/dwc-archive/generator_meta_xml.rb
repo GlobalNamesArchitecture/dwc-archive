@@ -4,6 +4,7 @@ class DarwinCore
       def initialize(data, path)
         @data = data
         @path = path
+        @write = R19 ? 'w:utf-8' : 'w'
       end
 
       def create
@@ -30,7 +31,7 @@ class DarwinCore
           end
         end
         meta_xml_data = builder.to_xml
-        meta_file = open(File.join(@path, 'meta.xml'), 'w:utf-8')
+        meta_file = open(File.join(@path, 'meta.xml'), @write)
         meta_file.write(meta_xml_data)
         meta_file.close
       end
