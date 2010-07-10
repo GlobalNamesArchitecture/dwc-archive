@@ -4,7 +4,6 @@ class DarwinCore
     attr_reader :id 
     def initialize(archive)
       @archive = archive
-      debugger
       @path = @archive.files_path
       root_key = @archive.meta.keys[0]
       @data = @archive.meta[root_key][:core]

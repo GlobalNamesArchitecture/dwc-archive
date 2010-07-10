@@ -100,6 +100,6 @@ end
 
 Then /^there should be a valid new archive file$/ do
   dwc = DarwinCore.new('/tmp/dwc.tar.gz')
-  dwc.valid?.should be_true
+  dwc.archive.valid?.should be_true
 end
 
