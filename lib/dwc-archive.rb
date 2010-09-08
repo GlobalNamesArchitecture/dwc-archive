@@ -22,6 +22,7 @@ require 'dwc-archive/metadata'
 require 'dwc-archive/generator'
 require 'dwc-archive/generator_meta_xml'
 require 'dwc-archive/generator_eml_xml'
+require 'dwc-archive/classification_normalizer'
 
 class DarwinCore
   attr_reader :archive, :core, :metadata, :extensions
@@ -29,11 +30,21 @@ class DarwinCore
   
   DEFAULT_TMP_DIR = "/tmp"
   
+  def self.nil_field?(field)
+    return true if [nil, '', '/N'].include?(field)
+    false
+  end
+
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
     @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 
     @core = DarwinCore::Core.new(@archive)
     @metadata = DarwinCore::Metadata.new(@archive)
     @extensions = get_extensions
+  end
+
+  def normalize_classification
+    return nil unless core.fields.map { |f| f[:term].split('/')[-1].downcase }.include? 'highertaxonid'
+    DarwinCore::ClassificationNormalizer.new(self).normalize
   end
 
   def self.clean_all(tmp_dir = DEFAULT_TMP_DIR)

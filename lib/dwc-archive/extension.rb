@@ -2,6 +2,7 @@ class DarwinCore
   class Extension
     include DarwinCore::Ingester
     attr_reader :coreid
+    alias :id :coreid
 
     def initialize(archive, data)
       @archive = archive

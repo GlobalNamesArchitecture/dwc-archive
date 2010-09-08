@@ -161,3 +161,10 @@ Then /^I can read extensions content using block$/ do
   res.should == [[1,0]]
 end
 
+Then /^I am able to use DarwinCore\#normalize_classification method$/ do
+  @normalized_classification = @dwc.normalize_classification
+end
+
+Then /^get normalized classification in expected format$/ do
+  pending # express the regexp above with the code you wish you had
+end

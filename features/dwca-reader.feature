@@ -54,3 +54,9 @@ Feature: Reading of a Darwing Core Archive
     When I create a new DarwinCore instance
     Then I can read its core content using block
     Then I can read extensions content using block
+
+  Scenario: Normalizing classification
+    Given path to a dwc file "data.tar.gz"
+    When I create a new DarwinCore instance
+    Then I am able to use DarwinCore#normalize_classification method
+    And get normalized classification in expected format

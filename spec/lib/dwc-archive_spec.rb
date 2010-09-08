@@ -5,6 +5,20 @@ describe DarwinCore do
     @file_dir = File.join(File.dirname(__FILE__), '..', 'files')
   end
 
+  describe "::nil_field?" do
+    it "should return true for entries which normally mean nil" do
+      [nil, '/N', ''].each do |i|
+        DarwinCore.nil_field?(i).should be_true
+      end
+    end
+
+    it "should return false for fields that are not nil" do
+      [0, '0', '123', 123, 'dsdfs434343/N'].each do |i|
+        DarwinCore.nil_field?(i).should be_false
+      end
+    end
+  end
+
   describe ".new" do 
     it "should create DarwinCore instance out of archive file" do
       ['data.zip', 'data.tar.gz', 'minimal.tar.gz', 'junk_dir_inside.zip'].each do |file|
@@ -35,4 +49,21 @@ describe DarwinCore do
       dwc.archive.valid?.should be_true
     end
   end
+
+  describe ".normalize_classification" do
+    it "should return nil if file has no parent id information" do
+      file = File.join(@file_dir, 'flat_list.tar.gz')
+      dwc = DarwinCore.new(file)
+      dwc.normalize_classification.should be_nil
+    end
+    
+    it "should traverse DarwinCore files and assemble data for every node in memory" do
+      file = File.join(@file_dir, 'data.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      norm.class.should == Hash
+      norm['leptogastrinae:tid:2857'].class.should == Hash
+    end
+  end
+
 end
