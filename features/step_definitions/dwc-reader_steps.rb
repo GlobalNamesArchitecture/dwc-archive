@@ -166,5 +166,7 @@ Then /^I am able to use DarwinCore\#normalize_classification method$/ do
 end
 
 Then /^get normalized classification in expected format$/ do
-  pending # express the regexp above with the code you wish you had
+  @normalized_classification.class.should == Hash
+  key = @normalized_classification.keys[0]
+  @normalized_classification[key].class.should == DarwinCore::TaxonNormalized
 end

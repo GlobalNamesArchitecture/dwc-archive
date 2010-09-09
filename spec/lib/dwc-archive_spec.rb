@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.expand_path(File.dirname(__FILE__) + "/../spec_helper")
 
 describe DarwinCore do
   before(:all) do
@@ -62,7 +62,35 @@ describe DarwinCore do
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       norm.class.should == Hash
-      norm['leptogastrinae:tid:2857'].class.should == Hash
+      norm['leptogastrinae:tid:2857'].class.should == DarwinCore::TaxonNormalized
+    end
+
+    it "should be able to assemble vernacular names from an extension" do
+      file = File.join(@file_dir, 'data.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      norm.select { |k,v| !v.vernacular_names.empty? }.map { |k,v| v.vernacular_names }.size.should > 0
+    end
+
+    it "should be able to assemble synonyms from extension" do
+      file = File.join(@file_dir, 'synonyms_in_extension.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
+    end
+    
+    it "should be able to assemble synonyms from extension" do
+      file = File.join(@file_dir, 'synonyms_in_core_accepted_name_field.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
+    end
+
+    it "should be able to assemble synonyms from extension" do
+      file = File.join(@file_dir, 'data.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
     end
   end
 
