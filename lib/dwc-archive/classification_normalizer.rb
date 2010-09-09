@@ -14,6 +14,9 @@ class DarwinCore
 
   end
 
+  class SynonymNormalized < Struct.new(:name, :canonical_name, :status);end
+  class VernacularNormalized < Struct.new(:name, :language);end
+
   class ClassificationNormalizer
     def initialize(dwc_instance)
       @dwc = dwc_instance
@@ -57,10 +60,10 @@ class DarwinCore
     
     def add_synonym_from_core(taxon_id, row)
       taxon = @res[row[taxon_id]] ? @res[row[taxon_id]] : @res[row[taxon_id]] = DarwinCore::TaxonNormalized.new
-      taxon.synonyms << {
-        :name => row[@core[:scientificname]], 
-        :canonical_name => canonical_name(row[@core[:scientificname]]), 
-        :status => row[@core[:taxonomicstatus]]}
+      taxon.synonyms << SynonymNormalized.new(
+        row[@core[:scientificname]], 
+        canonical_name(row[@core[:scientificname]]), 
+        row[@core[:taxonomicstatus]])
     end
 
     def injest_core
@@ -116,20 +119,19 @@ class DarwinCore
     def injest_synonyms(extension)
       ext, fields = *extension
       ext.read[0].each do |r|
-        @res[r[fields[:id]]].synonyms << {
-          :name => r[fields[:scientificname]], 
-          :canonical_name => canonical_name(r[fields[:scientificname]]), 
-          :status => r[fields[:taxonomicstatus]]}
+        @res[r[fields[:id]]].synonyms << SynonymNormalized.new(
+          r[fields[:scientificname]], 
+          canonical_name(r[fields[:scientificname]]), 
+          r[fields[:taxonomicstatus]])
       end
     end
 
     def injest_vernaculars(extension)
       ext, fields = *extension
       ext.read[0].each do |r|
-        @res[r[fields[:id]]].vernacular_names << {
-          :name => r[fields[:vernacularname]],
-          :language => r[fields[:languagecode]]
-        }
+        @res[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
+          r[fields[:vernacularname]],
+          r[fields[:languagecode]])
       end
     end
 
