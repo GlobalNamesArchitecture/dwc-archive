@@ -44,6 +44,15 @@ Update to latest rubygems (v >= 1.3.6) which adds gemcutter sources by default.
     end
     results << [tail_data, tail_errors]
 
+    # normalize names in classification collecting together synonyms, canonical names,
+    # vernacular names and associating paths to taxons in a classification 
+    # distributed as DwCA file
+    # NOTE: this functionality requires biodiversity gem for ruby 1.8.x and
+    # biodiversity19 gem for ruby 1.9.x
+
+    result = dwc.normalize_classification
+
+
     DarwinCore.clean_all   # remove all expanded archives
 
 == Note on Patches/Pull Requests
