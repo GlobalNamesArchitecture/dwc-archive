@@ -34,6 +34,15 @@ class DarwinCore
     return true if [nil, '', '/N'].include?(field)
     false
   end
+  
+  def self.clean_all(tmp_dir = DEFAULT_TMP_DIR)
+    Dir.entries(tmp_dir).each do |entry|
+      path = File.join(tmp_dir, entry)
+      if FileTest.directory?(path) && entry.match(/^dwc_[\d]+$/)
+        FileUtils.rm_rf(path)
+      end
+    end
+  end
 
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
     @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 
@@ -42,18 +51,14 @@ class DarwinCore
     @extensions = get_extensions
   end
 
+  # generates a hash from a classification data with path to each node, list of synonyms and vernacular names.
   def normalize_classification
-    return nil unless core.fields.map { |f| f[:term].split('/')[-1].downcase }.include? 'highertaxonid'
+    return nil unless has_parent_id?
     DarwinCore::ClassificationNormalizer.new(self).normalize
   end
 
-  def self.clean_all(tmp_dir = DEFAULT_TMP_DIR)
-    Dir.entries(tmp_dir).each do |entry|
-      path = File.join(tmp_dir, entry)
-      if FileTest.directory?(path) && entry.match(/^dwc_[\d]+$/)
-        FileUtils.rm_rf(path)
-      end
-    end
+  def has_parent_id?
+    !!@core.fields.join('|').downcase.match(/highertaxonid|parentnameusageid/)
   end
 
   private
