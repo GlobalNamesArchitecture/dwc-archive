@@ -25,6 +25,9 @@ require 'dwc-archive/generator_eml_xml'
 require 'dwc-archive/classification_normalizer'
 
 class DarwinCore
+  
+  VERSION = open(File.join(File.dirname(__FILE__), '..', 'VERSION')).readline.strip
+
   attr_reader :archive, :core, :metadata, :extensions
   alias :eml :metadata
   
@@ -52,9 +55,9 @@ class DarwinCore
   end
 
   # generates a hash from a classification data with path to each node, list of synonyms and vernacular names.
-  def normalize_classification
+  def normalize_classification(verbose = false)
     return nil unless has_parent_id?
-    DarwinCore::ClassificationNormalizer.new(self).normalize
+    DarwinCore::ClassificationNormalizer.new(self, verbose).normalize
   end
 
   def has_parent_id?

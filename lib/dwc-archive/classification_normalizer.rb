@@ -2,7 +2,7 @@
 require 'biodiversity'
 
 class DarwinCore 
-  
+    
   class TaxonNormalized
     attr_accessor :id, :parent_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
 
@@ -18,12 +18,15 @@ class DarwinCore
   class VernacularNormalized < Struct.new(:name, :language);end
 
   class ClassificationNormalizer
-    def initialize(dwc_instance)
+
+    def initialize(dwc_instance, verbose = false)
       @dwc = dwc_instance
       @core = get_fields(@dwc.core)
       @extensions = @dwc.extensions.map { |e| [e, get_fields(e)] }
       @res = {}
       @parser = ScientificNameParser.new
+      @verbose = verbose
+      @verbose_count = 1000
     end
 
     def normalize
@@ -63,12 +66,17 @@ class DarwinCore
       taxon.synonyms << SynonymNormalized.new(
         row[@core[:scientificname]], 
         canonical_name(row[@core[:scientificname]]), 
-        row[@core[:taxonomicstatus]])
+        @core[:taxonomicstatus] ? row[@core[:taxonomicstatus]] : nil)
     end
 
     def injest_core
       raise RuntimeError, "Darwin Core core fields must contain taxon id and scientific name" unless (@core[:id] && @core[:scientificname])
-      @dwc.core.read[0].each do |r|
+      puts "Reading core information" if @verbose
+      rows = @dwc.core.read[0]
+      puts "Injesting information from the core" if @verbose
+      rows.each_with_index do |r, i|
+        count = i + 1
+        puts "Injesting %s'th record" % count if @verbose and count % @verbose_count == 0
         #core has AcceptedNameUsageId
         if @core[:acceptednameusageid] && r[@core[:acceptednameusageid]] && r[@core[:acceptednameusageid]] != r[@core[:id]]
           add_synonym_from_core(@core[:acceptednameusageid], r)
@@ -102,7 +110,7 @@ class DarwinCore
       if DarwinCore.nil_field?(taxon.parent_id)
         taxon.classification_path = [taxon.current_name_canonical]
       else
-         parent_cp = @res[taxon.parent_id].classification_path
+        parent_cp = @res[taxon.parent_id].classification_path
         if parent_cp
           taxon.classification_path = parent_cp + [taxon.current_name_canonical]
         else
@@ -121,8 +129,11 @@ class DarwinCore
     end
     
     def injest_synonyms(extension)
+      puts "Injesting synonyms extension" if @verbose
       ext, fields = *extension
-      ext.read[0].each do |r|
+      ext.read[0].each_with_index do |r, i|
+        count = i + 1
+        puts "Injesting %s'th record" % count if @verbose && count % @verbose_count == 0
         @res[r[fields[:id]]].synonyms << SynonymNormalized.new(
           r[fields[:scientificname]], 
           canonical_name(r[fields[:scientificname]]), 
@@ -131,8 +142,11 @@ class DarwinCore
     end
 
     def injest_vernaculars(extension)
+      puts "Injesting vernacular names" if @verbose
       ext, fields = *extension
-      ext.read[0].each do |r|
+      ext.read[0].each_with_index do |r, i|
+        count = i + 1
+        puts "Injesting %s'th record" % count if @verbose && count % @verbose_count == 0
         @res[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
           r[fields[:vernacularname]],
           fields[:languagecode] ? r[fields[:languagecode]] : nil)
@@ -141,3 +155,4 @@ class DarwinCore
 
   end
 end
+

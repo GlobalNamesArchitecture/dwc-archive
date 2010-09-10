@@ -5,6 +5,12 @@ describe DarwinCore do
     @file_dir = File.join(File.dirname(__FILE__), '..', 'files')
   end
 
+  describe "VERSION" do
+    it "should return VERSION number" do
+      DarwinCore::VERSION.split('.').join('').to_i.should > 41
+    end
+  end
+
   describe "::nil_field?" do
     it "should return true for entries which normally mean nil" do
       [nil, '/N', ''].each do |i|
