@@ -73,22 +73,26 @@ class DarwinCore
         if @core[:acceptednameusageid] && r[@core[:acceptednameusageid]] && r[@core[:acceptednameusageid]] != r[@core[:id]]
           add_synonym_from_core(@core[:acceptednameusageid], r)
         elsif !@core[:acceptednameusageid] && status_synonym?(r[@core[:taxonomicstatus]])
-          add_synonym_from_core(@core[:highertaxonid], r)
+          add_synonym_from_core(parent_id, r)
         else
           taxon = @res[r[@core[:id]]] ? @res[r[@core[:id]]] : @res[r[@core[:id]]] = DarwinCore::TaxonNormalized.new
           taxon.id = r[@core[:id]]
           taxon.current_name = r[@core[:scientificname]]
           taxon.current_name_canonical = canonical_name(r[@core[:scientificname]])
-          taxon.parent_id = r[@core[:highertaxonid]]
-          taxon.rank = r[@core[:taxonrank]]
-          taxon.status = r[@core[:taxonomicstatus]]
+          taxon.parent_id = r[parent_id] 
+          taxon.rank = r[@core[:taxonrank]] if @core[:taxonrank]
+          taxon.status = r[@core[:taxonomicstatus]] if @core[:taxonomicstatus]
         end
       end
+    end
+    
+    def parent_id
+      parent_id_field = @core[:highertaxonid] || @core[:parentnameusageid]
     end
 
     def calculate_classification_path
       @res.each do |taxon_id, taxon|
-        next if taxon.classification_path
+        next if taxon.classification_path 
         get_classification_path(taxon)
       end
     end
@@ -122,7 +126,7 @@ class DarwinCore
         @res[r[fields[:id]]].synonyms << SynonymNormalized.new(
           r[fields[:scientificname]], 
           canonical_name(r[fields[:scientificname]]), 
-          r[fields[:taxonomicstatus]])
+          fields[:taxonomicstatus] ? r[fields[:taxonomicstatus]] : nil)
       end
     end
 
@@ -131,7 +135,7 @@ class DarwinCore
       ext.read[0].each do |r|
         @res[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
           r[fields[:vernacularname]],
-          r[fields[:languagecode]])
+          fields[:languagecode] ? r[fields[:languagecode]] : nil)
       end
     end
 
