@@ -1,5 +1,5 @@
 # encoding: utf-8
-require 'biodiversity'
+require 'parsley-store'
 
 class DarwinCore 
     
@@ -24,7 +24,7 @@ class DarwinCore
       @core = get_fields(@dwc.core)
       @extensions = @dwc.extensions.map { |e| [e, get_fields(e)] }
       @res = {}
-      @parser = ScientificNameParser.new
+      @parser = ParsleyStore.new(1,2)
       @verbose = verbose
       @verbose_count = 1000
     end
@@ -45,7 +45,7 @@ class DarwinCore
       begin
         parsed_name = @parser.parse(a_scientific_name)[:scientificName]
       rescue
-        @parser = ScientificNameParser.new
+        @parser = ParsleyStore.new(1,2)
         parsed_name = @parser.parse(a_scientific_name)[:scientificName]
       end
       parsed_name[:parsed] ? parsed_name[:canonical] : a_scientific_name
