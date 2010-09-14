@@ -33,6 +33,7 @@ class DarwinCore
     end
 
     def normalize
+      @res = {}
       injest_core
       calculate_classification_path
       injest_extensions
