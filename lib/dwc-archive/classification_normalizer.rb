@@ -18,6 +18,8 @@ class DarwinCore
   class VernacularNormalized < Struct.new(:name, :language);end
 
   class ClassificationNormalizer
+    attr_accessor :verbose
+    attr_reader :error_names
 
     def initialize(dwc_instance, verbose = false)
       @dwc = dwc_instance
@@ -26,7 +28,8 @@ class DarwinCore
       @res = {}
       @parser = ParsleyStore.new(1,2)
       @verbose = verbose
-      @verbose_count = 1000
+      @verbose_count = 10000
+      @error_names = []
     end
 
     def normalize
@@ -101,7 +104,11 @@ class DarwinCore
     def calculate_classification_path
       @res.each do |taxon_id, taxon|
         next if taxon.classification_path 
-        get_classification_path(taxon)
+        begin
+          get_classification_path(taxon)
+        rescue DarwinCore::ParentNotCurrentError
+          next
+        end
       end
     end
 
@@ -110,7 +117,13 @@ class DarwinCore
       if DarwinCore.nil_field?(taxon.parent_id)
         taxon.classification_path = [taxon.current_name_canonical]
       else
-        parent_cp = @res[taxon.parent_id].classification_path
+        begin
+          parent_cp = @res[taxon.parent_id].classification_path
+        rescue NoMethodError #name has a parent which is not a current name
+          error = "The parent of the taxon \'#{taxon.current_name}\' is deprecated"
+          @error_names << {:name => taxon, :error => error}
+          raise DarwinCore::ParentNotCurrentError, error
+        end
         if parent_cp
           taxon.classification_path = parent_cp + [taxon.current_name_canonical]
         else
@@ -155,4 +168,5 @@ class DarwinCore
 
   end
 end
+
 

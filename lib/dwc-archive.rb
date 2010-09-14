@@ -28,7 +28,7 @@ class DarwinCore
   
   VERSION = open(File.join(File.dirname(__FILE__), '..', 'VERSION')).readline.strip
 
-  attr_reader :archive, :core, :metadata, :extensions
+  attr_reader :archive, :core, :metadata, :extensions, :classification_normalizer
   alias :eml :metadata
   
   DEFAULT_TMP_DIR = "/tmp"
@@ -57,7 +57,8 @@ class DarwinCore
   # generates a hash from a classification data with path to each node, list of synonyms and vernacular names.
   def normalize_classification(verbose = false)
     return nil unless has_parent_id?
-    DarwinCore::ClassificationNormalizer.new(self, verbose).normalize
+    @classification_normalizer ||= DarwinCore::ClassificationNormalizer.new(self, verbose)
+    @classification_normalizer.normalize
   end
 
   def has_parent_id?
