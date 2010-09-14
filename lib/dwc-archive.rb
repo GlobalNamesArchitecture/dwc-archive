@@ -11,7 +11,11 @@ if R19
 else
   require 'fastercsv'
   CSV = FasterCSV
+  if (defined?(Rails) && Rails::VERSION::MAJOR >= 3 && Rails.env.test?)
+    $" << 'csv.rb'
+  end
 end
+
 require 'dwc-archive/ingester'
 require 'dwc-archive/errors'
 require 'dwc-archive/expander'
