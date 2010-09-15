@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://github.com/dimus/dwc-archive"
     gem.authors = ["Dmitry Mozzherin"]
     #gem.add_dependency "fastercsv" if RUBY_VERSION.match /^1.8/
+    gem.add_dependency 'parsley-store'
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "cucumber", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
