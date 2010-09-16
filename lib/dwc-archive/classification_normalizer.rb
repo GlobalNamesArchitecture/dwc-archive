@@ -7,7 +7,8 @@ class DarwinCore
     attr_accessor :id, :parent_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
 
     def initialize
-      @id = @parent_id = @classification_path = @current_name = @current_name_canonical = @rank = @status = nil
+      @id = @parent_id = @current_name = @current_name_canonical = @rank = @status = nil
+      @classification_path = []
       @synonyms = []
       @vernacular_names = []
     end
@@ -116,7 +117,7 @@ class DarwinCore
     def get_classification_path(taxon)
       return if taxon.classification_path
       if DarwinCore.nil_field?(taxon.parent_id)
-        taxon.classification_path = [taxon.current_name_canonical]
+        taxon.classification_path << taxon.current_name_canonical
       else
         begin
           parent_cp = @res[taxon.parent_id].classification_path
