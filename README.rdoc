@@ -55,6 +55,56 @@ Update to latest rubygems (v >= 1.3.6) which adds gemcutter sources by default.
 
     DarwinCore.clean_all   # remove all expanded archives
 
+== Creating a DarwinCore Archive file
+    
+    gen = DarwinCore::Generator.new('/tmp/dwc_birches.tar.gz')
+
+    core = [
+      ["http://rs.tdwg.org/dwc/terms/taxonID", "http://rs.tdwg.org/dwc/terms/parentNameUsageID", "http://rs.tdwg.org/dwc/terms/scientificName", "http://rs.tdwg.org/dwc/terms/taxonRank"],
+      [1, 0, "Plantae", "kingdom"],
+      [2, 1, "Betula", "genus"],
+      [3, 2, "Betula verucosa", "species"]
+    ]
+
+    vernacular_names = [
+      ["http://rs.tdwg.org/dwc/terms/TaxonID", "http://rs.tdwg.org/dwc/terms/vernacularName"],
+      [1, "Plants"],
+      [1, "Растения"],
+      [2, "Birch"],
+      [2, "Береза"],
+      [3, "Wheeping Birch"],
+      [3, "Береза плакучая"]
+    ]
+
+    synonyms = [
+      ["http://rs.tdwg.org/dwc/terms/TaxonID", "http://rs.tdwg.org/dwc/terms/scientificName", "http://rs.tdwg.org/dwc/terms/taxonomicStatus"], 
+      [1, "Betila Linnaeus, 1753", 'misspelling']
+    ]
+
+    eml = {
+      :id => '1234',
+      :title => 'Test Classification',
+      :authors => [
+        { :first_name => 'John',
+          :last_name => 'Doe',
+          :email => 'jdoe@example.com' },
+          { :first_name => 'Jane',
+            :last_name => 'Doe', 
+            :email => 'jane@example.com' }
+    ],
+      :abstract => 'test classification',
+      :citation => 'Test classification: Doe John, Doe Jane, Taxnonmy, 10, 1, 2010',
+      :url => 'http://example.com'
+    }
+
+    gen.add_core(core, 'core.txt')
+    gen.add_extension(synonyms, 'synonyms.txt')
+    gen.add_extension(vernacular_names,  'vernacular_names.txt')
+    gen.add_meta_xml
+    gen.add_eml_xml(eml)
+    gen.pack
+
+
 == Note on Patches/Pull Requests
  
 * Fork the project.

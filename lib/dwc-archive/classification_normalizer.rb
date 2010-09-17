@@ -7,7 +7,9 @@ class DarwinCore
     attr_accessor :id, :parent_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
 
     def initialize
-      @id = @parent_id = @current_name = @current_name_canonical = @rank = @status = nil
+      @id = @parent_id = @rank = @status = nil
+      @current_name = ''
+      @current_name_canonical = ''
       @classification_path = []
       @synonyms = []
       @vernacular_names = []
