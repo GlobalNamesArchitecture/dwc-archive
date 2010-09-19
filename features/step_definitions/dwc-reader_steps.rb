@@ -171,13 +171,23 @@ Then /^get normalized classification in expected format$/ do
   @normalized_classification[key].class.should == DarwinCore::TaxonNormalized
 end
 
-Then /^have calculated paths in normalized classification$/ do
+Then /^there are paths, synonyms and vernacular names in normalized classification$/ do
   @paths_are_generated = false
+  @synonyms_are_generated = false
+  @vernaculars_are_generated = false
   @normalized_classification.each do |k, v|
     if v.classification_path.size > 0
       @paths_are_generated = true
-      break
     end
+    if v.synonyms.size > 0
+      @synonyms_are_generated = true
+    end
+    if v.vernacular_names.size > 0
+      @vernaculars_are_generated = true
+    end
+    break if (@vernaculars_are_generated && @paths_are_generated && @synonyms_are_generated)
   end
   @paths_are_generated.should be_true
+  @vernaculars_are_generated.should be_true
+  @synonyms_are_generated.should be_true
 end
