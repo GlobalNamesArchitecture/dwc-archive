@@ -170,3 +170,14 @@ Then /^get normalized classification in expected format$/ do
   key = @normalized_classification.keys[0]
   @normalized_classification[key].class.should == DarwinCore::TaxonNormalized
 end
+
+Then /^have calculated paths in normalized classification$/ do
+  @paths_are_generated = false
+  @normalized_classification.each do |k, v|
+    if v.classification_path.size > 0
+      @paths_are_generated = true
+      break
+    end
+  end
+  @paths_are_generated.should be_true
+end

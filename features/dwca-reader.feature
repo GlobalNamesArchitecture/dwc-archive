@@ -60,3 +60,4 @@ Feature: Reading of a Darwing Core Archive
     When I create a new DarwinCore instance
     Then I am able to use DarwinCore#normalize_classification method
     And get normalized classification in expected format
+    And have calculated paths in normalized classification

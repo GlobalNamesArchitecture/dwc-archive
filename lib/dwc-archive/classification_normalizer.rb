@@ -37,9 +37,9 @@ class DarwinCore
 
     def normalize
       @res = {}
-      injest_core
+      ingest_core
       calculate_classification_path
-      injest_extensions
+      ingest_extensions
       @res
     end
 
@@ -76,14 +76,14 @@ class DarwinCore
         @core[:taxonomicstatus] ? row[@core[:taxonomicstatus]] : nil)
     end
 
-    def injest_core
+    def ingest_core
       raise RuntimeError, "Darwin Core core fields must contain taxon id and scientific name" unless (@core[:id] && @core[:scientificname])
       puts "Reading core information" if @verbose
       rows = @dwc.core.read[0]
-      puts "Injesting information from the core" if @verbose
+      puts "Ingesting information from the core" if @verbose
       rows.each_with_index do |r, i|
         count = i + 1
-        puts "Injesting %s'th record" % count if @verbose and count % @verbose_count == 0
+        puts "Ingesting %s'th record" % count if @verbose and count % @verbose_count == 0
         #core has AcceptedNameUsageId
         if @core[:acceptednameusageid] && r[@core[:acceptednameusageid]] && r[@core[:acceptednameusageid]] != r[@core[:id]]
           add_synonym_from_core(@core[:acceptednameusageid], r)
@@ -107,7 +107,7 @@ class DarwinCore
 
     def calculate_classification_path
       @res.each do |taxon_id, taxon|
-        next if taxon.classification_path 
+        next if !taxon.classification_path.empty?
         begin
           get_classification_path(taxon)
         rescue DarwinCore::ParentNotCurrentError
@@ -117,7 +117,7 @@ class DarwinCore
     end
 
     def get_classification_path(taxon)
-      return if taxon.classification_path
+      return if !taxon.classification_path.empty?
       if DarwinCore.nil_field?(taxon.parent_id)
         taxon.classification_path << taxon.current_name_canonical
       else
@@ -129,28 +129,28 @@ class DarwinCore
           raise DarwinCore::ParentNotCurrentError, error
         end
         if parent_cp
-          taxon.classification_path = parent_cp + [taxon.current_name_canonical]
+          taxon.classification_path << parent_cp + [taxon.current_name_canonical]
         else
           get_classification_path(@res[taxon.parent_id]) 
-          taxon.classification_path = @res[taxon.parent_id].classification_path + [taxon.current_name_canonical]
+          taxon.classification_path << @res[taxon.parent_id].classification_path + [taxon.current_name_canonical]
         end
       end
     end
 
-    def injest_extensions
+    def ingest_extensions
       @extensions.each do |e|
         ext, fields = *e
-        injest_synonyms(e) if fields.keys.include? :scientificname
-        injest_vernaculars(e) if fields.keys.include? :vernacularname
+        ingest_synonyms(e) if fields.keys.include? :scientificname
+        ingest_vernaculars(e) if fields.keys.include? :vernacularname
       end
     end
     
-    def injest_synonyms(extension)
-      puts "Injesting synonyms extension" if @verbose
+    def ingest_synonyms(extension)
+      puts "Ingesting synonyms extension" if @verbose
       ext, fields = *extension
       ext.read[0].each_with_index do |r, i|
         count = i + 1
-        puts "Injesting %s'th record" % count if @verbose && count % @verbose_count == 0
+        puts "Ingesting %s'th record" % count if @verbose && count % @verbose_count == 0
         @res[r[fields[:id]]].synonyms << SynonymNormalized.new(
           r[fields[:scientificname]], 
           canonical_name(r[fields[:scientificname]]), 
@@ -158,12 +158,12 @@ class DarwinCore
       end
     end
 
-    def injest_vernaculars(extension)
-      puts "Injesting vernacular names" if @verbose
+    def ingest_vernaculars(extension)
+      puts "Ingesting vernacular names" if @verbose
       ext, fields = *extension
       ext.read[0].each_with_index do |r, i|
         count = i + 1
-        puts "Injesting %s'th record" % count if @verbose && count % @verbose_count == 0
+        puts "Ingesting %s'th record" % count if @verbose && count % @verbose_count == 0
         @res[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
           r[fields[:vernacularname]],
           fields[:languagecode] ? r[fields[:languagecode]] : nil)
