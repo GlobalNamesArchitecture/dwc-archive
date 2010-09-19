@@ -39,6 +39,7 @@ class DarwinCore
       @res = {}
       ingest_core
       calculate_classification_path
+      require 'ruby-debug'; debugger
       ingest_extensions
       @res
     end
@@ -128,11 +129,11 @@ class DarwinCore
           @error_names << {:name => taxon, :error => error}
           raise DarwinCore::ParentNotCurrentError, error
         end
-        if parent_cp
-          taxon.classification_path += parent_cp + [taxon.current_name_canonical]
-        else
+        if parent_cp.empty?
           get_classification_path(@res[taxon.parent_id]) 
           taxon.classification_path += @res[taxon.parent_id].classification_path + [taxon.current_name_canonical]
+        else
+          taxon.classification_path += parent_cp + [taxon.current_name_canonical]
         end
       end
     end
