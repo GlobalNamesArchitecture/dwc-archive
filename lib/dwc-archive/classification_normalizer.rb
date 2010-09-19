@@ -39,7 +39,6 @@ class DarwinCore
       @res = {}
       ingest_core
       calculate_classification_path
-      require 'ruby-debug'; debugger
       ingest_extensions
       @res
     end
