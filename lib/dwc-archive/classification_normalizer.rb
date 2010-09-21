@@ -22,7 +22,7 @@ class DarwinCore
 
   class ClassificationNormalizer
     attr_accessor :verbose
-    attr_reader :error_names
+    attr_reader :error_names, :tree
 
     def initialize(dwc_instance, verbose = false)
       @dwc = dwc_instance
@@ -32,13 +32,23 @@ class DarwinCore
       @parser = ParsleyStore.new(1,2)
       @verbose = verbose
       @verbose_count = 10000
+      @name_strings = {}
       @error_names = []
+      @tree = {}
+    end
+
+    def add_name_string(name_string)
+      @name_strings[name_string] = 1 unless @name_strings[name_string]
+    end
+
+    def name_strings
+      @name_strings.keys
     end
 
     def normalize
       @res = {}
       ingest_core
-      calculate_classification_path
+      @tree = calculate_classification_path
       ingest_extensions
       @res
     end
@@ -55,6 +65,8 @@ class DarwinCore
         @parser = ParsleyStore.new(1,2)
         parsed_name = @parser.parse(a_scientific_name)[:scientificName]
       end
+      add_name_string(a_scientific_name)
+      add_name_string(parsed_name[:canonical]) if parsed_name[:parsed]
       parsed_name[:parsed] ? parsed_name[:canonical] : a_scientific_name
     end
     
@@ -109,17 +121,19 @@ class DarwinCore
       @res.each do |taxon_id, taxon|
         next if !taxon.classification_path.empty?
         begin
-          get_classification_path(taxon)
+          node = {taxon_id => {}}
+          get_classification_path(taxon, node)
         rescue DarwinCore::ParentNotCurrentError
           next
         end
       end
     end
 
-    def get_classification_path(taxon)
+    def get_classification_path(taxon, node)
       return if !taxon.classification_path.empty?
       if DarwinCore.nil_field?(taxon.parent_id)
         taxon.classification_path << taxon.current_name_canonical
+        return @tree[taxon.id] ? @tree[taxon.id].merge!(node) : @tree[taxon.id] = node
       else
         begin
           parent_cp = @res[taxon.parent_id].classification_path
@@ -129,10 +143,12 @@ class DarwinCore
           raise DarwinCore::ParentNotCurrentError, error
         end
         if parent_cp.empty?
-          get_classification_path(@res[taxon.parent_id]) 
+          node = get_classification_path(@res[taxon.parent_id], node) 
           taxon.classification_path += @res[taxon.parent_id].classification_path + [taxon.current_name_canonical]
+          return node[taxon.id] = node
         else
           taxon.classification_path += parent_cp + [taxon.current_name_canonical]
+          return {parent_id => node}
         end
       end
     end
@@ -167,6 +183,7 @@ class DarwinCore
         @res[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
           r[fields[:vernacularname]],
           fields[:languagecode] ? r[fields[:languagecode]] : nil)
+        add_name_string(r[fields[:vernacularname]])
       end
     end
 

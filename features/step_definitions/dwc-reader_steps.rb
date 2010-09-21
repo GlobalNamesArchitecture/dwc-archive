@@ -162,7 +162,8 @@ Then /^I can read extensions content using block$/ do
 end
 
 Then /^I am able to use DarwinCore\#normalize_classification method$/ do
-  @normalized_classification = @dwc.normalize_classification
+  @cn = DarwinCore::ClassificationNormalizer.new(@dwc)
+  @normalized_classification = @cn.normalize
 end
 
 Then /^get normalized classification in expected format$/ do
@@ -191,3 +192,27 @@ Then /^there are paths, synonyms and vernacular names in normalized classificati
   @vernaculars_are_generated.should be_true
   @synonyms_are_generated.should be_true
 end
+
+Then /^names used in classification can be accessed by "([^"]*)" method$/ do |name_strings|
+  names = @cn.send(name_strings.to_sym) 
+  names.size.should > @normalized_classification.size
+end
+
+
+Then /^nodes_ids organized in trees can be accessed by "([^"]*)" method$/ do |tree|
+  @keys = []
+  def flatten_tree(data)
+    data.each do |k, v|
+      require 'ruby-debug'; debugger
+      @keys << k
+      if @keys.size < 100
+        flatten_tree(v)
+      end
+    end
+  end
+  tree = @cn.send(tree.to_sym)
+  tree.class.should == Hash
+  flatten_tree(tree)
+  puts '' 
+end
+
