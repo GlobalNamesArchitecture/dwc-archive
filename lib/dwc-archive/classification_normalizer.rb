@@ -4,13 +4,14 @@ require 'parsley-store'
 class DarwinCore 
     
   class TaxonNormalized
-    attr_accessor :id, :parent_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
+    attr_accessor :id, :parent_id, :classification_path_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
 
     def initialize
       @id = @parent_id = @rank = @status = nil
       @current_name = ''
       @current_name_canonical = ''
       @classification_path = []
+      @classification_path_id = []
       @synonyms = []
       @vernacular_names = []
     end
@@ -48,7 +49,7 @@ class DarwinCore
     def normalize
       @res = {}
       ingest_core
-      @tree = calculate_classification_path
+      calculate_classification_path
       ingest_extensions
       @res
     end
@@ -121,19 +122,20 @@ class DarwinCore
       @res.each do |taxon_id, taxon|
         next if !taxon.classification_path.empty?
         begin
-          node = {taxon_id => {}}
-          get_classification_path(taxon, node)
+          get_classification_path(taxon)
         rescue DarwinCore::ParentNotCurrentError
           next
         end
       end
     end
 
-    def get_classification_path(taxon, node)
+    def get_classification_path(taxon)
       return if !taxon.classification_path.empty?
+      current_node = {taxon.id => {}}
       if DarwinCore.nil_field?(taxon.parent_id)
         taxon.classification_path << taxon.current_name_canonical
-        return @tree[taxon.id] ? @tree[taxon.id].merge!(node) : @tree[taxon.id] = node
+        taxon.classification_path_id << taxon.id
+        @tree.merge!(current_node)
       else
         begin
           parent_cp = @res[taxon.parent_id].classification_path
@@ -143,12 +145,16 @@ class DarwinCore
           raise DarwinCore::ParentNotCurrentError, error
         end
         if parent_cp.empty?
-          node = get_classification_path(@res[taxon.parent_id], node) 
+          get_classification_path(@res[taxon.parent_id]) 
           taxon.classification_path += @res[taxon.parent_id].classification_path + [taxon.current_name_canonical]
-          return node[taxon.id] = node
+          taxon.classification_path_id += @res[taxon.parent_id].classification_path_id + [taxon.id]
+          parent_node = @res[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
+          parent_node.merge!(current_node)
         else
           taxon.classification_path += parent_cp + [taxon.current_name_canonical]
-          return {parent_id => node}
+          taxon.classification_path_id += @res[taxon.parent_id].classification_path_id + [taxon.id]
+          parent_node = @res[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
+          parent_node.merge!(current_node)
         end
       end
     end

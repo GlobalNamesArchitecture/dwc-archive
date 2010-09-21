@@ -200,19 +200,19 @@ end
 
 
 Then /^nodes_ids organized in trees can be accessed by "([^"]*)" method$/ do |tree|
-  @keys = []
-  def flatten_tree(data)
+  def flatten_tree(data, keys)
     data.each do |k, v|
-      require 'ruby-debug'; debugger
-      @keys << k
-      if @keys.size < 100
-        flatten_tree(v)
+      keys << k
+      if v != {}
+        debugger if v.class != Hash
+        flatten_tree(v, keys)
       end
     end
   end
   tree = @cn.send(tree.to_sym)
   tree.class.should == Hash
-  flatten_tree(tree)
-  puts '' 
+  keys = []
+  flatten_tree(tree, keys) 
+  @normalized_classification.size.should == keys.size
 end
 
