@@ -90,7 +90,7 @@ class DarwinCore
     end
 
     def get_scientific_name(row, fields)
-      (fields[:scientificnameauthorship] && row[fields[:scientificnameauthorship]].to_s != '') ? row[fields[:scientificname]] + ' ' + row[fields[:scientificnameauthorship]] : row[fields[:scientificname]]
+      (fields[:scientificnameauthorship] && row[fields[:scientificnameauthorship]].to_s.strip != '') ? row[fields[:scientificname]].strip + ' ' + row[fields[:scientificnameauthorship]].strip : row[fields[:scientificname]].strip
     end
 
     def ingest_core
