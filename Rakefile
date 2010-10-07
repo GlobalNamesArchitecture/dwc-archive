@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{Handler of Darwin Core Archive files}
     gem.description = %q{Darwin Core Archive is the current standard exchange format for GLobal Names Architecture modules. This gem makes it easy to incorporate files in Darwin Core Archive format into a ruby project.}
     gem.email = "dmozzherin at gmail dot com"
-    gem.homepage = "http://github.com/DarwinCoreArchive/dwc-archive"
+    gem.homepage = "http://github.com/GlobalNamesArchitecture/dwc-archive"
     gem.authors = ["Dmitry Mozzherin"]
     #gem.add_dependency "fastercsv" if RUBY_VERSION.match /^1.8/
     gem.add_dependency 'parsley-store'
