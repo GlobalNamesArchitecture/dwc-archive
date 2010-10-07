@@ -27,7 +27,7 @@ class DarwinCore
 
     def initialize(dwc_instance, verbose = false)
       @dwc = dwc_instance
-      @core = get_fields(@dwc.core)
+      @core_fields = get_fields(@dwc.core)
       @extensions = @dwc.extensions.map { |e| [e, get_fields(e)] }
       @res = {}
       @parser = ParsleyStore.new(1,2)
@@ -84,38 +84,43 @@ class DarwinCore
     def add_synonym_from_core(taxon_id, row)
       taxon = @res[row[taxon_id]] ? @res[row[taxon_id]] : @res[row[taxon_id]] = DarwinCore::TaxonNormalized.new
       taxon.synonyms << SynonymNormalized.new(
-        row[@core[:scientificname]], 
-        canonical_name(row[@core[:scientificname]]), 
-        @core[:taxonomicstatus] ? row[@core[:taxonomicstatus]] : nil)
+        row[@core_fields[:scientificname]], 
+        canonical_name(row[@core_fields[:scientificname]]), 
+        @core_fields[:taxonomicstatus] ? row[@core_fields[:taxonomicstatus]] : nil)
+    end
+
+    def get_scientific_name(row, fields)
+      (fields[:scientificnameauthorship] && row[fields[:scientificnameauthorship]].to_s != '') ? row[fields[:scientificname]] + ' ' + row[fields[:scientificnameauthorship]] : row[fields[:scientificname]]
     end
 
     def ingest_core
-      raise RuntimeError, "Darwin Core core fields must contain taxon id and scientific name" unless (@core[:id] && @core[:scientificname])
+      raise RuntimeError, "Darwin Core core fields must contain taxon id and scientific name" unless (@core_fields[:id] && @core_fields[:scientificname])
       puts "Reading core information" if @verbose
       rows = @dwc.core.read[0]
       puts "Ingesting information from the core" if @verbose
       rows.each_with_index do |r, i|
         count = i + 1
+        r[@core_fields[:scientificname]] = get_scientific_name(r, @core_fields)
         puts "Ingesting %s'th record" % count if @verbose and count % @verbose_count == 0
         #core has AcceptedNameUsageId
-        if @core[:acceptednameusageid] && r[@core[:acceptednameusageid]] && r[@core[:acceptednameusageid]] != r[@core[:id]]
-          add_synonym_from_core(@core[:acceptednameusageid], r)
-        elsif !@core[:acceptednameusageid] && status_synonym?(r[@core[:taxonomicstatus]])
+        if @core_fields[:acceptednameusageid] && r[@core_fields[:acceptednameusageid]] && r[@core_fields[:acceptednameusageid]] != r[@core_fields[:id]]
+          add_synonym_from_core(@core_fields[:acceptednameusageid], r)
+        elsif !@core_fields[:acceptednameusageid] && status_synonym?(r[@core_fields[:taxonomicstatus]])
           add_synonym_from_core(parent_id, r)
         else
-          taxon = @res[r[@core[:id]]] ? @res[r[@core[:id]]] : @res[r[@core[:id]]] = DarwinCore::TaxonNormalized.new
-          taxon.id = r[@core[:id]]
-          taxon.current_name = r[@core[:scientificname]]
-          taxon.current_name_canonical = canonical_name(r[@core[:scientificname]])
+          taxon = @res[r[@core_fields[:id]]] ? @res[r[@core_fields[:id]]] : @res[r[@core_fields[:id]]] = DarwinCore::TaxonNormalized.new
+          taxon.id = r[@core_fields[:id]]
+          taxon.current_name = r[@core_fields[:scientificname]]
+          taxon.current_name_canonical = canonical_name(r[@core_fields[:scientificname]])
           taxon.parent_id = r[parent_id] 
-          taxon.rank = r[@core[:taxonrank]] if @core[:taxonrank]
-          taxon.status = r[@core[:taxonomicstatus]] if @core[:taxonomicstatus]
+          taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
+          taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
         end
       end
     end
     
     def parent_id
-      parent_id_field = @core[:highertaxonid] || @core[:parentnameusageid]
+      parent_id_field = @core_fields[:highertaxonid] || @core_fields[:parentnameusageid]
     end
 
     def calculate_classification_path
@@ -172,6 +177,7 @@ class DarwinCore
       ext, fields = *extension
       ext.read[0].each_with_index do |r, i|
         count = i + 1
+        r[fields[:scientificname]] = get_scientific_name(r, fields)
         puts "Ingesting %s'th record" % count if @verbose && count % @verbose_count == 0
         @res[r[fields[:id]]].synonyms << SynonymNormalized.new(
           r[fields[:scientificname]], 
