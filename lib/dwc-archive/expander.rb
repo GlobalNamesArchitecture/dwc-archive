@@ -26,7 +26,7 @@ class DarwinCore
       return nil unless path && FileTest.exists?(path)
       Dir.entries(path).select {|e| e !~ /[\.]{1,2}$/}.sort
     end
-    
+
     private
 
     def esc(a_str)
@@ -34,10 +34,12 @@ class DarwinCore
     end
 
     def get_unpacker
-      file_type = IO.popen("file -z " + esc(@archive_path)).read
-      
+      file_command = IO.popen("file -z " + esc(@archive_path))
+      file_type    = file_command.read
+      file_command.close
+
       if file_type.match(/tar.*gzip/i)
-        return proc do |tmp_path, archive_path| 
+        return proc do |tmp_path, archive_path|
           FileUtils.mkdir tmp_path
           system("tar -zxf #{esc(archive_path)} -C #{tmp_path} > /dev/null 2>&1")
         end
@@ -46,15 +48,15 @@ class DarwinCore
       if file_type.match(/Zip/)
         return proc { |tmp_path, archive_path| system("unzip -qq -d #{tmp_path} #{esc(archive_path)} > /dev/null 2>&1") }
       end
-      
+
       return nil
     end
-    
+
     def path_entries(dir)
       Dir.entries(dir).select {|e| e !~ /[\.]{1,2}$/}.sort
     end
-      
-    def files_path  
+
+    def files_path
       res = nil
       entries = path_entries(@path)
       if entries.include?('meta.xml')
@@ -73,6 +75,4 @@ class DarwinCore
       res
     end
   end
-
-
 end
