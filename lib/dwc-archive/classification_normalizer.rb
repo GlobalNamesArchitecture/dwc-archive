@@ -56,7 +56,7 @@ class DarwinCore
 
   private
 
-    def canonical_name(a_scientific_name)
+    def get_canonical_name(a_scientific_name)
       if R19
         a_scientific_name.force_encoding('utf-8')
       end
@@ -85,12 +85,16 @@ class DarwinCore
       taxon = @res[row[taxon_id]] ? @res[row[taxon_id]] : @res[row[taxon_id]] = DarwinCore::TaxonNormalized.new
       taxon.synonyms << SynonymNormalized.new(
         row[@core_fields[:scientificname]], 
-        canonical_name(row[@core_fields[:scientificname]]), 
+        row[@core_fields[:canonicalname]], 
         @core_fields[:taxonomicstatus] ? row[@core_fields[:taxonomicstatus]] : nil)
     end
 
-    def get_scientific_name(row, fields)
-      (fields[:scientificnameauthorship] && row[fields[:scientificnameauthorship]].to_s.strip != '') ? row[fields[:scientificname]].strip + ' ' + row[fields[:scientificnameauthorship]].strip : row[fields[:scientificname]].strip
+    def set_scientific_name(row, fields)
+      canonical_name = fields[:scientificnameauthorship] ? row[fields[:scientificname]] : get_canonical_name(row[fields[:scientificname]])
+      fields[:canonicalname] = row.size
+      row << canonical_name
+      scientific_name = (fields[:scientificnameauthorship] && row[fields[:scientificnameauthorship]].to_s.strip != '') ? row[fields[:scientificname]].strip + ' ' + row[fields[:scientificnameauthorship]].strip : row[fields[:scientificname]].strip
+      row[fields[:scientificname]] = scientific_name
     end
 
     def ingest_core
@@ -100,7 +104,7 @@ class DarwinCore
       puts "Ingesting information from the core" if @verbose
       rows.each_with_index do |r, i|
         count = i + 1
-        r[@core_fields[:scientificname]] = get_scientific_name(r, @core_fields)
+        set_scientific_name(r, @core_fields)
         puts "Ingesting %s'th record" % count if @verbose and count % @verbose_count == 0
         #core has AcceptedNameUsageId
         if @core_fields[:acceptednameusageid] && r[@core_fields[:acceptednameusageid]] && r[@core_fields[:acceptednameusageid]] != r[@core_fields[:id]]
@@ -111,7 +115,7 @@ class DarwinCore
           taxon = @res[r[@core_fields[:id]]] ? @res[r[@core_fields[:id]]] : @res[r[@core_fields[:id]]] = DarwinCore::TaxonNormalized.new
           taxon.id = r[@core_fields[:id]]
           taxon.current_name = r[@core_fields[:scientificname]]
-          taxon.current_name_canonical = canonical_name(r[@core_fields[:scientificname]])
+          taxon.current_name_canonical = r[@core_fields[:canonicalname]]
           taxon.parent_id = r[parent_id] 
           taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
           taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
@@ -177,11 +181,11 @@ class DarwinCore
       ext, fields = *extension
       ext.read[0].each_with_index do |r, i|
         count = i + 1
-        r[fields[:scientificname]] = get_scientific_name(r, fields)
+        set_scientific_name(r, fields)
         puts "Ingesting %s'th record" % count if @verbose && count % @verbose_count == 0
         @res[r[fields[:id]]].synonyms << SynonymNormalized.new(
           r[fields[:scientificname]], 
-          canonical_name(r[fields[:scientificname]]), 
+          r[fields[:canonicalname]], 
           fields[:taxonomicstatus] ? r[fields[:taxonomicstatus]] : nil)
       end
     end

@@ -98,6 +98,17 @@ describe DarwinCore do
       norm = dwc.normalize_classification
       norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
     end
+
+    it "should be able work with files which have scientificNameAuthorship" do
+      file = File.join(@file_dir, 'sci_name_authorship.tar.gz')
+      dwc = DarwinCore.new(file)
+      $lala = 1
+      norm = dwc.normalize_classification
+      taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
+      taxa.size.should == 507
+      syn = norm.select{|k,v| v.synonyms.size > 0}.map {|k,v| v.synonyms}.flatten.select {|s| s.name.split(" ").size  > s.canonical_name.split(" ").size}
+      syn.size.should == 50
+    end
   end
 
 end
