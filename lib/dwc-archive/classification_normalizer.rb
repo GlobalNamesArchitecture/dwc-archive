@@ -60,15 +60,10 @@ class DarwinCore
       if R19
         a_scientific_name.force_encoding('utf-8')
       end
-      begin
-        parsed_name = @parser.parse(a_scientific_name)[:scientificName]
-      rescue
-        @parser = ParsleyStore.new(1,2)
-        parsed_name = @parser.parse(a_scientific_name)[:scientificName]
-      end
+      canonical_name = @parser.parse(a_scientific_name, :canonical_only => true)
       add_name_string(a_scientific_name)
-      add_name_string(parsed_name[:canonical]) if parsed_name[:parsed]
-      parsed_name[:parsed] ? parsed_name[:canonical] : a_scientific_name
+      add_name_string(canonical_name) unless canonical_name.empty?
+      canonical_name.empty? ? a_scientific_name : canonical_name
     end
     
     def get_fields(element)
