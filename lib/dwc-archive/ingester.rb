@@ -12,12 +12,16 @@ class DarwinCore
       CSV.open(@file_path, args).each_with_index do |r, i|
         index_fix = 0; next if @ignore_headers && i == 0
         min_size > r.size ? errors << r : process_csv_row(res, errors, r)
-        if block_given? && (i + index_fix) % batch_size == 0
-          yield [res, errors]
-          res = []
-          errors = []
+        if (i + index_fix) % batch_size == 0
+          DarwinCore.logger.info("%s| Ingested %s records" % [self.object_id, (i + index_fix)])
+          if block_given? 
+            yield [res, errors]
+            res = []
+            errors = []
+          end
         end
       end
+      yield [res, errors] if block_given?
       [res, errors]
     end
     

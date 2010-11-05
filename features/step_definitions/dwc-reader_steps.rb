@@ -143,21 +143,20 @@ end
 Then /^I can read its core content using block$/ do
   res = []
   @dwc.core.ignore_headers.should be_true
-  tail_data, tail_errors = @dwc.core.read(200) do |r, err|
+  read_result = @dwc.core.read(200) do |r, err|
     res << [r.size, err.size]
   end
-  res << [tail_data.size, tail_errors.size]
   res.should == [[198,2],[200,0],[186,1]]
+  read_result[0].size.should == 186
 end
 
 Then /^I can read extensions content using block$/ do
   res = []
   ext = @dwc.extensions[0]
   ext.ignore_headers.should be_true
-  tail_data, tail_errors = ext.read(200) do |r, err|
+  ext.read(200) do |r, err|
     res << [r.size, err.size]
   end
-  res << [tail_data.size, tail_errors.size]
   res.should == [[1,0]]
 end
 

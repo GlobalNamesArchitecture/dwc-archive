@@ -16,6 +16,7 @@ else
   end
 end
 
+require 'logger'
 require 'dwc-archive/ingester'
 require 'dwc-archive/errors'
 require 'dwc-archive/expander'
@@ -49,6 +50,18 @@ class DarwinCore
         FileUtils.rm_rf(path)
       end
     end
+  end
+
+  def self.logger
+    @@logger ||= Logger.new(nil)
+  end
+
+  def self.logger=(logger)
+    @@logger = logger
+  end
+
+  def self.logger_reset
+    @@logger = Logger.new(nil)
   end
 
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
