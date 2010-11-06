@@ -52,10 +52,6 @@ class DarwinCore
     end
   end
 
-  def self.logger
-    @@logger ||= Logger.new(nil)
-  end
-
   def self.logger=(logger)
     @@logger = logger
   end
@@ -64,17 +60,22 @@ class DarwinCore
     @@logger = Logger.new(nil)
   end
 
+  def self.logger_write(obj_id, message, method = :info)
+    @@logger.send(method, "|%s|%s|" % [obj_id, message])
+  end
+
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
+    @@logger = Logger.new(nil)
     @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 
-    @core = DarwinCore::Core.new(@archive)
+    @core = DarwinCore::Core.new(self)
     @metadata = DarwinCore::Metadata.new(@archive)
     @extensions = get_extensions
   end
 
   # generates a hash from a classification data with path to each node, list of synonyms and vernacular names.
-  def normalize_classification(verbose = false)
+  def normalize_classification
     return nil unless has_parent_id?
-    @classification_normalizer ||= DarwinCore::ClassificationNormalizer.new(self, verbose)
+    @classification_normalizer ||= DarwinCore::ClassificationNormalizer.new(self)
     @classification_normalizer.normalize
   end
 
@@ -89,6 +90,6 @@ class DarwinCore
     ext = @archive.meta[root_key][:extension]
     return [] unless ext
     ext = [ext] if ext.class != Array
-    ext.map { |e| DarwinCore::Extension.new(@archive, e) }
+    ext.map { |e| DarwinCore::Extension.new(self, e) }
   end
 end

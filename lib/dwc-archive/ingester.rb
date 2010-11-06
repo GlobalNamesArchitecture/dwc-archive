@@ -3,6 +3,7 @@ class DarwinCore
     attr_reader :data, :properties, :encoding, :fields_separator
     attr_reader :file_path, :fields, :line_separator, :quote_character, :ignore_headers
     def read(batch_size = 10000)
+      DarwinCore.logger_write(@dwc.object_id, "Reading %s data" % name)
       res = []
       errors = []
       index_fix = 1
@@ -13,7 +14,7 @@ class DarwinCore
         index_fix = 0; next if @ignore_headers && i == 0
         min_size > r.size ? errors << r : process_csv_row(res, errors, r)
         if (i + index_fix) % batch_size == 0
-          DarwinCore.logger.info("%s| Ingested %s records" % [self.object_id, (i + index_fix)])
+          DarwinCore.logger_write(@dwc.object_id, "Ingested %s records from %s" % [(i + index_fix), name])
           if block_given? 
             yield [res, errors]
             res = []
@@ -26,6 +27,10 @@ class DarwinCore
     end
     
     private
+    def name
+      self.class.to_s.split('::')[-1].downcase
+    end
+
     def process_csv_row(result, errors, row)
       str = row.join('')
       if R19

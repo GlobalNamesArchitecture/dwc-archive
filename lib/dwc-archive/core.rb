@@ -2,8 +2,9 @@ class DarwinCore
   class Core
     include DarwinCore::Ingester
     attr_reader :id 
-    def initialize(archive)
-      @archive = archive
+    def initialize(dwc)
+      @dwc = dwc
+      @archive = @dwc.archive
       @path = @archive.files_path
       root_key = @archive.meta.keys[0]
       @data = @archive.meta[root_key][:core]
