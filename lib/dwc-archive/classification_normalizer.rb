@@ -22,13 +22,13 @@ class DarwinCore
   class VernacularNormalized < Struct.new(:name, :language);end
 
   class ClassificationNormalizer
-    attr_reader :error_names, :tree
+    attr_reader :error_names, :tree, :normalized_data
 
     def initialize(dwc_instance)
       @dwc = dwc_instance
       @core_fields = get_fields(@dwc.core)
       @extensions = @dwc.extensions.map { |e| [e, get_fields(e)] }
-      @res = {}
+      @normalized_data = {}
       @parser = ParsleyStore.new(1,2)
       @name_strings = {}
       @error_names = []
@@ -45,13 +45,13 @@ class DarwinCore
 
     def normalize
       DarwinCore.logger_write(@dwc.object_id, "Started normalization of the classification")
-      @res = {}
+      @normalized_data = {}
       ingest_core
       DarwinCore.logger_write(@dwc.object_id, "Calculating the classification parent/child paths")
       calculate_classification_path
       DarwinCore.logger_write(@dwc.object_id, "Ingesting data from extensions")
       ingest_extensions
-      @res
+      @normalized_data
     end
 
   private
@@ -77,7 +77,7 @@ class DarwinCore
     end
     
     def add_synonym_from_core(taxon_id, row)
-      taxon = @res[row[taxon_id]] ? @res[row[taxon_id]] : @res[row[taxon_id]] = DarwinCore::TaxonNormalized.new
+      taxon = @normalized_data[row[taxon_id]] ? @normalized_data[row[taxon_id]] : @normalized_data[row[taxon_id]] = DarwinCore::TaxonNormalized.new
       taxon.synonyms << SynonymNormalized.new(
         row[@core_fields[:scientificname]], 
         row[@core_fields[:canonicalname]], 
@@ -103,7 +103,7 @@ class DarwinCore
           elsif !@core_fields[:acceptednameusageid] && status_synonym?(r[@core_fields[:taxonomicstatus]])
             add_synonym_from_core(parent_id, r)
           else
-            taxon = @res[r[@core_fields[:id]]] ? @res[r[@core_fields[:id]]] : @res[r[@core_fields[:id]]] = DarwinCore::TaxonNormalized.new
+            taxon = @normalized_data[r[@core_fields[:id]]] ? @normalized_data[r[@core_fields[:id]]] : @normalized_data[r[@core_fields[:id]]] = DarwinCore::TaxonNormalized.new
             taxon.id = r[@core_fields[:id]]
             taxon.current_name = r[@core_fields[:scientificname]]
             taxon.current_name_canonical = r[@core_fields[:canonicalname]]
@@ -120,7 +120,7 @@ class DarwinCore
     end
 
     def calculate_classification_path
-      @res.each do |taxon_id, taxon|
+      @normalized_data.each do |taxon_id, taxon|
         next if !taxon.classification_path.empty?
         begin
           get_classification_path(taxon)
@@ -139,22 +139,22 @@ class DarwinCore
         @tree.merge!(current_node)
       else
         begin
-          parent_cp = @res[taxon.parent_id].classification_path
+          parent_cp = @normalized_data[taxon.parent_id].classification_path
         rescue NoMethodError #name has a parent which is not a current name
           error = "The parent of the taxon \'#{taxon.current_name}\' is deprecated"
           @error_names << {:name => taxon, :error => error}
           raise DarwinCore::ParentNotCurrentError, error
         end
         if parent_cp.empty?
-          get_classification_path(@res[taxon.parent_id]) 
-          taxon.classification_path += @res[taxon.parent_id].classification_path + [taxon.current_name_canonical]
-          taxon.classification_path_id += @res[taxon.parent_id].classification_path_id + [taxon.id]
-          parent_node = @res[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
+          get_classification_path(@normalized_data[taxon.parent_id]) 
+          taxon.classification_path += @normalized_data[taxon.parent_id].classification_path + [taxon.current_name_canonical]
+          taxon.classification_path_id += @normalized_data[taxon.parent_id].classification_path_id + [taxon.id]
+          parent_node = @normalized_data[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
           parent_node.merge!(current_node)
         else
           taxon.classification_path += parent_cp + [taxon.current_name_canonical]
-          taxon.classification_path_id += @res[taxon.parent_id].classification_path_id + [taxon.id]
-          parent_node = @res[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
+          taxon.classification_path_id += @normalized_data[taxon.parent_id].classification_path_id + [taxon.id]
+          parent_node = @normalized_data[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
           parent_node.merge!(current_node)
         end
       end
@@ -174,7 +174,7 @@ class DarwinCore
       ext.read do |rows|
         rows[0].each do |r|
           set_scientific_name(r, fields)
-          @res[r[fields[:id]]].synonyms << SynonymNormalized.new(
+          @normalized_data[r[fields[:id]]].synonyms << SynonymNormalized.new(
             r[fields[:scientificname]], 
             r[fields[:canonicalname]], 
             fields[:taxonomicstatus] ? r[fields[:taxonomicstatus]] : nil)
@@ -187,7 +187,7 @@ class DarwinCore
       ext, fields = *extension
       ext.read do |rows|
         rows[0].each do |r|
-          @res[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
+          @normalized_data[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
             r[fields[:vernacularname]],
             fields[:languagecode] ? r[fields[:languagecode]] : nil)
           add_name_string(r[fields[:vernacularname]])
