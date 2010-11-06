@@ -62,7 +62,7 @@ class DarwinCore
       end
       canonical_name = @parser.parse(a_scientific_name, :canonical_only => true)
       add_name_string(a_scientific_name)
-      add_name_string(canonical_name) unless canonical_name.empty?
+      add_name_string(canonical_name) unless canonical_name.to_s.empty?
       canonical_name.empty? ? a_scientific_name : canonical_name
     end
     
