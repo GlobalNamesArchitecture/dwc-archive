@@ -65,7 +65,7 @@ class DarwinCore
   end
 
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
-    @@logger = Logger.new(nil)
+    @@logger ||= Logger.new(nil)
     @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 
     @core = DarwinCore::Core.new(self)
     @metadata = DarwinCore::Metadata.new(@archive)
