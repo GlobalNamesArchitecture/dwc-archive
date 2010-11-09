@@ -52,20 +52,23 @@ class DarwinCore
     end
   end
 
+  def self.logger
+    @@logger ||= Logger.new(nil)
+  end
+
   def self.logger=(logger)
     @@logger = logger
   end
 
   def self.logger_reset
-    @@logger = Logger.new(nil)
+    self.logger = Logger.new(nil)
   end
 
   def self.logger_write(obj_id, message, method = :info)
-    @@logger.send(method, "|%s|%s|" % [obj_id, message])
+    self.logger.send(method, "|%s|%s|" % [obj_id, message])
   end
 
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
-    @@logger ||= Logger.new(nil)
     @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 
     @core = DarwinCore::Core.new(self)
     @metadata = DarwinCore::Metadata.new(@archive)
