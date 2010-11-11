@@ -1,7 +1,12 @@
 class DarwinCore 
   module Ingester
-    attr_reader :data, :properties, :encoding, :fields_separator
+    attr_reader :data, :properties, :encoding, :fields_separator, :size
     attr_reader :file_path, :fields, :line_separator, :quote_character, :ignore_headers
+
+    def size
+      @size ||= get_size
+    end
+
     def read(batch_size = 10000)
       DarwinCore.logger_write(@dwc.object_id, "Reading %s data" % name)
       res = []
@@ -70,6 +75,10 @@ class DarwinCore
       res = @properties[:fieldsTerminatedBy] || ','
       res = "\t" if res == "\\t"
       res
+    end
+
+    def get_size
+      `wc -l #{@file_path}`.match(/^([\d]+)\s/)[1].to_i
     end
   end
 end

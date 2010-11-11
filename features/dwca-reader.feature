@@ -27,6 +27,7 @@ Feature: Reading of a Darwing Core Archive
     And core.file_path
     And core.id
     And core.fields
+    And core.size
     Then DarwinCore instance should have an extensions array
     And every extension in array should be an instance of DarwinCore::Extension
     And extension should have properties, data, file_path, coreid, fields 

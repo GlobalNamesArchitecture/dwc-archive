@@ -64,6 +64,11 @@ end
 And /^core\.fields$/ do
   @core.fields.size.should == 5
 end
+
+And /^core\.size$/ do
+  @core.size.should == 588
+end
+
 Then /^DarwinCore instance should have dwc\.metadata object$/ do
   @dwc.metadata.class.should == DarwinCore::Metadata
 end
