@@ -120,6 +120,7 @@ class DarwinCore
     end
 
     def calculate_classification_path
+      @paths_num = 0
       @normalized_data.each do |taxon_id, taxon|
         next if !taxon.classification_path.empty?
         begin
@@ -131,6 +132,8 @@ class DarwinCore
     end
 
     def get_classification_path(taxon)
+      @paths_num += 1
+      DarwinCore.logger_write(@dwc.object_id, "Calculated %s paths" % @paths_num) if @paths_num % 10000 == 0
       return if !taxon.classification_path.empty?
       current_node = {taxon.id => {}}
       if DarwinCore.nil_field?(taxon.parent_id)
