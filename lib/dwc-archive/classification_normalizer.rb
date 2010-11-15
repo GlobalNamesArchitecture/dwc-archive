@@ -61,7 +61,6 @@ class DarwinCore
         a_scientific_name.force_encoding('utf-8')
       end
       canonical_name = @parser.parse(a_scientific_name, :canonical_only => true)
-      add_name_string(a_scientific_name)
       add_name_string(canonical_name) unless canonical_name.to_s.empty?
       canonical_name.to_s.empty? ? a_scientific_name : canonical_name
     end
@@ -96,6 +95,7 @@ class DarwinCore
       raise RuntimeError, "Darwin Core core fields must contain taxon id and scientific name" unless (@core_fields[:id] && @core_fields[:scientificname])
       @dwc.core.read do |rows|
         rows[0].each do |r|
+          add_name_string(r[@core_fields[:scientificname]])
           set_scientific_name(r, @core_fields)
           #core has AcceptedNameUsageId
           if @core_fields[:acceptednameusageid] && r[@core_fields[:acceptednameusageid]] && r[@core_fields[:acceptednameusageid]] != r[@core_fields[:id]]
@@ -176,6 +176,7 @@ class DarwinCore
       ext, fields = *extension
       ext.read do |rows|
         rows[0].each do |r|
+          add_name_string(r[fields[:scientificname]])
           set_scientific_name(r, fields)
           @normalized_data[r[fields[:id]]].synonyms << SynonymNormalized.new(
             r[fields[:scientificname]], 
@@ -190,6 +191,7 @@ class DarwinCore
       ext, fields = *extension
       ext.read do |rows|
         rows[0].each do |r|
+          add_name_string(r[fields[:vernacularname]])
           @normalized_data[r[fields[:id]]].vernacular_names << VernacularNormalized.new(
             r[fields[:vernacularname]],
             fields[:languagecode] ? r[fields[:languagecode]] : nil)
