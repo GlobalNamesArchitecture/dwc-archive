@@ -2,7 +2,6 @@
 $:.unshift(File.dirname(__FILE__)) unless
    $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))   
 R19 = RUBY_VERSION.split('.')[0..1].join('').to_i > 18
-require 'ruby_extensions'
 require 'fileutils'
 require 'ostruct'
 
