@@ -17,6 +17,7 @@ else
 end
 
 require 'logger'
+require 'dwc-archive/xml_reader'
 require 'dwc-archive/ingester'
 require 'dwc-archive/errors'
 require 'dwc-archive/expander'
