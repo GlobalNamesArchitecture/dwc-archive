@@ -103,7 +103,7 @@ class DarwinCore
           #core has AcceptedNameUsageId
           if @core_fields[:acceptednameusageid] && r[@core_fields[:acceptednameusageid]] && r[@core_fields[:acceptednameusageid]] != r[@core_fields[:id]]
             add_synonym_from_core(@core_fields[:acceptednameusageid], r)
-          elsif !@core_fields[:acceptednameusageid] && status_synonym?(r[@core_fields[:taxonomicstatus]])
+          elsif !@core_fields[:acceptednameusageid] && @core_fields[:taxonomicstatus] && status_synonym?(r[@core_fields[:taxonomicstatus]])
             add_synonym_from_core(parent_id, r)
           else
             taxon = @normalized_data[r[@core_fields[:id]]] ? @normalized_data[r[@core_fields[:id]]] : @normalized_data[r[@core_fields[:id]]] = DarwinCore::TaxonNormalized.new
@@ -134,9 +134,9 @@ class DarwinCore
     end
 
     def get_classification_path(taxon)
+      return if !taxon.classification_path.empty?
       @paths_num += 1
       DarwinCore.logger_write(@dwc.object_id, "Calculated %s paths" % @paths_num) if @paths_num % 10000 == 0
-      return if !taxon.classification_path.empty?
       current_node = {taxon.id => {}}
       if DarwinCore.nil_field?(taxon.parent_id)
         taxon.classification_path << taxon.current_name_canonical
@@ -220,4 +220,5 @@ class DarwinCore
 
   end
 end
+
 
