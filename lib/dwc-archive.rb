@@ -1,6 +1,6 @@
 # encoding: UTF-8
 $:.unshift(File.dirname(__FILE__)) unless
-   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))   
+   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 R19 = RUBY_VERSION.split('.')[0..1].join('').to_i > 18
 require 'fileutils'
 require 'ostruct'
@@ -30,19 +30,19 @@ require 'dwc-archive/generator_eml_xml'
 require 'dwc-archive/classification_normalizer'
 
 class DarwinCore
-  
+
   VERSION = open(File.join(File.dirname(__FILE__), '..', 'VERSION')).readline.strip
 
   attr_reader :archive, :core, :metadata, :extensions, :classification_normalizer
   alias :eml :metadata
-  
+
   DEFAULT_TMP_DIR = "/tmp"
-  
+
   def self.nil_field?(field)
     return true if [nil, '', '/N'].include?(field)
     false
   end
-  
+
   def self.clean_all(tmp_dir = DEFAULT_TMP_DIR)
     Dir.entries(tmp_dir).each do |entry|
       path = File.join(tmp_dir, entry)
@@ -69,7 +69,8 @@ class DarwinCore
   end
 
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
-    @archive = DarwinCore::Archive.new(dwc_path, tmp_dir) 
+    @dwc_path = dwc_path
+    @archive = DarwinCore::Archive.new(@dwc_path, tmp_dir)
     @core = DarwinCore::Core.new(self)
     @metadata = DarwinCore::Metadata.new(@archive)
     @extensions = get_extensions
@@ -84,6 +85,10 @@ class DarwinCore
 
   def has_parent_id?
     !!@core.fields.join('|').downcase.match(/highertaxonid|parentnameusageid/)
+  end
+
+  def checksum
+    Digest::SHA1.hexdigest(open(@dwc_path).read)
   end
 
   private

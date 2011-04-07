@@ -42,6 +42,10 @@ Then /^instance should have a core$/ do
   @dwc.core.class.should == DarwinCore::Core
 end
 
+Then /^I should see checksum$/ do
+  @dwc.checksum.should == '880775bd100f7b00c49ceefd2d7317daada99b26'
+end
+
 When /^I check core data$/ do
   @core = @dwc.core
 end
@@ -198,7 +202,7 @@ Then /^there are paths, synonyms and vernacular names in normalized classificati
 end
 
 Then /^names used in classification can be accessed by "([^"]*)" method$/ do |name_strings|
-  names = @cn.send(name_strings.to_sym) 
+  names = @cn.send(name_strings.to_sym)
   names.size.should > @normalized_classification.size
 end
 
@@ -216,7 +220,7 @@ Then /^nodes_ids organized in trees can be accessed by "([^"]*)" method$/ do |tr
   tree = @cn.send(tree.to_sym)
   tree.class.should == Hash
   keys = []
-  flatten_tree(tree, keys) 
+  flatten_tree(tree, keys)
   @normalized_classification.size.should == keys.size
 end
 

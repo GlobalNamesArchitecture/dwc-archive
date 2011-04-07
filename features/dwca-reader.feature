@@ -6,8 +6,8 @@ Feature: Reading of a Darwing Core Archive
   Scenario: Creating Darwin Core Archive object
     Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore::Archive instance
-    Then I should find that the archive is valid 
-    Then I should see what files the archive has
+    Then I should find that the archive is valid
+    And I should see what files the archive has
 
     When I delete expanded files
     Then they should disappear
@@ -19,9 +19,10 @@ Feature: Reading of a Darwing Core Archive
 
   Scenario: Instantiating DarwinCore with tar.gz file
     Given path to a dwc file "data.tar.gz"
-    When I create a new DarwinCore instance 
+    When I create a new DarwinCore instance
     Then instance should have a valid archive
     And instance should have a core
+    And I should see checksum
     When I check core data
     Then I should find core.properties
     And core.file_path
@@ -30,13 +31,13 @@ Feature: Reading of a Darwing Core Archive
     And core.size
     Then DarwinCore instance should have an extensions array
     And every extension in array should be an instance of DarwinCore::Extension
-    And extension should have properties, data, file_path, coreid, fields 
+    And extension should have properties, data, file_path, coreid, fields
     Then DarwinCore instance should have dwc.metadata object
     And I should find id, title, creators, metadata provider
 
   Scenario: Instantiating DawinCore with zip file
     Given path to a dwc file "data.zip"
-    When I create a new DarwinCore instance 
+    When I create a new DarwinCore instance
     Then instance should have a valid archive
 
   Scenario: Cleaning temporary directory from expanded archives
@@ -49,7 +50,7 @@ Feature: Reading of a Darwing Core Archive
     When I create a new DarwinCore instance
     Then I can read its content into memory
     Then I can read extensions content into memory
-  
+
   Scenario: Importing data using block
     Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore instance
