@@ -1,4 +1,4 @@
-class DarwinCore 
+class DarwinCore
   module Ingester
     attr_reader :data, :properties, :encoding, :fields_separator, :size
     attr_reader :file_path, :fields, :line_separator, :quote_character, :ignore_headers
@@ -20,7 +20,7 @@ class DarwinCore
         min_size > r.size ? errors << r : process_csv_row(res, errors, r)
         if (i + index_fix) % batch_size == 0
           DarwinCore.logger_write(@dwc.object_id, "Ingested %s records from %s" % [(i + index_fix), name])
-          if block_given? 
+          if block_given?
             yield [res, errors]
             res = []
             errors = []
@@ -30,7 +30,7 @@ class DarwinCore
       yield [res, errors] if block_given?
       [res, errors]
     end
-    
+
     private
     def name
       self.class.to_s.split('::')[-1].downcase
@@ -60,7 +60,7 @@ class DarwinCore
       @fields = get_fields
       raise exception("No data fields are found") if @fields.empty?
     end
-    
+
     def get_file_path
       file = @data[:location] || @data[:attributes][:location] || @data[:files][:location]
       File.join(@path, file)
@@ -78,7 +78,7 @@ class DarwinCore
     end
 
     def get_size
-      `wc -l #{@file_path}`.match(/^([\d]+)\s/)[1].to_i
+      `wc -l #{@file_path}`.match(/^\s*([\d]+)\s/)[1].to_i
     end
   end
 end
