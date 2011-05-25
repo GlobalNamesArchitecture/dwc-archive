@@ -88,6 +88,7 @@ class DarwinCore
     end
 
     def set_scientific_name(row, fields)
+      row[fields[:scientificname]] = 'N/A' unless row[fields[:scientificname]]
       canonical_name = fields[:scientificnameauthorship] ? row[fields[:scientificname]] : get_canonical_name(row[fields[:scientificname]])
       fields[:canonicalname] = row.size
       row << canonical_name
