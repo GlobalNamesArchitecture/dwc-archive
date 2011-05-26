@@ -96,7 +96,9 @@ describe DarwinCore do
       file = File.join(@file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
-      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
+      nodes_with_syn = norm.select { |k,v| !v.synonyms.empty? }
+      nodes_with_syn.map { |k,v| v.synonyms }.size.should > 0
+      nodes_with_syn.first[1].synonyms.first.status.should == 'synonym'
     end
 
     it "should be able work with files which have scientificNameAuthorship" do
@@ -108,6 +110,16 @@ describe DarwinCore do
       taxa.size.should == 507
       syn = norm.select{|k,v| v.synonyms.size > 0}.map {|k,v| v.synonyms}.flatten.select {|s| s.name.split(" ").size  > s.canonical_name.split(" ").size}
       syn.size.should == 50
+    end
+
+    it "should be able to get language and locality fields for vernacular names" do
+      file = File.join(@file_dir, 'language_locality.tar.gz')
+      dwc = DarwinCore.new(file)
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      cn.normalize
+      vn = cn.normalized_data['leptogastrinae:tid:42'].vernacular_names.first
+      vn.language.should == 'en'
+      vn.locality.should == 'New England'
     end
   end
 

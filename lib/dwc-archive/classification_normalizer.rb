@@ -19,7 +19,7 @@ class DarwinCore
   end
 
   class SynonymNormalized < Struct.new(:name, :canonical_name, :status);end
-  class VernacularNormalized < Struct.new(:name, :language);end
+  class VernacularNormalized < Struct.new(:name, :language, :locality);end
 
   class ClassificationNormalizer
     attr_reader :error_names, :tree, :normalized_data
@@ -210,9 +210,20 @@ class DarwinCore
       ext, fields = *extension
       ext.read do |rows|
         rows[0].each do |r|
+
+          language = nil
+          if fields[:language]
+            language = r[fields[:language]]
+          elsif fields[:languagecode]
+            language = r[fields[:languagecode]] 
+          end
+          
+          locality = fields[:locality] ? r[fields[:locality]] : nil
+          
           vernacular = VernacularNormalized.new(
             r[fields[:vernacularname]],
-            fields[:languagecode] ? r[fields[:languagecode]] : nil)
+            language,
+            locality)
           @normalized_data[r[fields[:id]]].vernacular_names << vernacular
           add_name_string(vernacular.name)
         end
