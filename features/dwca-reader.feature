@@ -51,6 +51,11 @@ Feature: Reading of a Darwing Core Archive
     Then I can read its content into memory
     Then I can read extensions content into memory
 
+  Scenario: Importing data with quotes
+    Given path to a dwc file "data_with_quotes.tar.gz"
+    When I create a new DarwinCore instance
+    Then I can read its content into memory
+
   Scenario: Importing data using block
     Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore instance
