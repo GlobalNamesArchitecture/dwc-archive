@@ -89,12 +89,28 @@ class DarwinCore
 
     def set_scientific_name(row, fields)
       row[fields[:scientificname]] = 'N/A' unless row[fields[:scientificname]]
-      canonical_name = get_canonical_name(row[fields[:scientificname]])
+      canonical_name = ''
+      scientific_name = row[fields[:scientificname]].strip
+      if separate_canonical_and_authorship?(row, fields)
+        canonical_name = row[fields[:scientificname]].strip
+        scientific_name += " #{row[fields[:scientificnameauthorship]].strip}"
+      else
+        canonical_name = get_canonical_name(row[fields[:scientificname]])
+      end
       fields[:canonicalname] = row.size
       row << canonical_name
-      scientific_name = row[fields[:scientificname]].strip
       row[fields[:scientificname]] = scientific_name
     end
+
+    def separate_canonical_and_authorship?(row, fields)
+      authorship = ''
+      if fields[:scientificnameauthorship]
+        authorship = row[fields[:scientificnameauthorship]].to_s.strip
+      end
+      !(authorship.empty? || row[fields[:scientificname]].index(authorship))
+    end
+
+
 
     def ingest_core
       raise RuntimeError, "Darwin Core core fields must contain taxon id and scientific name" unless (@core_fields[:id] && @core_fields[:scientificname])
