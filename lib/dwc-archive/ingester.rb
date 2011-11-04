@@ -1,3 +1,4 @@
+# encoding: utf-8
 class DarwinCore
   module Ingester
     attr_reader :data, :properties, :encoding, :fields_separator, :size
@@ -13,7 +14,8 @@ class DarwinCore
       errors = []
       index_fix = 1
       args = {:col_sep => @field_separator}
-      args.merge!({:quote_char => @quote_character}) if @quote_character != ''
+      @quote_character = "\b" if @quote_character.empty?
+      args.merge!({:quote_char => @quote_character})
       min_size = @fields.map {|f| f[:index].to_i || 0}.sort[-1] + 1
       CSV.open(@file_path, args).each_with_index do |r, i|
         index_fix = 0; next if @ignore_headers && i == 0
