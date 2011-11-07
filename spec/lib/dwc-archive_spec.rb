@@ -105,8 +105,8 @@ describe DarwinCore do
       file = File.join(@file_dir, 'sci_name_authorship.tar.gz')
       dwc = DarwinCore.new(file)
       $lala = 1
-      norm = dwc.normalize_classification
-      require 'ruby-debug'; debugger
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      norm = cn.normalize
       taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
       taxa.size.should == 507
       syn = norm.select{|k,v| v.synonyms.size > 0}.map {|k,v| v.synonyms}.flatten.select {|s| s.name.split(" ").size  > s.canonical_name.split(" ").size}

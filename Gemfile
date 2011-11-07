@@ -6,7 +6,7 @@ source "http://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 
-gem "parsley-store"
+gem "parsley-store", "~> 0.3.0"
 
 group :development do
   gem "rspec", "~> 2.3.0"

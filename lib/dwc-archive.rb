@@ -8,6 +8,7 @@ require 'ostruct'
 if R19
   require 'csv'
 else
+  raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1"
   require 'fastercsv'
   CSV = FasterCSV
   if (defined?(Rails) && Rails::VERSION::MAJOR >= 3 && Rails.env.test?)
