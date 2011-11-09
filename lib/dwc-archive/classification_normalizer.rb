@@ -18,7 +18,7 @@ class DarwinCore
 
   end
 
-  class SynonymNormalized < Struct.new(:name, :canonical_name, :status);end
+  class SynonymNormalized < Struct.new(:id, :name, :canonical_name, :status);end
   class VernacularNormalized < Struct.new(:name, :language, :locality);end
 
   class ClassificationNormalizer
@@ -79,6 +79,7 @@ class DarwinCore
       @synonyms[row[@core_fields[:id]]] = taxon_id
       taxon = @normalized_data[row[taxon_id]] ? @normalized_data[row[taxon_id]] : @normalized_data[row[taxon_id]] = DarwinCore::TaxonNormalized.new
       synonym = SynonymNormalized.new(
+        row[@core_fields[:id]],
         row[@core_fields[:scientificname]], 
         row[@core_fields[:canonicalname]], 
         @core_fields[:taxonomicstatus] ? row[@core_fields[:taxonomicstatus]] : nil)
@@ -211,6 +212,7 @@ class DarwinCore
         rows[0].each do |r|
           set_scientific_name(r, fields)
           synonym = SynonymNormalized.new(
+            nil,
             r[fields[:scientificname]], 
             r[fields[:canonicalname]], 
             fields[:taxonomicstatus] ? r[fields[:taxonomicstatus]] : nil)

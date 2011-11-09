@@ -71,6 +71,15 @@ describe DarwinCore do
       norm['leptogastrinae:tid:2857'].class.should == DarwinCore::TaxonNormalized
     end
 
+    it "should assemble synonyms from core" do
+      file = File.join(@file_dir, 'data.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      syn = norm.values.select {|n| n.synonyms.size > 0}[0].synonyms[0]
+      syn.id.should == 'leptogastrinae:tid:127'
+      syn.name.should == "Leptogastridae"
+    end
+
     it "should be able to assemble vernacular names from an extension" do
       file = File.join(@file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
