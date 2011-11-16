@@ -120,9 +120,11 @@ describe DarwinCore do
     it "should be able work with files which have scientificNameAuthorship" do
       file = File.join(@file_dir, 'sci_name_authorship.tar.gz')
       dwc = DarwinCore.new(file)
-      $lala = 1
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       norm = cn.normalize
+      path_encodings = norm.map {|taxon_id, taxon| taxon.classification_path}.flatten.map { |name| name.encoding.to_s }.uniq
+      path_encodings.size.should == 1
+      path_encodings[0].should == "UTF-8"
       taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
       taxa.size.should == 507
       syn = norm.select{|k,v| v.synonyms.size > 0}.map {|k,v| v.synonyms}.flatten.select {|s| s.name.split(" ").size  > s.canonical_name.split(" ").size}
@@ -132,7 +134,6 @@ describe DarwinCore do
     it "should be able work with files which repeat scientificNameAuthorship value in scientificName field" do
       file = File.join(@file_dir, 'sci_name_authorship_dup.tar.gz')
       dwc = DarwinCore.new(file)
-      $lala = 1
       norm = dwc.normalize_classification
       taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
       taxa.size.should == 507
