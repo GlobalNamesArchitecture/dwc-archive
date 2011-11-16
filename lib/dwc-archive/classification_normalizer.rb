@@ -58,11 +58,9 @@ class DarwinCore
   private
 
     def get_canonical_name(a_scientific_name)
-      if R19
-        a_scientific_name.force_encoding('utf-8')
-      end
+      a_scientific_name.force_encoding('utf-8')
       canonical_name = @parser.parse(a_scientific_name, :canonical_only => true)
-      canonical_name.to_s.empty? ? a_scientific_name : canonical_name
+      canonical_name.to_s.empty? ? a_scientific_name : canonical_name.force_encoding('utf-8')
     end
     
     def get_fields(element)
@@ -126,8 +124,8 @@ class DarwinCore
           else
             taxon = @normalized_data[r[@core_fields[:id]]] ? @normalized_data[r[@core_fields[:id]]] : @normalized_data[r[@core_fields[:id]]] = DarwinCore::TaxonNormalized.new
             taxon.id = r[@core_fields[:id]]
-            taxon.current_name = r[@core_fields[:scientificname]]
-            taxon.current_name_canonical = r[@core_fields[:canonicalname]]
+            taxon.current_name = r[@core_fields[:scientificname]].force_encoding("utf-8")
+            taxon.current_name_canonical = r[@core_fields[:canonicalname]].force_encoding("utf-8")
             taxon.parent_id = r[parent_id] 
             taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
             taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]

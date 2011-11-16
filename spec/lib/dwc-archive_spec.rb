@@ -68,6 +68,13 @@ describe DarwinCore do
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       norm.class.should == Hash
+      path_encodings = []
+      norm.each do |taxon_id, taxon|
+        taxon.classification_path.each {|p| path_encodings << p.encoding}
+      end
+      path_encodings.uniq!
+      path_encodings.size.should == 1
+      path_encodings[0].to_s.should == "UTF-8"
       norm['leptogastrinae:tid:2857'].class.should == DarwinCore::TaxonNormalized
     end
 
