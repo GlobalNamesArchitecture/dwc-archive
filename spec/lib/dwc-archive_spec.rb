@@ -57,10 +57,13 @@ describe DarwinCore do
   end
 
   describe ".normalize_classification" do
-    it "should return nil if file has no parent id information" do
+    it "should return flat list if file has no parent id information" do
       file = File.join(@file_dir, 'flat_list.tar.gz')
       dwc = DarwinCore.new(file)
-      dwc.normalize_classification.should be_nil
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      cn.normalize
+      cn.normalized_data.should_not be_nil
+      cn.normalized_data.size.should > 0
     end
     
     it "should traverse DarwinCore files and assemble data for every node in memory" do

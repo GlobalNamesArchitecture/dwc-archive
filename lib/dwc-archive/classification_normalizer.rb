@@ -34,6 +34,7 @@ class DarwinCore
       @name_strings = {}
       @error_names = []
       @tree = {}
+      @is_classification = has_parent_id?
     end
 
     def add_name_string(name_string)
@@ -49,7 +50,11 @@ class DarwinCore
       @normalized_data = {}
       ingest_core
       DarwinCore.logger_write(@dwc.object_id, "Calculating the classification parent/child paths")
-      calculate_classification_path
+      if @is_classification
+        calculate_classification_path
+      else #flat list
+        @normalized_data.keys.each { |id| @tree[id] = {} }
+      end
       DarwinCore.logger_write(@dwc.object_id, "Ingesting data from extensions")
       ingest_extensions
       @normalized_data
@@ -120,13 +125,13 @@ class DarwinCore
           if @core_fields[:acceptednameusageid] && r[@core_fields[:acceptednameusageid]] && r[@core_fields[:acceptednameusageid]] != r[@core_fields[:id]]
             add_synonym_from_core(@core_fields[:acceptednameusageid], r)
           elsif !@core_fields[:acceptednameusageid] && @core_fields[:taxonomicstatus] && status_synonym?(r[@core_fields[:taxonomicstatus]])
-            add_synonym_from_core(parent_id, r)
+            add_synonym_from_core(parent_id, r) if @is_classification
           else
             taxon = @normalized_data[r[@core_fields[:id]]] ? @normalized_data[r[@core_fields[:id]]] : @normalized_data[r[@core_fields[:id]]] = DarwinCore::TaxonNormalized.new
             taxon.id = r[@core_fields[:id]]
             taxon.current_name = r[@core_fields[:scientificname]]
             taxon.current_name_canonical = r[@core_fields[:canonicalname]]
-            taxon.parent_id = r[parent_id] 
+            taxon.parent_id = @is_classification ? r[parent_id] : nil 
             taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
             taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
             add_name_string(taxon.current_name)
@@ -136,6 +141,10 @@ class DarwinCore
       end
     end
     
+    def has_parent_id?
+      @core_fields.has_key?(:highertaxonid) || @core_fields.has_key?(:parentnameusageid)
+    end
+
     def parent_id
       parent_id_field = @core_fields[:highertaxonid] || @core_fields[:parentnameusageid]
     end
