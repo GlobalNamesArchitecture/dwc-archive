@@ -2,6 +2,9 @@
 
 Darwin Core Archive format is a current standard for information exchange between Global Names Architecture modules. This gem allows to work with Darwin Core Archive data compressed to either zip or tar.gz files. More information about Darwing Core Archive can be found on a GBIF page[http://www.gbif.org/informatics/standards-and-tools/publishing-data/data-standards/darwin-core-archives/]:
 
+
+{<img src="http://travis-ci.org/dimus/dwc-archive.png" />}[http://travis-ci.org/dwc-archive/dwc-archive]
+
 == Installation
 
 Update to latest rubygems (v >= 1.3.6) which adds gemcutter sources by default.
