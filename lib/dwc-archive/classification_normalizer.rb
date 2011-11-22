@@ -45,7 +45,8 @@ class DarwinCore
       @name_strings.keys
     end
 
-    def normalize
+    def normalize(opts = {:with_canoical_names => true})
+      @with_canonical_names = opts[:with_canonical_names] != nil ? opts[:with_canonical_names] : true
       DarwinCore.logger_write(@dwc.object_id, "Started normalization of the classification")
       @normalized_data = {}
       ingest_core
@@ -64,8 +65,12 @@ class DarwinCore
 
     def get_canonical_name(a_scientific_name)
       a_scientific_name.force_encoding('utf-8')
-      canonical_name = @parser.parse(a_scientific_name, :canonical_only => true)
-      canonical_name.to_s.empty? ? a_scientific_name : canonical_name
+      if @with_canonical_names
+        canonical_name = @parser.parse(a_scientific_name, :canonical_only => true)
+        canonical_name.to_s.empty? ? a_scientific_name : canonical_name
+      else
+        nil
+      end
     end
     
     def get_fields(element)
@@ -93,13 +98,13 @@ class DarwinCore
 
     def set_scientific_name(row, fields)
       row[fields[:scientificname]] = 'N/A' unless row[fields[:scientificname]]
-      canonical_name = ''
+      canonical_name = nil
       scientific_name = row[fields[:scientificname]].strip.force_encoding('utf-8')
       if separate_canonical_and_authorship?(row, fields)
-        canonical_name = row[fields[:scientificname]].strip.force_encoding('utf-8')
+        canonical_name = row[fields[:scientificname]].strip.force_encoding('utf-8') if @with_canonical_names
         scientific_name += " #{row[fields[:scientificnameauthorship]].strip.force_encoding('utf-8')}"
       else
-        canonical_name = get_canonical_name(row[fields[:scientificname]])
+        canonical_name = get_canonical_name(row[fields[:scientificname]]) if @with_canonical_names
       end
       fields[:canonicalname] = row.size
       row << canonical_name
@@ -135,7 +140,7 @@ class DarwinCore
             taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
             taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
             add_name_string(taxon.current_name)
-            add_name_string(taxon.current_name_canonical)
+            add_name_string(taxon.current_name_canonical) if taxon.current_name_canonical
           end
         end
       end
@@ -152,31 +157,31 @@ class DarwinCore
     def calculate_classification_path
       @paths_num = 0
       @normalized_data.each do |taxon_id, taxon|
-        next if !taxon.classification_path.empty?
+        next if !taxon.classification_path_id.empty?
         res = get_classification_path(taxon)
         next if res == 'error'
       end
     end
 
     def get_classification_path(taxon)
-      return if !taxon.classification_path.empty?
+      return if !taxon.classification_path_id.empty?
       @paths_num += 1
       DarwinCore.logger_write(@dwc.object_id, "Calculated %s paths" % @paths_num) if @paths_num % 10000 == 0
       current_node = {taxon.id => {}}
       if DarwinCore.nil_field?(taxon.parent_id)
-        taxon.classification_path << taxon.current_name_canonical
+        taxon.classification_path << taxon.current_name_canonical if @with_canonical_names
         taxon.classification_path_id << taxon.id
         @tree.merge!(current_node)
       else
         parent_cp = nil
         if @normalized_data[taxon.parent_id]
-          parent_cp = @normalized_data[taxon.parent_id].classification_path
+          parent_cp = @normalized_data[taxon.parent_id].classification_path_id
         else
           current_parent = @normalized_data[@synonyms[taxon.parent_id]]
           if current_parent
             error = "WARNING: The parent of the taxon \'#{taxon.current_name}\' is deprecated"
             @error_names << {:name => taxon, :error => :deprecated_parent, :current_parent => current_parent }
-            parent_cp = current_parent.classification_path
+            parent_cp = current_parent.classification_path_id
           else
             error = "WARNING: The parent of the taxon \'#{taxon.current_name}\' not found"
             @error_names << {:name => taxon, :error => :deprecated_parent, :current_parent => nil}
@@ -186,12 +191,14 @@ class DarwinCore
         if parent_cp.empty?
           res = get_classification_path(@normalized_data[taxon.parent_id]) 
           return res if res == 'error'
-          taxon.classification_path += @normalized_data[taxon.parent_id].classification_path + [taxon.current_name_canonical]
+          if @with_canonical_names
+            taxon.classification_path += @normalized_data[taxon.parent_id].classification_path + [taxon.current_name_canonical]
+          end
           taxon.classification_path_id += @normalized_data[taxon.parent_id].classification_path_id + [taxon.id]
           parent_node = @normalized_data[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
           parent_node.merge!(current_node)
         else
-          taxon.classification_path += parent_cp + [taxon.current_name_canonical]
+          taxon.classification_path += parent_cp + [taxon.current_name_canonical] if @with_canonical_names
           taxon.classification_path_id += @normalized_data[taxon.parent_id].classification_path_id + [taxon.id]
           parent_node = @normalized_data[taxon.parent_id].classification_path_id.inject(@tree) {|node, id| node[id]}
           begin

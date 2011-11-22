@@ -70,3 +70,11 @@ Feature: Reading of a Darwing Core Archive
     And there are paths, synonyms and vernacular names in normalized classification
     And names used in classification can be accessed by "name_strings" method
     And nodes_ids organized in trees can be accessed by "tree" method
+  
+  Scenario: Normalizing classification without canonical names
+    Given path to a dwc file "data.tar.gz"
+    When I create a new DarwinCore instance
+    Then I am able to use DarwinCore#normalize_classification method
+    Then I am able to use normalize method without canonical names path
+    And get normalized classification in expected format
+    And there are id paths, no canonical names paths in normalized classification

@@ -34,6 +34,10 @@ When /^I create a new DarwinCore instance$/ do
   end
 end
 
+When /^I create DarwinCore::ClassificationNormalizer instance$/ do
+  @cn = DarwinCore::ClassificationNormalizer.new(@dwc)
+end
+
 Then /^instance should have a valid archive$/ do
   @dwc.archive.valid?.should be_true
 end
@@ -201,6 +205,22 @@ Then /^there are paths, synonyms and vernacular names in normalized classificati
   @synonyms_are_generated.should be_true
 end
 
+Then /^there are id paths, no canonical names paths in normalized classification$/ do
+  id_paths_generated = false
+  canonical_paths_generated = false
+  @cn.normalized_data.should_not be_empty
+  @cn.normalized_data.each do |k, v|
+    if v.classification_path.size > 0
+      canonical_paths_generated = true
+    end
+    if v.classification_path_id.size > 0
+      id_paths_generated = true
+    end
+  end
+  id_paths_generated.should be_true
+  canonical_paths_generated.should be_false
+end
+
 Then /^names used in classification can be accessed by "([^"]*)" method$/ do |name_strings|
   names = @cn.send(name_strings.to_sym)
   names.size.should > @normalized_classification.size
@@ -224,3 +244,7 @@ Then /^nodes_ids organized in trees can be accessed by "([^"]*)" method$/ do |tr
   @normalized_classification.size.should == keys.size
 end
 
+Then /^I am able to use normalize method without canonical names path$/ do
+  @cn = DarwinCore::ClassificationNormalizer.new(@dwc)
+  @cn.normalize(:with_canonical_names => false)
+end
