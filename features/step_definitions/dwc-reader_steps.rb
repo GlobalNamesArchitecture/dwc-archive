@@ -241,6 +241,7 @@ Then /^nodes_ids organized in trees can be accessed by "([^"]*)" method$/ do |tr
   tree.class.should == Hash
   keys = []
   flatten_tree(tree, keys)
+  require 'ruby-debug'; debugger
   @normalized_classification.size.should == keys.size
 end
 
