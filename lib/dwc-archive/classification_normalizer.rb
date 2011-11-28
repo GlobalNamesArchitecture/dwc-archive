@@ -113,8 +113,6 @@ class DarwinCore
       !(authorship.empty? || row[fields[:scientificname]].index(authorship))
     end
 
-
-
     def ingest_core
       @normalized_data = {}
       raise RuntimeError, "Darwin Core core fields must contain taxon id and scientific name" unless (@core_fields[:id] && @core_fields[:scientificname])
