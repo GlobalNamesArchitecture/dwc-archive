@@ -174,12 +174,13 @@ class DarwinCore
         parent_cp = parent_cpid = nil
         if @normalized_data[taxon.parent_id]
           parent_cp = @normalized_data[taxon.parent_id].classification_path if @with_canonical_names
-          parend_cpid = @normalized_data[taxon.parent_id].classification_path_id 
+          parent_cpid = @normalized_data[taxon.parent_id].classification_path_id 
         else
           current_parent = @normalized_data[@synonyms[taxon.parent_id]]
           if current_parent
             error = "WARNING: The parent of the taxon \'#{taxon.current_name}\' is deprecated"
             @error_names << {:data => taxon, :error => :deprecated_parent, :current_parent => current_parent }
+
             parent_cp = current_parent.classification_path if @with_canonical_names
             parent_cpid = current_parent.classification_path_id
           else
