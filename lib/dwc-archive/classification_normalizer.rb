@@ -32,12 +32,17 @@ class DarwinCore
       @synonyms = {}
       @parser = ParsleyStore.new(1,2)
       @name_strings = {}
+      @vernacular_name_strings = {}
       @error_names = []
       @tree = {}
     end
 
     def add_name_string(name_string)
       @name_strings[name_string] = 1 unless @name_strings[name_string]
+    end
+
+    def add_vernacular_name_string(name_string)
+      @vernacular_name_strings[name_string] = 1 unless @vernacular_name_strings[name_string]
     end
 
     def name_strings
@@ -256,7 +261,7 @@ class DarwinCore
             language,
             locality)
           @normalized_data[r[fields[:id]]].vernacular_names << vernacular
-          add_name_string(vernacular.name)
+          add_vernacular_name_string(vernacular.name)
         end
       end
     end
