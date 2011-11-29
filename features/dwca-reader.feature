@@ -69,6 +69,7 @@ Feature: Reading of a Darwing Core Archive
     And get normalized classification in expected format
     And there are paths, synonyms and vernacular names in normalized classification
     And names used in classification can be accessed by "name_strings" method
+    And vernacular names used in classification can be accessed by "vernacular_name_strings" method
     And nodes_ids organized in trees can be accessed by "tree" method
   
   Scenario: Normalizing classification without canonical names

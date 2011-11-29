@@ -49,6 +49,10 @@ class DarwinCore
       @name_strings.keys
     end
 
+    def vernacular_name_strings
+      @vernacular_name_strings.keys
+    end
+
     def normalize(opts = {:with_canoical_names => true})
       @with_canonical_names = opts[:with_canonical_names] != nil ? opts[:with_canonical_names] : true
       DarwinCore.logger_write(@dwc.object_id, "Started normalization of the classification")

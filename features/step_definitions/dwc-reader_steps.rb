@@ -226,6 +226,10 @@ Then /^names used in classification can be accessed by "([^"]*)" method$/ do |na
   names.size.should > @normalized_classification.size
 end
 
+Then /^vernacular names used in classification can be accessed by "([^"]*)" method$/ do |method|
+  vernacular_names = @cn.send(method)
+  vernacular_names.size.should > 0
+end
 
 Then /^nodes_ids organized in trees can be accessed by "([^"]*)" method$/ do |tree|
   def flatten_tree(data, keys)
