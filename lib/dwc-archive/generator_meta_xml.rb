@@ -4,7 +4,7 @@ class DarwinCore
       def initialize(data, path)
         @data = data
         @path = path
-        @write = R19 ? 'w:utf-8' : 'w'
+        @write = 'w:utf-8'
       end
 
       def create

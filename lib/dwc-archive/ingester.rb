@@ -40,13 +40,8 @@ class DarwinCore
 
     def process_csv_row(result, errors, row)
       str = row.join('')
-      if R19
-        str = str.force_encoding('utf-8')
-        str.encoding.name == "UTF-8" && str.valid_encoding? ? result << row : errors << row
-      else
-        require File.join(File.dirname(__FILE__), 'utf_regex_ruby18')
-        UTF8RGX === str ? result << row : errors << row
-      end
+      str = str.force_encoding('utf-8')
+      str.encoding.name == "UTF-8" && str.valid_encoding? ? result << row.map { |f| f.nil? ? nil : f.force_encoding('utf-8') } : errors << row
     end
 
     def get_attributes(exception)

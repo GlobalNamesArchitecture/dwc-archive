@@ -9,7 +9,7 @@ class DarwinCore
       FileUtils.mkdir(@path)
       @meta_xml_data = {:extensions => []}
       @eml_xml_data = {:id => nil, :title => nil, :authors => [], :abstract => nil, :citation => nil, :url => nil}
-      @write = R19 ? 'w:utf-8' : 'w'
+      @write = 'w:utf-8'
     end
     
     #TODO refactor!

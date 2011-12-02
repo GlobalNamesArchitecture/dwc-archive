@@ -9,10 +9,10 @@ source "http://rubygems.org"
 gem "parsley-store", "~> 0.3.0"
 
 group :development do
-  gem "rspec", "~> 2.3.0"
-  gem "nokogiri"
-  gem "cucumber", ">= 0"
-  gem "bundler", "~> 1.0.0"
+  gem "rspec", "~> 2.7.0"
+  gem "nokogiri", "~> 1.5.0"
+  gem "cucumber", "~> 
+  gem "bundler", "~> 1.0"
   gem "jeweler", "~> 1.6.4"
-  gem "ruby-debug19"
+  gem "ruby-debug19", "~> 0.11.6"
 end

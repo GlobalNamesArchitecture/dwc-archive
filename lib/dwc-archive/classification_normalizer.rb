@@ -67,7 +67,6 @@ class DarwinCore
   private
 
     def get_canonical_name(a_scientific_name)
-      a_scientific_name.force_encoding('utf-8')
       if @with_canonical_names
         canonical_name = @parser.parse(a_scientific_name, :canonical_only => true)
         canonical_name.to_s.empty? ? a_scientific_name : canonical_name
@@ -102,10 +101,10 @@ class DarwinCore
     def set_scientific_name(row, fields)
       row[fields[:scientificname]] = 'N/A' unless row[fields[:scientificname]]
       canonical_name = nil
-      scientific_name = row[fields[:scientificname]].strip.force_encoding('utf-8')
+      scientific_name = row[fields[:scientificname]].strip
       if separate_canonical_and_authorship?(row, fields)
-        canonical_name = row[fields[:scientificname]].strip.force_encoding('utf-8') if @with_canonical_names
-        scientific_name += " #{row[fields[:scientificnameauthorship]].strip.force_encoding('utf-8')}"
+        canonical_name = row[fields[:scientificname]].strip if @with_canonical_names
+        scientific_name += " #{row[fields[:scientificnameauthorship]].strip}"
       else
         canonical_name = get_canonical_name(row[fields[:scientificname]]) if @with_canonical_names
       end
