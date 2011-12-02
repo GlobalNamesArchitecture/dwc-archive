@@ -11,7 +11,7 @@ gem "parsley-store", "~> 0.3.0"
 group :development do
   gem "rspec", "~> 2.7.0"
   gem "nokogiri", "~> 1.5.0"
-  gem "cucumber", "~> 
+  gem "cucumber", "~> 1.1.3"
   gem "bundler", "~> 1.0"
   gem "jeweler", "~> 1.6.4"
   gem "ruby-debug19", "~> 0.11.6"
