@@ -45,12 +45,20 @@ class DarwinCore
       @vernacular_name_strings[name_string] = 1 unless @vernacular_name_strings[name_string]
     end
 
-    def name_strings
-      @name_strings.keys
+    def name_strings(opts = {with_hash: false})
+      if opts[:with_hash]
+        @name_strings
+      else
+        @name_strings.keys
+      end
     end
 
-    def vernacular_name_strings
-      @vernacular_name_strings.keys
+    def vernacular_name_strings(opts = {with_hash: false})
+      if opts[:with_hash]
+        @vernacular_name_strings
+      else
+        @vernacular_name_strings.keys
+      end
     end
 
     def normalize(opts = {:with_canoical_names => true})

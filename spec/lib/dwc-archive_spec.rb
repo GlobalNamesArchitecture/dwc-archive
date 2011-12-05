@@ -65,7 +65,29 @@ describe DarwinCore do
       cn.normalized_data.should_not be_nil
       cn.normalized_data.size.should > 0
     end
-    
+
+    it "should return name_strings back" do
+      file = File.join(@file_dir, 'data.tar.gz')
+      dwc = DarwinCore.new(file)
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      cn.normalize
+      name_strings = cn.name_strings
+      name_strings.is_a?(Array).should be_true
+      name_strings.size.should > 1
+      name_strings = cn.name_strings(with_hash: true)
+      name_strings.size.should > 1
+      name_strings.is_a?(Hash).should be_true
+      name_strings.is_a?(Hash).should be_true
+      name_strings.values.uniq.should == [1]
+      vernacular_name_strings = cn.vernacular_name_strings
+      vernacular_name_strings.is_a?(Array).should be_true
+      vernacular_name_strings.size.should > 0
+      vernacular_name_strings = cn.vernacular_name_strings(with_hash: true)
+      vernacular_name_strings.size.should > 0
+      vernacular_name_strings.is_a?(Hash).should be_true
+      vernacular_name_strings.values.uniq.should == [1]
+    end
+
     it "should traverse DarwinCore files and assemble data for every node in memory" do
       file = File.join(@file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
