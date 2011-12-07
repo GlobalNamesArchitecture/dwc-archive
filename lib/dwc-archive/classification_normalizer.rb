@@ -1,8 +1,8 @@
 # encoding: utf-8
 require 'parsley-store'
 
-class DarwinCore 
-    
+class DarwinCore
+
   class TaxonNormalized
     attr_accessor :id, :parent_id, :classification_path_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
 
@@ -19,7 +19,7 @@ class DarwinCore
   end
 
   class SynonymNormalized < Struct.new(:id, :name, :canonical_name, :status);end
-  class VernacularNormalized < Struct.new(:name, :language, :locality);end
+  class VernacularNormalized < Struct.new(:name, :language, :locality, :country_code);end
 
   class ClassificationNormalizer
     attr_reader :error_names, :tree, :normalized_data
@@ -82,24 +82,24 @@ class DarwinCore
         nil
       end
     end
-    
+
     def get_fields(element)
       data = element.fields.inject({}) { |res, f| res[f[:term].split('/')[-1].downcase.to_sym] = f[:index].to_i; res }
-      data[:id] = element.id[:index] 
+      data[:id] = element.id[:index]
       data
     end
 
     def status_synonym?(status)
       status && !!status.match(/^syn/)
     end
-    
+
     def add_synonym_from_core(taxon_id, row)
       @synonyms[row[@core_fields[:id]]] = taxon_id
       taxon = @normalized_data[row[taxon_id]] ? @normalized_data[row[taxon_id]] : @normalized_data[row[taxon_id]] = DarwinCore::TaxonNormalized.new
       synonym = SynonymNormalized.new(
         row[@core_fields[:id]],
-        row[@core_fields[:scientificname]], 
-        row[@core_fields[:canonicalname]], 
+        row[@core_fields[:scientificname]],
+        row[@core_fields[:canonicalname]],
         @core_fields[:taxonomicstatus] ? row[@core_fields[:taxonomicstatus]] : nil)
       taxon.synonyms <<  synonym
       add_name_string(synonym.name)
@@ -148,7 +148,7 @@ class DarwinCore
             taxon.id = r[@core_fields[:id]]
             taxon.current_name = r[@core_fields[:scientificname]]
             taxon.current_name_canonical = r[@core_fields[:canonicalname]]
-            taxon.parent_id = has_parent_id? ? r[parent_id] : nil 
+            taxon.parent_id = has_parent_id? ? r[parent_id] : nil
             taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
             taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
             add_name_string(taxon.current_name)
@@ -157,7 +157,7 @@ class DarwinCore
         end
       end
     end
-    
+
     def has_parent_id?
       @has_parent_id ||= @core_fields.has_key?(:highertaxonid) || @core_fields.has_key?(:parentnameusageid)
     end
@@ -188,7 +188,7 @@ class DarwinCore
         parent_cp = parent_cpid = nil
         if @normalized_data[taxon.parent_id]
           parent_cp = @normalized_data[taxon.parent_id].classification_path if @with_canonical_names
-          parent_cpid = @normalized_data[taxon.parent_id].classification_path_id 
+          parent_cpid = @normalized_data[taxon.parent_id].classification_path_id
         else
           current_parent = @normalized_data[@synonyms[taxon.parent_id]]
           if current_parent
@@ -200,11 +200,11 @@ class DarwinCore
           else
             error = "WARNING: The parent of the taxon \'#{taxon.current_name}\' not found"
             @error_names << {:data => taxon, :error => :deprecated_parent, :current_parent => nil}
-          end  
+          end
         end
         return 'error' unless parent_cpid
         if parent_cpid.empty?
-          res = get_classification_path(@normalized_data[taxon.parent_id]) 
+          res = get_classification_path(@normalized_data[taxon.parent_id])
           return res if res == 'error'
           if @with_canonical_names
             taxon.classification_path += @normalized_data[taxon.parent_id].classification_path + [taxon.current_name_canonical]
@@ -233,7 +233,7 @@ class DarwinCore
         ingest_vernaculars(e) if fields.keys.include? :vernacularname
       end
     end
-    
+
     def ingest_synonyms(extension)
       DarwinCore.logger_write(@dwc.object_id, "Ingesting synonyms extension")
       ext, fields = *extension
@@ -242,8 +242,8 @@ class DarwinCore
           set_scientific_name(r, fields)
           synonym = SynonymNormalized.new(
             nil,
-            r[fields[:scientificname]], 
-            r[fields[:canonicalname]], 
+            r[fields[:scientificname]],
+            r[fields[:canonicalname]],
             fields[:taxonomicstatus] ? r[fields[:taxonomicstatus]] : nil)
           @normalized_data[r[fields[:id]]].synonyms << synonym
           add_name_string(synonym.name)
@@ -262,15 +262,18 @@ class DarwinCore
           if fields[:language]
             language = r[fields[:language]]
           elsif fields[:languagecode]
-            language = r[fields[:languagecode]] 
+            language = r[fields[:languagecode]]
           end
-          
+
           locality = fields[:locality] ? r[fields[:locality]] : nil
-          
+
+          country_code = fields[:countrycode] ? r[fields[:countrycode]] : nil
+
           vernacular = VernacularNormalized.new(
             r[fields[:vernacularname]],
             language,
-            locality)
+            locality,
+            country_code)
           @normalized_data[r[fields[:id]]].vernacular_names << vernacular
           add_vernacular_name_string(vernacular.name)
         end

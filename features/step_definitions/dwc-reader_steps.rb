@@ -197,6 +197,8 @@ Then /^there are paths, synonyms and vernacular names in normalized classificati
     end
     if v.vernacular_names.size > 0
       @vernaculars_are_generated = true
+      vn = v.vernacular_names[0]
+      (vn.respond_to?('locality') && vn.respond_to?('country_code') && vn.respond_to?('language')).should be_true
     end
     break if (@vernaculars_are_generated && @paths_are_generated && @synonyms_are_generated)
   end
