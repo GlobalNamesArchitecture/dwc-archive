@@ -229,7 +229,7 @@ class DarwinCore
     def ingest_extensions
       @extensions.each do |e|
         ext, fields = *e
-        ingest_synonyms(e) if fields.keys.include? :scientificname
+        ingest_synonyms(e) if (File.split(e[0].file_path).last.match(/synonym/i) && fields.keys.include?(:scientificname))
         ingest_vernaculars(e) if fields.keys.include? :vernacularname
       end
     end
@@ -245,9 +245,13 @@ class DarwinCore
             r[fields[:scientificname]],
             r[fields[:canonicalname]],
             fields[:taxonomicstatus] ? r[fields[:taxonomicstatus]] : nil)
-          @normalized_data[r[fields[:id]]].synonyms << synonym
-          add_name_string(synonym.name)
-          add_name_string(synonym.canonical_name)
+          if @normalized_data[r[fields[:id]]]
+            @normalized_data[r[fields[:id]]].synonyms << synonym
+            add_name_string(synonym.name)
+            add_name_string(synonym.canonical_name)
+          else
+            @error_names << { :taxon => synonym, :error => :synonym_of_unknown_taxa }
+          end
         end
       end
     end
@@ -274,8 +278,12 @@ class DarwinCore
             language,
             locality,
             country_code)
-          @normalized_data[r[fields[:id]]].vernacular_names << vernacular
-          add_vernacular_name_string(vernacular.name)
+          if @normalized_data[r[fields[:id]]]
+            @normalized_data[r[fields[:id]]].vernacular_names << vernacular
+            add_vernacular_name_string(vernacular.name)
+          else
+            @error_names << { :vernacular_name => vernacular, :error => :vernacular_of_unknown_taxa }
+          end
         end
       end
     end

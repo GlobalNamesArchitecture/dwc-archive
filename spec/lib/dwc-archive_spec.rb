@@ -25,7 +25,7 @@ describe DarwinCore do
     end
   end
 
-  describe ".new" do 
+  describe ".new" do
     it "should create DarwinCore instance out of archive file" do
       ['data.zip', 'data.tar.gz', 'minimal.tar.gz', 'junk_dir_inside.zip'].each do |file|
         file = File.join(@file_dir, file)
@@ -125,8 +125,15 @@ describe DarwinCore do
       norm = dwc.normalize_classification
       norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
     end
-    
-    it "should be able to assemble synonyms from extension" do
+
+    it "should not assemble synonyms from extension with scientificName, and file name not matching 'synonym'" do
+      file = File.join(@file_dir, 'not_synonym_in_extension.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should == 0
+    end
+
+    it "should be able to assemble synonyms from core" do
       file = File.join(@file_dir, 'synonyms_in_core_accepted_name_field.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
@@ -155,7 +162,7 @@ describe DarwinCore do
       syn = norm.select{|k,v| v.synonyms.size > 0}.map {|k,v| v.synonyms}.flatten.select {|s| s.name.split(" ").size  > s.canonical_name.split(" ").size}
       syn.size.should == 50
     end
-    
+
     it "should be able work with files which repeat scientificNameAuthorship value in scientificName field" do
       file = File.join(@file_dir, 'sci_name_authorship_dup.tar.gz')
       dwc = DarwinCore.new(file)

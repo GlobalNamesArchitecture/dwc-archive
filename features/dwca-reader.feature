@@ -71,7 +71,7 @@ Feature: Reading of a Darwing Core Archive
     And names used in classification can be accessed by "name_strings" method
     And vernacular names used in classification can be accessed by "vernacular_name_strings" method
     And nodes_ids organized in trees can be accessed by "tree" method
-  
+
   Scenario: Normalizing classification without canonical names
     Given path to a dwc file "data.tar.gz"
     When I create a new DarwinCore instance
