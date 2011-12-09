@@ -66,7 +66,7 @@ describe DarwinCore do
       cn.normalized_data.size.should > 0
     end
 
-    it "should return name_strings back" do
+    it "should return array or hash of name_strings back" do
       file = File.join(@file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
@@ -101,6 +101,7 @@ describe DarwinCore do
       path_encodings.size.should == 1
       path_encodings[0].to_s.should == "UTF-8"
       norm['leptogastrinae:tid:2857'].class.should == DarwinCore::TaxonNormalized
+      norm['leptogastrinae:tid:2857'].source.should == 'http://leptogastrinae.lifedesks.org/pages/2857'
     end
 
     it "should assemble synonyms from core" do
@@ -110,6 +111,7 @@ describe DarwinCore do
       syn = norm.values.select {|n| n.synonyms.size > 0}[0].synonyms[0]
       syn.id.should == 'leptogastrinae:tid:127'
       syn.name.should == "Leptogastridae"
+      syn.source.should == 'http://leptogastrinae.lifedesks.org/pages/127'
     end
 
     it "should be able to assemble vernacular names from an extension" do
