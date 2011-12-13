@@ -1,14 +1,16 @@
 class DarwinCore
   class Generator
     class EmlXml
+
       def initialize(data, path)
         @data = data
         @path = path
         @write = 'w:utf-8'
       end
+
       def create
         builder = Nokogiri::XML::Builder.new do |xml|
-          xml.eml(:packageId      => @data[:id],
+          xml.eml(:packageId      => "%s/%s" % [@data[:id], timestamp],
             :system               => @data[:system] || "http://globalnames.org",
             :'xml:lang'           => "en",
             :'xmlns:eml'          => "eml://ecoinformatics.org/eml-2.1.1",
@@ -70,6 +72,12 @@ class DarwinCore
         f = open(File.join(@path, 'eml.xml'), @write)
         f.write(data)
         f.close
+      end
+
+      private
+      def timestamp
+        t = Time.now.getutc.to_a.reverse
+        t[0..2].join('-') + "::" + t[-3..-1].join(':')
       end
     end
   end
