@@ -21,6 +21,7 @@ class DarwinCore
             :'xsi:schemaLocation' => "eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.0.1/eml.xsd") do
             xml.dataset(:id => @data[:id]) do
               xml.title(@data[:title])
+              xml.license(@data[:license])
               contacts = []
               @data[:authors].each_with_index do |a, i|
                 creator_id = i + 1
