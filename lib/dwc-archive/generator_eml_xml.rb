@@ -38,8 +38,7 @@ class DarwinCore
                 end
               end
               @data[:metadata_providers].each_with_index do |a, i|
-                provider_id = i + 1
-                xml.metadataProvider(:id => provider_id) do
+                xml.metadataProvider do
                   xml.individualName do
                     xml.givenName(a[:first_name])
                     xml.surName(a[:last_name])
