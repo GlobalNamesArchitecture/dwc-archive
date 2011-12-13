@@ -76,7 +76,7 @@ class DarwinCore
 
       private
       def timestamp
-        t = Time.now.getutc.to_a.reverse
+        t = Time.now.getutc.to_a[0..5].reverse
         t[0..2].join('-') + "::" + t[-3..-1].join(':')
       end
     end
