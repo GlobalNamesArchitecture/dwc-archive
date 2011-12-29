@@ -13,6 +13,10 @@ class DarwinCore
       @metadata[:eml][:dataset][:attributes][:id] rescue nil
     end
 
+    def package_id
+      @metadata.data[:eml][:attributes][:packageId] rescue nil
+    end
+
     def title
       @metadata[:eml][:dataset][:title] rescue nil
     end

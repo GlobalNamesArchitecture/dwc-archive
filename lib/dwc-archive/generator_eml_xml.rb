@@ -1,14 +1,16 @@
 class DarwinCore
   class Generator
     class EmlXml
+
       def initialize(data, path)
         @data = data
         @path = path
         @write = 'w:utf-8'
       end
+
       def create
         builder = Nokogiri::XML::Builder.new do |xml|
-          xml.eml(:packageId      => @data[:id],
+          xml.eml(:packageId      => "%s/%s" % [@data[:id], timestamp],
             :system               => @data[:system] || "http://globalnames.org",
             :'xml:lang'           => "en",
             :'xmlns:eml'          => "eml://ecoinformatics.org/eml-2.1.1",
@@ -21,6 +23,7 @@ class DarwinCore
             :'xsi:schemaLocation' => "eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.0.1/eml.xsd") do
             xml.dataset(:id => @data[:id]) do
               xml.title(@data[:title])
+              xml.license(@data[:license])
               contacts = []
               @data[:authors].each_with_index do |a, i|
                 creator_id = i + 1
@@ -37,8 +40,7 @@ class DarwinCore
                 end
               end
               @data[:metadata_providers].each_with_index do |a, i|
-                provider_id = i + 1
-                xml.metadataProvider(:id => provider_id) do
+                xml.metadataProvider do
                   xml.individualName do
                     xml.givenName(a[:first_name])
                     xml.surName(a[:last_name])
@@ -70,6 +72,12 @@ class DarwinCore
         f = open(File.join(@path, 'eml.xml'), @write)
         f.write(data)
         f.close
+      end
+
+      private
+      def timestamp
+        t = Time.now.getutc.to_a[0..5].reverse
+        t[0..2].join('-') + "::" + t[-3..-1].join(':')
       end
     end
   end
