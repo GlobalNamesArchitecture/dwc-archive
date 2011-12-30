@@ -208,7 +208,12 @@ class DarwinCore
         end
         return 'error' unless parent_cpid
         if parent_cpid.empty?
-          res = get_classification_path(@normalized_data[taxon.parent_id])
+          res = 'error'
+          begin
+            res = get_classification_path(@normalized_data[taxon.parent_id])
+          rescue SystemStackError
+            @error_names << {:data => taxon, :error => :too_deep_hierarchy, :current_parent => nil}
+          end
           return res if res == 'error'
           if @with_canonical_names
             taxon.classification_path += @normalized_data[taxon.parent_id].classification_path + [taxon.current_name_canonical]
