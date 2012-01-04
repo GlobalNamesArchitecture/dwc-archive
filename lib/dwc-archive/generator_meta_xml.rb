@@ -9,7 +9,7 @@ class DarwinCore
 
       def create
         builder = Nokogiri::XML::Builder.new do |xml|
-          opts = { :encoding => "UTF-8", :fieldsTerminatedBy => ",", :fieldsEnclosedBy => '"', :linesTerminatedBy => "\n", :rowType => "http://rs.tdwg.org/dwc/tems/Taxon" }
+          opts = { :encoding => "UTF-8", :fieldsTerminatedBy => ",", :fieldsEnclosedBy => '"', :linesTerminatedBy => "\n", :rowType => "http://rs.tdwg.org/dwc/terms/Taxon" }
           xml.starArchive(:xmlns => "http://rs.tdwg.org/dwc/terms/xsd/archive/",
             "xmlns:xsi" =>"http://www.w3.org/2001/XMLSchema-instance",
             "xsi:schemaLocation" => "http://rs.tdwg.org/dwc/terms/xsd/archive/ http://darwincore.googlecode.com/svn/trunk/text/tdwg_dwc_text.xsd",
