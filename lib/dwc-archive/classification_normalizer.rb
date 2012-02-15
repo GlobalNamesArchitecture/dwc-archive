@@ -46,30 +46,35 @@ class DarwinCore
       @vernacular_name_strings[name_string] = 1 unless @vernacular_name_strings[name_string]
     end
 
-    def name_strings(opts = {with_hash: false})
-      if opts[:with_hash]
+    def name_strings(opts = {})
+      opts = { with_hash: false }.merge(opts)
+      if !!opts[:with_hash]
         @name_strings
       else
         @name_strings.keys
       end
     end
 
-    def vernacular_name_strings(opts = {with_hash: false})
-      if opts[:with_hash]
+    def vernacular_name_strings(opts = {})
+      opts = { with_hash: false }.merge(opts)
+      if !!opts[:with_hash]
         @vernacular_name_strings
       else
         @vernacular_name_strings.keys
       end
     end
 
-    def normalize(opts = {:with_canoical_names => true})
-      @with_canonical_names = opts[:with_canonical_names] != nil ? opts[:with_canonical_names] : true
+    def normalize(opts = {})
+      opts = { :with_canonical_names => true, :with_extensions => true }.merge(opts)
+      @with_canonical_names = !!opts[:with_canonical_names]
       DarwinCore.logger_write(@dwc.object_id, "Started normalization of the classification")
       ingest_core
       DarwinCore.logger_write(@dwc.object_id, "Calculating the classification parent/child paths")
       has_parent_id? ? calculate_classification_path : @normalized_data.keys.each { |id| @tree[id] = {} }
       DarwinCore.logger_write(@dwc.object_id, "Ingesting data from extensions")
-      ingest_extensions
+      if !!opts[:with_extensions]
+        ingest_extensions
+      end
       @normalized_data
     end
 

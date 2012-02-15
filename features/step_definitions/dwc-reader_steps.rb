@@ -253,3 +253,13 @@ Then /^I am able to use normalize method without canonical names path$/ do
   @cn = DarwinCore::ClassificationNormalizer.new(@dwc)
   @cn.normalize(:with_canonical_names => false)
 end
+
+Then /^I am able to use normalize method without ingesting extensions$/ do
+  @cn = DarwinCore::ClassificationNormalizer.new(@dwc)
+  @cn.normalize(:with_extensions => false)
+end
+
+Then /^extension information is not ingested$/ do
+  @cn.normalized_data.keys.size.should > 0;
+  @cn.normalized_data.values.select { |d| d.synonyms.size > 0 }.size.should == 0
+end

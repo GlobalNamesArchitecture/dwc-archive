@@ -135,6 +135,23 @@ describe DarwinCore do
       norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should == 0
     end
 
+    it "should not attempt to assemble extensions with with_extensions opts set to false" do
+      file = File.join(@file_dir, 'data.tar.gz')
+      dwc = DarwinCore.new(file)
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      norm = cn.normalize(:with_extensions => false)
+      norm.select { |k,v| !v.vernacular_names.empty? }.size.should == 0
+      norm = cn.normalize()
+      norm.select { |k,v| !v.vernacular_names.empty? }.size.should > 0
+      file = File.join(@file_dir, 'synonyms_in_extension.tar.gz')
+      dwc = DarwinCore.new(file)
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      norm = cn.normalize(:with_extensions => false)
+      norm.select { |k,v| !v.synonyms.empty? }.size.should == 0
+      norm = cn.normalize()
+      norm.select { |k,v| !v.synonyms.empty? }.size.should > 0
+    end
+
     it "should be able to assemble synonyms from core" do
       file = File.join(@file_dir, 'synonyms_in_core_accepted_name_field.tar.gz')
       dwc = DarwinCore.new(file)

@@ -79,3 +79,9 @@ Feature: Reading of a Darwing Core Archive
     Then I am able to use normalize method without canonical names path
     And get normalized classification in expected format
     And there are id paths, no canonical names paths in normalized classification
+  
+  Scenario: Normalizing classification skipping extensions data
+    Given path to a dwc file "synonyms_in_extension.tar.gz"
+    When I create a new DarwinCore instance
+    Then I am able to use normalize method without ingesting extensions
+    And extension information is not ingested
