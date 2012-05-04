@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml
+packageId="eml.1.1" system="knb"
+xmlns:eml="eml://ecoinformatics.org/eml-2.1.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 eml.xsd">
+<dataset id="leptogastrinae:version:2.5">
+<title>Leptogastrinae (Diptera: Asilidae) Classification</title>
+<creator id="10" scope="document">
+<individualName>
+<givenName>Keith</givenName>
+<surName>Bayless</surName>
+</individualName>
+<electronicMailAddress>keith.bayless@gmail.com</electronicMailAddress>
+</creator>
+<creator id="5" scope="document">
+<individualName>
+<givenName>Torsten</givenName>
+<surName>Dikow</surName>
+</individualName>
+<electronicMailAddress>dshorthouse@eol.org</electronicMailAddress>
+</creator>
+<metadataProvider>
+<organizationName>Encyclopedia of Life: LifeDesks (http://www.lifedesks.org)</organizationName>
+</metadataProvider>
+<pubDate>2010-02-03T01:09:41-05:00</pubDate>
+<abstract>These are all the names in the Leptogastrinae classification.</abstract>
+<intellectualRights>Creative Commons: publicdomain</intellectualRights>
+<distribution>
+<online>
+<url function="download">http://leptogastrinae.lifedesks.org/files/leptogastrinae/classification_export/shared/leptogastrinae.tar.gz</url>
+</online>
+</distribution>
+<contact>
+<references>5</references>
+</contact>
+<publisher>
+<organizationName>The Marine Biological Laboratory</organizationName>
+</publisher>
+</dataset>
+<additionalMetadata>
+<metadata>
+<citation>Dikow, Torsten. 2010. The Leptogastrinae classification.</citation>
+</metadata>
+</additionalMetadata>
+</eml:eml>

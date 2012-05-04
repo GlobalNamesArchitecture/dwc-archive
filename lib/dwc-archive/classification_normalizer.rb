@@ -4,13 +4,15 @@ require 'parsley-store'
 class DarwinCore
 
   class TaxonNormalized
-    attr_accessor :id, :source, :parent_id, :classification_path_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
+    attr_accessor :id, :local_id, :global_id, :source, :parent_id, :classification_path_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
 
     def initialize
       @id = @parent_id = @rank = @status = nil
       @current_name = ''
       @current_name_canonical = ''
       @source = ''
+      @local_id = ''
+      @global_id = ''
       @classification_path = []
       @classification_path_id = []
       @synonyms = []
@@ -19,7 +21,7 @@ class DarwinCore
 
   end
 
-  class SynonymNormalized < Struct.new(:id, :name, :canonical_name, :status, :source);end
+  class SynonymNormalized < Struct.new(:id, :name, :canonical_name, :status, :source, :local_id, :global_id);end
   class VernacularNormalized < Struct.new(:name, :language, :locality, :country_code);end
 
   class ClassificationNormalizer
@@ -107,7 +109,9 @@ class DarwinCore
         row[@core_fields[:scientificname]],
         row[@core_fields[:canonicalname]],
         @core_fields[:taxonomicstatus] ? row[@core_fields[:taxonomicstatus]] : nil,
-        @core_fields[:source] ? row[@core_fields[:source]] : nil
+        @core_fields[:source] ? row[@core_fields[:source]] : nil,
+        @core_fields[:localid] ? row[@core_fields[:localid]] : nil,
+        @core_fields[:globalid] ? row[@core_fields[:globalid]] : nil,
       )
       taxon.synonyms <<  synonym
       add_name_string(synonym.name)
@@ -160,6 +164,8 @@ class DarwinCore
             taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
             taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
             taxon.source = r[@core_fields[:source]] if @core_fields[:source]
+            taxon.local_id = r[@core_fields[:localid]] if @core_fields[:localid]
+            taxon.global_id = r[@core_fields[:globalid]] if @core_fields[:globalid]
             add_name_string(taxon.current_name)
             add_name_string(taxon.current_name_canonical) if taxon.current_name_canonical && !taxon.current_name_canonical.empty?
           end
@@ -259,7 +265,9 @@ class DarwinCore
             r[fields[:scientificname]],
             r[fields[:canonicalname]],
             fields[:taxonomicstatus] ? r[fields[:taxonomicstatus]] : nil,
-            fields[:source] ? r[fields[:source]] : nil
+            fields[:source] ? r[fields[:source]] : nil,
+            fields[:localid] ? r[fields[:localid]] : nil,
+            fields[:globalid] ? r[fields[:globalid]] : nil,
           )
           if @normalized_data[r[fields[:id]]]
             @normalized_data[r[fields[:id]]].synonyms << synonym

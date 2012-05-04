@@ -1,0 +1,588 @@
+TaxonID	dc:source	ScientificName	HigherTaxonID	TaxonRank	TaxonomicStatus
+leptogastrinae:tid:127	http://leptogastrinae.lifedesks.org/pages/127	Leptogastridae	leptogastrinae:tid:42		synonym	1	e017ed01-407d-4d09-82c5-8b3d9fa76e35
+leptogastrinae:tid:42	http://leptogastrinae.lifedesks.org/pages/42	Leptogastrinae	/N	subfamily		2	97498f29-2501-440d-9452-f3817da0d6c2	
+leptogastrinae:tid:2045	http://leptogastrinae.lifedesks.org/pages/2045	Leptogastrini	leptogastrinae:tid:42	tribe		3	0a8e2c72-add7-455a-8909-a13b10c06b20	
+leptogastrinae:tid:2044	http://leptogastrinae.lifedesks.org/pages/2044	Acronychini	leptogastrinae:tid:42	tribe		4	9beb4ea3-fc48-4d9b-8949-8fd4ff3477eb	
+leptogastrinae:tid:2857	http://leptogastrinae.lifedesks.org/pages/2857	Apachekolos flaventis Scarbrough and Perez-Gelabert, 2005	leptogastrinae:tid:43	species		5	b2d0993a-ea00-48b4-8879-6723c7ae92c7	
+leptogastrinae:tid:2868	http://leptogastrinae.lifedesks.org/pages/2868	Leptogaster longipes Johnson, 1894	leptogastrinae:tid:2855		homonym	6	07564e0d-7ec5-4796-982d-174169157b3c
+leptogastrinae:tid:2869	http://leptogastrinae.lifedesks.org/pages/2869	Apachekolos acus Martin, 1957	leptogastrinae:tid:2855		synonym	7	e7df9a56-9fd3-46db-b317-328b5f18d80c
+leptogastrinae:tid:2855	http://leptogastrinae.lifedesks.org/pages/2855	Apachekolos clavipes (Johnson, 1897)	leptogastrinae:tid:43	species		8	da859fa9-287f-44e5-987d-169b07effc4a	
+leptogastrinae:tid:2858	http://leptogastrinae.lifedesks.org/pages/2858	Apachekolos invasus Scarbrough and Perez-Gelabert, 2005	leptogastrinae:tid:43	species		9	a458c68c-953a-4b21-adfd-9c7c756165a9	
+leptogastrinae:tid:44	http://leptogastrinae.lifedesks.org/pages/44	Apachekolos confusio Martin, 1957	leptogastrinae:tid:43	species		10	e609bcc3-37df-4554-b490-090afb10d422	
+leptogastrinae:tid:2861	http://leptogastrinae.lifedesks.org/pages/2861	Apachekolos vultus Scarbrough and Perez-Gelabert, 2005	leptogastrinae:tid:43			11	c858c767-81ae-4844-bbb2-3700a6a1fcf1	
+leptogastrinae:tid:2688	http://leptogastrinae.lifedesks.org/pages/2688	leptogastrinae:tid:2584	species	12	2cb843ef-971b-4743-a761-b688cbded778
+wrong	fields	number	13	4d562e67-a152-4ea9-ad91-6535ecde73e3
+leptogastrinae:tid:2860	http://leptogastrinae.lifedesks.org/pages/2860	Apachekolos volubilis Scarbrough and Perez-Gelabert, 2005	leptogastrinae:tid:43	species		14	704dc93e-4b57-4b8e-ba73-2a24b655cf26	
+leptogastrinae:tid:2859	http://leptogastrinae.lifedesks.org/pages/2859	Apachekolos magnus Scarbrough and Perez-Gelabert, 2005	leptogastrinae:tid:43	species		15	0d9f2807-5a34-43f5-b020-52b5dd4f72e1	
+leptogastrinae:tid:51	http://leptogastrinae.lifedesks.org/pages/51	Leptogaster weslacensis Bromley, 1951	leptogastrinae:tid:50		synonym	16	4048f63a-5be5-4054-9273-3d5461933bb1
+leptogastrinae:tid:50	http://leptogastrinae.lifedesks.org/pages/50	Apachekolos weslacensis (Bromley, 1951)	leptogastrinae:tid:43	species		17	98a91987-3a78-4572-88f2-4e327c90a1cb	
+leptogastrinae:tid:47	http://leptogastrinae.lifedesks.org/pages/47	Leptogaster scapularis Bigot, 1878	leptogastrinae:tid:46		synonym	18	e5938e0e-2ad1-4295-ae79-7bc57ef57e8e
+leptogastrinae:tid:46	http://leptogastrinae.lifedesks.org/pages/46	Apachekolos scapularis (Bigot, 1878)	leptogastrinae:tid:43	species		19	f29867f8-664e-444e-a0d6-ef2cb801555e	
+leptogastrinae:tid:49	http://leptogastrinae.lifedesks.org/pages/49	Leptogaster tenuipes Loew, 1862	leptogastrinae:tid:48		synonym	20	f9301a3c-09c0-4cbb-97c2-91eb54742468
+leptogastrinae:tid:48	http://leptogastrinae.lifedesks.org/pages/48	Apachekolos tenuipes (Loew, 1862)	leptogastrinae:tid:43	species		21	8c28c6da-cf4a-4ed5-96cb-9fbf0f0ed021	
+leptogastrinae:tid:45	http://leptogastrinae.lifedesks.org/pages/45	Apachekolos crinita Martin, 1957	leptogastrinae:tid:43	species		22	18f0e555-069a-4019-9e51-ab553f30043a	
+leptogastrinae:tid:2900	http://leptogastrinae.lifedesks.org/pages/2900	Beameromyia graminicola Farr, 1963	leptogastrinae:tid:52	species		23	2bea4c49-955a-4b33-89f8-4667a1a8a5e2	
+leptogastrinae:tid:2896	http://leptogastrinae.lifedesks.org/pages/2896	Beameromyia dicrana Scarbrough, 1997	leptogastrinae:tid:52	species		24	3f7ae5f0-dba1-4c85-b59c-52b410dc30a0	
+leptogastrinae:tid:2920	http://leptogastrinae.lifedesks.org/pages/2920	Beameromyia incisuralis Scarbrough & Page, 2005	leptogastrinae:tid:52	species		25	7d26b18e-1ced-4ba5-a95e-6cb63c439234	
+leptogastrinae:tid:2919	http://leptogastrinae.lifedesks.org/pages/2919	Beameromyia multicincta (Walker, 1851)	leptogastrinae:tid:52	species		26	b7917bf4-7df9-47b6-8f2d-0e20e068911a	
+leptogastrinae:tid:72	http://leptogastrinae.lifedesks.org/pages/72	Beameromyia vulgaris Martin, 1957	leptogastrinae:tid:52	species		27	d7e1b2c6-99c6-4e07-bb98-0dee9b0eb9a7	
+leptogastrinae:tid:2918	http://leptogastrinae.lifedesks.org/pages/2918	Beameromyia micropygialis (Williston, 1901)	leptogastrinae:tid:52	species		28	7c6b38b0-72ff-4a6f-9367-28ae5cb010a3	
+leptogastrinae:tid:2916	http://leptogastrinae.lifedesks.org/pages/2916	Beameromyia virginensis Scarbrough, 1997	leptogastrinae:tid:52	species		29	5d5c2bc0-f638-4b67-a9c2-77eeef3b3278	
+leptogastrinae:tid:2906	http://leptogastrinae.lifedesks.org/pages/2906	Beameromyia melana Scarbrough, 1997	leptogastrinae:tid:52	species		30	c5469d24-29f8-4865-9e3a-42af69c58065	
+leptogastrinae:tid:2914	http://leptogastrinae.lifedesks.org/pages/2914	Beameromyia quaterna Scarbrough, 1997	leptogastrinae:tid:52	species		31	5d2e6e3b-3850-4c3b-97c0-a3698e171fc6	
+leptogastrinae:tid:2901	http://leptogastrinae.lifedesks.org/pages/2901	Beameromyia insulara Martin, 1957	leptogastrinae:tid:52	species		32	18ff39b6-1eb0-4451-b9bb-4f8e7a367d2f	
+leptogastrinae:tid:2898	http://leptogastrinae.lifedesks.org/pages/2898	Beameromyia dorsalis (Williston, 1901)	leptogastrinae:tid:52	species		33	fd15893e-3c9a-426e-a0e3-bedd2ea13c4c	
+leptogastrinae:tid:67	http://leptogastrinae.lifedesks.org/pages/67	Leptogaster pictipes Loew, 1862	leptogastrinae:tid:66		synonym	34	f9a4ec15-7609-4881-b4e0-b1277f9e2dd2
+leptogastrinae:tid:68	http://leptogastrinae.lifedesks.org/pages/68	Leptogaster varipes Loew, 1862	leptogastrinae:tid:66		synonym	35	6c06c286-a3cb-4bad-bffc-2eaa9ab78e4e
+leptogastrinae:tid:66	http://leptogastrinae.lifedesks.org/pages/66	Beameromyia pictipes (Loew, 1862)	leptogastrinae:tid:52	species		36	a044a1c5-0c05-4183-abe4-4cb5e98312fe	
+leptogastrinae:tid:55	http://leptogastrinae.lifedesks.org/pages/55	Beameromyia chrysops Martin, 1957	leptogastrinae:tid:52	species		37	a1ed7f63-52ec-48af-a1e1-94bc517e64a8	
+leptogastrinae:tid:56	http://leptogastrinae.lifedesks.org/pages/56	Beameromyia disfascia Martin, 1957	leptogastrinae:tid:52	species		38	70a5a3cc-d975-4fdd-b1a4-48b29a7dc073	
+leptogastrinae:tid:58	http://leptogastrinae.lifedesks.org/pages/58	Leptogaster floridensis Johnson, 1913	leptogastrinae:tid:57		synonym	39	10933c98-97c3-4fa0-8e6b-2b13062303cc
+leptogastrinae:tid:57	http://leptogastrinae.lifedesks.org/pages/57	Beameromyia floridensis (Johnson, 1913)	leptogastrinae:tid:52	species		40	9ac3a44d-ec04-4084-93ea-346db1020659	
+leptogastrinae:tid:65	http://leptogastrinae.lifedesks.org/pages/65	Leptogaster occidentis Hardy, 1942	leptogastrinae:tid:64		synonym	41	c06a86a3-8a0a-4d31-9824-6b261267e5b8
+leptogastrinae:tid:64	http://leptogastrinae.lifedesks.org/pages/64	Beameromyia occidentis (Hardy, 1942)	leptogastrinae:tid:52	species		42	f745aedf-204f-45de-8bc2-f854511f5978	
+leptogastrinae:tid:62	http://leptogastrinae.lifedesks.org/pages/62	Beameromyia macula Martin, 1957	leptogastrinae:tid:52	species		43	efc42a2d-6b2a-40bf-ada9-bea8bcfb979a	
+leptogastrinae:tid:63	http://leptogastrinae.lifedesks.org/pages/63	Beameromyia monticola Martin, 1957	leptogastrinae:tid:52	species		44	c555ebb4-e105-4f0e-b037-adb09064d4dc	
+leptogastrinae:tid:71	http://leptogastrinae.lifedesks.org/pages/71	Beameromyia silvacola Martin, 1957	leptogastrinae:tid:52	species		45	575a93fe-52af-4d91-a73e-240f46e6b81b	
+leptogastrinae:tid:61	http://leptogastrinae.lifedesks.org/pages/61	Beameromyia lunula Martin, 1957	leptogastrinae:tid:52	species		46	49086991-f8ce-43f5-a9b5-9309817fc716	
+leptogastrinae:tid:59	http://leptogastrinae.lifedesks.org/pages/59	Beameromyia kawiensis Martin, 1957	leptogastrinae:tid:52	species		47	b218d60c-aab6-444a-8fa2-4a62b5388e14	
+leptogastrinae:tid:70	http://leptogastrinae.lifedesks.org/pages/70	Beameromyia punicea Martin, 1957	leptogastrinae:tid:52	species		48	b934725d-583f-491d-9683-5d6a5fdd1987	
+leptogastrinae:tid:54	http://leptogastrinae.lifedesks.org/pages/54	Leptogaster bifidus Hardy, 1942	leptogastrinae:tid:53		synonym	49	1e93ed22-5eb8-4d09-8858-a4aab6a048ff
+leptogastrinae:tid:53	http://leptogastrinae.lifedesks.org/pages/53	Beameromyia bifida (Hardy, 1942)	leptogastrinae:tid:52	species		50	2a98c0cb-fbc1-45fe-aa0e-890bd6e1eec8	
+leptogastrinae:tid:60	http://leptogastrinae.lifedesks.org/pages/60	Beameromyia lacinia Martin, 1957	leptogastrinae:tid:52	species		51	4ad95993-30b6-412b-82c0-4b0f70ac24e1	
+leptogastrinae:tid:2895	http://leptogastrinae.lifedesks.org/pages/2895	Beameromyia cubensis (Bigot, 1857)	leptogastrinae:tid:52	species		52	465f66e2-9d20-4471-a51f-4e73bd0e42db	
+leptogastrinae:tid:69	http://leptogastrinae.lifedesks.org/pages/69	Beameromyia prairiensis Martin, 1957	leptogastrinae:tid:52	species		53	1735b71a-19de-4393-a31c-2c611e8f86b3	
+leptogastrinae:tid:2935	http://leptogastrinae.lifedesks.org/pages/2935	Leptopteromyia lopesi Martin, 1971	leptogastrinae:tid:115	species		54	53d1822c-ded5-418e-8a30-f290e170fa19	
+leptogastrinae:tid:2936	http://leptogastrinae.lifedesks.org/pages/2936	Leptopteromyia mexicanae Martin, 1971	leptogastrinae:tid:115	species		55	9a5be39d-acf3-4268-a699-fa99656dd17f	
+leptogastrinae:tid:116	http://leptogastrinae.lifedesks.org/pages/116	Leptopteromyia americana Hardy, 1947	leptogastrinae:tid:115	species		56	84c8d107-1a8d-4363-bcc7-b376e838eb14	
+leptogastrinae:tid:2937	http://leptogastrinae.lifedesks.org/pages/2937	Leptopteromyia peruae Martin, 1971	leptogastrinae:tid:115	species		57	43ba1b89-dd1f-402c-ae83-c8b4084160e2	
+leptogastrinae:tid:2933	http://leptogastrinae.lifedesks.org/pages/2933	Leptopteromyia willistoni Hermann, 1926	leptogastrinae:tid:2932		synonym	58	b3881924-18c1-44a6-90ff-873a0ed1c0b8
+leptogastrinae:tid:2932	http://leptogastrinae.lifedesks.org/pages/2932	Leptopteromyia gracilis Williston, 1908	leptogastrinae:tid:115	species		59	67452768-8ed7-4f77-8212-ffa2b859f405	
+leptogastrinae:tid:2930	http://leptogastrinae.lifedesks.org/pages/2930	Leptopteromyia brasilae Martin, 1971	leptogastrinae:tid:115	species		60	8f5dd311-3182-4c52-b9b9-130f6b10ee81	
+leptogastrinae:tid:2931	http://leptogastrinae.lifedesks.org/pages/2931	Leptopteromyia colombiae Martin, 1971	leptogastrinae:tid:115	species		61	7af755af-62d5-419a-aabc-770a1dacfa37	
+leptogastrinae:tid:2929	http://leptogastrinae.lifedesks.org/pages/2929	Leptopteromyia argentinae Martin, 1971	leptogastrinae:tid:115	species		62	5a7917ab-68ee-4852-9ede-3e32d4869f5a	
+leptogastrinae:tid:2085	http://leptogastrinae.lifedesks.org/pages/2085	Psilonyx macropygialis (Williston, 1901)	leptogastrinae:tid:117	species		63	a5232652-29aa-40fe-89c0-86a1494b1fdf	
+leptogastrinae:tid:2088	http://leptogastrinae.lifedesks.org/pages/2088	Psilonyx zephyrus Scarbrough &amp; Page, 2005	leptogastrinae:tid:117	species		64	8839cd88-5bff-43c3-a0d0-8d83b5245887	
+leptogastrinae:tid:119	http://leptogastrinae.lifedesks.org/pages/119	Leptogaster annulatus Say, 1823	leptogastrinae:tid:118		synonym	65	318192aa-98d4-4aa2-83bb-7d5ae630f293
+leptogastrinae:tid:120	http://leptogastrinae.lifedesks.org/pages/120	Leptogaster histrio Wiedemann, 1828	leptogastrinae:tid:118		synonym	66	b66843d9-3632-47fe-9cd2-a738c82a62f7
+leptogastrinae:tid:118	http://leptogastrinae.lifedesks.org/pages/118	Psilonyx annulatus (Say, 1823)	leptogastrinae:tid:117	species		67	f06eb707-823e-4863-9983-7fd024b2e706	
+leptogastrinae:tid:2086	http://leptogastrinae.lifedesks.org/pages/2086	Psilonyx magnicauda (Curran, 1934)	leptogastrinae:tid:117	species		68	36d29ee1-8c33-4e13-ad9e-8352b28533e3	
+leptogastrinae:tid:2087	http://leptogastrinae.lifedesks.org/pages/2087	Psilonyx venustus (Bromley, 1929)	leptogastrinae:tid:117	species		69	4f668ad3-a8f6-49f5-8c20-7308a01f16e3	
+leptogastrinae:tid:2083	http://leptogastrinae.lifedesks.org/pages/2083	Psilonyx tornowii (Brethes, 1904)	leptogastrinae:tid:117	species		70	20bb249a-0021-40e9-85bd-313dde1df3ad	
+leptogastrinae:tid:2084	http://leptogastrinae.lifedesks.org/pages/2084	Psilonyx arawak Farr, 1963	leptogastrinae:tid:117	species		71	6ce45b44-03ba-4161-a105-647732645b1c	
+leptogastrinae:tid:123	http://leptogastrinae.lifedesks.org/pages/123	Leptogaster badius Loew, 1862	leptogastrinae:tid:122		synonym	72	d866bab3-3bbc-4bad-885e-301c19cc5d26
+leptogastrinae:tid:124	http://leptogastrinae.lifedesks.org/pages/124	Leptogaster glabratus Wiedemann, 1828	leptogastrinae:tid:122		synonym	73	049631da-8841-43e4-8895-5e07315162a6
+leptogastrinae:tid:125	http://leptogastrinae.lifedesks.org/pages/125	Leptogaster testacea Loew, 1862	leptogastrinae:tid:122		synonym	74	938e4de4-2a54-4127-8aed-4d6c8b7372a7
+leptogastrinae:tid:122	http://leptogastrinae.lifedesks.org/pages/122	Tipulogaster glabrata (Wiedemann, 1828)	leptogastrinae:tid:121	species		75	e40c4089-8574-4b74-9376-d6282a8c334d	
+leptogastrinae:tid:2944	http://leptogastrinae.lifedesks.org/pages/2944	Tipulogaster lancea Tomasovic, 2002	leptogastrinae:tid:121	species		76	af44055c-6511-413a-b958-11fc622e1b5c	
+leptogastrinae:tid:1791	http://leptogastrinae.lifedesks.org/pages/1791	Lasiocnemus fascipennis Engel and Cuthbertson, 1939	leptogastrinae:tid:1789	species		77	08a6bc0a-0d7e-4b68-8f48-83d235fc1ec8	
+leptogastrinae:tid:1797	http://leptogastrinae.lifedesks.org/pages/1797	Lasiocnemus londti Dikow, 2007	leptogastrinae:tid:1789	species		78	c622ba4f-cb8f-4072-be08-6191eeaad1bd	
+leptogastrinae:tid:1790	http://leptogastrinae.lifedesks.org/pages/1790	Lasiocnemus anthracinus Janssens, 1952	leptogastrinae:tid:1792		synonym	79	2d4a9263-b78b-4502-83e3-a3f8bbf04104
+leptogastrinae:tid:1792	http://leptogastrinae.lifedesks.org/pages/1792	Lasiocnemus griseicinctipes Speiser, 1913	leptogastrinae:tid:1789	species		80	20d3af4c-628c-440a-bd2b-a8ac63ffa434	
+leptogastrinae:tid:1795	http://leptogastrinae.lifedesks.org/pages/1795	Lasiocnemus lugens Loew, 1858	leptogastrinae:tid:1789	species		81	bbef33b1-0843-424a-b693-2eb754e59e82	
+leptogastrinae:tid:1793	http://leptogastrinae.lifedesks.org/pages/1793	Lasiocnemus hermanni Janssens, 1952	leptogastrinae:tid:1789	species		82	9a187d11-b1d6-412d-8ac9-e6880935e6d6	
+leptogastrinae:tid:1794	http://leptogastrinae.lifedesks.org/pages/1794	Lasiocnemus hyalipennis Janssens, 1952	leptogastrinae:tid:1789	species		83	30442fc7-b267-43c7-ad54-3706ad399f8f	
+leptogastrinae:tid:1796	http://leptogastrinae.lifedesks.org/pages/1796	Lasiocnemus obscuripennis (Loew, 1851)	leptogastrinae:tid:1789	species		84	235bcf0b-c8aa-4cbe-a1fc-5bf37fe316dd	
+leptogastrinae:tid:1809	http://leptogastrinae.lifedesks.org/pages/1809	Acronyches giganteus Hull, 1962	leptogastrinae:tid:1807		synonym	85	98e76400-46ee-4eaf-af0d-3015832a7f96
+leptogastrinae:tid:1807	http://leptogastrinae.lifedesks.org/pages/1807	Acronyches fenestratulus Hermann, 1921	leptogastrinae:tid:1798	species		86	d5fa106c-0fa8-44af-8bbd-a299a6e86f2b	
+leptogastrinae:tid:1804	http://leptogastrinae.lifedesks.org/pages/1804	Acronyches meruuna Papavero, 1971	leptogastrinae:tid:1798	species		87	eb08c4b0-e8a6-44ef-a963-afeb4cc97d25	
+leptogastrinae:tid:1805	http://leptogastrinae.lifedesks.org/pages/1805	Acronyches maya Martin, 1968	leptogastrinae:tid:1798	species		88	0fd39d8b-a2b2-47a8-83d4-ae84718d84de	
+leptogastrinae:tid:1806	http://leptogastrinae.lifedesks.org/pages/1806	Acronyches imitator Hermann, 1921	leptogastrinae:tid:1798	species		89	bd670286-e967-4e4b-ad1e-21f673aa9bad	
+leptogastrinae:tid:1803	http://leptogastrinae.lifedesks.org/pages/1803	Acronyches plutactites Papavero, 1971	leptogastrinae:tid:1798	species		90	419d3ae7-46a2-48cc-a668-bf942e3a411e	
+leptogastrinae:tid:1802	http://leptogastrinae.lifedesks.org/pages/1802	Acronyches rarus Martin, 1968	leptogastrinae:tid:1798	species		91	a826f800-7131-47e2-9052-30e6aa28feef	
+leptogastrinae:tid:1799	http://leptogastrinae.lifedesks.org/pages/1799	Acronyches alexanderi Papavero, 1971	leptogastrinae:tid:1798	species		92	8d0cd1e3-3d5b-4a18-ad88-1dfc78fcf68c	
+leptogastrinae:tid:1800	http://leptogastrinae.lifedesks.org/pages/1800	Acronyches willistoni Hermann, 1921	leptogastrinae:tid:1798	species		93	9b5da4aa-d29f-45ce-b1e1-29616d159e95	
+leptogastrinae:tid:1808	http://leptogastrinae.lifedesks.org/pages/1808	Acronyches geosarginus Papavero, 1971	leptogastrinae:tid:1798	species		94	c0bfb14e-1f8c-43ff-b2d2-f882c1084d32	
+leptogastrinae:tid:1801	http://leptogastrinae.lifedesks.org/pages/1801	Acronyches westcotti Martin, 1968	leptogastrinae:tid:1798	species		95	45d91a45-ed32-490e-87cd-da1e8bdd58d1	
+leptogastrinae:tid:2095	http://leptogastrinae.lifedesks.org/pages/2095	Megonyx	leptogastrinae:tid:1798		synonym	96	45f56953-4b40-4fdc-96bb-4d75b02b74f8
+leptogastrinae:tid:1798	http://leptogastrinae.lifedesks.org/pages/1798	Acronyches	leptogastrinae:tid:2044	genus		97	87305452-ad9d-40e0-a85d-1a9411d3cc2a	
+leptogastrinae:tid:1789	http://leptogastrinae.lifedesks.org/pages/1789	Lasiocnemus	leptogastrinae:tid:2045	genus		98	a3c702f3-dfac-4990-b496-13c1a1345633	
+leptogastrinae:tid:2093	http://leptogastrinae.lifedesks.org/pages/2093	Ophionomima	leptogastrinae:tid:2045	genus		99	e55d5f7c-aa8b-4d6b-89b0-f4b79ceec47e	
+leptogastrinae:tid:2094	http://leptogastrinae.lifedesks.org/pages/2094	Mesoleptogaster	leptogastrinae:tid:2045	genus		100	652b14d9-c434-435b-9c24-6bd09650be72	
+leptogastrinae:tid:2096	http://leptogastrinae.lifedesks.org/pages/2096	Shannomyioleptus	leptogastrinae:tid:2092		synonym	101	fde25bd5-fe81-48df-95e7-4428964c68e7
+leptogastrinae:tid:2092	http://leptogastrinae.lifedesks.org/pages/2092	Schildia	leptogastrinae:tid:2045	genus		102	943cc023-ea37-43c1-97b8-c4247a63c0a0	
+leptogastrinae:tid:2091	http://leptogastrinae.lifedesks.org/pages/2091	Sinopsilonyx	leptogastrinae:tid:2045	genus		103	e77fb5d6-8de9-43d7-b74a-75beb03ca41c	
+leptogastrinae:tid:52	http://leptogastrinae.lifedesks.org/pages/52	Beameromyia	leptogastrinae:tid:2045	genus		104	709e3eb4-a4dd-4f59-8516-acfd43c1f3ad	
+leptogastrinae:tid:115	http://leptogastrinae.lifedesks.org/pages/115	Leptopteromyia	leptogastrinae:tid:2045	genus		105	f0514099-9312-4c1d-8a0c-d28c538c4463	
+leptogastrinae:tid:117	http://leptogastrinae.lifedesks.org/pages/117	Psilonyx	leptogastrinae:tid:2045	genus		106	4d86942f-4d61-49e8-82e8-773a1b40cb6b	
+leptogastrinae:tid:43	http://leptogastrinae.lifedesks.org/pages/43	Apachekolos	leptogastrinae:tid:2045	genus		107	a6b4546b-85fd-4b4f-b099-9c9f14228601	
+leptogastrinae:tid:121	http://leptogastrinae.lifedesks.org/pages/121	Tipulogaster	leptogastrinae:tid:2045	genus		108	ef0b696f-5665-403e-bdd3-b0660516c10d	
+leptogastrinae:tid:2098	http://leptogastrinae.lifedesks.org/pages/2098	Lagynogaster	leptogastrinae:tid:2089		synonym	109	0e80375d-613c-494a-9744-7f7196326167
+leptogastrinae:tid:2089	http://leptogastrinae.lifedesks.org/pages/2089	Ammophilomima	leptogastrinae:tid:2045	genus		110	2dea8e67-5e8a-4402-b62f-f02a4504940e	
+leptogastrinae:tid:2056	http://leptogastrinae.lifedesks.org/pages/2056	Eurhabdus	leptogastrinae:tid:2045	genus		111	8b709440-fde0-44fa-98b8-67e20bc7da9d	
+leptogastrinae:tid:2947	http://leptogastrinae.lifedesks.org/pages/2947	Nanilobus	leptogastrinae:tid:2284		synonym	112	1a73359d-aa28-45c1-b597-35f7f8bf679d
+leptogastrinae:tid:2284	http://leptogastrinae.lifedesks.org/pages/2284	Lobus	leptogastrinae:tid:2045	genus		113	c4c28943-4f8b-4ea4-a23a-4a4152d77efc	
+leptogastrinae:tid:2101	http://leptogastrinae.lifedesks.org/pages/2101	Dolichoscius	leptogastrinae:tid:2102		synonym	114	b337f223-6aaf-4b41-855d-767a7f68ced5
+leptogastrinae:tid:2102	http://leptogastrinae.lifedesks.org/pages/2102	Euscelidia	leptogastrinae:tid:2045	genus		115	9422b3fc-4eec-44a8-b0ec-24d28d594382	
+leptogastrinae:tid:2585	http://leptogastrinae.lifedesks.org/pages/2585	Gonypes	leptogastrinae:tid:2584		synonym	116	9778ae11-8a1d-401b-8f05-29a36a3607b3
+leptogastrinae:tid:2584	http://leptogastrinae.lifedesks.org/pages/2584	Leptogaster	leptogastrinae:tid:2045	genus		117	219a78f3-81ae-450c-a4bb-4d95f556945d	
+leptogastrinae:tid:2090	http://leptogastrinae.lifedesks.org/pages/2090	Systellogaster	leptogastrinae:tid:2045	genus		118	b5691b85-b2c8-4442-9a29-f3299cea5d83	
+leptogastrinae:tid:2058	http://leptogastrinae.lifedesks.org/pages/2058	Eurhabdus longissimus Tomasovic, 2002	leptogastrinae:tid:2056	species		119	73907906-70b2-4f21-8871-fe03aeb170a8	
+leptogastrinae:tid:2059	http://leptogastrinae.lifedesks.org/pages/2059	Eurhabdus zephyreus Aldrich, 1923	leptogastrinae:tid:2056	species		120	51e05230-c067-412d-b494-790da6058dd5	
+leptogastrinae:tid:2057	http://leptogastrinae.lifedesks.org/pages/2057	Eurhabdus jamaicensis Farr, 1973	leptogastrinae:tid:2056	species		121	7d657ca9-1a5f-4566-a9ab-31b5fb1bcc77	
+leptogastrinae:tid:2060	http://leptogastrinae.lifedesks.org/pages/2060	Eurhabdus sororius Scarbrough and Perez-Gelabert, 2005	leptogastrinae:tid:2056	species		122	8df7e00f-a0b4-491d-80d3-77b163783f9c	
+leptogastrinae:tid:2150	http://leptogastrinae.lifedesks.org/pages/2150	Ammophilomima indiae Martin, 1973	leptogastrinae:tid:2089	species		123	70339a20-d9c3-4337-8e04-1a89c4d6762a	
+leptogastrinae:tid:2151	http://leptogastrinae.lifedesks.org/pages/2151	Ammophilomima kenyae Martin, 1973	leptogastrinae:tid:2089	species		124	9d212bfe-7873-405f-94f2-0696f17612e1	
+leptogastrinae:tid:2149	http://leptogastrinae.lifedesks.org/pages/2149	Ammophilomima australis Martin, 1973	leptogastrinae:tid:2089	species		125	402dd3c5-2783-4fdb-a16c-7708c5c0688a	
+leptogastrinae:tid:2146	http://leptogastrinae.lifedesks.org/pages/2146	Ammophilomima tricolor (Walker, 1857)	leptogastrinae:tid:2089	species		126	15f2ce4c-ca3c-424e-bb2c-bf78174eaaa6	
+leptogastrinae:tid:2147	http://leptogastrinae.lifedesks.org/pages/2147	Ammophilomima occlusa (Meijere, 1914)	leptogastrinae:tid:2089	species		127	d6d1f572-be5b-419b-94e0-8e11da9bc2d5	
+leptogastrinae:tid:2152	http://leptogastrinae.lifedesks.org/pages/2152	Ammophilomima siamae Martin, 1973	leptogastrinae:tid:2089	species		128	7ade0146-b2a5-4df2-a40f-ee6bb5a05d34	
+leptogastrinae:tid:2148	http://leptogastrinae.lifedesks.org/pages/2148	Ammophilomima contermina (Edwards, 1919)	leptogastrinae:tid:2089	species		129	1d147235-9969-4c46-8e67-0da0d657e04c	
+leptogastrinae:tid:2158	http://leptogastrinae.lifedesks.org/pages/2158	Ammophilomima pimolae Martin, 1975	leptogastrinae:tid:2089	species		130	e7e83707-9df6-4390-a289-6a3f9770e998	
+leptogastrinae:tid:2159	http://leptogastrinae.lifedesks.org/pages/2159	Ammophilomima flava Martin, 1975	leptogastrinae:tid:2089	species		131	fde64bdb-710f-4065-8be8-351220a3c571	
+leptogastrinae:tid:2145	http://leptogastrinae.lifedesks.org/pages/2145	Ammophilomima magnicollis (Walker, 1862)	leptogastrinae:tid:2089	species		132	c4c567b3-4a95-4291-98e8-0617ef4a722d	
+leptogastrinae:tid:2157	http://leptogastrinae.lifedesks.org/pages/2157	Ammophilomima bifida Martin, 1975	leptogastrinae:tid:2089	species		133	3322cc42-bd03-4364-89ef-2e211adc1611	
+leptogastrinae:tid:2156	http://leptogastrinae.lifedesks.org/pages/2156	Ammophilomima areekuli Martin, 1975	leptogastrinae:tid:2089	species		134	f52afb39-588d-42cd-8495-ecdf3af6a123	
+leptogastrinae:tid:2154	http://leptogastrinae.lifedesks.org/pages/2154	Ammophilomima thailandae Martin, 1973	leptogastrinae:tid:2089	species		135	ae4855b6-3b06-4937-b9e7-1a807d4e50b1	
+leptogastrinae:tid:2155	http://leptogastrinae.lifedesks.org/pages/2155	Ammophilomima truncata Martin, 1973	leptogastrinae:tid:2089	species		136	a2ac1190-cc08-41d7-ab03-7cbd2e0cb151	
+leptogastrinae:tid:2153	http://leptogastrinae.lifedesks.org/pages/2153	Ammophilomima simila Martin, 1973	leptogastrinae:tid:2089	species		137	56360862-7db7-41e1-ab45-479f865de80a	
+leptogastrinae:tid:2124	http://leptogastrinae.lifedesks.org/pages/2124	Ammophilomima ghesquierei Janssens, 1953	leptogastrinae:tid:2089	species		138	c26d46d1-71a2-42e1-95e1-00a623c593d2	
+leptogastrinae:tid:2120	http://leptogastrinae.lifedesks.org/pages/2120	Ammophilomima auripennis Janssens, 1953	leptogastrinae:tid:2089	species		139	b5980d45-3a39-427b-a6ec-5cacf5854602	
+leptogastrinae:tid:2121	http://leptogastrinae.lifedesks.org/pages/2121	Ammophilomima basilewskyi Janssens, 1953	leptogastrinae:tid:2089	species		140	3b314104-8eaf-4101-956a-ce111fb3e38c	
+leptogastrinae:tid:2130	http://leptogastrinae.lifedesks.org/pages/2130	Ammophilomima affinis (Frey, 1937)	leptogastrinae:tid:2089	species		141	ec8982a5-c1ed-46dc-a92a-b22045e1e6e5	
+leptogastrinae:tid:2119	http://leptogastrinae.lifedesks.org/pages/2119	Ammophilomima aequinoctialis Janssens, 1953	leptogastrinae:tid:2089	species		142	c4ee2585-609d-4ebb-aee3-c84509eef464	
+leptogastrinae:tid:2144	http://leptogastrinae.lifedesks.org/pages/2144	Ammophilomima vitalisiana (Frey, 1937)	leptogastrinae:tid:2089	species		143	fc158b20-7767-48c3-aa7a-998a3d45a5bc	
+leptogastrinae:tid:2122	http://leptogastrinae.lifedesks.org/pages/2122	Ammophilomima eumenoides Janssens, 1953	leptogastrinae:tid:2089	species		144	41a5adbc-becf-4ab3-8a00-92ab8a7c358b	
+leptogastrinae:tid:2123	http://leptogastrinae.lifedesks.org/pages/2123	Ammophilomima evanescens Janssens, 1953	leptogastrinae:tid:2089	species		145	9555c392-9dcf-45f1-be0f-a8f70820e0f6	
+leptogastrinae:tid:2128	http://leptogastrinae.lifedesks.org/pages/2128	Ammophilomima triungulata Enderlein, 1914	leptogastrinae:tid:2089	species		146	2fc53c6b-bfa2-436b-9609-6caf3720a8e5	
+leptogastrinae:tid:2129	http://leptogastrinae.lifedesks.org/pages/2129	Ammophilomima vitiosa (Wulp, 1872)	leptogastrinae:tid:2089	species		147	9606d0af-12f1-4a4d-976e-94948d3b92d8	
+leptogastrinae:tid:2126	http://leptogastrinae.lifedesks.org/pages/2126	Ammophilomima montana Janssens, 1955	leptogastrinae:tid:2089	species		148	2c67335a-c233-4098-90ba-0a0d3ef573aa	
+leptogastrinae:tid:2125	http://leptogastrinae.lifedesks.org/pages/2125	Ammophilomima imitatrix Enderlein, 1914	leptogastrinae:tid:2089	species		149	4f8c74b8-69b5-4999-bd3d-dc3f627b1efa	
+leptogastrinae:tid:2131	http://leptogastrinae.lifedesks.org/pages/2131	Ammophilomima antennalis (Hsia, 1949)	leptogastrinae:tid:2089	species		150	3dd10e98-b800-4c33-bbd6-3912ed951c13	
+leptogastrinae:tid:2132	http://leptogastrinae.lifedesks.org/pages/2132	Ammophilomima bicolor (Shi, 1993)	leptogastrinae:tid:2089	species		151	2d4d9b81-96a2-4941-8153-4357267a6bc6	
+leptogastrinae:tid:2140	http://leptogastrinae.lifedesks.org/pages/2140	Ammophilomima princeps (Osten-Sacken, 1882)	leptogastrinae:tid:2089	species		152	0ccaab4a-660a-4680-b2b6-6f3451108138	
+leptogastrinae:tid:2139	http://leptogastrinae.lifedesks.org/pages/2139	Ammophilomima inscripta (Hermann, 1917)	leptogastrinae:tid:2089	species		153	4a7dc16f-1fa8-497b-b378-28cc73bd7de6	
+leptogastrinae:tid:2141	http://leptogastrinae.lifedesks.org/pages/2141	Ammophilomima sauteri (Hermann, 1917)	leptogastrinae:tid:2089	species		154	6f0af429-2cd3-4809-8008-5ec0feb4272f	
+leptogastrinae:tid:2142	http://leptogastrinae.lifedesks.org/pages/2142	Ammophilomima stigmatica (Hermann, 1917)	leptogastrinae:tid:2089	species		155	49cbf58c-0ac3-455e-b2cd-1fbeaa543174	
+leptogastrinae:tid:2143	http://leptogastrinae.lifedesks.org/pages/2143	Ammophilomima suensoni (Frey, 1937)	leptogastrinae:tid:2089	species		156	8c1c1b54-f0a4-4769-9223-c5d3a6918fb5	
+leptogastrinae:tid:2138	http://leptogastrinae.lifedesks.org/pages/2138	Ammophilomima fuliginosa (Hermann, 1917)	leptogastrinae:tid:2089	species		157	9c45d64c-86ca-4ce4-b224-46817400b010	
+leptogastrinae:tid:2137	http://leptogastrinae.lifedesks.org/pages/2137	Ammophilomima fujianensis (Shi, 1995)	leptogastrinae:tid:2089	species		158	8a123a1d-1bc4-44e3-8ede-7296bb4a1d9f	
+leptogastrinae:tid:2133	http://leptogastrinae.lifedesks.org/pages/2133	Ammophilomima boettcheri (Frey, 1937)	leptogastrinae:tid:2089	species		159	cf801932-0e9f-4ad8-991d-8bf7109bdd0a	
+leptogastrinae:tid:2134	http://leptogastrinae.lifedesks.org/pages/2134	Ammophilomima claripennis (Hsia, 1949)	leptogastrinae:tid:2089	species		160	4672d57c-0422-436e-a36a-681386a7387d	
+leptogastrinae:tid:2135	http://leptogastrinae.lifedesks.org/pages/2135	Ammophilomima destillatoria (Hermann, 1917)	leptogastrinae:tid:2089	species		161	81e06a0c-662f-4bed-8cbf-d8e4f6cbc79a	
+leptogastrinae:tid:2136	http://leptogastrinae.lifedesks.org/pages/2136	Ammophilomima dimidiata (Hsia, 1949)	leptogastrinae:tid:2089	species		162	5aa42eea-c452-413e-ad9d-7252e97ef1c8	
+leptogastrinae:tid:2127	http://leptogastrinae.lifedesks.org/pages/2127	Ammophilomima straeleni Janssens, 1953	leptogastrinae:tid:2089	species		163	ef41c037-c83f-4661-9e8e-dd7d9c4b1b19	
+leptogastrinae:tid:2170	http://leptogastrinae.lifedesks.org/pages/2170	Systellogaster parva Martin, 1975	leptogastrinae:tid:2090	species		164	2ca3cfac-b59e-449c-ab4b-1b43fff6ab54	
+leptogastrinae:tid:2164	http://leptogastrinae.lifedesks.org/pages/2164	Systellogaster alba Martin, 1975	leptogastrinae:tid:2090	species		165	de2b24da-745d-4144-a898-7a56a923791c	
+leptogastrinae:tid:2173	http://leptogastrinae.lifedesks.org/pages/2173	Systellogaster aurantiaca Hermann, 1926	leptogastrinae:tid:2171		synonym	166	38197b92-644d-4024-acf1-2324a9e2a99d
+leptogastrinae:tid:2171	http://leptogastrinae.lifedesks.org/pages/2171	Systellogaster silacea Martin, 1975	leptogastrinae:tid:2090	species		167	079e3f90-3945-4e06-95ef-eb9168894dd7	
+leptogastrinae:tid:2165	http://leptogastrinae.lifedesks.org/pages/2165	Systellogaster breviventris (Rondani, 1848)	leptogastrinae:tid:2090	species		168	3ef4bc3d-7e2e-45ef-ae6e-15b90216619d	
+leptogastrinae:tid:2166	http://leptogastrinae.lifedesks.org/pages/2166	Systellogaster calceolata (Bigot, 1879)	leptogastrinae:tid:2090	species		169	d5a3e154-1251-476e-a8e0-87a9decd0c16	
+leptogastrinae:tid:2167	http://leptogastrinae.lifedesks.org/pages/2167	Systellogaster fascipennis (Schiner, 1867)	leptogastrinae:tid:2090	species		170	fb59e6b4-58b7-42be-aa36-4814ebedfcec	
+leptogastrinae:tid:2941	http://leptogastrinae.lifedesks.org/pages/2941	Sinopsilonyx signata (Meijere, 1914)	leptogastrinae:tid:2091	species		171	6bb1d5ba-87ed-4981-a62b-16dcc3a10841	
+leptogastrinae:tid:2939	http://leptogastrinae.lifedesks.org/pages/2939	Sinopsilonyx coarctata (Hermann, 1917)	leptogastrinae:tid:2091	species		172	0d90b328-e9f8-4b3a-8f3d-87b15f989ff6	
+leptogastrinae:tid:2940	http://leptogastrinae.lifedesks.org/pages/2940	Sinopsilonyx javanensis (Meijere, 1914)	leptogastrinae:tid:2091	species		173	4d8d6840-25af-4c8e-baaa-b06a72b3ef0c	
+leptogastrinae:tid:2942	http://leptogastrinae.lifedesks.org/pages/2942	Sinopsilonyx flavican (Shi, 1993)	leptogastrinae:tid:2091	species		174	e77b9da0-5ecb-47e4-a368-7d8b08e59980	
+leptogastrinae:tid:2161	http://leptogastrinae.lifedesks.org/pages/2161	Sinopsilonyx tibialis Hsia, 1949	leptogastrinae:tid:2091	species		175	e6486acc-ecee-4954-8a2a-7555cb04591b	
+leptogastrinae:tid:2111	http://leptogastrinae.lifedesks.org/pages/2111	Schildia guatemalae Martin, 1975	leptogastrinae:tid:2092	species		176	e4085daa-7c64-45cb-b396-221b496f87b2	
+leptogastrinae:tid:2109	http://leptogastrinae.lifedesks.org/pages/2109	Schildia ocellata Martin, 1975	leptogastrinae:tid:2108		synonym	177	76966e9b-5dd5-4a52-b0d5-6c5916356f89
+leptogastrinae:tid:2108	http://leptogastrinae.lifedesks.org/pages/2108	Schildia gracillima (Walker, 1855)	leptogastrinae:tid:2092	species		178	facfd05d-2f81-461f-9dfc-bdb5b06115ba	
+leptogastrinae:tid:2112	http://leptogastrinae.lifedesks.org/pages/2112	Schildia jamaicensis Farr, 1962	leptogastrinae:tid:2092	species		179	893da844-c92b-4383-81be-31e9e375c266	
+leptogastrinae:tid:2104	http://leptogastrinae.lifedesks.org/pages/2104	Schildia alphus Martin, 1975	leptogastrinae:tid:2092	species		180	b620e4b9-8423-4660-bd4a-828f89e6bd25	
+leptogastrinae:tid:2106	http://leptogastrinae.lifedesks.org/pages/2106	Schildia zonae Martin, 1975	leptogastrinae:tid:2105		synonym	181	c3cda036-6f7a-460d-9af4-bf934ff97f38
+leptogastrinae:tid:2105	http://leptogastrinae.lifedesks.org/pages/2105	Schildia fragilis (Carrera, 1944)	leptogastrinae:tid:2092	species		182	a5d28e62-870f-4dec-8ad6-7fcf75f08d1a	
+leptogastrinae:tid:2115	http://leptogastrinae.lifedesks.org/pages/2115	Schildia malaya Dikow & Bayless, 2009	leptogastrinae:tid:2092	species		183	96183cfc-45e0-414f-8ef5-5f33c51c0ad4	
+leptogastrinae:tid:2114	http://leptogastrinae.lifedesks.org/pages/2114	Schildia caliginosa Dikow & Bayless, 2009	leptogastrinae:tid:2092	species		184	0c903241-b313-495f-85a2-871c5e1f13fd	
+leptogastrinae:tid:2117	http://leptogastrinae.lifedesks.org/pages/2117	Schildia adina Dikow & Bayless, 2009	leptogastrinae:tid:2092	species		185	94b9af41-b29e-45c9-b5ca-94751197cf26	
+leptogastrinae:tid:2116	http://leptogastrinae.lifedesks.org/pages/2116	Schildia martini Dikow & Bayless, 2009	leptogastrinae:tid:2092	species		186	8ef1146d-a165-41f9-b292-117783769bd1	
+leptogastrinae:tid:2160	http://leptogastrinae.lifedesks.org/pages/2160	Ophionomima solocifemur Enderlein, 1914	leptogastrinae:tid:2093	species		187	069f8d9d-b2f2-4464-92a1-660dd8339d2a	
+leptogastrinae:tid:2265	http://leptogastrinae.lifedesks.org/pages/2265	Mesoleptogaster spinulosa (Meijere, 1914)	leptogastrinae:tid:2094	species		188	156a2dc2-cd0a-4913-8cc7-7270c2a4549f	
+leptogastrinae:tid:2264	http://leptogastrinae.lifedesks.org/pages/2264	Mesoleptogaster rufithorax (Meijere, 1913)	leptogastrinae:tid:2094	species		189	84e582e0-f68f-4af5-b6bc-43ebd5cd81c7	
+leptogastrinae:tid:2266	http://leptogastrinae.lifedesks.org/pages/2266	Mesoleptogaster trifasciata (Meijere, 1914)	leptogastrinae:tid:2094	species		190	0cf81012-b577-4f81-9211-f5311f6d39e2	
+leptogastrinae:tid:2268	http://leptogastrinae.lifedesks.org/pages/2268	Mesoleptogaster convergens (Frey, 1937)	leptogastrinae:tid:2094	species		191	b29d3426-6a76-428d-9bf8-9098aee2b13f	
+leptogastrinae:tid:2270	http://leptogastrinae.lifedesks.org/pages/2270	Mesoleptogaster fulvicra Hsia, 1949	leptogastrinae:tid:2094	species		192	9acb45cc-7c9b-44b0-9370-eaf1ead1394a	
+leptogastrinae:tid:2269	http://leptogastrinae.lifedesks.org/pages/2269	Mesoleptogaster eoa Lehr, 1961	leptogastrinae:tid:2094	species		193	7171ad83-4e77-4fcb-add9-6156a4f8672a	
+leptogastrinae:tid:2263	http://leptogastrinae.lifedesks.org/pages/2263	Mesoleptogaster pyragra (Janssens, 1957)	leptogastrinae:tid:2094	species		194	97b07ae9-f5e3-469b-9f6a-14319093e330	
+leptogastrinae:tid:2267	http://leptogastrinae.lifedesks.org/pages/2267	Mesoleptogaster bicoloripes Hsia, 1949	leptogastrinae:tid:2094	species		195	69cd35d2-7e76-4647-a855-31148fe30aac	
+leptogastrinae:tid:2261	http://leptogastrinae.lifedesks.org/pages/2261	Mesoleptogaster madagascariensis (Frey, 1937)	leptogastrinae:tid:2094	species		196	00af7515-f563-488d-a79a-53c9ec17f698	
+leptogastrinae:tid:2256	http://leptogastrinae.lifedesks.org/pages/2256	Mesoleptogaster ferruginea (Walker, 1858)	leptogastrinae:tid:2094	species		197	9ac3fa4a-6633-4d90-bd20-73f85fd5f33c	
+leptogastrinae:tid:2255	http://leptogastrinae.lifedesks.org/pages/2255	Mesoleptogaster basilewskyi (Janssens, 1955)	leptogastrinae:tid:2094	species		198	70416511-07df-4886-9ea1-0b6adf315e9c	
+leptogastrinae:tid:2257	http://leptogastrinae.lifedesks.org/pages/2257	Mesoleptogaster fulvipes (Bigot, 1879)	leptogastrinae:tid:2094	species		199	94bf13c9-54f8-41eb-a69f-ffa382ad61be	
+leptogastrinae:tid:2258	http://leptogastrinae.lifedesks.org/pages/2258	Mesoleptogaster habilis (Wulp, 1872)	leptogastrinae:tid:2094	species		200	c71bebf2-6cec-4db1-9cf1-11ba053722c5	
+leptogastrinae:tid:2260	http://leptogastrinae.lifedesks.org/pages/2260	Mesoleptogaster longipes (Walker, 1858)	leptogastrinae:tid:2094	species		201	5ad1cee0-4525-4f82-b942-f05c283050ab	
+leptogastrinae:tid:2259	http://leptogastrinae.lifedesks.org/pages/2259	Mesoleptogaster inutilis (Walker, 1857)	leptogastrinae:tid:2094	species		202	e1f4b8d5-d661-4a17-ae3f-7a95fa8b54fd	
+leptogastrinae:tid:2262	http://leptogastrinae.lifedesks.org/pages/2262	Mesoleptogaster pacifica (Bezzi, 1928)	leptogastrinae:tid:2094	species		203	529573dc-d33a-41a6-88d8-a236a015226a	
+leptogastrinae:tid:2271	http://leptogastrinae.lifedesks.org/pages/2271	Mesoleptogaster fuscatipennis (Frey, 1937)	leptogastrinae:tid:2094	species		204	b4a7e598-fcc5-4a9b-bcd3-059aaeedc73b	
+leptogastrinae:tid:2280	http://leptogastrinae.lifedesks.org/pages/2280	Mesoleptogaster loaloa Evenhuis, 2006	leptogastrinae:tid:2094	species		205	04bb30e0-398b-461f-a97f-f46a46e32a95	
+leptogastrinae:tid:2282	http://leptogastrinae.lifedesks.org/pages/2282	Mesoleptogaster vitiensis Evenhuis, 2006	leptogastrinae:tid:2094	species		206	3826a9fa-a035-4ff0-a235-9f51c32928bd	
+leptogastrinae:tid:2254	http://leptogastrinae.lifedesks.org/pages/2254	Mesoleptogaster angela (Osten-Sacken, 1881)	leptogastrinae:tid:2094	species		207	ba07bef8-42c1-4f48-80b1-2bbf6bef4cd3	
+leptogastrinae:tid:2272	http://leptogastrinae.lifedesks.org/pages/2272	Mesoleptogaster gracilipes Hsia, 1949	leptogastrinae:tid:2094	species		208	4fb1f790-ca49-470b-955b-35c212156056	
+leptogastrinae:tid:2279	http://leptogastrinae.lifedesks.org/pages/2279	Mesoleptogaster levusara Evenhuis, 2006	leptogastrinae:tid:2094	species		209	c974fead-84de-4c34-bff3-1e082e89273e	
+leptogastrinae:tid:2281	http://leptogastrinae.lifedesks.org/pages/2281	Mesoleptogaster meriel Evenhuis, 2006	leptogastrinae:tid:2094	species		210	3cae8e67-a35d-41cb-8b24-03a285cf4cdd	
+leptogastrinae:tid:2277	http://leptogastrinae.lifedesks.org/pages/2277	Mesoleptogaster spinulosa Hermann, 1917	leptogastrinae:tid:2276		homonym	211	07057b56-f6b6-4a79-8831-e79c838a9246
+leptogastrinae:tid:2276	http://leptogastrinae.lifedesks.org/pages/2276	Mesoleptogaster koshunensis Oldroyd, 1975	leptogastrinae:tid:2094	species		212	961a05c1-4cc2-4a97-a934-1da1441a5526	
+leptogastrinae:tid:2274	http://leptogastrinae.lifedesks.org/pages/2274	Mesoleptogaster piliensis (Oldroyd, 1972)	leptogastrinae:tid:2094	species		213	507cc163-9ddf-4aa6-b2d5-075dcf677cae	
+leptogastrinae:tid:2273	http://leptogastrinae.lifedesks.org/pages/2273	Mesoleptogaster trimaculata (Meijere, 1914)	leptogastrinae:tid:2094	species		214	0adfb32a-01e2-4ab2-acce-f3ecb69ea622	
+leptogastrinae:tid:2275	http://leptogastrinae.lifedesks.org/pages/2275	Mesoleptogaster inflata (Osten-Sacken, 1881)	leptogastrinae:tid:2094	species		215	60e2c182-4cbb-4155-9a97-3968dd6fd46a	
+leptogastrinae:tid:2252	http://leptogastrinae.lifedesks.org/pages/2252	Euscelidia vallis Dikow, 2003	leptogastrinae:tid:2102	species		216	828a9544-48d3-4174-89ad-556c1dd7229c	
+leptogastrinae:tid:2251	http://leptogastrinae.lifedesks.org/pages/2251	Euscelidia tsavo Dikow, 2003	leptogastrinae:tid:2102	species		217	e29c0adf-0090-4a36-81d1-e747dac9911c	
+leptogastrinae:tid:2249	http://leptogastrinae.lifedesks.org/pages/2249	Euscelidia senegalensis Dikow, 2003	leptogastrinae:tid:2102	species		218	d4d04626-057b-4f17-9976-958894640b1e	
+leptogastrinae:tid:2253	http://leptogastrinae.lifedesks.org/pages/2253	Euscelidia venusta Dikow, 2003	leptogastrinae:tid:2102	species		219	9f200fa8-bbe6-4cad-ab70-16cd80164da1	
+leptogastrinae:tid:2250	http://leptogastrinae.lifedesks.org/pages/2250	Euscelidia splendida Dikow, 2003	leptogastrinae:tid:2102	species		220	7fe25941-dc3c-4783-9e2f-b5aeae3110ed	
+leptogastrinae:tid:2248	http://leptogastrinae.lifedesks.org/pages/2248	Euscelidia pulchra Dikow, 2003	leptogastrinae:tid:2102	species		221	f5930f14-e539-4305-ba81-aa467ccadeca	
+leptogastrinae:tid:2921	http://leptogastrinae.lifedesks.org/pages/2921	Euscelidia nubilipennis (Frey, 1937)	leptogastrinae:tid:2102	species		222	8c05f3a2-afcf-47cc-8083-564a7581687a	
+leptogastrinae:tid:2923	http://leptogastrinae.lifedesks.org/pages/2923	Euscelidia hirticollis (Wulp, 1872)	leptogastrinae:tid:2102	species		223	ecf94f7f-219e-48a7-9bd6-3fcca04a2a8f	
+leptogastrinae:tid:2924	http://leptogastrinae.lifedesks.org/pages/2924	Euscelidia nitens (Bromley, 1947)	leptogastrinae:tid:2102	species		224	819b437e-8d9f-44d7-a116-65d86eada42e	
+leptogastrinae:tid:2925	http://leptogastrinae.lifedesks.org/pages/2925	Euscelidia ophionea (Frey, 1937)	leptogastrinae:tid:2102	species		225	c6edaa3b-fa6e-48b9-84a2-e6425a4179f6	
+leptogastrinae:tid:2187	http://leptogastrinae.lifedesks.org/pages/2187	Euscelidia dorata Oldroyd, 1970	leptogastrinae:tid:2926		synonym	226	1e51645e-4f7a-4ae6-a5b3-f85c4526d455
+leptogastrinae:tid:2926	http://leptogastrinae.lifedesks.org/pages/2926	Euscelidia plebeja (Janssens, 1957)	leptogastrinae:tid:2102	species		227	a283ad34-d87c-4a54-bb71-4700bec75b7b	
+leptogastrinae:tid:2242	http://leptogastrinae.lifedesks.org/pages/2242	Euscelidia obudu Dikow, 2003	leptogastrinae:tid:2102	species		228	bd53b50f-dcd4-49a6-9fdf-92fd5d3ea2bc	
+leptogastrinae:tid:2204	http://leptogastrinae.lifedesks.org/pages/2204	Euscelidia stigmaticalis (Loew, 1852)	leptogastrinae:tid:2203		synonym	229	15f5c9c3-edb2-4cca-a8c1-cc90ba8900c2
+leptogastrinae:tid:2205	http://leptogastrinae.lifedesks.org/pages/2205	Euscelidia oldroydi Lindner, 1955	leptogastrinae:tid:2203		synonym	230	7c7cbeea-4bab-4e01-b8ce-696ef81fc63c
+leptogastrinae:tid:2206	http://leptogastrinae.lifedesks.org/pages/2206	Euscelidia proculus var. melanostoma Janssens, 1953	leptogastrinae:tid:2203		unavailable name	231	f7f42db6-2dd9-4754-aed0-f57a3cc94a6a
+leptogastrinae:tid:2203	http://leptogastrinae.lifedesks.org/pages/2203	Euscelidia procula (Walker, 1849)	leptogastrinae:tid:2102	species		232	e2b6ae34-c66b-4459-83f6-3f0ca8a93953	
+leptogastrinae:tid:2208	http://leptogastrinae.lifedesks.org/pages/2208	Euscelidia rapacoides Oldroyd, 1972	leptogastrinae:tid:2102	species		233	94936b64-5485-4e96-8c6b-07a156dba7e2	
+leptogastrinae:tid:2209	http://leptogastrinae.lifedesks.org/pages/2209	Euscelidia rapax Westwood, 1850	leptogastrinae:tid:2102	species		234	3586b54e-549f-4e82-bc87-05eea74b32ad	
+leptogastrinae:tid:2201	http://leptogastrinae.lifedesks.org/pages/2201	Euscelidia pubiceps (Loew, 1871)	leptogastrinae:tid:2200		synonym	235	71ce2dfc-7432-4b0f-a720-aedf526fc465
+leptogastrinae:tid:2200	http://leptogastrinae.lifedesks.org/pages/2200	Euscelidia pallasii (Wiedemann, 1818)	leptogastrinae:tid:2102	species		236	5ff8fd6a-f36d-4a67-9340-20ce161d1293	
+leptogastrinae:tid:2199	http://leptogastrinae.lifedesks.org/pages/2199	Euscelidia ochricornis (Loew, 1858)	leptogastrinae:tid:2102	species		237	ad79add2-9840-43cd-86d2-27f51729284d	
+leptogastrinae:tid:2197	http://leptogastrinae.lifedesks.org/pages/2197	Euscelidia nenemusha (Speiser, 1910)	leptogastrinae:tid:2102	species		238	0c37cc72-a27b-4a64-813f-ba041e8dc4de	
+leptogastrinae:tid:2198	http://leptogastrinae.lifedesks.org/pages/2198	Euscelidia nitida (Wiedemann, 1828)	leptogastrinae:tid:2102	species		239	e1f3967c-f2b5-4e77-b364-669f40b76ab0	
+leptogastrinae:tid:2210	http://leptogastrinae.lifedesks.org/pages/2210	Euscelidia trifoliata Janssens, 1953	leptogastrinae:tid:2102	species		240	be2295f5-6a22-4ec0-b7e1-2ef0c4678d20	
+leptogastrinae:tid:2211	http://leptogastrinae.lifedesks.org/pages/2211	Euscelidia valida (Loew, 1858)	leptogastrinae:tid:2102	species		241	b4fbaa2f-c653-478b-9f82-8c7d381f0728	
+leptogastrinae:tid:2216	http://leptogastrinae.lifedesks.org/pages/2216	Euscelidia adusta Dikow, 2003	leptogastrinae:tid:2102	species		242	bbd4e830-3779-4962-a848-131054949404	
+leptogastrinae:tid:2217	http://leptogastrinae.lifedesks.org/pages/2217	Euscelidia atrata Dikow, 2003	leptogastrinae:tid:2102	species		243	51f5eb3e-9270-4a1f-92ca-e83ce11693c9	
+leptogastrinae:tid:2218	http://leptogastrinae.lifedesks.org/pages/2218	Euscelidia bechuana Dikow, 2003	leptogastrinae:tid:2102	species		244	3ab77dbe-d7e2-416c-8b65-9da8a836c1ba	
+leptogastrinae:tid:2215	http://leptogastrinae.lifedesks.org/pages/2215	Euscelidia acuminata Dikow, 2003	leptogastrinae:tid:2102	species		245	02f2612d-be79-428e-ab1f-99dbfa19281f	
+leptogastrinae:tid:2214	http://leptogastrinae.lifedesks.org/pages/2214	Euscelidia abbreviata Dikow, 2003	leptogastrinae:tid:2102	species		246	c0e2cf95-a076-4197-8376-852170d49314	
+leptogastrinae:tid:2240	http://leptogastrinae.lifedesks.org/pages/2240	Euscelidia notialis Dikow, 2003	leptogastrinae:tid:2212		synonym	247	2fa40562-3acc-41ff-aec7-b3b3418c8cfb
+leptogastrinae:tid:2212	http://leptogastrinae.lifedesks.org/pages/2212	Euscelidia zumpti Janssens, 1957	leptogastrinae:tid:2102	species		248	35a5d317-64d6-44d5-88ca-d02ccd58ac56	
+leptogastrinae:tid:2213	http://leptogastrinae.lifedesks.org/pages/2213	Euscelidia schoutedeni Janssens, 1954	leptogastrinae:tid:2102	species		249	87f3b7d7-da94-4644-9dd0-472b4601cde6	
+leptogastrinae:tid:2196	http://leptogastrinae.lifedesks.org/pages/2196	Euscelidia moyoensis Oldroyd, 1970	leptogastrinae:tid:2102	species		250	9f8424b9-48da-4ac4-8bfd-db1a38956d30	
+leptogastrinae:tid:2195	http://leptogastrinae.lifedesks.org/pages/2195	Euscelidia marion (Walker, 1849)	leptogastrinae:tid:2102	species		251	1f821da2-239f-4fba-9f2e-444cc66cabad	
+leptogastrinae:tid:2179	http://leptogastrinae.lifedesks.org/pages/2179	Euscelidia bicolor Janssens, 1954	leptogastrinae:tid:2102	species		252	addded2b-5969-48bf-9a10-bf2914cdfa0b	
+leptogastrinae:tid:2180	http://leptogastrinae.lifedesks.org/pages/2180	Euscelidia bishariensis Efflatoun, 1937	leptogastrinae:tid:2102	species		253	af79cf41-8c43-44f7-aa01-06b2d7e27c83	
+leptogastrinae:tid:2922	http://leptogastrinae.lifedesks.org/pages/2922	Euscelidia globopyga (Hull, 1967)	leptogastrinae:tid:2181		synonym	254	0ebbbc4f-f7d8-4734-a687-3a9e8ea7c17d
+leptogastrinae:tid:2181	http://leptogastrinae.lifedesks.org/pages/2181	Euscelidia brunnea (Loew, 1858)	leptogastrinae:tid:2102	species		255	e93ac09b-5b25-45a6-b2ef-55092d532af2	
+leptogastrinae:tid:2178	http://leptogastrinae.lifedesks.org/pages/2178	Euscelidia bequaerti Janssens, 1957	leptogastrinae:tid:2102	species		256	b5af8d15-912c-452a-9e49-b7bddccc0358	
+leptogastrinae:tid:2247	http://leptogastrinae.lifedesks.org/pages/2247	Euscelidia prolata Dikow, 2003	leptogastrinae:tid:2102	species		257	5a565329-f98e-4c0d-a40e-61316cf6f8ff	
+leptogastrinae:tid:2176	http://leptogastrinae.lifedesks.org/pages/2176	Euscelidia anthrax Janssens, 1957	leptogastrinae:tid:2102	species		258	7f32f1e8-6f41-40f0-97bf-8c54bb669d7c	
+leptogastrinae:tid:2182	http://leptogastrinae.lifedesks.org/pages/2182	Euscelidia castanea Janssens, 1954	leptogastrinae:tid:2102	species		259	eb23b918-fb09-4aee-a6eb-332cb73e5f3f	
+leptogastrinae:tid:2184	http://leptogastrinae.lifedesks.org/pages/2184	Euscelidia pilipes (Curran, 1927)	leptogastrinae:tid:2183		synonym	260	6b8a5074-15cd-47af-a2d8-b637d2bc4318
+leptogastrinae:tid:2183	http://leptogastrinae.lifedesks.org/pages/2183	Euscelidia datis (Walker, 1849)	leptogastrinae:tid:2102	species		261	4b65ca16-1b23-40e8-bc94-0eacce91104d	
+leptogastrinae:tid:2193	http://leptogastrinae.lifedesks.org/pages/2193	Euscelidia gutianensis Shi, 1995	leptogastrinae:tid:2102	species		262	a89a3e4a-1023-41fd-bf15-1ef5cd1fdbd7	
+leptogastrinae:tid:2194	http://leptogastrinae.lifedesks.org/pages/2194	Euscelidia lucida Oldroyd, 1939	leptogastrinae:tid:2102	species		263	fee5c95c-eb75-491d-9217-d87f4a3322e3	
+leptogastrinae:tid:2191	http://leptogastrinae.lifedesks.org/pages/2191	Euscelidia longipes Janssens, 1954	leptogastrinae:tid:2190		synonym	264	7a0d4721-c9b6-4af7-b5dc-0b7bdbd4d5b7
+leptogastrinae:tid:2190	http://leptogastrinae.lifedesks.org/pages/2190	Euscelidia francoisi (Janssens, 1953)	leptogastrinae:tid:2102	species		265	e971734e-7c44-4f9c-96fc-7bd96a3cf1b1	
+leptogastrinae:tid:2189	http://leptogastrinae.lifedesks.org/pages/2189	Euscelidia festiva Janssens, 1954	leptogastrinae:tid:2102	species		266	2dbc0af5-38e9-4c17-9ee5-ed0bb00bd300	
+leptogastrinae:tid:2186	http://leptogastrinae.lifedesks.org/pages/2186	Euscelidia discors Speiser, 1913	leptogastrinae:tid:2102	species		267	5650fc80-dac6-4375-8997-9afd74ac9e7c	
+leptogastrinae:tid:2188	http://leptogastrinae.lifedesks.org/pages/2188	Euscelidia fastigium Martin, 1964	leptogastrinae:tid:2102	species		268	85f041cd-820c-4dda-9f3b-6533991ab3b1	
+leptogastrinae:tid:2219	http://leptogastrinae.lifedesks.org/pages/2219	Euscelidia cacula Dikow, 2003	leptogastrinae:tid:2102	species		269	fc734cd1-19d0-493f-9664-2194402c1380	
+leptogastrinae:tid:2177	http://leptogastrinae.lifedesks.org/pages/2177	Euscelidia artaphernes (Speiser, 1910)	leptogastrinae:tid:2102	species		270	28cf12de-fc72-4e22-91b2-725c60cc0a9d	
+leptogastrinae:tid:2237	http://leptogastrinae.lifedesks.org/pages/2237	Euscelidia milva Dikow, 2003	leptogastrinae:tid:2102	species		271	13e8d979-d79a-490d-a01f-16e8411dddda	
+leptogastrinae:tid:2236	http://leptogastrinae.lifedesks.org/pages/2236	Euscelidia lucioides Dikow, 2003	leptogastrinae:tid:2102	species		272	f7278eb5-6dc0-4c45-b124-792e9cf2afd0	
+leptogastrinae:tid:2235	http://leptogastrinae.lifedesks.org/pages/2235	Euscelidia longibifida Dikow, 2003	leptogastrinae:tid:2102	species		273	5762b8a2-3204-4d1b-9ed6-06d805d268ea	
+leptogastrinae:tid:2238	http://leptogastrinae.lifedesks.org/pages/2238	Euscelidia mucronata Dikow, 2003	leptogastrinae:tid:2102	species		274	2a5535b6-0c9d-4e05-8c0a-85b075e7f153	
+leptogastrinae:tid:2239	http://leptogastrinae.lifedesks.org/pages/2239	Euscelidia natalensis Dikow, 2003	leptogastrinae:tid:2102	species		275	a224234f-c1be-453c-8ab0-0560c057fe18	
+leptogastrinae:tid:2224	http://leptogastrinae.lifedesks.org/pages/2224	Euscelidia erichthenii Dikow, 2003	leptogastrinae:tid:2102	species		276	0affa038-cf22-45cd-9431-bf82747c965e	
+leptogastrinae:tid:2241	http://leptogastrinae.lifedesks.org/pages/2241	Euscelidia obtusa Dikow, 2003	leptogastrinae:tid:2102	species		277	10107c79-a482-4e63-9f20-e9b1a00b7202	
+leptogastrinae:tid:2234	http://leptogastrinae.lifedesks.org/pages/2234	Euscelidia livida Dikow, 2003	leptogastrinae:tid:2102	species		278	986f90c8-bace-459e-81a9-77fa73bd065a	
+leptogastrinae:tid:2233	http://leptogastrinae.lifedesks.org/pages/2233	Euscelidia lepida Dikow, 2003	leptogastrinae:tid:2102	species		279	77ff02a3-d21c-4b20-b127-1f1cb71ef25d	
+leptogastrinae:tid:2228	http://leptogastrinae.lifedesks.org/pages/2228	Euscelidia hesperia Dikow, 2003	leptogastrinae:tid:2102	species		280	b4c2d758-be57-4ff9-abd9-c77cf55b1b60	
+leptogastrinae:tid:2227	http://leptogastrinae.lifedesks.org/pages/2227	Euscelidia glabra Dikow, 2003	leptogastrinae:tid:2102	species		281	f32599ed-ad79-48e3-8cbc-199e6daaa972	
+leptogastrinae:tid:2229	http://leptogastrinae.lifedesks.org/pages/2229	Euscelidia hyalina Dikow, 2003	leptogastrinae:tid:2102	species		282	06500f96-4a78-49ed-99ce-b6a66970a875	
+leptogastrinae:tid:2230	http://leptogastrinae.lifedesks.org/pages/2230	Euscelidia insolita Dikow, 2003	leptogastrinae:tid:2102	species		283	bc73052b-0566-40f4-8210-d6287742cbfc	
+leptogastrinae:tid:2232	http://leptogastrinae.lifedesks.org/pages/2232	Euscelidia lata Dikow, 2003	leptogastrinae:tid:2102	species		284	c7dd5498-b7c6-4799-b102-55a444c5edd2	
+leptogastrinae:tid:2231	http://leptogastrinae.lifedesks.org/pages/2231	Euscelidia kasungu Dikow, 2003	leptogastrinae:tid:2102	species		285	5a7f8002-dded-4464-b41e-c311ec2eed8b	
+leptogastrinae:tid:2226	http://leptogastrinae.lifedesks.org/pages/2226	Euscelidia flava Dikow, 2003	leptogastrinae:tid:2102	species		286	935f6d0e-16b0-4f02-b802-47421f67b4fd	
+leptogastrinae:tid:2225	http://leptogastrinae.lifedesks.org/pages/2225	Euscelidia fistula Dikow, 2003	leptogastrinae:tid:2102	species		287	1f6019e9-3402-41a9-96e0-5f6f02fe9b35	
+leptogastrinae:tid:2246	http://leptogastrinae.lifedesks.org/pages/2246	Euscelidia popa Dikow, 2003	leptogastrinae:tid:2102	species		288	11866559-bfbd-4877-b59b-110104700209	
+leptogastrinae:tid:2245	http://leptogastrinae.lifedesks.org/pages/2245	Euscelidia pipinna Dikow, 2003	leptogastrinae:tid:2102	species		289	f5e6a2e1-16cf-48ef-a2b6-0a070a7dc66f	
+leptogastrinae:tid:2223	http://leptogastrinae.lifedesks.org/pages/2223	Euscelidia crena Dikow, 2003	leptogastrinae:tid:2102	species		290	d20db18a-cd67-459f-9ee8-62e8edb9b553	
+leptogastrinae:tid:2243	http://leptogastrinae.lifedesks.org/pages/2243	Euscelidia peteraxi Dikow, 2003	leptogastrinae:tid:2102	species		291	de66c70e-544f-4ca9-9b99-97a18dc662a3	
+leptogastrinae:tid:2244	http://leptogastrinae.lifedesks.org/pages/2244	Euscelidia picta Dikow, 2003	leptogastrinae:tid:2102	species		292	803bba27-d7bb-41ce-933f-8dd8f39f540d	
+leptogastrinae:tid:2220	http://leptogastrinae.lifedesks.org/pages/2220	Euscelidia cana Dikow, 2003	leptogastrinae:tid:2102	species		293	0a1dfa7d-efb1-48d5-a424-bf937280e4c0	
+leptogastrinae:tid:2221	http://leptogastrinae.lifedesks.org/pages/2221	Euscelidia capensis Dikow, 2003	leptogastrinae:tid:2102	species		294	068c3633-c557-487b-8c2e-4e94a03c0ae8	
+leptogastrinae:tid:2222	http://leptogastrinae.lifedesks.org/pages/2222	Euscelidia cobice Dikow, 2003	leptogastrinae:tid:2102	species		295	96ffa936-1b04-4bc1-9005-120d90415df4	
+leptogastrinae:tid:2174	http://leptogastrinae.lifedesks.org/pages/2174	Systellogaster fascipennis (Schiner, 1866)	leptogastrinae:tid:2167			296	0195f623-a9ac-4001-99d6-a6d8cfbac1d9	
+leptogastrinae:tid:2296	http://leptogastrinae.lifedesks.org/pages/2296	Lobus pilosellus (Hermann, 1917)	leptogastrinae:tid:2284	species		297	ab1a2954-9f01-4534-a11d-cfb91671a552	
+leptogastrinae:tid:2295	http://leptogastrinae.lifedesks.org/pages/2295	Lobus petiolus (Martin, 1964)	leptogastrinae:tid:2284	species		298	0aaf0fb3-edf9-4114-b605-7a613278ec40	
+leptogastrinae:tid:2299	http://leptogastrinae.lifedesks.org/pages/2299	Lobus fragilissimus (Frey, 1936)	leptogastrinae:tid:2298		synonym	299	42b91f56-9347-4c10-8935-7f5afbb79f4d
+leptogastrinae:tid:2318	http://leptogastrinae.lifedesks.org/pages/2318	Leptogaster pallipes von Roser, 1840	leptogastrinae:tid:2298		synonym	300	d8380f44-4625-409b-a9ba-0a21dfd3730d
+leptogastrinae:tid:2319	http://leptogastrinae.lifedesks.org/pages/2319	Leptogaster gallica Janssens, 1957	leptogastrinae:tid:2298		synonym	301	4ae557ec-bbc7-4f3a-93f4-56fc79648085
+leptogastrinae:tid:2298	http://leptogastrinae.lifedesks.org/pages/2298	Lobus subtilis (Loew, 1847)	leptogastrinae:tid:2284	species		302	8cfd35e7-7618-4b4c-b42f-c50df310f07e	
+leptogastrinae:tid:2301	http://leptogastrinae.lifedesks.org/pages/2301	Lobus trimucronatus (Hermann, 1917)	leptogastrinae:tid:2284	species		303	ba183434-5a38-4215-b60b-daa151d26357	
+leptogastrinae:tid:2294	http://leptogastrinae.lifedesks.org/pages/2294	Lobus palawanensis (Oldroyd, 1972)	leptogastrinae:tid:2284	species		304	d1783e18-2348-4f01-a82e-c811dcb87b74	
+leptogastrinae:tid:2297	http://leptogastrinae.lifedesks.org/pages/2297	Lobus ruficestus (Martin, 1964)	leptogastrinae:tid:2284	species		305	51ae7838-af68-4c7c-9a7b-d6e572227355	
+leptogastrinae:tid:2291	http://leptogastrinae.lifedesks.org/pages/2291	Lobus entebbensis (Oldroyd, 1939)	leptogastrinae:tid:2284	species		306	785ff666-7945-4174-918e-163e867ede2e	
+leptogastrinae:tid:2287	http://leptogastrinae.lifedesks.org/pages/2287	Lobus concavus (Martin, 1964)	leptogastrinae:tid:2284	species		307	33ae1f64-4994-42c1-94a3-a6588b4170ae	
+leptogastrinae:tid:2286	http://leptogastrinae.lifedesks.org/pages/2286	Lobus aristalis (Janssens, 1957)	leptogastrinae:tid:2284	species		308	11ff516a-e0c9-4e39-85c9-acfa75e74edd	
+leptogastrinae:tid:2285	http://leptogastrinae.lifedesks.org/pages/2285	Lobus agrioninus (Speiser, 1910)	leptogastrinae:tid:2284	species		309	ab1caa63-cf7f-41b2-a98c-f0d6c6b92f4d	
+leptogastrinae:tid:2288	http://leptogastrinae.lifedesks.org/pages/2288	Lobus cracens (Martin, 1964)	leptogastrinae:tid:2284	species		310	b38fa7da-456f-4a88-baca-6b089d9316fa	
+leptogastrinae:tid:2289	http://leptogastrinae.lifedesks.org/pages/2289	Lobus crassitarsis (Frey, 1937)	leptogastrinae:tid:2284	species		311	c158a0e3-cbf8-4907-b3a7-ab8de962e864	
+leptogastrinae:tid:2302	http://leptogastrinae.lifedesks.org/pages/2302	Lobus ungulus (Martin, 1964)	leptogastrinae:tid:2284	species		312	e1da8bf0-7e8d-4735-8eb8-20091ba02b78	
+leptogastrinae:tid:2290	http://leptogastrinae.lifedesks.org/pages/2290	Lobus ealensis (Janssens, 1954)	leptogastrinae:tid:2284	species		313	e98e4029-68de-4a55-b77d-ce75b16eb4a2	
+leptogastrinae:tid:2293	http://leptogastrinae.lifedesks.org/pages/2293	Lobus megafemur (Hull, 1967)	leptogastrinae:tid:2284	species		314	818742cf-e6e1-495a-84c2-ba148b8ced2e	
+leptogastrinae:tid:2292	http://leptogastrinae.lifedesks.org/pages/2292	Lobus galbicestus (Martin, 1964)	leptogastrinae:tid:2284	species		315	c5f9ab21-652f-4a28-bb0f-ddb9169adc06	
+leptogastrinae:tid:2312	http://leptogastrinae.lifedesks.org/pages/2312	Lobus liberiae Martin, 1972	leptogastrinae:tid:2284	species		316	bdd17beb-7c79-48e5-8cda-982ce66d4b37	
+leptogastrinae:tid:2303	http://leptogastrinae.lifedesks.org/pages/2303	Lobus bandipurensis Joseph & Parui, 1992	leptogastrinae:tid:2284	species		317	f1030e2f-fbca-481f-a763-ab7be46dcd35	
+leptogastrinae:tid:2313	http://leptogastrinae.lifedesks.org/pages/2313	Lobus martini Joseph & Parui, 1983	leptogastrinae:tid:2284	species		318	5a557569-3c5d-4744-8ef1-305eaa619ac7	
+leptogastrinae:tid:2314	http://leptogastrinae.lifedesks.org/pages/2314	Lobus pallipes (Janssens, 1953)	leptogastrinae:tid:2284	species		319	b6fd1bfd-bf9d-4638-a577-8a4196a2c546	
+leptogastrinae:tid:2316	http://leptogastrinae.lifedesks.org/pages/2316	Lobus unilineatus Martin, 1972	leptogastrinae:tid:2284	species		320	f8c3d084-1781-40db-8bd7-a5c77b949aef	
+leptogastrinae:tid:2315	http://leptogastrinae.lifedesks.org/pages/2315	Lobus pandai Joseph & Parui, 1999	leptogastrinae:tid:2284	species		321	db59c1ec-d384-4ed5-b7d0-321c61c75be0	
+leptogastrinae:tid:2311	http://leptogastrinae.lifedesks.org/pages/2311	Lobus keralae Martin, 1972	leptogastrinae:tid:2284	species		322	5ebaeb31-d282-4aca-aad3-0c716ea438c8	
+leptogastrinae:tid:2310	http://leptogastrinae.lifedesks.org/pages/2310	Lobus kenyae Martin, 1972	leptogastrinae:tid:2284	species		323	f13eb389-7747-4ddf-a87a-23a6a232f858	
+leptogastrinae:tid:2306	http://leptogastrinae.lifedesks.org/pages/2306	Lobus guineae Martin, 1972	leptogastrinae:tid:2284	species		324	cffd2f40-c06a-4f13-8f3b-f4153894898a	
+leptogastrinae:tid:2305	http://leptogastrinae.lifedesks.org/pages/2305	Lobus evenhuisi Joseph & Parui, 1991	leptogastrinae:tid:2284	species		325	2078e03a-ca4d-4ae6-9857-77700aa585d5	
+leptogastrinae:tid:2304	http://leptogastrinae.lifedesks.org/pages/2304	Lobus bicingulatus (Bezzi, 1906)	leptogastrinae:tid:2284	species		326	3057fdd7-c1cb-4173-b0b7-e96d5cff68b0	
+leptogastrinae:tid:2307	http://leptogastrinae.lifedesks.org/pages/2307	Lobus himalayae Martin, 1972	leptogastrinae:tid:2284	species		327	26ea2839-13ff-4dad-a7a9-4a19d201a025	
+leptogastrinae:tid:2317	http://leptogastrinae.lifedesks.org/pages/2317	Lobus vindex (Janssens, 1954)	leptogastrinae:tid:2284	species		328	a1f8787e-e5e4-4829-9568-5d86efab5dc7	
+leptogastrinae:tid:2309	http://leptogastrinae.lifedesks.org/pages/2309	Lobus janssensi Martin, 1972	leptogastrinae:tid:2284	species		329	ccb697aa-93eb-46fd-b7b4-d1988da594e5	
+leptogastrinae:tid:2308	http://leptogastrinae.lifedesks.org/pages/2308	Lobus jairami Joseph & Parui, 1984	leptogastrinae:tid:2284	species		330	630bd9ba-ad6e-44de-a2ae-e0a9c8bba46b	
+leptogastrinae:tid:2780	http://leptogastrinae.lifedesks.org/pages/2780	Leptogaster salvia Martin, 1957	leptogastrinae:tid:2584	species		331	72030955-40ea-40a7-b703-9087a39fec3c	
+leptogastrinae:tid:2779	http://leptogastrinae.lifedesks.org/pages/2779	Leptogaster salina Lehr, 1972	leptogastrinae:tid:2584	species		332	414529a2-208c-4d10-b0ff-95cfcf69e542	
+leptogastrinae:tid:2781	http://leptogastrinae.lifedesks.org/pages/2781	Leptogaster schaefferi Back, 1909	leptogastrinae:tid:2584	species		333	391c2258-30dd-4ac6-9de2-dd72c62b5249	
+leptogastrinae:tid:2782	http://leptogastrinae.lifedesks.org/pages/2782	Leptogaster sericea Janssens, 1954	leptogastrinae:tid:2584	species		334	eb8afbd7-041b-4fd3-afde-60efdf8364f6	
+leptogastrinae:tid:2783	http://leptogastrinae.lifedesks.org/pages/2783	Leptogaster seyrigi Janssens, 1954	leptogastrinae:tid:2584	species		335	7de344f1-6c10-489e-9d59-cc7eddc120f4	
+leptogastrinae:tid:2778	http://leptogastrinae.lifedesks.org/pages/2778	Leptogaster rufirostris Loew, 1858	leptogastrinae:tid:2584	species		336	f9a5427a-030d-4038-8a4a-d7a666baefad	
+leptogastrinae:tid:2777	http://leptogastrinae.lifedesks.org/pages/2777	Leptogaster rufescens Janssens, 1954	leptogastrinae:tid:2584	species		337	323c66ca-bdc0-4fed-bf5b-5b4ae5b65f0b	
+leptogastrinae:tid:2773	http://leptogastrinae.lifedesks.org/pages/2773	Leptogaster recurva Martin, 1964	leptogastrinae:tid:2584	species		338	b1357827-4009-408e-b5a4-3b8b5b859d97	
+leptogastrinae:tid:2774	http://leptogastrinae.lifedesks.org/pages/2774	Leptogaster roederi Williston, 1896	leptogastrinae:tid:2584	species		339	a8e5ac91-9d40-450b-8f07-0da8a0b5b6a1	
+leptogastrinae:tid:2775	http://leptogastrinae.lifedesks.org/pages/2775	Leptogaster rubida Wiedemann, 1821	leptogastrinae:tid:2584	species		340	b33bbb6e-a264-480f-9281-7c3101f299e4	
+leptogastrinae:tid:2776	http://leptogastrinae.lifedesks.org/pages/2776	Leptogaster rufa Janssens, 1953	leptogastrinae:tid:2584	species		341	ebc550e7-a483-48ce-b0e4-55bbc7b4bd91	
+leptogastrinae:tid:2793	http://leptogastrinae.lifedesks.org/pages/2793	Leptogaster tenuis Loew, 1858	leptogastrinae:tid:2584	species		342	1fd2b572-6a26-4bff-963e-cf89ed696d57	
+leptogastrinae:tid:2784	http://leptogastrinae.lifedesks.org/pages/2784	Leptogaster similis Hsia, 1949	leptogastrinae:tid:2584	species		343	e3d0c77f-3b63-4f88-a202-c2fe27f4f2c9	
+leptogastrinae:tid:2790	http://leptogastrinae.lifedesks.org/pages/2790	Leptogaster straminea Becker, 1906	leptogastrinae:tid:2584	species		344	99110385-1d0b-4d75-baf9-9aaf8b671304	
+leptogastrinae:tid:2791	http://leptogastrinae.lifedesks.org/pages/2791	Leptogaster tarsalis Janssens, 1954	leptogastrinae:tid:2584	species		345	a737207e-a049-4f1e-a783-fdafba0c24c4	
+leptogastrinae:tid:2772	http://leptogastrinae.lifedesks.org/pages/2772	Leptogaster radialis Janssens, 1954	leptogastrinae:tid:2584	species		346	46e1588a-85a3-4658-a24a-8a77a1fef43f	
+leptogastrinae:tid:2794	http://leptogastrinae.lifedesks.org/pages/2794	Leptogaster testacea Loew, 1862	leptogastrinae:tid:2584	species		347	ecf2f5f2-ffe2-4d50-b90b-dcfcce41fa71	
+leptogastrinae:tid:2792	http://leptogastrinae.lifedesks.org/pages/2792	Leptogaster tenerrima Meijere, 1914	leptogastrinae:tid:2584	species		348	45c5f080-4495-437d-91d3-99d9a351ea9b	
+leptogastrinae:tid:2789	http://leptogastrinae.lifedesks.org/pages/2789	Leptogaster stichosoma Janssens, 1957	leptogastrinae:tid:2584	species		349	f05f739c-c4c9-4535-a4fc-73dff6ce8b8b	
+leptogastrinae:tid:2785	http://leptogastrinae.lifedesks.org/pages/2785	Leptogaster sinensis Hsia, 1949	leptogastrinae:tid:2584	species		350	26b227a4-98e6-4cdf-887c-6cf59e40cf90	
+leptogastrinae:tid:2786	http://leptogastrinae.lifedesks.org/pages/2786	Leptogaster spadix Hsia, 1949	leptogastrinae:tid:2584	species		351	6f2d17c1-b681-40b6-9442-e65d2a75710b	
+leptogastrinae:tid:2787	http://leptogastrinae.lifedesks.org/pages/2787	Leptogaster spinitarsis Bromley, 1951	leptogastrinae:tid:2584	species		352	7faf8808-b303-461b-bb4a-21f128adfbd9	
+leptogastrinae:tid:2788	http://leptogastrinae.lifedesks.org/pages/2788	Leptogaster stackelbergi Lehr, 1961	leptogastrinae:tid:2584	species		353	9b1073a0-0868-40ef-8ad7-c7ef02af0ab0	
+leptogastrinae:tid:2795	http://leptogastrinae.lifedesks.org/pages/2795	Leptogaster texana Bromley, 1934	leptogastrinae:tid:2584	species		354	54e7ba7c-593f-4f50-b068-9935699e60c5	
+leptogastrinae:tid:2749	http://leptogastrinae.lifedesks.org/pages/2749	Leptogaster nubeculosa Bigot, 1879	leptogastrinae:tid:2584	species		355	791f464e-b4fb-40dc-bcbc-cf720e1c392c	
+leptogastrinae:tid:2752	http://leptogastrinae.lifedesks.org/pages/2752	Leptogaster ramoni Jaennicke, 1867	leptogastrinae:tid:2751		synonym	356	2149cb56-c53c-469b-bb0b-abefbc67ef79
+leptogastrinae:tid:2751	http://leptogastrinae.lifedesks.org/pages/2751	Leptogaster obscuripes Loew, 1862	leptogastrinae:tid:2584	species		357	557a6ea0-3ba8-40a3-b02f-99287c0f3202	
+leptogastrinae:tid:2750	http://leptogastrinae.lifedesks.org/pages/2750	Leptogaster obscuripennis Johnson, 1895	leptogastrinae:tid:2584	species		358	62a49765-dc37-4101-90e6-3a0a6b2416a4	
+leptogastrinae:tid:2754	http://leptogastrinae.lifedesks.org/pages/2754	Leptogaster occidentalis White, 1914	leptogastrinae:tid:2584	species		359	f40d297d-50f4-4972-ac49-7b5f9e420073	
+leptogastrinae:tid:2755	http://leptogastrinae.lifedesks.org/pages/2755	Leptogaster odostata Oldroyd, 1960	leptogastrinae:tid:2584	species		360	ce2a5d44-5c06-49bc-a631-5da658432078	
+leptogastrinae:tid:2756	http://leptogastrinae.lifedesks.org/pages/2756	Leptogaster palparis Loew, 1847	leptogastrinae:tid:2584	species		361	2f0a1d6f-68a1-4721-b9cd-43b678717d76	
+leptogastrinae:tid:2748	http://leptogastrinae.lifedesks.org/pages/2748	Leptogaster nitoris Martin, 1957	leptogastrinae:tid:2584	species		362	cb5fabcf-05eb-4aa6-9ee1-d99ed177fd19	
+leptogastrinae:tid:2746	http://leptogastrinae.lifedesks.org/pages/2746	Leptogaster nigra Hsia, 1949	leptogastrinae:tid:2584	species		363	9c9cdeb7-982f-4016-8f86-ba0dc543cde1	
+leptogastrinae:tid:2743	http://leptogastrinae.lifedesks.org/pages/2743	Leptogaster nartshukae Lehr, 1961	leptogastrinae:tid:2584	species		364	bf235ca9-94b3-4b16-853f-c59813dcded3	
+leptogastrinae:tid:2744	http://leptogastrinae.lifedesks.org/pages/2744	Leptogaster nerophana Oldroyd, 1960	leptogastrinae:tid:2584	species		365	26cbfcb1-7485-4553-ba9c-ce4d9feab6f8	
+leptogastrinae:tid:2796	http://leptogastrinae.lifedesks.org/pages/2796	Leptogaster tillyardi Hardy, 1935	leptogastrinae:tid:2584	species		366	b5ceb690-56d1-4a3d-832a-243742edf640	
+leptogastrinae:tid:2745	http://leptogastrinae.lifedesks.org/pages/2745	Leptogaster niger Wiedemann, 1828	leptogastrinae:tid:2584	species		367	bb16a6b5-0c41-4d2b-bc58-bb93f61b5999	
+leptogastrinae:tid:2757	http://leptogastrinae.lifedesks.org/pages/2757	Leptogaster panda Martin, 1957	leptogastrinae:tid:2584	species		368	847a8ff4-ad93-4bbf-9bf7-ced15b4647a0	
+leptogastrinae:tid:2758	http://leptogastrinae.lifedesks.org/pages/2758	Leptogaster parvoclava Martin, 1957	leptogastrinae:tid:2584	species		369	46d4d38b-8a77-4987-aa4b-1830fcf30db1	
+leptogastrinae:tid:2765	http://leptogastrinae.lifedesks.org/pages/2765	Leptogaster prior Melander, 1946	leptogastrinae:tid:2584	species		370	4472d9d2-bacd-44b6-a23d-61bdfdaf88d1	
+leptogastrinae:tid:2766	http://leptogastrinae.lifedesks.org/pages/2766	Leptogaster pubescens Curran, 1934	leptogastrinae:tid:2584	species		371	b9d70623-22bd-4064-8e9f-41b24cf27f59	
+leptogastrinae:tid:2768	http://leptogastrinae.lifedesks.org/pages/2768	Leptogaster pusilla Jaennicke, 1867	leptogastrinae:tid:2767		synonym	372	15412ada-9607-41f1-8446-e74c4c9b4285
+leptogastrinae:tid:2767	http://leptogastrinae.lifedesks.org/pages/2767	Leptogaster pubicornis Loew, 1847	leptogastrinae:tid:2584	species		373	97d86ecd-e05e-4c54-a258-d06d0da09947	
+leptogastrinae:tid:2770	http://leptogastrinae.lifedesks.org/pages/2770	Leptogaster puella Janssens, 1953	leptogastrinae:tid:2584	species		374	575ad916-7cca-4472-8c9b-14826850a091	
+leptogastrinae:tid:2764	http://leptogastrinae.lifedesks.org/pages/2764	Leptogaster pilicnemis Janssens, 1954	leptogastrinae:tid:2584	species		375	50844d11-56c8-4151-84c1-febda22fe49c	
+leptogastrinae:tid:2763	http://leptogastrinae.lifedesks.org/pages/2763	Leptogaster pictipennis Loew, 1858	leptogastrinae:tid:2584	species		376	bb2d9b1b-394e-4054-a0a8-1d3444867aad	
+leptogastrinae:tid:2759	http://leptogastrinae.lifedesks.org/pages/2759	Leptogaster patula Martin, 1957	leptogastrinae:tid:2584	species		377	337f2c01-1059-459e-ba75-b66bdc0320ab	
+leptogastrinae:tid:2760	http://leptogastrinae.lifedesks.org/pages/2760	Leptogaster pedania Walker, 1849	leptogastrinae:tid:2584	species		378	73131066-8441-454d-a25b-950aa8ce5ccc	
+leptogastrinae:tid:2761	http://leptogastrinae.lifedesks.org/pages/2761	Leptogaster pellucida Janssens, 1954	leptogastrinae:tid:2584	species		379	b75a7695-4431-4a5c-81b3-d24a0c677953	
+leptogastrinae:tid:2762	http://leptogastrinae.lifedesks.org/pages/2762	Leptogaster penicillata Janssens, 1954	leptogastrinae:tid:2584	species		380	b2838e3f-83d9-4789-97f0-bee3b20e48b5	
+leptogastrinae:tid:2771	http://leptogastrinae.lifedesks.org/pages/2771	Leptogaster pumila (Macquart, 1834)	leptogastrinae:tid:2584	species		381	d40a6cd3-729a-4048-b2ef-45279a300fcd	
+leptogastrinae:tid:2840	http://leptogastrinae.lifedesks.org/pages/2840	Leptogaster spinulosa Hermann, 1914	leptogastrinae:tid:2584	species		382	d9760eb4-3c3a-4af3-9e8b-8750e91cb906	
+leptogastrinae:tid:2836	http://leptogastrinae.lifedesks.org/pages/2836	Leptogaster vittata Wiedemann, 1828	leptogastrinae:tid:2584	species		383	8430e3a1-47bf-4808-957c-d0355e221aaf	
+leptogastrinae:tid:2835	http://leptogastrinae.lifedesks.org/pages/2835	Leptogaster audouinii (Macquart, 1838)	leptogastrinae:tid:2584	species		384	f3f36627-6e39-4731-8952-a0c804da4fa0	
+leptogastrinae:tid:2837	http://leptogastrinae.lifedesks.org/pages/2837	Leptogaster gigas (Macquart, 1838)	leptogastrinae:tid:2584	species		385	cb6b2c90-b100-47cc-8d7a-2f0aeb1246b0	
+leptogastrinae:tid:2838	http://leptogastrinae.lifedesks.org/pages/2838	Leptogaster insularis Janssens, 1954	leptogastrinae:tid:2584	species		386	cc534aef-8b5e-484c-ac44-6c4086a9d837	
+leptogastrinae:tid:2839	http://leptogastrinae.lifedesks.org/pages/2839	Leptogaster sauteri Hermann, 1914	leptogastrinae:tid:2584	species		387	7cf08628-591a-45ea-8554-84f593dc7e2e	
+leptogastrinae:tid:2832	http://leptogastrinae.lifedesks.org/pages/2832	Leptogaster conopsoides Pallas in Wiedemann, 1818	leptogastrinae:tid:2584	species		388	2f909c11-1056-4aea-a448-fd7ca801719a	
+leptogastrinae:tid:2830	http://leptogastrinae.lifedesks.org/pages/2830	Leptogaster histrio Wiedemann, 1828	leptogastrinae:tid:2584	species		389	0e1e73e6-8bb1-40c8-883e-fdf42a2c5343	
+leptogastrinae:tid:2824	http://leptogastrinae.lifedesks.org/pages/2824	Leptogaster timorensis Frey, 1937	leptogastrinae:tid:2584	species		390	ceb6c487-4ad5-4151-93c6-6204011b4d3d	
+leptogastrinae:tid:2825	http://leptogastrinae.lifedesks.org/pages/2825	Leptogaster apicalis Janssens, 1954	leptogastrinae:tid:2584	species		391	967dd5c2-2cac-4331-aa71-9c75f587e3eb	
+leptogastrinae:tid:2747	http://leptogastrinae.lifedesks.org/pages/2747	Leptogaster nitida Macquart, 1826	leptogastrinae:tid:2828		homonym	392	c98b47a6-972b-4424-b1c2-d57eec08a557
+leptogastrinae:tid:2828	http://leptogastrinae.lifedesks.org/pages/2828	Leptogaster variegata Loew, 1847	leptogastrinae:tid:2584	species		393	94bfdf33-f7bb-43ba-a8d2-fe7d8dc8d348	
+leptogastrinae:tid:2829	http://leptogastrinae.lifedesks.org/pages/2829	Leptogaster annulipes (Doleschall, 1858)	leptogastrinae:tid:2584	species		394	e1293d2a-723e-45f6-aa42-25419866a573	
+leptogastrinae:tid:2841	http://leptogastrinae.lifedesks.org/pages/2841	Leptogaster trimucronata Hermann, 1914	leptogastrinae:tid:2584	species		395	17987dce-424d-4ad2-8cf6-d50c314bea84	
+leptogastrinae:tid:2842	http://leptogastrinae.lifedesks.org/pages/2842	Leptogaster pilosella Hermann, 1914	leptogastrinae:tid:2584	species		396	2dd1db0b-9f68-4d7e-a7a7-b0709dfa1716	
+leptogastrinae:tid:2742	http://leptogastrinae.lifedesks.org/pages/2742	Leptogaster murina Loew, 1862	leptogastrinae:tid:2584	species		397	c4802f79-d958-4b00-b82e-7ac4d5a1f815	
+leptogastrinae:tid:2945	http://leptogastrinae.lifedesks.org/pages/2945	Leptogaster filiventris Hsia, 1949	leptogastrinae:tid:2584			398	6e123d34-9d8a-42e1-b051-6df12fdde359	
+leptogastrinae:tid:2946	http://leptogastrinae.lifedesks.org/pages/2946	Leptogaster lehri Hradsky and Hüttinger, 1983	leptogastrinae:tid:2584			399	346473ee-d907-46c9-a071-5ad739d0f9ff	
+leptogastrinae:tid:2849	http://leptogastrinae.lifedesks.org/pages/2849	Leptogaster distinctus Schiner, 1866	leptogastrinae:tid:2584	species		400	461fb79d-6f19-4709-a1a7-2e0f584b9212	
+leptogastrinae:tid:2848	http://leptogastrinae.lifedesks.org/pages/2848	Leptogaster ochraceus Schiner, 1866	leptogastrinae:tid:2584	species		401	37193579-2bdb-4a69-a54f-97827fd520d0	
+leptogastrinae:tid:2843	http://leptogastrinae.lifedesks.org/pages/2843	Leptogaster appendiculata Hermann, 1914	leptogastrinae:tid:2584	species		402	f52f334b-20a5-4b98-8ecb-c36cfacea54d	
+leptogastrinae:tid:2844	http://leptogastrinae.lifedesks.org/pages/2844	Leptogaster coarctata Hermann, 1914	leptogastrinae:tid:2584	species		403	31f6b5eb-efc3-4594-9626-b38513c8edca	
+leptogastrinae:tid:2845	http://leptogastrinae.lifedesks.org/pages/2845	Leptogaster suleymani Hasbenli, Candan & Alpay, 2006	leptogastrinae:tid:2584	species		404	09b44b7c-ee0c-48fb-9dc7-d110d3cc36d7	
+leptogastrinae:tid:2846	http://leptogastrinae.lifedesks.org/pages/2846	Leptogaster vitripennis Schiner, 1866	leptogastrinae:tid:2584	species		405	b4ff2f57-5c76-4f5f-a7bd-d95a51910e43	
+leptogastrinae:tid:2823	http://leptogastrinae.lifedesks.org/pages/2823	Leptogaster falloti Théobald, 1937	leptogastrinae:tid:2584	species		406	cbfdb348-d311-4b96-ab16-8d7e9c26c1e9	
+leptogastrinae:tid:2822	http://leptogastrinae.lifedesks.org/pages/2822	Leptogaster simplex Bigot, 1879	leptogastrinae:tid:2584	species		407	55035401-0e12-456d-a911-92df8f610cb5	
+leptogastrinae:tid:2804	http://leptogastrinae.lifedesks.org/pages/2804	Leptogaster unicolor (Doleschall, 1858)	leptogastrinae:tid:2584	species		408	8906e965-dfde-4465-8925-ea434fd9a6d3	
+leptogastrinae:tid:2805	http://leptogastrinae.lifedesks.org/pages/2805	Leptogaster unihamata Hermann, 1917	leptogastrinae:tid:2584	species		409	a35c2576-7b9b-4615-9505-4987d55032c9	
+leptogastrinae:tid:2806	http://leptogastrinae.lifedesks.org/pages/2806	Leptogaster upembana Janssens, 1954	leptogastrinae:tid:2584	species		410	14714f41-41d6-4439-b8e6-0501dd72257a	
+leptogastrinae:tid:2807	http://leptogastrinae.lifedesks.org/pages/2807	Leptogaster urundiana Janssens, 1953	leptogastrinae:tid:2584	species		411	b27350bd-8d6e-4b64-95c6-9680212d9dfd	
+leptogastrinae:tid:2803	http://leptogastrinae.lifedesks.org/pages/2803	Leptogaster turkmenica Paramonov, 1930	leptogastrinae:tid:2584	species		412	23ea08a1-8ee1-4a32-b22a-34d47ccf93e9	
+leptogastrinae:tid:2802	http://leptogastrinae.lifedesks.org/pages/2802	Leptogaster truncata Theodor, 1980	leptogastrinae:tid:2584	species		413	e102a723-a745-492c-bbd4-cff48bcff256	
+leptogastrinae:tid:2798	http://leptogastrinae.lifedesks.org/pages/2798	Leptogaster tomentosa Oldroyd, 1972	leptogastrinae:tid:2584	species		414	f70aae1b-5ca1-475f-b6aa-e5709336cba0	
+leptogastrinae:tid:2799	http://leptogastrinae.lifedesks.org/pages/2799	Leptogaster tomentosa Theodor, 1980	leptogastrinae:tid:2584	species		415	72aa39b0-98fb-4d8f-8f88-efbe402f04be	
+leptogastrinae:tid:2800	http://leptogastrinae.lifedesks.org/pages/2800	Leptogaster triungulata Williston, 1901	leptogastrinae:tid:2584	species		416	9007a520-1e27-40c4-9e69-5662f0cbaf5b	
+leptogastrinae:tid:2801	http://leptogastrinae.lifedesks.org/pages/2801	Leptogaster tropica Curran, 1934	leptogastrinae:tid:2584	species		417	db376360-a65b-4538-8823-cdd4f4c638aa	
+leptogastrinae:tid:2808	http://leptogastrinae.lifedesks.org/pages/2808	Leptogaster varipes Loew, 1862	leptogastrinae:tid:2584	species		418	d63d6f3c-054b-480f-9670-96bedfa3998b	
+leptogastrinae:tid:2809	http://leptogastrinae.lifedesks.org/pages/2809	Leptogaster velutina Janssens, 1954	leptogastrinae:tid:2584	species		419	c37952e2-f62c-4950-8f20-9e3207f83c3f	
+leptogastrinae:tid:2816	http://leptogastrinae.lifedesks.org/pages/2816	Leptogaster hsiai Shi, 1993	leptogastrinae:tid:2584	species		420	6f227d18-75fe-43dc-b34e-240aa8cdb95b	
+leptogastrinae:tid:2817	http://leptogastrinae.lifedesks.org/pages/2817	Leptogaster humeralis Hsia, 1949	leptogastrinae:tid:2584	species		421	8e1fa1f2-0012-4260-a322-1fbafafe7ab8	
+leptogastrinae:tid:2819	http://leptogastrinae.lifedesks.org/pages/2819	Leptogaster kurenzovi (Esipenko, 1969)	leptogastrinae:tid:2818		synonym	422	e5f8d95a-df3f-4bb5-848a-ea68b1d1861d
+leptogastrinae:tid:2818	http://leptogastrinae.lifedesks.org/pages/2818	Leptogaster minimensis (Matsumura, 1916)	leptogastrinae:tid:2584	species		423	1a2b6ae1-5677-492c-ab51-1d0d5b4577f0	
+leptogastrinae:tid:2821	http://leptogastrinae.lifedesks.org/pages/2821	Leptogaster nigricoxa Hsia, 1949	leptogastrinae:tid:2584	species		424	32497845-1678-4525-825b-73b233659fdc	
+leptogastrinae:tid:2815	http://leptogastrinae.lifedesks.org/pages/2815	Leptogaster annuliventris Hsia, 1949	leptogastrinae:tid:2584	species		425	a1b6829a-62d4-4bdf-8d38-033a5d10404c	
+leptogastrinae:tid:2831	http://leptogastrinae.lifedesks.org/pages/2831	Leptogaster fumipennis White, 1914	leptogastrinae:tid:2814		homonym	426	2524d205-920e-4939-8ae4-00e378dcf8f8
+leptogastrinae:tid:2814	http://leptogastrinae.lifedesks.org/pages/2814	Leptogaster whitei Hardy, 1940	leptogastrinae:tid:2584	species		427	a14501a8-f54e-4f9f-86a9-d0d720e1a4d0	
+leptogastrinae:tid:2810	http://leptogastrinae.lifedesks.org/pages/2810	Leptogaster vernalis White, 1914	leptogastrinae:tid:2584	species		428	3c58c907-d9db-4259-b687-e9fbce161632	
+leptogastrinae:tid:2811	http://leptogastrinae.lifedesks.org/pages/2811	Leptogaster virgata Coquillett, 1904	leptogastrinae:tid:2584	species		429	d9de2b03-1bbc-4144-8a0a-e7274437782e	
+leptogastrinae:tid:2812	http://leptogastrinae.lifedesks.org/pages/2812	Leptogaster vitripennis Schiner, 1867	leptogastrinae:tid:2584	species		430	e8dd152c-ea16-40ee-bca1-7b923e3bb72d	
+leptogastrinae:tid:2813	http://leptogastrinae.lifedesks.org/pages/2813	Leptogaster vorax Curran, 1934	leptogastrinae:tid:2584	species		431	cb769abd-286d-4210-b347-b55b24ad55d1	
+leptogastrinae:tid:2797	http://leptogastrinae.lifedesks.org/pages/2797	Leptogaster titana Carrera, 1958	leptogastrinae:tid:2584	species		432	815f3bbf-f682-46ea-9cb4-2b93652aade4	
+leptogastrinae:tid:2590	http://leptogastrinae.lifedesks.org/pages/2590	Leptogaster setifer Frey, 1937	leptogastrinae:tid:2584	species		433	b7607df7-331e-42a5-bf8e-1c2682131aba	
+leptogastrinae:tid:2632	http://leptogastrinae.lifedesks.org/pages/2632	Leptogaster candidata Séguy, 1930	leptogastrinae:tid:2584	species		434	4c127313-a612-4bf3-8f6d-51233763dbd4	
+leptogastrinae:tid:2631	http://leptogastrinae.lifedesks.org/pages/2631	Leptogaster calvimacula Martin, 1964	leptogastrinae:tid:2584	species		435	bf8370e7-61ca-4c4d-9087-79932d893515	
+leptogastrinae:tid:2630	http://leptogastrinae.lifedesks.org/pages/2630	Leptogaster californica Martin, 1957	leptogastrinae:tid:2584	species		436	2d14e46a-148a-4408-9298-253e64382003	
+leptogastrinae:tid:2633	http://leptogastrinae.lifedesks.org/pages/2633	Leptogaster canuta Martin, 1964	leptogastrinae:tid:2584	species		437	98efe893-371f-4289-8b7f-3be586607fc8	
+leptogastrinae:tid:2833	http://leptogastrinae.lifedesks.org/pages/2833	Leptogaster nitida (Macquart, 1838)	leptogastrinae:tid:2634		homonym	438	4657114b-0f12-423b-b3b0-74f9600f4d78
+leptogastrinae:tid:2634	http://leptogastrinae.lifedesks.org/pages/2634	Leptogaster carolinensis Schiner, 1866	leptogastrinae:tid:2584	species		439	aeb7428f-a01d-4fea-a99b-3e784397193f	
+leptogastrinae:tid:2636	http://leptogastrinae.lifedesks.org/pages/2636	Leptogaster cheriani Bromley, 1938	leptogastrinae:tid:2584	species		440	53eeb028-a456-498d-a81a-d19026d64829	
+leptogastrinae:tid:2826	http://leptogastrinae.lifedesks.org/pages/2826	Leptogaster maculipennis Janssens, 1957	leptogastrinae:tid:2635		homonym	441	a6a2b958-df3d-4a91-8dda-f3e9ff7ad138
+leptogastrinae:tid:2635	http://leptogastrinae.lifedesks.org/pages/2635	Leptogaster carotenoides Tomasovic, 1999	leptogastrinae:tid:2584	species		442	b433aa57-3036-4931-a79f-10486e6a9470	
+leptogastrinae:tid:2629	http://leptogastrinae.lifedesks.org/pages/2629	Leptogaster calceata Engel, 1925	leptogastrinae:tid:2584	species		443	7f62461e-544b-42e8-9c9b-06b7c8afd7a3	
+leptogastrinae:tid:2628	http://leptogastrinae.lifedesks.org/pages/2628	Leptogaster breviventris Theodor, 1980	leptogastrinae:tid:2584	species		444	d857173c-1c4a-4541-a7f9-27edca625be8	
+leptogastrinae:tid:2623	http://leptogastrinae.lifedesks.org/pages/2623	Leptogaster bicolor (Macquart, 1848)	leptogastrinae:tid:2584	species		445	6c967e74-f77c-4d2d-b23b-a96cffb73801	
+leptogastrinae:tid:2622	http://leptogastrinae.lifedesks.org/pages/2622	Leptogaster biannulata Martin, 1964	leptogastrinae:tid:2584	species		446	64d339f3-3781-497b-9ac7-b527c6cf6e5b	
+leptogastrinae:tid:2624	http://leptogastrinae.lifedesks.org/pages/2624	Leptogaster bilobata Hermann, 1917	leptogastrinae:tid:2584	species		447	2783bf10-0ce4-49e6-bc1c-261514da103f	
+leptogastrinae:tid:2625	http://leptogastrinae.lifedesks.org/pages/2625	Leptogaster bivittata Lehr, 1975	leptogastrinae:tid:2584	species		448	dbc954f8-ad19-44e4-8daa-61150dc3b649	
+leptogastrinae:tid:2627	http://leptogastrinae.lifedesks.org/pages/2627	Leptogaster brevitarsis Hardy, 1935	leptogastrinae:tid:2584	species		449	ef4842a9-4113-43ce-baed-1197565a450b	
+leptogastrinae:tid:2626	http://leptogastrinae.lifedesks.org/pages/2626	Leptogaster brevicornis Loew, 1872	leptogastrinae:tid:2584	species		450	faeb7df9-17ad-4fe4-8cb7-fba469d4d911	
+leptogastrinae:tid:2637	http://leptogastrinae.lifedesks.org/pages/2637	Leptogaster cilipes Frey, 1937	leptogastrinae:tid:2584	species		451	f11946f6-0241-4d47-9bfa-a52f00239283	
+leptogastrinae:tid:2638	http://leptogastrinae.lifedesks.org/pages/2638	Leptogaster cingulipes Walker, 1849	leptogastrinae:tid:2584	species		452	a366a264-5e03-45ee-b0e4-7b7db2374cf2	
+leptogastrinae:tid:2651	http://leptogastrinae.lifedesks.org/pages/2651	Leptogaster curvivena Hsia, 1949	leptogastrinae:tid:2584	species		453	3462068f-c1f3-4ad3-979b-e469dec63e2d	
+leptogastrinae:tid:2650	http://leptogastrinae.lifedesks.org/pages/2650	Leptogaster cultaventris Martin, 1957	leptogastrinae:tid:2584	species		454	a3d65816-b493-4f52-9dd0-afe67570c010	
+leptogastrinae:tid:2649	http://leptogastrinae.lifedesks.org/pages/2649	Leptogaster crockeri Curran, 1936	leptogastrinae:tid:2584	species		455	c4b3e08f-268c-4b0d-9309-a1f5c2add730	
+leptogastrinae:tid:2653	http://leptogastrinae.lifedesks.org/pages/2653	Leptogaster pedunculata Loew, 1847	leptogastrinae:tid:2652		synonym	456	4b41be51-6fea-459f-b51a-91b8886853ea
+leptogastrinae:tid:2654	http://leptogastrinae.lifedesks.org/pages/2654	Leptogaster pachypygialis Engel, 1925	leptogastrinae:tid:2652		synonym	457	ec85a282-675d-46f1-9379-1ff9bb53a907
+leptogastrinae:tid:2655	http://leptogastrinae.lifedesks.org/pages/2655	Leptogaster fusca Meigen, 1804	leptogastrinae:tid:2652		synonym	458	a520cf7b-7d3c-4954-821b-657e7d55308c
+leptogastrinae:tid:2656	http://leptogastrinae.lifedesks.org/pages/2656	Leptogaster nigricornis Loew, 1847	leptogastrinae:tid:2652		synonym	459	1efd9a83-f7b1-432a-bae7-f616c6019cb5
+leptogastrinae:tid:2657	http://leptogastrinae.lifedesks.org/pages/2657	Leptogaster dorsalis Dahlbohm, 1851	leptogastrinae:tid:2652		synonym	460	2ab4bea9-b0c5-47b0-9f5d-190b75a55691
+leptogastrinae:tid:2652	http://leptogastrinae.lifedesks.org/pages/2652	Leptogaster cylindrica (De Geer, 1776)	leptogastrinae:tid:2584	species		461	4fd932dd-1d1e-45db-b2fd-b97cf4e12261	
+leptogastrinae:tid:2659	http://leptogastrinae.lifedesks.org/pages/2659	Leptogaster cylindrica dalmatina (Engel, 1925)	leptogastrinae:tid:2584	species		462	f268c743-1b78-4f4c-aa38-133126c3c000	
+leptogastrinae:tid:2661	http://leptogastrinae.lifedesks.org/pages/2661	Leptogaster cylindrica taurica Lehr, 1961	leptogastrinae:tid:2584	species		463	94752e54-2fe3-49fb-ac4c-8c05fa71b017	
+leptogastrinae:tid:2660	http://leptogastrinae.lifedesks.org/pages/2660	Leptogaster cylindrica hispanica Meigen, 1838	leptogastrinae:tid:2584	species		464	eb2eb7e7-b770-46ca-8033-cfb3370e7afc	
+leptogastrinae:tid:2648	http://leptogastrinae.lifedesks.org/pages/2648	Leptogaster crocea Williston, 1901	leptogastrinae:tid:2584	species		465	78e0b5dc-eb63-4781-8d70-d4819d2d8336	
+leptogastrinae:tid:2646	http://leptogastrinae.lifedesks.org/pages/2646	Leptogaster hieroglyphica Janssens, 1954	leptogastrinae:tid:2645		synonym	466	fdcab6a8-7384-4e7a-9cf3-28a70e4fd99d
+leptogastrinae:tid:2645	http://leptogastrinae.lifedesks.org/pages/2645	Leptogaster cressoni Bromley, 1942	leptogastrinae:tid:2584	species		467	9034f1fd-649c-40ad-90e1-b749ea477ef3	
+leptogastrinae:tid:2640	http://leptogastrinae.lifedesks.org/pages/2640	Leptogaster collata Martin, 1964	leptogastrinae:tid:2584	species		468	ae5f0263-62f3-435e-97c3-f28e3c68f7ad	
+leptogastrinae:tid:2639	http://leptogastrinae.lifedesks.org/pages/2639	Leptogaster clavistyla (Rondani, 1848)	leptogastrinae:tid:2584	species		469	cfc1df82-33d4-45fe-adf6-e79b15b7d790	
+leptogastrinae:tid:2641	http://leptogastrinae.lifedesks.org/pages/2641	Leptogaster coloradensis James, 1937	leptogastrinae:tid:2584	species		470	5845d61d-2e16-4616-9b8d-05a9f51e8338	
+leptogastrinae:tid:2741	http://leptogastrinae.lifedesks.org/pages/2741	Leptogaster munda Walker, 1860	leptogastrinae:tid:2584	species		471	3979d211-75d9-4891-bbf1-c54187a87e36	
+leptogastrinae:tid:2644	http://leptogastrinae.lifedesks.org/pages/2644	Leptogaster crassipes Hsia, 1949	leptogastrinae:tid:2584	species		472	ad0c3286-5903-4b11-ad30-8faf13c8f06d	
+leptogastrinae:tid:2643	http://leptogastrinae.lifedesks.org/pages/2643	Leptogaster coniata Oldroyd, 1960	leptogastrinae:tid:2584	species		473	cec4b383-f58f-4043-b213-b933c230a9df	
+leptogastrinae:tid:2621	http://leptogastrinae.lifedesks.org/pages/2621	Leptogaster bengryi Farr, 1963	leptogastrinae:tid:2584	species		474	448c202d-412b-46e7-b08b-d456229c0cfc	
+leptogastrinae:tid:2620	http://leptogastrinae.lifedesks.org/pages/2620	Leptogaster basilaris Coquillett, 1898	leptogastrinae:tid:2584	species		475	c96dbf60-0cf1-41d9-adac-09b69c004a2f	
+leptogastrinae:tid:2598	http://leptogastrinae.lifedesks.org/pages/2598	Leptogaster albitarsis (Macquart, 1846)	leptogastrinae:tid:2584	species		476	3a1f5148-89b0-45c6-be5a-70d2956d21df	
+leptogastrinae:tid:2597	http://leptogastrinae.lifedesks.org/pages/2597	Leptogaster albimana Walker, 1858	leptogastrinae:tid:2584	species		477	a6acba5b-7e0b-45e6-9105-97e8550a39f1	
+leptogastrinae:tid:2596	http://leptogastrinae.lifedesks.org/pages/2596	Leptogaster aganniphe Janssens, 1957	leptogastrinae:tid:2584	species		478	4f3e7357-4875-4204-9423-cdb627b4dfaa	
+leptogastrinae:tid:2599	http://leptogastrinae.lifedesks.org/pages/2599	Leptogaster altacola Martin, 1957	leptogastrinae:tid:2584	species		479	9ef2ef08-0896-44fa-92d2-16febcbac0da	
+leptogastrinae:tid:2600	http://leptogastrinae.lifedesks.org/pages/2600	Leptogaster angustilineola Martin, 1964	leptogastrinae:tid:2584	species		480	be6f21a7-cb18-4a32-b14e-7765ab462314	
+leptogastrinae:tid:2602	http://leptogastrinae.lifedesks.org/pages/2602	Leptogaster antennalis Janssens, 1954	leptogastrinae:tid:2584	species		481	c9c656f9-05f9-4ba8-9e1a-3a3d0e5d2101	
+leptogastrinae:tid:2601	http://leptogastrinae.lifedesks.org/pages/2601	Leptogaster annulipes Walker, 1855	leptogastrinae:tid:2584	species		482	baa90500-28db-48e2-8e9c-9aa8e626678d	
+leptogastrinae:tid:2595	http://leptogastrinae.lifedesks.org/pages/2595	Leptogaster affinis Lehr, 1972	leptogastrinae:tid:2584	species		483	b327d15a-d544-4232-85dd-14aa0b36d67d	
+leptogastrinae:tid:2594	http://leptogastrinae.lifedesks.org/pages/2594	Leptogaster aestiva White, 1914	leptogastrinae:tid:2584	species		484	121fe7aa-28ad-4771-b42a-cefd87c2b462	
+leptogastrinae:tid:2588	http://leptogastrinae.lifedesks.org/pages/2588	Leptogaster trifida (Hsia, 1949)	leptogastrinae:tid:2584	species		485	46f77551-117a-4b7e-8842-5828d7ef9433	
+leptogastrinae:tid:2587	http://leptogastrinae.lifedesks.org/pages/2587	Leptogaster rufescens (Frey, 1937)	leptogastrinae:tid:2584	species		486	f5b0e445-7f30-4ba1-964c-439be979caef	
+leptogastrinae:tid:2589	http://leptogastrinae.lifedesks.org/pages/2589	Leptogaster schoutedeni Janssens, 1954	leptogastrinae:tid:2584	species		487	6961c074-22d3-4b6d-a328-66c48dba4b37	
+leptogastrinae:tid:2591	http://leptogastrinae.lifedesks.org/pages/2591	Leptogaster abdominalis Hsia, 1949	leptogastrinae:tid:2584	species		488	6be001e3-5b39-42f5-901d-87b1948e0d04	
+leptogastrinae:tid:2593	http://leptogastrinae.lifedesks.org/pages/2593	Leptogaster aegra Martin, 1957	leptogastrinae:tid:2584	species		489	cd6f0a60-babf-4794-a4c7-5cbeca97ba19	
+leptogastrinae:tid:2592	http://leptogastrinae.lifedesks.org/pages/2592	Leptogaster acanthozona Janssens, 1954	leptogastrinae:tid:2584	species		490	0e3b2a8f-27f7-43b4-990f-d0768051ad87	
+leptogastrinae:tid:2603	http://leptogastrinae.lifedesks.org/pages/2603	Leptogaster antenorea (Lioy, 1864)	leptogastrinae:tid:2584	species		491	41c95201-69f3-4510-bfba-23201b1fc309	
+leptogastrinae:tid:2604	http://leptogastrinae.lifedesks.org/pages/2604	Leptogaster antipoda Bigot, 1879	leptogastrinae:tid:2584	species		492	f2283408-ed80-4c01-b8ab-aed52601e2cd	
+leptogastrinae:tid:2615	http://leptogastrinae.lifedesks.org/pages/2615	Leptogaster australis Ricardo, 1912	leptogastrinae:tid:2584	species		493	69e80317-5698-4b70-813a-33f01c257b14	
+leptogastrinae:tid:2614	http://leptogastrinae.lifedesks.org/pages/2614	Leptogaster auripulverella Séguy, 1934	leptogastrinae:tid:2584	species		494	6ea510e8-7a42-4112-b952-1d76903dcf85	
+leptogastrinae:tid:2613	http://leptogastrinae.lifedesks.org/pages/2613	Leptogaster augusta Hsia, 1949	leptogastrinae:tid:2584	species		495	48d6ae27-11a9-4b0b-a74e-a2eebb253172	
+leptogastrinae:tid:2616	http://leptogastrinae.lifedesks.org/pages/2616	Leptogaster autumnalis White, 1917	leptogastrinae:tid:2584	species		496	f472673a-3d7a-4e01-9d6f-f304285b1e4e	
+leptogastrinae:tid:2617	http://leptogastrinae.lifedesks.org/pages/2617	Leptogaster bahamiensis Scarbrough, 1996	leptogastrinae:tid:2584	species		497	7b51c272-129d-4e39-b6bc-c244679af1d5	
+leptogastrinae:tid:2619	http://leptogastrinae.lifedesks.org/pages/2619	Leptogaster basalis Walker, 1855	leptogastrinae:tid:2584	species		498	55fb4d1b-eea9-4aff-88cf-5693ff8187be	
+leptogastrinae:tid:2618	http://leptogastrinae.lifedesks.org/pages/2618	Leptogaster bancrofti Ricardo, 1912	leptogastrinae:tid:2584	species		499	f1acd8b6-bafe-42e6-97a7-aa99c3c2ab96	
+leptogastrinae:tid:2612	http://leptogastrinae.lifedesks.org/pages/2612	Leptogaster atridorsalis Back, 1909	leptogastrinae:tid:2584	species		500	5731a2ed-3dd3-48ad-972e-c8a405b53d14	
+leptogastrinae:tid:2611	http://leptogastrinae.lifedesks.org/pages/2611	Leptogaster armeniaca Paramonov, 1930	leptogastrinae:tid:2584	species		501	91c841ee-d946-46ec-993f-6bdceab0b7e4	
+leptogastrinae:tid:2606	http://leptogastrinae.lifedesks.org/pages/2606	Leptogaster apicalis Enderlein, 1914	leptogastrinae:tid:2584	species		502	d109bb28-9d08-4fdb-a3f2-413070f6bf54	
+leptogastrinae:tid:2605	http://leptogastrinae.lifedesks.org/pages/2605	Leptogaster antiquaria Martin, 1964	leptogastrinae:tid:2584	species		503	1ff02a33-9b18-4cc6-9af5-f5e58eeaecbb	
+leptogastrinae:tid:2607	http://leptogastrinae.lifedesks.org/pages/2607	Leptogaster appendiculata Hermann, 1917	leptogastrinae:tid:2584	species		504	66aaae59-1c76-4999-8c13-c6ead41cb008	
+leptogastrinae:tid:2608	http://leptogastrinae.lifedesks.org/pages/2608	Leptogaster arborcola Martin, 1957	leptogastrinae:tid:2584	species		505	db24a2a8-5969-4c1c-9097-2349ce0488b7	
+leptogastrinae:tid:2610	http://leptogastrinae.lifedesks.org/pages/2610	Leptogaster arida Cole in Cole & Lovett, 1919	leptogastrinae:tid:2584	species		506	b70caff3-bf26-4259-9448-118f34a01da7	
+leptogastrinae:tid:2609	http://leptogastrinae.lifedesks.org/pages/2609	Leptogaster arenicola James, 1937	leptogastrinae:tid:2584	species		507	0d2d6f06-673f-41a0-ba16-e0e37506f4c0	
+leptogastrinae:tid:2662	http://leptogastrinae.lifedesks.org/pages/2662	Leptogaster cylindrica tesquorum Lehr, 1961	leptogastrinae:tid:2584	species		508	bbb9c7dd-c912-4b8d-8ba6-e15252ffedb0	
+leptogastrinae:tid:2642	http://leptogastrinae.lifedesks.org/pages/2642	Leptogaster concinnata Williston, 1901	leptogastrinae:tid:2584	species		509	6eade0b6-61ec-4c5b-b6be-fc1d54356d31	
+leptogastrinae:tid:2733	http://leptogastrinae.lifedesks.org/pages/2733	Leptogaster melanomystax Janssens, 1954	leptogastrinae:tid:2584	species		510	96a30648-fcd6-4ded-a4e3-15750edbff11	
+leptogastrinae:tid:2713	http://leptogastrinae.lifedesks.org/pages/2713	Leptogaster keiseri Martin, 1964	leptogastrinae:tid:2584	species		511	77a31ca6-8b3c-427a-978b-18728cb98746	
+leptogastrinae:tid:2714	http://leptogastrinae.lifedesks.org/pages/2714	Leptogaster krada Oldroyd, 1960	leptogastrinae:tid:2584	species		512	db8857ef-11a2-4fc0-adb9-e18cef8c0254	
+leptogastrinae:tid:2663	http://leptogastrinae.lifedesks.org/pages/2663	Leptogaster dasyphlebia Martin, 1964	leptogastrinae:tid:2584	species		513	683c930e-b86a-45fc-98fd-a10f64c4b674	
+leptogastrinae:tid:2732	http://leptogastrinae.lifedesks.org/pages/2732	Leptogaster medicesta Martin, 1964	leptogastrinae:tid:2584	species		514	8defee5b-734b-4165-85da-a9d3d76b4456	
+leptogastrinae:tid:2730	http://leptogastrinae.lifedesks.org/pages/2730	Leptogaster martini Farr, 1963	leptogastrinae:tid:2584	species		515	c89a3e13-d13e-48d1-ae03-ba217f0b8419	
+leptogastrinae:tid:2731	http://leptogastrinae.lifedesks.org/pages/2731	Leptogaster masaica Lindner, 1955	leptogastrinae:tid:2584	species		516	b6aa0c3b-f0af-4611-8537-ea056e98adb4	
+leptogastrinae:tid:2715	http://leptogastrinae.lifedesks.org/pages/2715	Leptogaster lambertoni Bromley, 1942	leptogastrinae:tid:2584	species		517	72bf49ea-7588-441c-9052-439019d0afd3	
+leptogastrinae:tid:2716	http://leptogastrinae.lifedesks.org/pages/2716	Leptogaster lanata Martin, 1957	leptogastrinae:tid:2584	species		518	85eb4641-b8fe-4d6f-b4e9-97c19628c69b	
+leptogastrinae:tid:2720	http://leptogastrinae.lifedesks.org/pages/2720	Leptogaster linearis Becker, 1906	leptogastrinae:tid:2584	species		519	696d60ce-3660-49d1-9bfc-2d5705f31e8c	
+leptogastrinae:tid:2721	http://leptogastrinae.lifedesks.org/pages/2721	Leptogaster lineata Scarbrough, 1996	leptogastrinae:tid:2584	species		520	d3eb582d-c906-4afc-b5ac-c7f254ab0247	
+leptogastrinae:tid:2719	http://leptogastrinae.lifedesks.org/pages/2719	Leptogaster lerneri Curran, 1953	leptogastrinae:tid:2584	species		521	21f3a69a-a7a2-4beb-b68c-87d488cd9ce6	
+leptogastrinae:tid:2724	http://leptogastrinae.lifedesks.org/pages/2724	Leptogaster longifurcata Meijere, 1914	leptogastrinae:tid:2584	species		522	b039a6d3-b140-4cb3-9490-9bad16780135	
+leptogastrinae:tid:2717	http://leptogastrinae.lifedesks.org/pages/2717	Leptogaster laoshanensis Hsia, 1949	leptogastrinae:tid:2584	species		523	136548d6-fc49-4ec2-9218-bc0e6c4c745f	
+leptogastrinae:tid:2718	http://leptogastrinae.lifedesks.org/pages/2718	Leptogaster latestriata Becker, 1906	leptogastrinae:tid:2584	species		524	edb93649-b4a9-4b4d-ac68-3b8077d78dd7	
+leptogastrinae:tid:2729	http://leptogastrinae.lifedesks.org/pages/2729	Leptogaster maculipennis Hsia, 1949	leptogastrinae:tid:2584	species		525	1e06156e-2e1e-4528-b327-99314fa47f35	
+leptogastrinae:tid:2728	http://leptogastrinae.lifedesks.org/pages/2728	Leptogaster macilenta Wulp, 1872	leptogastrinae:tid:2584	species		526	82169885-f429-4cbc-ad23-9ba15661543f	
+leptogastrinae:tid:2706	http://leptogastrinae.lifedesks.org/pages/2706	Leptogaster ochracea Schiner, 1867	leptogastrinae:tid:2705		synonym	527	589dd258-95d8-4f3f-aa7b-4eda213cf60c
+leptogastrinae:tid:2705	http://leptogastrinae.lifedesks.org/pages/2705	Leptogaster incisuralis Loew, 1862	leptogastrinae:tid:2584	species		528	e16e9b84-777f-400c-8715-ae08fa39bb5f	
+leptogastrinae:tid:2704	http://leptogastrinae.lifedesks.org/pages/2704	Leptogaster hyacinthina Scarbrough, 1996	leptogastrinae:tid:2584	species		529	34f4ea8d-824a-4ccc-9563-b510c4743206	
+leptogastrinae:tid:2725	http://leptogastrinae.lifedesks.org/pages/2725	Leptogaster longitibialis Efflatoun, 1937	leptogastrinae:tid:2584	species		530	6078209e-3c78-4d32-bd13-da15a44fadcc	
+leptogastrinae:tid:2708	http://leptogastrinae.lifedesks.org/pages/2708	Leptogaster intima Williston, 1901	leptogastrinae:tid:2584	species		531	828091f5-aef8-454c-a764-ce495d78e1c4	
+leptogastrinae:tid:2709	http://leptogastrinae.lifedesks.org/pages/2709	Leptogaster jamaicensis Farr, 1963	leptogastrinae:tid:2584	species		532	30324d63-f8b5-4bff-97e8-0c13a755d3f5	
+leptogastrinae:tid:2847	http://leptogastrinae.lifedesks.org/pages/2847	Leptogaster kamerlocheri Schiner, 1866	leptogastrinae:tid:2711		homonym	533	e6846ecf-d3a0-4f1e-8a84-e5304cdf2e16
+leptogastrinae:tid:2711	http://leptogastrinae.lifedesks.org/pages/2711	Leptogaster kamerlacheri Schiner, 1867	leptogastrinae:tid:2584	species		534	6d165e4f-1028-4924-ab07-d58483c6c841	
+leptogastrinae:tid:2710	http://leptogastrinae.lifedesks.org/pages/2710	Leptogaster judaica Janssens, 1969	leptogastrinae:tid:2584	species		535	ffdc1b0f-8803-4a2d-a655-42771c7e1b24	
+leptogastrinae:tid:2726	http://leptogastrinae.lifedesks.org/pages/2726	Leptogaster ludens Curran, 1927	leptogastrinae:tid:2584	species		536	bc07cfa1-53c2-4bbc-be68-fff58543828d	
+leptogastrinae:tid:2703	http://leptogastrinae.lifedesks.org/pages/2703	Leptogaster hopehensis Hsia, 1949	leptogastrinae:tid:2584	species		537	fe96c8a6-6f01-4471-834c-6df620d76889	
+leptogastrinae:tid:2698	http://leptogastrinae.lifedesks.org/pages/2698	Leptogaster helvola Loew, 1871	leptogastrinae:tid:2584	species		538	f871bb74-7d1c-4b4c-af74-ede27fa05c54	
+leptogastrinae:tid:2727	http://leptogastrinae.lifedesks.org/pages/2727	Leptogaster macedo Janssens, 1959	leptogastrinae:tid:2584	species		539	5f48d57c-9ccd-4940-aee4-0aeed62071b6	
+leptogastrinae:tid:2699	http://leptogastrinae.lifedesks.org/pages/2699	Leptogaster hermelina Janssens, 1954	leptogastrinae:tid:2584	species		540	8ca0929d-e4e9-40a9-a62b-0ab8af685752	
+leptogastrinae:tid:2700	http://leptogastrinae.lifedesks.org/pages/2700	Leptogaster hermonensis Theodor, 1980	leptogastrinae:tid:2584	species		541	c6361011-0510-4999-9f4b-64339228a05b	
+leptogastrinae:tid:2702	http://leptogastrinae.lifedesks.org/pages/2702	Leptogaster hirtipes Coquillett, 1904	leptogastrinae:tid:2584	species		542	511bcaeb-f964-4389-8033-cd033aefde18	
+leptogastrinae:tid:2701	http://leptogastrinae.lifedesks.org/pages/2701	Leptogaster hesperis Martin, 1957	leptogastrinae:tid:2584	species		543	c68bc050-99fe-42a7-bfa9-d67780acecbd	
+leptogastrinae:tid:2697	http://leptogastrinae.lifedesks.org/pages/2697	Leptogaster hellii Unger, 1841	leptogastrinae:tid:2584	species		544	ff2796af-2ae2-4a48-b9dc-8f63c5f0ff5e	
+leptogastrinae:tid:2696	http://leptogastrinae.lifedesks.org/pages/2696	Leptogaster guttiventris Zetterstedt, 1842	leptogastrinae:tid:2584	species		545	4ad0369d-e543-4492-acb2-6fef52c41e9f	
+leptogastrinae:tid:2673	http://leptogastrinae.lifedesks.org/pages/2673	Leptogaster eudicrana Loew, 1874	leptogastrinae:tid:2584	species		546	baccd77a-8e06-4d7d-b4dc-6ff60728e5a5	
+leptogastrinae:tid:2723	http://leptogastrinae.lifedesks.org/pages/2723	Leptogaster longicrinita Martin, 1964	leptogastrinae:tid:2584	species		547	8858d59b-9da0-4f20-bd58-7d003b325214	
+leptogastrinae:tid:2672	http://leptogastrinae.lifedesks.org/pages/2672	Leptogaster erecta Meunier, 1906	leptogastrinae:tid:2584	species		548	2908c910-05a8-40a3-a62c-a62f1d5f2292	
+leptogastrinae:tid:2674	http://leptogastrinae.lifedesks.org/pages/2674	Leptogaster evanescens Janssens, 1954	leptogastrinae:tid:2584	species		549	3f7db7dd-6b62-4043-9706-6f58b174ef80	
+leptogastrinae:tid:2675	http://leptogastrinae.lifedesks.org/pages/2675	Leptogaster exacta Walker, 1862	leptogastrinae:tid:2584	species		550	00319626-73bd-4cf9-9469-a57b45e4fb65	
+leptogastrinae:tid:2676	http://leptogastrinae.lifedesks.org/pages/2676	Leptogaster faragi Efflatoun, 1937	leptogastrinae:tid:2584	species		551	3be9a151-168d-49d9-9855-2b74d15b5dbb	
+leptogastrinae:tid:2740	http://leptogastrinae.lifedesks.org/pages/2740	Leptogaster montana Theodor, 1980	leptogastrinae:tid:2584	species		552	a9b93c14-f78c-4b1b-9cc7-edf71a2c67c1	
+leptogastrinae:tid:2671	http://leptogastrinae.lifedesks.org/pages/2671	Leptogaster elongata Martin, 1964	leptogastrinae:tid:2584	species		553	2cb9595a-c589-4e9a-beac-900d2e733d2b	
+leptogastrinae:tid:2670	http://leptogastrinae.lifedesks.org/pages/2670	Leptogaster elbaiensis Efflatoun, 1937	leptogastrinae:tid:2584	species		554	20b838b1-4032-4b1c-97a0-d5451dbe7db1	
+leptogastrinae:tid:2665	http://leptogastrinae.lifedesks.org/pages/2665	Leptogaster diluta Martin, 1964	leptogastrinae:tid:2584	species		555	fc1d0b5f-5310-4488-a2ae-6eb91e4734c1	
+leptogastrinae:tid:2664	http://leptogastrinae.lifedesks.org/pages/2664	Leptogaster decellei Oldroyd, 1968	leptogastrinae:tid:2584	species		556	e9a6b4de-eebd-466c-83d0-9cdbea4dc964	
+leptogastrinae:tid:2666	http://leptogastrinae.lifedesks.org/pages/2666	Leptogaster dissimilis Ricardo, 1912	leptogastrinae:tid:2584	species		557	5b4ca1cc-830f-4684-bcdb-00d413423305	
+leptogastrinae:tid:2667	http://leptogastrinae.lifedesks.org/pages/2667	Leptogaster distincta Schiner, 1867	leptogastrinae:tid:2584	species		558	ea08bfa7-2d97-4b19-8497-495b1bb26584	
+leptogastrinae:tid:2669	http://leptogastrinae.lifedesks.org/pages/2669	Leptogaster dorsopicta Hsia, 1949	leptogastrinae:tid:2584	species		559	ab7a9475-e640-4a5a-972c-be3e692c774c	
+leptogastrinae:tid:2668	http://leptogastrinae.lifedesks.org/pages/2668	Leptogaster doleschalli Oldroyd, 1975	leptogastrinae:tid:2584	species		560	5e0ad03e-3bb6-46c5-8c9a-017c5ec2ec3e	
+leptogastrinae:tid:2712	http://leptogastrinae.lifedesks.org/pages/2712	Leptogaster kashgarica Paramonov, 1930	leptogastrinae:tid:2584	species		561	a4afeb0e-34d8-45c2-b987-2fbd6708d5f1	
+leptogastrinae:tid:2735	http://leptogastrinae.lifedesks.org/pages/2735	Leptogaster formosana Enderlein, 1914	leptogastrinae:tid:2734		synonym	562	fd08d364-dbd0-4685-bd00-2a4fdb9ab17f
+leptogastrinae:tid:2736	http://leptogastrinae.lifedesks.org/pages/2736	Leptogaster levis Wulp, 1872	leptogastrinae:tid:2734		synonym	563	6b8ffc47-4011-415d-bb9c-35d7818ab5f4
+leptogastrinae:tid:2737	http://leptogastrinae.lifedesks.org/pages/2737	Leptogaster tarsalis Walker, 1861	leptogastrinae:tid:2734		synonym	564	2524846f-1569-4af0-acd3-6167ca3d952c
+leptogastrinae:tid:2738	http://leptogastrinae.lifedesks.org/pages/2738	Leptogaster varipes Wulp, 1880	leptogastrinae:tid:2734		synonym	565	41b65454-a747-4589-a5e5-43b1540dab39
+leptogastrinae:tid:2850	http://leptogastrinae.lifedesks.org/pages/2850	Leptogaster occlusa Meijere, 1914	leptogastrinae:tid:2734		synonym	566	7d29a505-3943-4e7e-94d2-88d2fc875fd8
+leptogastrinae:tid:2734	http://leptogastrinae.lifedesks.org/pages/2734	Leptogaster moluccana (Doleschall, 1857)	leptogastrinae:tid:2584	species		567	5509530c-591b-42fa-958f-bbd63b8a3b41	
+leptogastrinae:tid:2692	http://leptogastrinae.lifedesks.org/pages/2692	Leptogaster furculata Hsia, 1949	leptogastrinae:tid:2584	species		568	92a90513-7ec6-4ec7-8197-93a9c6fb67c2	
+leptogastrinae:tid:2691	http://leptogastrinae.lifedesks.org/pages/2691	Leptogaster fumosa Janssens, 1954	leptogastrinae:tid:2584	species		569	aaaaa175-157b-4f7c-836d-2d372c359fa0	
+leptogastrinae:tid:2693	http://leptogastrinae.lifedesks.org/pages/2693	Leptogaster fuscifacies Martin, 1964	leptogastrinae:tid:2584	species		570	bec0c4e4-876e-4606-9af4-a70e5d768c70	
+leptogastrinae:tid:2694	http://leptogastrinae.lifedesks.org/pages/2694	Leptogaster geniculata (Macquart, 1850)	leptogastrinae:tid:2584	species		571	c480150f-02b6-466f-a2d9-ee2099be57c3	
+leptogastrinae:tid:2695	http://leptogastrinae.lifedesks.org/pages/2695	Leptogaster gracilis Loew, 1847	leptogastrinae:tid:2584	species		572	062bc2bb-d81b-435b-bcd6-151afb88fce5	
+leptogastrinae:tid:2722	http://leptogastrinae.lifedesks.org/pages/2722	Leptogaster longicauda Hermann, 1917	leptogastrinae:tid:2584	species		573	15e615dd-85a1-40ce-8c80-167667483847	
+leptogastrinae:tid:2690	http://leptogastrinae.lifedesks.org/pages/2690	Leptogaster fumipennis Loew, 1871	leptogastrinae:tid:2584	species		574	bd0db29a-9995-45b9-b5f3-7b2a55dd1b1b	
+leptogastrinae:tid:2827	http://leptogastrinae.lifedesks.org/pages/2827	Leptogaster madagascariensis Bromley, 1942	leptogastrinae:tid:2689		homonym	575	d98c7b9e-812f-48cd-b0f6-818c62c7b005
+leptogastrinae:tid:2689	http://leptogastrinae.lifedesks.org/pages/2689	Leptogaster freyi Bromley, 1951	leptogastrinae:tid:2584	species		576	586d2dc3-0bfd-497b-9122-6f45a5c66c95	
+leptogastrinae:tid:2679	http://leptogastrinae.lifedesks.org/pages/2679	Leptogaster truquii Bellardi, 1861	leptogastrinae:tid:2678		synonym	577	97be3560-46f9-4c1e-ae1d-0f2921a10ad5
+leptogastrinae:tid:2678	http://leptogastrinae.lifedesks.org/pages/2678	Leptogaster fervens Wiedemann, 1830	leptogastrinae:tid:2584	species		578	e75c7c20-daa4-44b2-b888-88ca69e61e51	
+leptogastrinae:tid:2677	http://leptogastrinae.lifedesks.org/pages/2677	Leptogaster ferruginea Walker, 1855	leptogastrinae:tid:2584	species		579	44e503c2-b083-404c-90da-f84d26ab3f47	
+leptogastrinae:tid:2682	http://leptogastrinae.lifedesks.org/pages/2682	Leptogaster favillacea Loew, 1862	leptogastrinae:tid:2681		synonym	580	848e5127-833b-4d9d-86cf-c63d13329419
+leptogastrinae:tid:2683	http://leptogastrinae.lifedesks.org/pages/2683	Leptogaster loewi Banks, 1914	leptogastrinae:tid:2681		synonym	581	972497d2-42f9-451e-aa4f-c1354d38e84e
+leptogastrinae:tid:2684	http://leptogastrinae.lifedesks.org/pages/2684	Leptogaster flavicornis Wulp, 1867	leptogastrinae:tid:2681		synonym	582	d4e701cb-f48e-403f-9b0c-edf1f3924c58
+leptogastrinae:tid:2681	http://leptogastrinae.lifedesks.org/pages/2681	Leptogaster flavipes Loew, 1862	leptogastrinae:tid:2584	species		583	843ff0df-4bcd-4aad-ba94-643f8695a292	
+leptogastrinae:tid:2686	http://leptogastrinae.lifedesks.org/pages/2686	Leptogaster flaviventris Hsia, 1949	leptogastrinae:tid:2584	species		584	3cd4aeab-2bcc-481a-bbda-bfae350efd26	
+leptogastrinae:tid:2687	http://leptogastrinae.lifedesks.org/pages/2687	Leptogaster flavobrunnea Hull, 1967	leptogastrinae:tid:2584	species		585	46e9b77c-4089-4c7d-a2e0-4138035bc162	
+leptogastrinae:tid:2688	http://leptogastrinae.lifedesks.org/pages/2688	Leptogaster fornicata Martin, 1957	leptogastrinae:tid:2584	species		586	e28bc109-d8c8-4dee-be3c-0d4c57616168	
+leptogastrinae:tid:2689	http://leptogastrinae.lifedesks.org/pages/2688	Leptogaster forni�ata Martin, 1957	leptogastrinae:tid:2584	species		587	56045eae-3f90-4625-b02e-19475eb8f29a

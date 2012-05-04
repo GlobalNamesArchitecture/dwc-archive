@@ -68,6 +68,7 @@ Feature: Reading of a Darwing Core Archive
     Then I am able to use DarwinCore#normalize_classification method
     And get normalized classification in expected format
     And there are paths, synonyms and vernacular names in normalized classification
+    And there are local_id and global_id methods in taxons and synonyms
     And names used in classification can be accessed by "name_strings" method
     And vernacular names used in classification can be accessed by "vernacular_name_strings" method
     And nodes_ids organized in trees can be accessed by "tree" method

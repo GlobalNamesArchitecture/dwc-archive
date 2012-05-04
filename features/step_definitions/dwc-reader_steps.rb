@@ -14,7 +14,7 @@ Then /^I should find that the archive is valid$/ do
 end
 
 Then /^I should see what files the archive has$/ do
-  @dwca.files.should == ["DarwinCore.txt", "VernacularName.txt", "eml.xml", "leptogastrinae.xlsx", "meta.xml", "metadata.txt"]
+  @dwca.files.should == ["DarwinCore.txt", "VernacularName.txt", "eml.xml", "meta.xml", "metadata.txt"]
 end
 
 When /^I delete expanded files$/ do
@@ -47,7 +47,7 @@ Then /^instance should have a core$/ do
 end
 
 Then /^I should see checksum$/ do
-  @dwc.checksum.should == '880775bd100f7b00c49ceefd2d7317daada99b26'
+  @dwc.checksum.should == '1135bed6751d7dbfb70e5016efbca468f20ae7e9'
 end
 
 When /^I check core data$/ do
@@ -70,7 +70,7 @@ And /^core\.id$/ do
 end
 
 And /^core\.fields$/ do
-  @core.fields.size.should == 5
+  @core.fields.size.should == 7
 end
 
 And /^core\.size$/ do
@@ -205,6 +205,18 @@ Then /^there are paths, synonyms and vernacular names in normalized classificati
   @paths_are_generated.should be_true
   @vernaculars_are_generated.should be_true
   @synonyms_are_generated.should be_true
+end
+
+Then /^there are local_id and global_id methods in taxons and synonyms$/ do
+  @normalized_classification.each do |k, v|
+    if v.synonyms.size > 0
+      v.local_id.should == '2'
+      v.global_id.should == "97498f29-2501-440d-9452-f3817da0d6c2"
+      v.synonyms.first.local_id.should == '1'
+      v.synonyms.first.global_id.should == "e017ed01-407d-4d09-82c5-8b3d9fa76e35"
+      break
+    end
+  end
 end
 
 Then /^there are id paths, no canonical names paths in normalized classification$/ do
