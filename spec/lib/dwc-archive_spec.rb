@@ -157,7 +157,7 @@ describe DarwinCore do
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       norm = cn.normalize
-      cn.normalized_data.first.last.linnean_classification_path.should == [["Animalia", :kingdom], ["Arthropoda", :phylum], ["Insecta", :class], ["Diptera", :order], ["Cecidomyiidae", :family], ["Resseliella", :genus]]
+      cn.normalized_data.first.last.linnean_classification_path.should == [["Animalia", :kingdom], ["Arthropoda", :phylum], ["Insecta", :class], ["Diptera", :order], ["Cecidomyiidae", :family], ["Resseliella", :genus], ["Resseliella theobaldi", "species"]]
     end
 
     it "should keep linnean classification empty if terms are not there" do

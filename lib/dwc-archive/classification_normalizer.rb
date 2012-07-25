@@ -166,8 +166,8 @@ class DarwinCore
             taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
             taxon.source = r[@core_fields[:source]] if @core_fields[:source]
             taxon.local_id = r[@core_fields[:localid]] if @core_fields[:localid]
-            taxon.linnean_classification_path = get_linnean_classification_path(r)
             taxon.global_id = r[@core_fields[:globalid]] if @core_fields[:globalid]
+            taxon.linnean_classification_path = get_linnean_classification_path(r, taxon)
             add_name_string(taxon.current_name)
             add_name_string(taxon.current_name_canonical) if taxon.current_name_canonical && !taxon.current_name_canonical.empty?
           end
@@ -313,11 +313,19 @@ class DarwinCore
         end
       end
     end
-
-    def get_linnean_classification_path(row)
+    
+    #Collect linnean classification path only on species level
+    def get_linnean_classification_path(row, taxon)
       res = []
       [:kingdom, :phylum, :class, :order, :family, :genus, :subgenus].each do |clade|
         res << [row[@core_fields[clade]], clade] if @core_fields[clade] 
+      end
+      if !res.empty?
+        if taxon.current_name_canonical && taxon.current_name_canonical.split(" ").size > 1 && taxon.current_name != res[-1][0]
+          res << [taxon.current_name_canonical, taxon.rank]
+        else
+          res = []
+        end
       end
       res
     end
