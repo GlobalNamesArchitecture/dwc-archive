@@ -152,6 +152,22 @@ describe DarwinCore do
       norm.select { |k,v| !v.synonyms.empty? }.size.should > 0
     end
 
+    it "should assemble linnean classification if terms for it exists" do
+      file = File.join(@file_dir, 'linnean.tar.gz')
+      dwc = DarwinCore.new(file)
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      norm = cn.normalize
+      cn.normalized_data.first.last.linnean_classification_path.should == [["Animalia", :kingdom], ["Arthropoda", :phylum], ["Insecta", :class], ["Diptera", :order], ["Cecidomyiidae", :family], ["Resseliella", :genus]]
+    end
+
+    it "should keep linnean classification empty if terms are not there" do
+      file = File.join(@file_dir, 'data.tar.gz')
+      dwc = DarwinCore.new(file)
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      norm = cn.normalize
+      cn.normalized_data.first.last.linnean_classification_path.should == []
+    end
+
     it "should be able to assemble synonyms from core" do
       file = File.join(@file_dir, 'synonyms_in_core_accepted_name_field.tar.gz')
       dwc = DarwinCore.new(file)

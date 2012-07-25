@@ -4,7 +4,7 @@ require 'parsley-store'
 class DarwinCore
 
   class TaxonNormalized
-    attr_accessor :id, :local_id, :global_id, :source, :parent_id, :classification_path_id, :classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
+    attr_accessor :id, :local_id, :global_id, :source, :parent_id, :classification_path_id, :classification_path, :linnean_classification_path, :current_name, :current_name_canonical, :synonyms, :vernacular_names, :rank, :status
 
     def initialize
       @id = @parent_id = @rank = @status = nil
@@ -17,6 +17,7 @@ class DarwinCore
       @classification_path_id = []
       @synonyms = []
       @vernacular_names = []
+      @linnean_classification_path = []
     end
 
   end
@@ -165,6 +166,7 @@ class DarwinCore
             taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
             taxon.source = r[@core_fields[:source]] if @core_fields[:source]
             taxon.local_id = r[@core_fields[:localid]] if @core_fields[:localid]
+            taxon.linnean_classification_path = get_linnean_classification_path(r)
             taxon.global_id = r[@core_fields[:globalid]] if @core_fields[:globalid]
             add_name_string(taxon.current_name)
             add_name_string(taxon.current_name_canonical) if taxon.current_name_canonical && !taxon.current_name_canonical.empty?
@@ -310,6 +312,14 @@ class DarwinCore
           end
         end
       end
+    end
+
+    def get_linnean_classification_path(row)
+      res = []
+      [:kingdom, :phylum, :class, :order, :family, :genus, :subgenus].each do |clade|
+        res << [row[@core_fields[clade]], clade] if @core_fields[clade] 
+      end
+      res
     end
 
   end
