@@ -320,13 +320,6 @@ class DarwinCore
       [:kingdom, :phylum, :class, :order, :family, :genus, :subgenus].each do |clade|
         res << [row[@core_fields[clade]], clade] if @core_fields[clade] 
       end
-      if !res.empty?
-        if taxon.current_name_canonical && taxon.current_name_canonical.split(" ").size > 1 && taxon.current_name != res[-1][0]
-          res << [taxon.current_name_canonical, taxon.rank]
-        else
-          res = []
-        end
-      end
       res
     end
 
