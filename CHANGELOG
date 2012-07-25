@@ -1,1 +1,3 @@
+0.8.1 Linnean classification path is now only for species and infraspecies with canonical forms. It ends with a canonical form of the taxon
+
 0.8.0 Added linnean classification path to normalized data from DwCA. It consists of data associated with clades like 'kingdom', 'order' etc.
