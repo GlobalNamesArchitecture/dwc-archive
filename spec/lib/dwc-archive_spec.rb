@@ -48,6 +48,11 @@ describe DarwinCore do
       file = File.join(@file_dir, 'invalid.tar.gz')
       lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::InvalidArchiveError)
     end
+    
+    it "should raise an error if archive is not in utf-8" do
+      file = File.join(@file_dir, 'latin1.tar.gz')
+      lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::EncodingError)
+    end
 
     it "should work with files that have non-alfanumeric characters and spaces" do
       file = File.join(@file_dir, 'file with characters(3).gz')

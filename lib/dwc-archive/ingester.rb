@@ -47,15 +47,15 @@ class DarwinCore
     def get_attributes(exception)
       @properties = @data[:attributes]
       @encoding = @properties[:encoding] || 'UTF-8'
-      raise exception("No support for encodings other than utf-8 or utf-16 at the moment") unless ["utf-8", "utf8", "utf-16", "utf16"].include? @encoding.downcase
+      raise DarwinCore::EncodingError.new("No support for encodings other than utf-8 or utf-16 at the moment") unless ["utf-8", "utf8", "utf-16", "utf16"].include? @encoding.downcase
       @field_separator = get_field_separator
       @quote_character = @properties[:fieldsEnclosedBy] || ""
       @line_separator = @properties[:linesTerminatedBy] || "\n"
       @ignore_headers = @properties[:ignoreHeaderLines] ? [1, true].include?(@properties[:ignoreHeaderLines]) : false
       @file_path = get_file_path
-      raise exception("No file data") unless @file_path
+      raise DarwinCore::FileNotFoundError.new("No file data") unless @file_path
       @fields = get_fields
-      raise exception("No data fields are found") if @fields.empty?
+      raise DarwinCore::InvalidArchiveError.new("No data fields are found") if @fields.empty?
     end
 
     def get_file_path

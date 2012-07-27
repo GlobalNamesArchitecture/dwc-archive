@@ -7,4 +7,5 @@ class DarwinCore
   class ExtensionFileError < Error; end
   class GeneratorError < Error; end
   class ParentNotCurrentError < Error; end
+  class EncodingError < Error; end
 end
