@@ -1,2 +1,0 @@
-TaxonID	vernacularName	languageCode
-leptogastrinae:tid:42	Grass flies	en
