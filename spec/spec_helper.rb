@@ -4,7 +4,6 @@ require 'rubygems'
 require 'dwc-archive'
 require 'rspec'
 require 'rspec/autorun'
-require 'ruby-debug'
 
 RSpec.configure do |config|
 

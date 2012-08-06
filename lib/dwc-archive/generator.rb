@@ -22,7 +22,7 @@ class DarwinCore
       header = data.shift
       fields = header.map do |f|
         f.strip!
-        raise GeneratorError("No header in core data, or header fields are not urls") unless f.match(/^http:\/\//)
+        raise DarwinCore::GeneratorError.new("No header in core data, or header fields are not urls") unless f.match(/^http:\/\//)
         f.split("/")[-1]
       end
       data.unshift(fields) if keep_headers
@@ -36,7 +36,7 @@ class DarwinCore
       header = data.shift
       fields = header.map do |f|
         f.strip!
-        raise GeneratorError("No header in core data, or header fields are not urls") unless f.match(/^http:\/\//)
+        raise DarwinCore::GeneratorError.new("No header in core data, or header fields are not urls") unless f.match(/^http:\/\//)
         f.split("/")[-1]
       end
       data.unshift(fields) if keep_headers

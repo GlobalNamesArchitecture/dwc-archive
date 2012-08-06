@@ -41,7 +41,7 @@ class DarwinCore
         fields = []
         data.each_with_index { |f, i| fields << [f.strip, i] }
         taxon_id, fields = fields.partition { |f| f[0].match(/\/taxonid$/i) }
-        raise GeneratorError if taxon_id.size != 1
+        raise DarwinCore::GeneratorError if taxon_id.size != 1
         [taxon_id[0], fields]
       end
 

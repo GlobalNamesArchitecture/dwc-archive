@@ -17,9 +17,21 @@ class DarwinCore
       @quote_character = "\b" if @quote_character.empty?
       args.merge!({:quote_char => @quote_character})
       min_size = @fields.map {|f| f[:index].to_i || 0}.sort[-1] + 1
-      CSV.open(@file_path, args).each_with_index do |r, i|
+      open(@file_path).each_with_index do |line, i|
         index_fix = 0; next if @ignore_headers && i == 0
-        min_size > r.size ? errors << r : process_csv_row(res, errors, r)
+        begin 
+          row = CSV.parse(line, args)[0]
+          if min_size > row.size
+            errors << row
+          else
+            res << row.map { |f| f.nil? ? nil : f.force_encoding('utf-8') }
+          end
+        rescue ArgumentError
+          line.encode!('UTF-16', 'UTF-8', :invalid => :replace, :replace => '?')
+          line.encode!('UTF-8', 'UTF-16')
+          row = CSV.parse(line, args)[0]
+          errors << row
+        end
         if (i + index_fix) % batch_size == 0
           DarwinCore.logger_write(@dwc.object_id, "Ingested %s records from %s" % [(i + index_fix), name])
           if block_given?

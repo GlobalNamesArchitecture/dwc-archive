@@ -144,7 +144,7 @@ class DarwinCore
 
     def ingest_core
       @normalized_data = {}
-      raise CoreFileError.new("Darwin Core core fields must contain taxon id and scientific name") unless (@core_fields[:id] && @core_fields[:scientificname])
+      raise DarwinCore::CoreFileError.new("Darwin Core core fields must contain taxon id and scientific name") unless (@core_fields[:id] && @core_fields[:scientificname])
       @dwc.core.read do |rows|
         rows[1].each do |error|
           @error_names << { :data => error, :error => :reading_or_encoding_error }

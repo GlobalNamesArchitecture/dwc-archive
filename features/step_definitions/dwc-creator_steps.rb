@@ -1,6 +1,4 @@
 #encoding: utf-8
-require 'ruby-debug'
-
 
 Given /^an array of urls for Darwin Core or other terms$/ do
   @rows = ["http://rs.tdwg.org/dwc/terms/taxonID", "http://rs.tdwg.org/dwc/terms/parentNameUsageID", "http://rs.tdwg.org/dwc/terms/scientificName", "http://rs.tdwg.org/dwc/terms/taxonRank"]

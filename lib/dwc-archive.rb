@@ -5,6 +5,7 @@ R19 = RUBY_VERSION.split('.')[0..1].join('').to_i > 18
 raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1" unless R19
 require 'fileutils'
 require 'ostruct'
+require 'digest'
 require 'csv'
 require 'logger'
 require 'dwc-archive/xml_reader'

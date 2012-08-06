@@ -9,9 +9,9 @@ class DarwinCore
 
     def unpack
       clean
-      raise FileNotFoundError unless File.exists?(@archive_path)
+      raise DarwinCore::FileNotFoundError unless File.exists?(@archive_path)
       success = @unpacker.call(@path, @archive_path) if @unpacker
-      (@unpacker && success && $?.exitstatus == 0) ? success : (clean; raise UnpackingError)
+      (@unpacker && success && $?.exitstatus == 0) ? success : (clean; raise DarwinCore::UnpackingError)
     end
 
     def path

@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 Given /^path to a dwc file "([^\"]*)"$/ do |arg1|
   @dwca_file = File.expand_path(File.dirname(__FILE__) + "../../../spec/files/" + arg1)
   @tmp_dir = "/tmp"
