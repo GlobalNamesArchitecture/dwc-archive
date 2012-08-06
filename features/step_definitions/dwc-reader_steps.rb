@@ -45,7 +45,7 @@ Then /^instance should have a core$/ do
 end
 
 Then /^I should see checksum$/ do
-  @dwc.checksum.should == '1135bed6751d7dbfb70e5016efbca468f20ae7e9'
+  @dwc.checksum.should == '7d94fc28ffaf434b66fbc790aa5ef00d834057bf'
 end
 
 When /^I check core data$/ do
@@ -138,8 +138,8 @@ end
 Then /^I can read its content into memory$/ do
   core_data, core_errors = @dwc.core.read
   core_data.class.should == Array
-  core_data.size.should == 584
-  core_errors.size.should == 3
+  core_data.size.should == 585
+  core_errors.size.should == 2
 end
 
 Then /^I can read extensions content into memory$/ do
@@ -157,8 +157,8 @@ Then /^I can read its core content using block$/ do
   read_result = @dwc.core.read(200) do |r, err|
     res << [r.size, err.size]
   end
-  res.should == [[198,2],[200,0],[186,1]]
-  read_result[0].size.should == 186
+  res.should == [[198,2],[200,0],[187,0]]
+  read_result[0].size.should == 187
 end
 
 Then /^I can read extensions content using block$/ do
