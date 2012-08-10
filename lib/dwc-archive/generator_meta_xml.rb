@@ -10,10 +10,9 @@ class DarwinCore
       def create
         builder = Nokogiri::XML::Builder.new do |xml|
           opts = { :encoding => "UTF-8", :fieldsTerminatedBy => ",", :fieldsEnclosedBy => '"', :linesTerminatedBy => "\n", :rowType => "http://rs.tdwg.org/dwc/terms/Taxon" }
-          xml.starArchive(:xmlns => "http://rs.tdwg.org/dwc/terms/xsd/archive/",
+          xml.archive(:xmlns => "http://rs.tdwg.org/dwc/text/",
             "xmlns:xsi" =>"http://www.w3.org/2001/XMLSchema-instance",
-            "xsi:schemaLocation" => "http://rs.tdwg.org/dwc/terms/xsd/archive/ http://darwincore.googlecode.com/svn/trunk/text/tdwg_dwc_text.xsd",
-            :fileRoot => ".") do
+            "xsi:schemaLocation" => "http://rs.tdwg.org/dwc/terms/xsd/archive/ http://darwincore.googlecode.com/svn/trunk/text/tdwg_dwc_text.xsd") do
             xml.core(opts.merge(:ignoreHeaderLines => @data[:core][:ignoreHeaderLines])) do
               xml.files { xml.location(@data[:core][:location]) }
               taxon_id, fields = find_taxon_id(@data[:core][:fields])
@@ -21,7 +20,7 @@ class DarwinCore
               fields.each { |f| xml.field(:term => f[0], :index => f[1]) }
             end
             @data[:extensions].each do |e|
-              xml.extension(opts.merge(:ignoreHeaderLines => e[:ignoreHeaderLines])) do
+              xml.extension(opts.merge(:ignoreHeaderLines => e[:ignoreHeaderLines], :rowType => e[:rowType])) do
                 xml.files { xml.location(e[:location]) }
                 taxon_id, fields = find_taxon_id(e[:fields])
                 xml.coreid(:term => taxon_id[0], :index => taxon_id[1])

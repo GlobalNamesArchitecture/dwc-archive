@@ -26,12 +26,13 @@ class DarwinCore
         f.split("/")[-1]
       end
       data.unshift(fields) if keep_headers
-      @meta_xml_data[:core] = {:fields => header, :ignoreHeaderLines => keep_headers, :location => file_name}
+      ignore_header_lines = keep_headers ? 1 : 0
+      @meta_xml_data[:core] = {:fields => header, :ignoreHeaderLines => ignore_header_lines, :location => file_name}
       data.each {|d| c << d}
       c.close
     end
 
-    def add_extension(data, file_name, keep_headers = true)
+    def add_extension(data, file_name, keep_headers = true, row_type = "http://rs.tdwg.org/dwc/terms/Taxon")
       c = CSV.open(File.join(@path,file_name), @write)
       header = data.shift
       fields = header.map do |f|
@@ -40,7 +41,8 @@ class DarwinCore
         f.split("/")[-1]
       end
       data.unshift(fields) if keep_headers
-      @meta_xml_data[:extensions] << { :fields => header, :ignoreHeaderLines => keep_headers, :location => file_name }
+      ignore_header_lines = keep_headers ? 1 : 0
+      @meta_xml_data[:extensions] << { :fields => header, :ignoreHeaderLines => ignore_header_lines, :location => file_name, :rowType => row_type }
       data.each { |d| c << d }
       c.close
     end
