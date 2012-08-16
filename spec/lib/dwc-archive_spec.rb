@@ -214,6 +214,14 @@ describe DarwinCore do
       syn.size.should == 50
     end
 
+    it "should be able open files where coreid is empty" do
+      file = File.join(@file_dir, 'empty_coreid.tar.gz')
+      dwc = DarwinCore.new(file)
+      norm = dwc.normalize_classification
+      taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
+      taxa.size.should == 2 
+    end
+    
     it "should be able to get language and locality fields for vernacular names" do
       file = File.join(@file_dir, 'language_locality.tar.gz')
       dwc = DarwinCore.new(file)

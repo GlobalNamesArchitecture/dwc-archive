@@ -93,8 +93,13 @@ class DarwinCore
     end
 
     def get_fields(element)
-      data = element.fields.inject({}) { |res, f| res[f[:term].split('/')[-1].downcase.to_sym] = f[:index].to_i; res }
-      data[:id] = element.id[:index]
+      data = element.fields.inject({}) do |res, f| 
+        field = f[:term].split('/')[-1]
+        field = field ? field.downcase.to_sym : '' 
+        res[field] = f[:index].to_i
+        res
+      end
+      data[:id] = element.id[:index] if element.id
       data
     end
 

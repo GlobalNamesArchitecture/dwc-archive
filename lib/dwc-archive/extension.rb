@@ -9,8 +9,7 @@ class DarwinCore
       @archive = @dwc.archive
       @path = @archive.files_path
       @data = data
-      @coreid = @data[:coreid][:attributes] 
-      raise DarwinCore::ExtensionFileError.new("Extension has no coreid information") unless @coreid
+      @coreid = @data[:coreid][:attributes]
       get_attributes(DarwinCore::ExtensionFileError)
     end
 
