@@ -1,6 +1,0 @@
-URL:::http://leptogastrinae.lifedesks.org
-UNIXTIMEUPDATED:::1265177381
-VERSION:::2.5
-CITATION:::Dikow, Torsten. 2010. The Leptogastrinae classification.
-DESCRIPTION:::These are all the names in the Leptogastrinae classification.
-LICENSE:::publicdomain
