@@ -8,7 +8,7 @@ class DarwinCore
       @path = @archive.files_path
       root_key = @archive.meta.keys[0]
       @data = @archive.meta[root_key][:core]
-      raise DarwinCore::CoreFileError.new("Cannot found core in meta.xml, is meta.xml valid?") unless @data
+      raise DarwinCore::CoreFileError.new("Cannot find core in meta.xml, is meta.xml valid?") unless @data
       @id = @data[:id][:attributes]
       raise DarwinCore::CoreFileError.new("Cannot find core identifier") unless @id
       get_attributes(DarwinCore::CoreFileError)
