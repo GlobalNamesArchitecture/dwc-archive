@@ -42,16 +42,22 @@ class DarwinCore
     def process_csv_row(result, errors, row)
       str = row.join('')
       str = str.force_encoding('utf-8')
-      str.encoding.name == "UTF-8" && str.valid_encoding? ? result << row.map { |f| f.nil? ? nil : f.force_encoding('utf-8') } : errors << row
+      if str.encoding.name == 'UTF-8' && str.valid_encoding?
+        result << row.map { |f| f.nil? ? nil : f.force_encoding('utf-8') }
+      else
+        errors << row
+      end
     end
 
     def get_attributes(exception)
       @properties = @data[:attributes]
       @encoding = @properties[:encoding] || 'UTF-8'
-      raise DarwinCore::EncodingError.new("No support for encodings other than utf-8 or utf-16 at the moment") unless ["utf-8", "utf8", "utf-16", "utf16"].include? @encoding.downcase
+      err_msg = 'No support for encodings other than utf-8 or utf-16 at the moment'
+      encodings = ['utf-8', 'utf8', 'utf-16', 'utf16']
+      raise DarwinCore::EncodingError.new(err_msg) unless encodings.include? @encoding.downcase
       @field_separator = get_field_separator
       @quote_character = @properties[:fieldsEnclosedBy] || ""
-      @line_separator = @properties[:linesTerminatedBy] || "\n"
+      @line_separator = @properties[:linesTerminatedBy] || '\n'
       @ignore_headers = @properties[:ignoreHeaderLines] ? [1, true].include?(@properties[:ignoreHeaderLines]) : false
       @file_path = get_file_path
       raise DarwinCore::FileNotFoundError.new("No file data") unless @file_path

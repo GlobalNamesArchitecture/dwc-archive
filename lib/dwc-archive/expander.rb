@@ -3,7 +3,7 @@ class DarwinCore
     def initialize(archive_path, tmp_dir)
       @archive_path = archive_path
       @tmp_dir = tmp_dir
-      @path = File.join(tmp_dir, 'dwc_' + rand(10000000000).to_s)
+      @path = File.join(tmp_dir, 'dwc_' + rand(10_000_000_000).to_s)
       @unpacker = get_unpacker
     end
 
@@ -11,7 +11,9 @@ class DarwinCore
       clean
       raise DarwinCore::FileNotFoundError unless File.exists?(@archive_path)
       success = @unpacker.call(@path, @archive_path) if @unpacker
-      (@unpacker && success && $?.exitstatus == 0) ? success : (clean; raise DarwinCore::UnpackingError)
+      (@unpacker && success && $?.exitstatus == 0) ? 
+        success : 
+        (clean; raise DarwinCore::UnpackingError)
     end
 
     def path
