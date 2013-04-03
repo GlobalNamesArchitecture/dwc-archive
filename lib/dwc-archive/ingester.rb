@@ -2,7 +2,8 @@
 class DarwinCore
   module Ingester
     attr_reader :data, :properties, :encoding, :fields_separator, :size
-    attr_reader :file_path, :fields, :line_separator, :quote_character, :ignore_headers
+    attr_reader :file_path, :fields, :line_separator, 
+                :quote_character, :ignore_headers
 
     def size
       @size ||= get_size
@@ -22,7 +23,9 @@ class DarwinCore
         index_fix = 0; next if @ignore_headers && i == 0
         min_size > r.size ? errors << r : process_csv_row(res, errors, r)
         if (i + index_fix) % batch_size == 0
-          DarwinCore.logger_write(@dwc.object_id, "Ingested %s records from %s" % [(i + index_fix), name])
+          DarwinCore.logger_write(@dwc.object_id, 
+                                  "Ingested %s records from %s" % 
+                                  [(i + index_fix), name])
           if block_given?
             yield [res, errors]
             res = []
@@ -52,21 +55,30 @@ class DarwinCore
     def get_attributes(exception)
       @properties = @data[:attributes]
       @encoding = @properties[:encoding] || 'UTF-8'
-      err_msg = 'No support for encodings other than utf-8 or utf-16 at the moment'
+      err_msg = 'No support for encodings other ' + 
+        'than utf-8 or utf-16 at the moment'
       encodings = ['utf-8', 'utf8', 'utf-16', 'utf16']
-      raise DarwinCore::EncodingError.new(err_msg) unless encodings.include? @encoding.downcase
+      unless encodings.include? @encoding.downcase
+        raise DarwinCore::EncodingError.new(err_msg) 
+      end
       @field_separator = get_field_separator
       @quote_character = @properties[:fieldsEnclosedBy] || ""
       @line_separator = @properties[:linesTerminatedBy] || '\n'
-      @ignore_headers = @properties[:ignoreHeaderLines] ? [1, true].include?(@properties[:ignoreHeaderLines]) : false
+      @ignore_headers = @properties[:ignoreHeaderLines] ? 
+                        [1, true].include?(@properties[:ignoreHeaderLines]) : 
+                        false
       @file_path = get_file_path
       raise DarwinCore::FileNotFoundError.new("No file data") unless @file_path
       @fields = get_fields
-      raise DarwinCore::InvalidArchiveError.new("No data fields are found") if @fields.empty?
+      if @fields.empty?
+        raise DarwinCore::InvalidArchiveError.new("No data fields are found")
+      end
     end
 
     def get_file_path
-      file = @data[:location] || @data[:attributes][:location] || @data[:files][:location]
+      file = @data[:location] || 
+             @data[:attributes][:location] || 
+             @data[:files][:location]
       File.join(@path, file)
     end
 
