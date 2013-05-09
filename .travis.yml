@@ -2,7 +2,8 @@ rvm:
   - 1.9.3
   - 2.0.0
 before_install:
-  - sudo apt-get install radis
+  - sudo apt-get update
+  - sudo apt-get install redis-server
 bundler_args: --without development
 branches:
   only:
