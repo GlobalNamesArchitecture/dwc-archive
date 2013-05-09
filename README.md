@@ -163,8 +163,8 @@ Copyright (c) 2010-2013 Marine Biological Laboratory. See LICENSE for details.
 
 [1]: https://badge.fury.io/rb/dwc-archive.png
 [2]: http://badge.fury.io/rb/dwc-archive
-[3]: http://travis-ci.org/dimus/dwc-archive.png
-[4]: http://travis-ci.org/dwc-archive/dwc-archive
+[3]: http://travis-ci.org/GlobalNamesArchitecture/dwc-archive.png
+[4]: http://travis-ci.org/GlobalNamesArchitecture/dwc-archive
 [5]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive.png
 [6]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive
 [7]: http://bit.ly/2IxcBA
