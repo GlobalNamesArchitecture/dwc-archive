@@ -143,6 +143,15 @@ Creating a DarwinCore Archive file
     gen.add_eml_xml(eml)
     gen.pack
 
+Logging
+-------
+
+Gem has ability to show logs of it's events:
+
+    require 'dwc-archive'
+    DarwinCore.logger = Logger.new($stdout)
+
+
 Note on Patches/Pull Requests
 -----------------------------
 

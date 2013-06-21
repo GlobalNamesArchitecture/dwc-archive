@@ -49,7 +49,7 @@ describe DarwinCore do
       file = File.join(@file_dir, 'invalid.tar.gz')
       lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::InvalidArchiveError)
     end
-    
+
     it "should raise an error if archive is not in utf-8" do
       file = File.join(@file_dir, 'latin1.tar.gz')
       lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::EncodingError)
@@ -219,9 +219,9 @@ describe DarwinCore do
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
-      taxa.size.should == 2 
+      taxa.size.should == 2
     end
-    
+
     it "should be able to get language and locality fields for vernacular names" do
       file = File.join(@file_dir, 'language_locality.tar.gz')
       dwc = DarwinCore.new(file)
@@ -230,6 +230,20 @@ describe DarwinCore do
       vn = cn.normalized_data['leptogastrinae:tid:42'].vernacular_names.first
       vn.language.should == 'en'
       vn.locality.should == 'New England'
+    end
+
+    it 'should be able to get uuids from gnub dataset' do
+      file = File.join(@file_dir, 'gnub.tar.gz')
+      dwc = DarwinCore.new(file)
+      cn = DarwinCore::ClassificationNormalizer.new(dwc)
+      cn.normalize
+      vn = cn.normalized_data['9c399f90-cfb8-5a7f-9a21-18285a473488']
+      vn.class.should == DarwinCore::GnubTaxon
+      vn.uuid.should == '8faa91f6-663f-4cfe-b785-0ab4e9415a51'
+      vn.uuid_path.should == [
+        "9a9f9eeb-d5f9-4ff6-b6cb-a5ad345e33c3",
+        "bf4c91c0-3d1f-44c7-9d3b-249382182a26",
+        "8faa91f6-663f-4cfe-b785-0ab4e9415a51"]
     end
   end
 

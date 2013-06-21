@@ -6,7 +6,10 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "dwc-archive"
     gem.summary = %Q{Handler of Darwin Core Archive files}
-    gem.description = %q{Darwin Core Archive is the current standard exchange format for GLobal Names Architecture modules. This gem makes it easy to incorporate files in Darwin Core Archive format into a ruby project.}
+    gem.description = 'Darwin Core Archive is the current standard exchange ' +
+      'format for GLobal Names Architecture modules. ' +
+      'This gem makes it easy to incorporate files in ' +
+      'Darwin Core Archive format into a ruby project.'
     gem.email = "dmozzherin at gmail dot com"
     gem.homepage = "http://github.com/GlobalNamesArchitecture/dwc-archive"
     gem.authors = ["Dmitry Mozzherin"]
@@ -14,11 +17,11 @@ begin
     gem.add_dependency 'parsley-store', ">= 0.3.0"
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "cucumber", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+  puts 'Jeweler (or a dependency) not available. ' +
+    'Install it with: gem install jeweler'
 end
 
 require 'rspec/core/rake_task'
@@ -40,18 +43,20 @@ begin
   task :features => :check_dependencies
 rescue LoadError
   task :features do
-    abort "Cucumber is not available. In order to run features, you must: sudo gem install cucumber"
+    abort 'Cucumber is not available. In order to run features, ' +
+      'you must: sudo gem install cucumber'
   end
 end
 
-task :default => :spec
+desc 'Run an IRB session with CSL loaded'
+task :irb, [:script] do |t, args|
+  ARGV.clear
 
-# require 'rdoc/task'
-# Rake::RDocTask.new do |rdoc|
-#   version = File.exist?('VERSION') ? File.read('VERSION') : ""
-# 
-#   rdoc.rdoc_dir = 'rdoc'
-#   rdoc.title = "dwc-archive #{version}"
-#   rdoc.rdoc_files.include('README*')
-#   rdoc.rdoc_files.include('lib/**/*.rb')
-# end
+  require 'irb'
+  require_relative 'lib/dwc-archive'
+
+  IRB.conf[:SCRIPT] = args.script
+  IRB.start
+end
+
+task :default => :spec
