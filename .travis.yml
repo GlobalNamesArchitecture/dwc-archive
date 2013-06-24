@@ -4,7 +4,8 @@ rvm:
 before_install:
   - sudo apt-get update
   - sudo apt-get install redis-server
-bundler_args: --without development
+  - gem install debugger
+# bundler_args: --without development
 script:
   - bundle exec cucumber
   - bundle exec rake
