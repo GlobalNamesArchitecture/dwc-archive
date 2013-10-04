@@ -62,7 +62,7 @@ class DarwinCore
         raise DarwinCore::EncodingError.new(err_msg) 
       end
       @field_separator = get_field_separator
-      @quote_character = @properties[:fieldsEnclosedBy] || ""
+      @quote_character = @properties[:fieldsEnclosedBy] || ''
       @line_separator = @properties[:linesTerminatedBy] || '\n'
       @ignore_headers = @properties[:ignoreHeaderLines] ? 
                         [1, true].include?(@properties[:ignoreHeaderLines]) : 

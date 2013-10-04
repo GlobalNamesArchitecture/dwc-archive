@@ -1,6 +1,7 @@
 # encoding: UTF-8
 $:.unshift(File.dirname(__FILE__)) unless
-   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+   $:.include?(File.dirname(__FILE__)) || 
+     $:.include?(File.expand_path(File.dirname(__FILE__)))
 R19 = RUBY_VERSION.split('.')[0..1].join('').to_i > 18
 raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1" unless R19
 require 'fileutils'
@@ -23,9 +24,11 @@ require 'dwc-archive/classification_normalizer'
 
 class DarwinCore
 
-  VERSION = open(File.join(File.dirname(__FILE__), '..', 'VERSION')).readline.strip
+  VERSION = open(File.join(File.dirname(__FILE__), '..', 'VERSION')).
+    readline.strip
 
-  attr_reader :archive, :core, :metadata, :extensions, :classification_normalizer
+  attr_reader :archive, :core, :metadata, :extensions, 
+    :classification_normalizer
   alias :eml :metadata
 
   DEFAULT_TMP_DIR = "/tmp"
@@ -68,10 +71,12 @@ class DarwinCore
     @extensions = get_extensions
   end
 
-  # generates a hash from a classification data with path to each node, list of synonyms and vernacular names.
+  # generates a hash from a classification data with path to each node, 
+  # list of synonyms and vernacular names.
   def normalize_classification
     return nil unless has_parent_id?
-    @classification_normalizer ||= DarwinCore::ClassificationNormalizer.new(self)
+    @classification_normalizer ||= DarwinCore::ClassificationNormalizer.
+      new(self)
     @classification_normalizer.normalize
   end
 

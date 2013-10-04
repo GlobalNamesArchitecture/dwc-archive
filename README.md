@@ -3,17 +3,24 @@ Darwin Core Archive
 
 [![Gem Version][1]][2]
 [![Continuous Integration Status][3]][4]
-[![Dependency Status][5]][6]
+[![Coverage Status][5]][6]
+[![CodePolice][7]][8]
+[![Dependency Status][9]][10]
 
 Darwin Core Archive format is a current standard for information exchange
 between Global Names Architecture modules. This gem allows to work with
 Darwin Core Archive data compressed to either zip or tar.gz files.
-More information about Darwing Core Archive can be found on a [GBIF page:][7]
+More information about Darwing Core Archive can be found on a [GBIF page:][11]
 
 Installation
 ------------
 
     sudo gem install dwc-archive
+
+### System Requirements
+
+You need [Redis Server][12] and unzip library installed 
+
 
 Usage
 -----
@@ -174,6 +181,11 @@ Copyright (c) 2010-2013 Marine Biological Laboratory. See LICENSE for details.
 [2]: http://badge.fury.io/rb/dwc-archive
 [3]: https://secure.travis-ci.org/GlobalNamesArchitecture/dwc-archive.png
 [4]: http://travis-ci.org/GlobalNamesArchitecture/dwc-archive
-[5]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive.png
-[6]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive
-[7]: http://bit.ly/2IxcBA
+[5]: https://coveralls.io/repos/GlobalNameArchitecture/dwc-archive/badge.png
+[6]: https://coveralls.io/r/GlobalNameArchitecture/dwc-archive
+[7]: https://codeclimate.com/github/GlobalNameArchitecture/dwc-archive.png
+[8]: https://codeclimate.com/github/GlobalNameArchitecture/dwc-archive
+[9]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive.png
+[10]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive
+[11]: http://bit.ly/2IxcBA
+[12]: http://redis.io/topics/quickstart

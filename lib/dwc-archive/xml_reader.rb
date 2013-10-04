@@ -1,6 +1,8 @@
 # USAGE: Hash.from_xml:(YOUR_XML_STRING)
 require 'nokogiri'
-# modified from http://stackoverflow.com/questions/1230741/convert-a-nokogiri-document-to-a-ruby-hash/1231297#1231297
+# modified from 
+# http://stackoverflow.com/questions/1230741/
+# convert-a-nokogiri-document-to-a-ruby-hash/1231297#1231297
 class DarwinCore
   module XmlReader
     class << self
@@ -22,7 +24,8 @@ class DarwinCore
           if node.attributes != {}
             result_hash[:attributes] = {}
             node.attributes.keys.each do |key|
-              result_hash[:attributes][node.attributes[key].name.to_sym] = prepare(node.attributes[key].value)
+              result_hash[:attributes][node.attributes[key].
+                name.to_sym] = prepare(node.attributes[key].value)
             end
           end
           if node.children.size > 0
@@ -37,7 +40,8 @@ class DarwinCore
                 if result_hash[child.name.to_sym].is_a?(Object::Array)
                   result_hash[child.name.to_sym] << prepare(result)
                 else
-                  result_hash[child.name.to_sym] = [result_hash[child.name.to_sym]] << prepare(result)
+                  result_hash[child.name.to_sym] = 
+                    [result_hash[child.name.to_sym]] << prepare(result)
                 end
               else 
                 result_hash[child.name.to_sym] = prepare(result)

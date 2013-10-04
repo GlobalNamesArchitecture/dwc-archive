@@ -43,12 +43,16 @@ class DarwinCore
       if file_type.match(/tar.*gzip/i)
         return proc do |tmp_path, archive_path|
           FileUtils.mkdir tmp_path
-          system("tar -zxf #{esc(archive_path)} -C #{tmp_path} > /dev/null 2>&1")
+          path = esc(archive_path)
+          system("tar -zxf #{path} -C #{tmp_path} > /dev/null 2>&1")
         end
       end
 
       if file_type.match(/Zip/)
-        return proc { |tmp_path, archive_path| system("unzip -qq -d #{tmp_path} #{esc(archive_path)} > /dev/null 2>&1") }
+        return proc do |tmp_path, archive_path| 
+          path = esc(archive_path)
+          system("unzip -qq -d #{tmp_path} #{path} > /dev/null 2>&1")
+        end
       end
 
       return nil

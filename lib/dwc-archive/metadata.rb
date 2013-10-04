@@ -23,8 +23,14 @@ class DarwinCore
 
     def authors
       return nil unless defined?(@metadata[:eml][:dataset][:creator])
-      @metadata[:eml][:dataset][:creator] = [@metadata[:eml][:dataset][:creator]] unless @metadata[:eml][:dataset][:creator].class == Array 
-      @metadata[:eml][:dataset][:creator].map {|c| {:first_name => c[:individualName][:givenName], :last_name => c[:individualName][:surName], :email => c[:electronicMailAddress]}}
+      @metadata[:eml][:dataset][:creator] = 
+        [@metadata[:eml][:dataset][:creator]] unless 
+          @metadata[:eml][:dataset][:creator].class == Array 
+      @metadata[:eml][:dataset][:creator].map do |c| 
+        { first_name: c[:individualName][:givenName], 
+          last_name: c[:individualName][:surName], 
+          email: c[:electronicMailAddress] }
+      end
     end
 
     def abstract
