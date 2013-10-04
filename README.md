@@ -181,10 +181,10 @@ Copyright (c) 2010-2013 Marine Biological Laboratory. See LICENSE for details.
 [2]: http://badge.fury.io/rb/dwc-archive
 [3]: https://secure.travis-ci.org/GlobalNamesArchitecture/dwc-archive.png
 [4]: http://travis-ci.org/GlobalNamesArchitecture/dwc-archive
-[5]: https://coveralls.io/repos/GlobalNameArchitecture/dwc-archive/badge.png
-[6]: https://coveralls.io/r/GlobalNameArchitecture/dwc-archive
-[7]: https://codeclimate.com/github/GlobalNameArchitecture/dwc-archive.png
-[8]: https://codeclimate.com/github/GlobalNameArchitecture/dwc-archive
+[5]: https://coveralls.io/repos/GlobalNamesArchitecture/dwc-archive/badge.png
+[6]: https://coveralls.io/r/GlobalNamesArchitecture/dwc-archive
+[7]: https://codeclimate.com/github/GlobalNamesArchitecture/dwc-archive.png
+[8]: https://codeclimate.com/github/GlobalNamesArchitecture/dwc-archive
 [9]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive.png
 [10]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive
 [11]: http://bit.ly/2IxcBA
