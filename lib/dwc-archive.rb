@@ -1,7 +1,7 @@
 # encoding: UTF-8
 $:.unshift(File.dirname(__FILE__)) unless
-   $:.include?(File.dirname(__FILE__)) || 
-     $:.include?(File.expand_path(File.dirname(__FILE__)))
+$:.include?(File.dirname(__FILE__)) || 
+  $:.include?(File.expand_path(File.dirname(__FILE__)))
 R19 = RUBY_VERSION.split('.')[0..1].join('').to_i > 18
 raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1" unless R19
 require 'fileutils'
@@ -21,11 +21,11 @@ require 'dwc-archive/generator'
 require 'dwc-archive/generator_meta_xml'
 require 'dwc-archive/generator_eml_xml'
 require 'dwc-archive/classification_normalizer'
+require 'dwc-archive/version'
 
 class DarwinCore
 
-  VERSION = open(File.join(File.dirname(__FILE__), '..', 'VERSION')).
-    readline.strip
+  VERSION = ::Dwc::Archive::VERSION
 
   attr_reader :archive, :core, :metadata, :extensions, 
     :classification_normalizer

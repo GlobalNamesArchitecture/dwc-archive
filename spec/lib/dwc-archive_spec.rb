@@ -6,9 +6,13 @@ describe DarwinCore do
     @file_dir = File.join(File.dirname(__FILE__), '..', 'files')
   end
 
+  describe "REDIS" do
+    pending "test's should test for the existance of REDIS"
+  end
+
   describe "VERSION" do
     it "should return VERSION number" do
-      DarwinCore::VERSION.split('.').join('').to_i.should > 41
+      DarwinCore::VERSION.split('.').join('').to_i.should > 95
     end
   end
 
@@ -68,6 +72,7 @@ describe DarwinCore do
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       cn.normalize
+
       cn.normalized_data.should_not be_nil
       cn.normalized_data.size.should > 0
     end
