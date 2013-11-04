@@ -1,28 +1,10 @@
-require 'rubygems'
-require 'rake'
+require "bundler/gem_tasks"
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "dwc-archive"
-    gem.summary = %Q{Handler of Darwin Core Archive files}
-    gem.description = 'Darwin Core Archive is the current standard exchange ' +
-      'format for GLobal Names Architecture modules. ' +
-      'This gem makes it easy to incorporate files in ' +
-      'Darwin Core Archive format into a ruby project.'
-    gem.email = "dmozzherin at gmail dot com"
-    gem.homepage = "http://github.com/GlobalNamesArchitecture/dwc-archive"
-    gem.authors = ["Dmitry Mozzherin"]
-    #gem.add_dependency "fastercsv" if RUBY_VERSION.match /^1.8/
-    gem.add_dependency 'parsley-store', ">= 0.3.0"
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "cucumber", ">= 0"
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts 'Jeweler (or a dependency) not available. ' +
-    'Install it with: gem install jeweler'
-end
+# Bundler::GemHelper.install_tasks
+# require 'bundler/gem_tasks'
+# require 'rake/testtasks'
+# require 'rubygems'
+# require 'rake'
 
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|

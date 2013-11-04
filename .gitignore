@@ -17,10 +17,12 @@ tmtags
 coverage
 rdoc
 pkg
-*.gemspec
+install
 
 ## PROJECT::SPECIFIC
 tags
 bin
 .bundle
 bundle_bin
+
+
