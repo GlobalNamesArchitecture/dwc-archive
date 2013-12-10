@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'nokogiri', '~> 1.6'
-gem 'parsley-store', '~> 0.3.2'
+gem 'parsley-store', '~> 0.3'
 gem 'archive-tar-minitar', '~> 0.5'
 
 group :development do
