@@ -1,9 +1,8 @@
 # encoding: UTF-8
-$:.unshift(File.dirname(__FILE__)) unless
-$:.include?(File.dirname(__FILE__)) || 
-  $:.include?(File.expand_path(File.dirname(__FILE__)))
+
 R19 = RUBY_VERSION.split('.')[0..1].join('').to_i > 18
 raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1" unless R19
+
 require 'fileutils'
 require 'ostruct'
 require 'digest'

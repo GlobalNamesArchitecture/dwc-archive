@@ -1,11 +1,13 @@
 rvm:
-  - 1.9.3
-  - 2.0.0
+  - 1.9.3-p448
+  - 2.0.0-p353
 before_install:
   - sudo apt-get update
   - sudo apt-get install redis-server
   - gem install debugger
 # bundler_args: --without development
+services:
+  - redis-server
 script:
   - bundle exec cucumber
   - bundle exec rake
