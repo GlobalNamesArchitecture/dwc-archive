@@ -18,11 +18,13 @@ coverage
 rdoc
 pkg
 install
+Gemfile.lock
 
 ## PROJECT::SPECIFIC
 tags
 bin
 .bundle
 bundle_bin
+Gemfile.lock
 
 

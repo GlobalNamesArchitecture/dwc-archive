@@ -1,26 +1,26 @@
 # encoding: UTF-8
 
-R19 = RUBY_VERSION.split('.')[0..1].join('').to_i > 18
-raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1" unless R19
+recent_ruby = RUBY_VERSION >= '1.9.1'
+raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1" unless recent_ruby
 
 require 'fileutils'
 require 'ostruct'
 require 'digest'
 require 'csv'
 require 'logger'
-require 'dwc-archive/xml_reader'
-require 'dwc-archive/ingester'
-require 'dwc-archive/errors'
-require 'dwc-archive/expander'
-require 'dwc-archive/archive'
-require 'dwc-archive/core'
-require 'dwc-archive/extension'
-require 'dwc-archive/metadata'
-require 'dwc-archive/generator'
-require 'dwc-archive/generator_meta_xml'
-require 'dwc-archive/generator_eml_xml'
-require 'dwc-archive/classification_normalizer'
-require 'dwc-archive/version'
+require_relative 'dwc-archive/xml_reader'
+require_relative 'dwc-archive/ingester'
+require_relative 'dwc-archive/errors'
+require_relative 'dwc-archive/expander'
+require_relative 'dwc-archive/archive'
+require_relative 'dwc-archive/core'
+require_relative 'dwc-archive/extension'
+require_relative 'dwc-archive/metadata'
+require_relative 'dwc-archive/generator'
+require_relative 'dwc-archive/generator_meta_xml'
+require_relative 'dwc-archive/generator_eml_xml'
+require_relative 'dwc-archive/classification_normalizer'
+require_relative 'dwc-archive/version'
 
 class DarwinCore
 

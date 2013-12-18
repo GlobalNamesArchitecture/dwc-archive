@@ -1,28 +1,33 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dwc-archive/version'
-require File.expand_path('../lib/dwc-archive', __FILE__)
+require_relative 'lib/dwc-archive'
 
-Gem::Specification.new do |spec|
-  spec.name          = "dwc-archive"
-  spec.version       = DarwinCore::VERSION
-  spec.authors       = ["Dmitry Mozzherin"]
-  spec.email         = ["dmozzherin at gmail dot com"]
-  spec.description   = %q{Darwin Core Archive is the current standard exchange 
+Gem::Specification.new do |gem|
+  gem.name          = "dwc-archive"
+  gem.version       = DarwinCore::VERSION
+  gem.authors       = ["Dmitry Mozzherin"]
+  gem.email         = ["dmozzherin at gmail dot com"]
+  gem.description   = %q{Darwin Core Archive is the current standard exchange 
                           format for GLobal Names Architecture modules.  
                           This gem makes it easy to incorporate files in 
                           Darwin Core Archive format into a ruby project.}
-  spec.summary       = %q{Handler of Darwin Core Archive files}
-  spec.homepage      = "http://github.com/GlobalNamesArchitecture/dwc-archive"
- # spec.license       = "MIT"
+  gem.summary       = %q{Handler of Darwin Core Archive files}
+  gem.homepage      = "http://github.com/GlobalNamesArchitecture/dwc-archive"
+  gem.license       = "MIT"
 
-  spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+  gem.files         = `git ls-files`.split($/)
+  gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
+  gem.add_runtime_dependency 'nokogiri', '~> 1.6'
+  gem.add_runtime_dependency 'parsley-store', '~> 0.3'
+  gem.add_runtime_dependency 'archive-tar-minitar', '~> 0.5'
+  
+  gem.add_development_dependency 'rake', '~> 10.1'
+  gem.add_development_dependency 'bundler', '~> 1.3'
+  gem.add_development_dependency 'rspec', '~> 2.14'
+  gem.add_development_dependency 'cucumber', '~> 1.3'
+  gem.add_development_dependency 'rr', '~> 1.1'
+  gem.add_development_dependency 'coveralls', '~> 0.7'
+  gem.add_development_dependency 'debugger', '~> 1.6'
 end
 
