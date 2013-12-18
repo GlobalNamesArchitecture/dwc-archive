@@ -1,84 +1,30 @@
+require_relative '../spec_helper'
 # encoding: utf-8
-require File.expand_path(File.dirname(__FILE__) + "/../spec_helper")
 
-describe DarwinCore do
-  before(:all) do
-    @file_dir = File.join(File.dirname(__FILE__), '..', 'files')
-  end
+describe DarwinCore::ClassificationNormalizer do
 
-  describe "REDIS" do
-    pending "test's should test for the existance of REDIS"
-  end
+  subject(:dwca) { DarwinCore.new(file_path) }
+  subject(:normalizer) { DarwinCore::ClassificationNormalizer.new(dwca) }
+  
+  let(:file_dir) { File.expand_path('../../files', __FILE__) }
 
-  describe "VERSION" do
-    it "should return VERSION number" do
-      DarwinCore::VERSION.split('.').join('').to_i.should > 95
-    end
-  end
-
-  describe "::nil_field?" do
-    it "should return true for entries which normally mean nil" do
-      [nil, '/N', ''].each do |i|
-        DarwinCore.nil_field?(i).should be_true
-      end
-    end
-
-    it "should return false for fields that are not nil" do
-      [0, '0', '123', 123, 'dsdfs434343/N'].each do |i|
-        DarwinCore.nil_field?(i).should be_false
-      end
-    end
-  end
-
-  describe ".new" do
-    it "should create DarwinCore instance out of archive file" do
-      ['data.zip', 'data.tar.gz', 'minimal.tar.gz', 'junk_dir_inside.zip'].each do |file|
-        file = File.join(@file_dir, file)
-        dwc = DarwinCore.new(file)
-        dwc.archive.valid?.should be_true
-      end
-    end
-
-    it "should raise an error if archive file does not exist" do
-      file = 'not_a_file'
-      lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::FileNotFoundError)
-    end
-
-    it "should raise an error if archive is broken" do
-      file = File.join(@file_dir, 'broken.tar.gz')
-      lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::UnpackingError)
-    end
-
-    it "should raise an error if archive is invalid" do
-      file = File.join(@file_dir, 'invalid.tar.gz')
-      lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::InvalidArchiveError)
-    end
-
-    it "should raise an error if archive is not in utf-8" do
-      file = File.join(@file_dir, 'latin1.tar.gz')
-      lambda { DarwinCore.new(file) }.should raise_error(DarwinCore::EncodingError)
-    end
-
-    it "should work with files that have non-alfanumeric characters and spaces" do
-      file = File.join(@file_dir, 'file with characters(3).gz')
-      dwc = DarwinCore.new(file)
-      dwc.archive.valid?.should be_true
-    end
-  end
-
-  describe ".normalize_classification" do
+  describe '.new' do
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+    it { expect(normalizer.is_a? DarwinCore::ClassificationNormalizer).
+      to be_true }    
+  end 
+  describe "#normalize" do
     it "should return flat list if file has no parent id information" do
-      file = File.join(@file_dir, 'flat_list.tar.gz')
+      file = File.join(file_dir, 'flat_list.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       cn.normalize
 
-      cn.normalized_data.should_not be_nil
       cn.normalized_data.size.should > 0
     end
 
     it "should return array or hash of name_strings back" do
-      file = File.join(@file_dir, 'data.tar.gz')
+      file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       cn.normalize
@@ -100,7 +46,7 @@ describe DarwinCore do
     end
 
     it "should traverse DarwinCore files and assemble data for every node in memory" do
-      file = File.join(@file_dir, 'data.tar.gz')
+      file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       norm.class.should == Hash
@@ -116,7 +62,7 @@ describe DarwinCore do
     end
 
     it "should assemble synonyms from core" do
-      file = File.join(@file_dir, 'data.tar.gz')
+      file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       syn = norm.values.select {|n| n.synonyms.size > 0}[0].synonyms[0]
@@ -126,35 +72,35 @@ describe DarwinCore do
     end
 
     it "should be able to assemble vernacular names from an extension" do
-      file = File.join(@file_dir, 'data.tar.gz')
+      file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       norm.select { |k,v| !v.vernacular_names.empty? }.map { |k,v| v.vernacular_names }.size.should > 0
     end
 
     it "should be able to assemble synonyms from extension" do
-      file = File.join(@file_dir, 'synonyms_in_extension.tar.gz')
+      file = File.join(file_dir, 'synonyms_in_extension.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
     end
 
     it "should not assemble synonyms from extension with scientificName, and file name not matching 'synonym'" do
-      file = File.join(@file_dir, 'not_synonym_in_extension.tar.gz')
+      file = File.join(file_dir, 'not_synonym_in_extension.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should == 0
     end
 
     it "should not attempt to assemble extensions with with_extensions opts set to false" do
-      file = File.join(@file_dir, 'data.tar.gz')
+      file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       norm = cn.normalize(:with_extensions => false)
       norm.select { |k,v| !v.vernacular_names.empty? }.size.should == 0
       norm = cn.normalize()
       norm.select { |k,v| !v.vernacular_names.empty? }.size.should > 0
-      file = File.join(@file_dir, 'synonyms_in_extension.tar.gz')
+      file = File.join(file_dir, 'synonyms_in_extension.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       norm = cn.normalize(:with_extensions => false)
@@ -164,7 +110,7 @@ describe DarwinCore do
     end
 
     it "should assemble linnean classification if terms for it exists" do
-      file = File.join(@file_dir, 'linnean.tar.gz')
+      file = File.join(file_dir, 'linnean.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       norm = cn.normalize
@@ -172,7 +118,7 @@ describe DarwinCore do
     end
 
     it "should keep linnean classification empty if terms are not there" do
-      file = File.join(@file_dir, 'data.tar.gz')
+      file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       norm = cn.normalize
@@ -180,14 +126,14 @@ describe DarwinCore do
     end
 
     it "should be able to assemble synonyms from core" do
-      file = File.join(@file_dir, 'synonyms_in_core_accepted_name_field.tar.gz')
+      file = File.join(file_dir, 'synonyms_in_core_accepted_name_field.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
     end
 
     it "should be able to assemble synonyms from extension" do
-      file = File.join(@file_dir, 'data.tar.gz')
+      file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       nodes_with_syn = norm.select { |k,v| !v.synonyms.empty? }
@@ -196,7 +142,7 @@ describe DarwinCore do
     end
 
     it "should be able work with files which have scientificNameAuthorship" do
-      file = File.join(@file_dir, 'sci_name_authorship.tar.gz')
+      file = File.join(file_dir, 'sci_name_authorship.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       norm = cn.normalize
@@ -210,7 +156,7 @@ describe DarwinCore do
     end
 
     it "should be able work with files which repeat scientificNameAuthorship value in scientificName field" do
-      file = File.join(@file_dir, 'sci_name_authorship_dup.tar.gz')
+      file = File.join(file_dir, 'sci_name_authorship_dup.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
@@ -220,7 +166,7 @@ describe DarwinCore do
     end
 
     it "should be able open files where coreid is empty" do
-      file = File.join(@file_dir, 'empty_coreid.tar.gz')
+      file = File.join(file_dir, 'empty_coreid.tar.gz')
       dwc = DarwinCore.new(file)
       norm = dwc.normalize_classification
       taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
@@ -228,7 +174,7 @@ describe DarwinCore do
     end
 
     it "should be able to get language and locality fields for vernacular names" do
-      file = File.join(@file_dir, 'language_locality.tar.gz')
+      file = File.join(file_dir, 'language_locality.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       cn.normalize
@@ -238,7 +184,7 @@ describe DarwinCore do
     end
 
     it 'should be able to get uuids from gnub dataset' do
-      file = File.join(@file_dir, 'gnub.tar.gz')
+      file = File.join(file_dir, 'gnub.tar.gz')
       dwc = DarwinCore.new(file)
       cn = DarwinCore::ClassificationNormalizer.new(dwc)
       cn.normalize
