@@ -28,5 +28,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'cucumber', '~> 1.3'
   gem.add_development_dependency 'coveralls', '~> 0.7'
   gem.add_development_dependency 'debugger', '~> 1.6'
+  gem.add_development_dependency 'git', '~> 1.2'
 end
 
