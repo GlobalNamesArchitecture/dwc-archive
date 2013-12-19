@@ -4,11 +4,18 @@ describe DarwinCore do
   subject { DarwinCore }
   let(:file_dir) { File.expand_path('../../files', __FILE__) }
 
-  describe 'REDIS' do
-    pending 'test\'s should test for the existance of REDIS'
+  describe 'redis connection' do
+    it 'redis is running' do
+      expect do
+        socket = TCPSocket.open('localhost', 6379)
+        socket.close
+      end.to_not raise_error
+    end
   end
 
-  it { DarwinCore::VERSION =~ /\d+\.\d+\.\d/ }
+  it 'has version' do
+    expect(DarwinCore::VERSION =~ /\d+\.\d+\.\d/).to be_true
+  end
 
   describe '.nil_field?' do
     it 'is true for nil fields' do
@@ -48,7 +55,7 @@ describe DarwinCore do
   end
 
   describe '.logger' do
-    it { expect(subject.logger.is_a?(Logger)).to be_true }
+    it { expect(subject.logger.class).to eq Logger }
   end
 
   describe '.logger=' do
@@ -69,11 +76,17 @@ describe DarwinCore do
 
   describe '.new' do
     subject(:dwca) { DarwinCore.new(file_path) }
-    
-    files = %w(data.zip data.tar.gz minimal.tar.gz junk_dir_inside.zip)
-    files.each do |file|
-      let(:file_path) { File.join(file_dir, file) }
-      it { dwca.archive.valid? }
+   
+    context 'tar.gz and zip files supplied' do 
+      files = %w(data.zip data.tar.gz minimal.tar.gz junk_dir_inside.zip)
+      files.each do |file|
+        let(:file_path) { File.join(file_dir, file) }
+
+        it "creates archive from  %s" % file do
+          expect(dwca.archive.valid?).to be_true
+        end
+
+      end
     end
 
     context 'when file does not exist' do
@@ -117,7 +130,9 @@ describe DarwinCore do
 
       let(:file_path) { File.join(file_dir, 'file with characters(3).gz') }
       
-      it{ dwca.archive.valid? }
+      it 'creates archive' do
+        expect(dwca.archive.valid?).to be_true
+      end
 
     end
   end
