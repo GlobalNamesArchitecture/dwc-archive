@@ -1,5 +1,3 @@
-module Dwc
-  module Archive 
-    VERSION = "0.9.6"
-  end
+class DarwinCore
+  VERSION = "0.9.6"
 end

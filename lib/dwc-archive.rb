@@ -24,7 +24,7 @@ require_relative 'dwc-archive/version'
 
 class DarwinCore
 
-  VERSION = ::Dwc::Archive::VERSION
+  VERSION = DarwinCore::VERSION
 
   attr_reader :archive, :core, :metadata, :extensions, 
     :classification_normalizer

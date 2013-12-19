@@ -1,4 +1,4 @@
-require_relative 'lib/dwc-archive'
+require File.expand_path('../lib/dwc-archive/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name          = "dwc-archive"
