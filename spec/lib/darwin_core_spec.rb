@@ -4,6 +4,18 @@ describe DarwinCore do
   subject { DarwinCore }
   let(:file_dir) { File.expand_path('../../files', __FILE__) }
 
+  it 'breaks for ruby 1.8 and older' do
+    stub_const('RUBY_VERSION', '1.8.7') 
+    expect{load File.expand_path('../../../lib/dwc-archive.rb', __FILE__)}.
+      to raise_exception
+  end
+
+  it 'continues for ruby 1.9.1 and higher' do
+    stub_const('RUBY_VERSION', '1.9.2') 
+    expect{load File.expand_path('../../../lib/dwc-archive.rb', __FILE__)}.
+      to_not raise_exception
+  end
+
   describe 'redis connection' do
     it 'redis is running' do
       expect do
@@ -136,5 +148,91 @@ describe DarwinCore do
 
     end
   end
+
+  describe '#archive' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+
+    it 'returns archive' do
+      expect(dwca.archive.class).to be DarwinCore::Archive
+    end
+  end
+
+  describe '#core' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+
+    it 'returns core' do
+      expect(dwca.core.class).to be DarwinCore::Core
+    end
+  end
+
+  describe '#metadata' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+
+    it 'returns eml' do
+      expect(dwca.eml.class).to be DarwinCore::Metadata
+      expect(dwca.metadata.class).to be DarwinCore::Metadata
+    end
+  end
+  
+  describe '#extensions' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+
+    it 'returns extensions' do
+      extensions = dwca.extensions
+      expect(extensions.class).to be Array
+      expect(extensions[0].class).to be DarwinCore::Extension 
+    end
+  end
+
+  describe '#checksum' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+
+    it 'creates checksum hash' do
+      expect(dwca.checksum).to eq '7d94fc28ffaf434b66fbc790aa5ef00d834057bf'
+    end
+  end
+
+  describe '#has_parent_id' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+
+    context 'has classification' do
+      let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+      it 'returns true' do
+        expect(dwca.has_parent_id?).to be_true
+      end
+    end
+
+    context 'does not have classification' do
+      let(:file_path) { File.join(file_dir, 'gnub.tar.gz') }
+      it 'returns false' do
+        expect(dwca.has_parent_id?).to be_false
+      end
+    end
+  end
+
+  describe '#classification_normalizer' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+   
+    context 'not initialized' do
+      it 'is nil' do
+        expect(dwca.classification_normalizer).to be_nil
+      end
+    end
+
+    context 'initialized' do
+      it 'is DarwinCore::ClassificationNormalizer' do
+        dwca.normalize_classification
+        expect(dwca.classification_normalizer.class).
+          to be DarwinCore::ClassificationNormalizer 
+      end
+    end
+  end
+
 end
 
