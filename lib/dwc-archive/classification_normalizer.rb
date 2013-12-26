@@ -57,6 +57,10 @@ class DarwinCore
       @tree = {}
     end
 
+    def darwin_core
+      @dwc
+    end
+
     def add_name_string(name_string)
       @name_strings[name_string] = 1 unless @name_strings[name_string]
     end

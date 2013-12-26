@@ -149,6 +149,24 @@ describe DarwinCore do
     end
   end
 
+  describe 'file_name' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+
+    it 'returns file name' do
+      expect(dwca.file_name).to eq 'data.tar.gz'
+    end
+  end
+
+  describe 'path' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+
+    it 'returns path of the archive' do
+      expect(dwca.path).to match %r|spec.files.data\.tar\.gz|
+    end
+  end
+
   describe '#archive' do
     subject(:dwca) { DarwinCore.new(file_path) }
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }

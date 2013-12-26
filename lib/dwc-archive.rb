@@ -70,6 +70,14 @@ class DarwinCore
     @extensions = get_extensions
   end
 
+  def file_name
+    File.split(@dwc_path).last
+  end
+
+  def path
+    File.expand_path(@dwc_path)
+  end
+
   # generates a hash from a classification data with path to each node, 
   # list of synonyms and vernacular names.
   def normalize_classification
