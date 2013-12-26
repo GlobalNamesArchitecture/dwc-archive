@@ -13,38 +13,85 @@ describe DarwinCore::ClassificationNormalizer do
     it { expect(normalizer.is_a? DarwinCore::ClassificationNormalizer).
       to be_true }    
   end 
-  describe "#normalize" do
-    it "should return flat list if file has no parent id information" do
-      file = File.join(file_dir, 'flat_list.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      cn.normalize
 
-      cn.normalized_data.size.should > 0
+  describe '#normalize' do
+    
+    let(:file_path) { File.join(file_dir, 'flat_list.tar.gz') }
+    
+    it 'returns flat list' do
+      normalizer.normalize
+      expect(normalizer.normalized_data.size).to be > 0
     end
 
-    it "should return array or hash of name_strings back" do
-      file = File.join(file_dir, 'data.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      cn.normalize
-      name_strings = cn.name_strings
-      name_strings.is_a?(Array).should be_true
-      name_strings.size.should > 1
-      name_strings = cn.name_strings(with_hash: true)
-      name_strings.size.should > 1
-      name_strings.is_a?(Hash).should be_true
-      name_strings.is_a?(Hash).should be_true
-      name_strings.values.uniq.should == [1]
-      vernacular_name_strings = cn.vernacular_name_strings
-      vernacular_name_strings.is_a?(Array).should be_true
-      vernacular_name_strings.size.should > 0
-      vernacular_name_strings = cn.vernacular_name_strings(with_hash: true)
-      vernacular_name_strings.size.should > 0
-      vernacular_name_strings.is_a?(Hash).should be_true
-      vernacular_name_strings.values.uniq.should == [1]
+  end
+
+  describe '#name_strings' do 
+    let(:file_path) { File.join(file_dir, 'flat_list.tar.gz') }
+
+    context 'before running #normalize' do
+      it 'is empty' do
+        expect(normalizer.name_strings).to be_empty
+      end
+    end
+    
+    context 'after running #normalize' do
+      let(:normalized) { normalizer.tap { |n| n.normalize } }
+
+      context 'default attibutes' do
+        it 'returns array' do
+          expect(normalized.name_strings).to be_kind_of Array
+          expect(normalized.name_strings.size).to be > 1
+        end
+      end
+
+      context 'with_hash attribute' do
+        it 'returns hash' do
+          strings = normalized.name_strings(with_hash:true)
+          expect(strings).to be_kind_of Hash
+          expect(strings.size).to be > 1
+          expect(strings.values.uniq).to eq [1]
+        end
+      end
     end
 
+  end
+
+  describe '#vernacular_name_strings' do
+    let(:file_path) { File.join(file_dir, 'flat_list.tar.gz') }
+
+    context 'before running #normalize' do
+      subject(:vern) { normalizer.vernacular_name_strings }
+      it 'is empty' do
+        expect(vern).to be_empty
+      end
+    end
+    
+    context 'after running #normalize' do
+      let(:normalized) { normalizer.tap { |n| n.normalize } }
+      subject(:vern) { normalized.vernacular_name_strings }
+      subject(:vern_w_hash) { normalized.
+        vernacular_name_strings(with_hash: true) }
+
+      context 'default attibutes' do
+        it 'returns array' do
+          expect(vern).to be_kind_of Array
+          expect(vern.size).to be > 0 
+        end
+      end
+
+      context 'with_hash attribute' do
+        it 'returns hash' do
+          expect(vern_w_hash).to be_kind_of Hash
+          expect(vern_w_hash.size).to be > 0 
+          expect(vern_w_hash.values.uniq).to eq [1]
+        end
+      end
+
+    end
+
+  end
+
+  describe 'blabla' do
     it "should traverse DarwinCore files and assemble data for every node in memory" do
       file = File.join(file_dir, 'data.tar.gz')
       dwc = DarwinCore.new(file)

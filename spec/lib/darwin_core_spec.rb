@@ -7,13 +7,13 @@ describe DarwinCore do
   it 'breaks for ruby 1.8 and older' do
     stub_const('RUBY_VERSION', '1.8.7') 
     expect{load File.expand_path('../../../lib/dwc-archive.rb', __FILE__)}.
-      to raise_exception
+      to raise_error
   end
 
   it 'continues for ruby 1.9.1 and higher' do
     stub_const('RUBY_VERSION', '1.9.2') 
     expect{load File.expand_path('../../../lib/dwc-archive.rb', __FILE__)}.
-      to_not raise_exception
+      to_not raise_error
   end
 
   describe 'redis connection' do
@@ -50,10 +50,10 @@ describe DarwinCore do
       Dir.chdir(tmp_dir)
       FileUtils.mkdir('dwc_123') unless File.exists?('dwc_123')
       dwca_dirs =  Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
-      expect(dwca_dirs.size > 0).to be_true
+      expect(dwca_dirs.size).to be > 0
       subject.clean_all
       dwca_dirs =  Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
-      expect(dwca_dirs.size == 0).to be_true
+      expect(dwca_dirs.size).to be 0
     end
 
     context 'no dwc files exist' do
@@ -61,13 +61,13 @@ describe DarwinCore do
         subject.clean_all
         subject.clean_all
         dwca_dirs =  Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
-        expect(dwca_dirs.size == 0).to be_true
+        expect(dwca_dirs.size).to be 0
       end
     end
   end
 
   describe '.logger' do
-    it { expect(subject.logger.class).to eq Logger }
+    it { expect(subject.logger).to be_kind_of Logger }
   end
 
   describe '.logger=' do
@@ -82,7 +82,7 @@ describe DarwinCore do
       subject.logger = 'fake logger'
       expect(subject.logger).to eq 'fake logger'
       subject.logger_reset
-      expect(subject.logger.class).to eq Logger
+      expect(subject.logger).to be_kind_of Logger
     end
   end
 
@@ -154,7 +154,7 @@ describe DarwinCore do
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }
 
     it 'returns archive' do
-      expect(dwca.archive.class).to be DarwinCore::Archive
+      expect(dwca.archive).to be_kind_of DarwinCore::Archive
     end
   end
 
@@ -163,7 +163,7 @@ describe DarwinCore do
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }
 
     it 'returns core' do
-      expect(dwca.core.class).to be DarwinCore::Core
+      expect(dwca.core).to be_kind_of DarwinCore::Core
     end
   end
 
@@ -172,8 +172,8 @@ describe DarwinCore do
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }
 
     it 'returns eml' do
-      expect(dwca.eml.class).to be DarwinCore::Metadata
-      expect(dwca.metadata.class).to be DarwinCore::Metadata
+      expect(dwca.eml).to be_kind_of DarwinCore::Metadata
+      expect(dwca.metadata).to be_kind_of DarwinCore::Metadata
     end
   end
   
@@ -183,8 +183,8 @@ describe DarwinCore do
 
     it 'returns extensions' do
       extensions = dwca.extensions
-      expect(extensions.class).to be Array
-      expect(extensions[0].class).to be DarwinCore::Extension 
+      expect(extensions).to be_kind_of Array
+      expect(extensions[0]).to be_kind_of DarwinCore::Extension 
     end
   end
 
@@ -228,9 +228,32 @@ describe DarwinCore do
     context 'initialized' do
       it 'is DarwinCore::ClassificationNormalizer' do
         dwca.normalize_classification
-        expect(dwca.classification_normalizer.class).
-          to be DarwinCore::ClassificationNormalizer 
+        expect(dwca.classification_normalizer).
+          to be_kind_of DarwinCore::ClassificationNormalizer 
       end
+    end
+  end
+
+  describe '#normalize_classification' do
+    subject(:dwca) { DarwinCore.new(file_path) }
+    let(:file_path) { File.join(file_dir, 'data.tar.gz') }
+    let(:normalized) { dwca.normalize_classification }
+
+    it 'returns hash' do
+      expect(normalized).to be_kind_of Hash
+    end
+
+    it 'uses utf-8 encoding for classification paths' do
+      encodings = []
+      normalized.each do |taxon_id, taxon|
+        taxon.classification_path.each { |p| encodings << p.encoding }
+      end
+      expect(encodings.uniq!.map { |e| e.to_s }).to eq ['UTF-8']
+    end
+
+    it 'has elements of DarwinCore::TaxonNormalized type' do
+      expect(normalized['leptogastrinae:tid:2857']).
+        to be_kind_of DarwinCore::TaxonNormalized
     end
   end
 
