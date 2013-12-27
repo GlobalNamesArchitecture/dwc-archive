@@ -1,5 +1,5 @@
-require_relative '../spec_helper'
 # encoding: utf-8
+require_relative '../spec_helper'
 
 describe DarwinCore::Generator do
   subject(:gen) { DarwinCore::Generator.new(dwc_path, tmp_dir) }
