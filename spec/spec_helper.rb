@@ -1,3 +1,4 @@
+# encoding: utf-8
 # HACK: to suppress warnings
 $VERBOSE = nil
 
