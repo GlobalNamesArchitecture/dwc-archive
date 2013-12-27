@@ -175,7 +175,11 @@ Note on Patches/Pull Requests
 Copyright
 ---------
 
-Copyright (c) 2010-2013 Marine Biological Laboratory. See LICENSE for details.
+Author -- [Dmitry Mozzherin][13]
+
+Contributors -- [Matt Yoder][14]
+
+Copyright (c) 2010-2014 [Marine Biological Laboratory][15]. See LICENSE for details.
 
 [1]: https://badge.fury.io/rb/dwc-archive.png
 [2]: http://badge.fury.io/rb/dwc-archive
@@ -189,3 +193,6 @@ Copyright (c) 2010-2013 Marine Biological Laboratory. See LICENSE for details.
 [10]: https://gemnasium.com/GlobalNamesArchitecture/dwc-archive
 [11]: http://bit.ly/2IxcBA
 [12]: http://redis.io/topics/quickstart
+[13]: https://github.com/dimus
+[14]: https://github.com/mjy
+[15]: http://mbl.edu
