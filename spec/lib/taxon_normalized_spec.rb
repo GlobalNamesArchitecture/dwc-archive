@@ -91,19 +91,40 @@ describe DarwinCore::TaxonNormalized do
     end
 
     describe '#synonyms' do
-      it 'returns array of sysnonyms' do
-        expect(tn.synonyms).to be_kind_of Array
-        synonym = tn.synonyms[0]
-        expect(synonym).to be_kind_of DarwinCore::SynonymNormalized
-        expect(synonym).to be_kind_of Struct
+      context 'synonyms not found' do 
+
+        it 'returns empty array' do
+          expect(tn.synonyms).to be_kind_of Array
+          synonym = tn.synonyms[0]
+          expect(synonym).to be_kind_of DarwinCore::SynonymNormalized
+          expect(synonym).to be_kind_of Struct
+        end
+      end
+
+      context 'synonyms found' do
+        let(:tn) { normalized['leptogastrinae:tid:2858'] }
+        it 'returns array of synonyms' do
+          expect(tn.synonyms).to be_kind_of Array
+          expect(tn.synonyms).to be_empty
+        end
       end
     end
 
     describe '#vernacular_names' do
-      context 'no vernacular names' do
+      context 'vernacular names not found' do
         it 'returns empty array' do
           expect(tn.vernacular_names).to be_kind_of Array
           expect(tn.vernacular_names).to be_empty
+        end
+      end
+
+      context 'vernacular names found' do
+        let(:tn) { normalized['leptogastrinae:tid:42'] }
+        it 'returns array with vernacular name structure' do
+          expect(tn.vernacular_names).to be_kind_of Array
+          vn = tn.vernacular_names[0]
+          expect(vn).to be_kind_of DarwinCore::VernacularNormalized
+          expect(vn).to be_kind_of Struct
         end
       end
     end

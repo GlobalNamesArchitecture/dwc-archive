@@ -7,6 +7,7 @@ describe DarwinCore::ClassificationNormalizer do
   subject(:normalizer) { DarwinCore::ClassificationNormalizer.new(dwca) }
   
   let(:file_dir) { File.expand_path('../../files', __FILE__) }
+  let(:file_path) { File.join(file_dir, file_name) }
 
   describe '.new' do
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }
@@ -15,14 +16,142 @@ describe DarwinCore::ClassificationNormalizer do
   end 
 
   describe '#normalize' do
-    
-    let(:file_path) { File.join(file_dir, 'flat_list.tar.gz') }
-    
-    it 'returns flat list' do
-      normalizer.normalize
-      expect(normalizer.normalized_data.size).to be > 0
+    let(:file_name) { 'data.tar.gz' }
+
+    it 'returns normalized data' do
+      res = normalizer.normalize
+      expect(res).to be normalizer.normalized_data
     end
 
+
+    context 'flat list' do
+      let(:file_path) { File.join(file_dir, 'flat_list.tar.gz') }
+      
+      it 'returns flat list' do
+        normalizer.normalize
+        expect(normalizer.normalized_data).to be_kind_of Hash
+        expect(normalizer.normalized_data.size).to be > 0
+      end
+    end
+
+    context 'synonyms from core' do
+      let(:file_name) { 'synonyms_in_core_accepted_name_field.tar.gz' }
+
+      it 'ingests synonyms using accepted_name field' do
+        res = normalizer.normalize
+        syn = res.select { |k,v| !v.synonyms.empty? }.
+          map { |k,v| v }
+        expect(syn.size).to be > 0
+        expect(syn[0].synonyms[0]).to be_kind_of DarwinCore::SynonymNormalized
+      end
+    end
+
+    context 'synonyms from extension' do
+      let(:file_name) { 'synonyms_in_extension.tar.gz' }
+      it 'ingests synonyms from extension' do
+        res = normalizer.normalize
+        syn = res.select { |k,v| !v.synonyms.empty? }.
+          map { |k,v| v }
+        expect(syn.size).to be > 0
+        expect(syn[0].synonyms[0]).to be_kind_of DarwinCore::SynonymNormalized
+      end
+    end
+
+    context 'synonyms are not extensions' do
+      let(:file_name) { 'not_synonym_in_extension.tar.gz' }
+
+      it 'does not ingest synonyms' do
+        res = normalizer.normalize
+        syn = res.select { |k,v| !v.synonyms.empty? }.
+          map { |k,v| v }
+        expect(syn).to be_empty
+      end
+    end
+
+    context 'with_extensions flag set on false' do
+      let(:file_name) { 'synonyms_in_extension.tar.gz' }
+      it 'should not harvest extensions' do
+        res = normalizer.normalize(with_extensions: false)
+        syn = res.select { |k,v| !v.synonyms.empty? }.
+          map { |k,v| v }
+        expect(syn).to be_empty
+      end
+    end
+
+    context 'linnean classification in file (class, order etc fields)' do
+      let(:file_name) { 'linnean.tar.gz' }
+
+      it 'assembles classification' do
+        res = normalizer.normalize
+        expect(res.first[1]).to be_kind_of DarwinCore::TaxonNormalized
+        expect(res.first[1].linnean_classification_path).
+          to eq [["Animalia", :kingdom], 
+                 ["Arthropoda", :phylum], 
+                 ["Insecta", :class], 
+                 ["Diptera", :order], 
+                 ["Cecidomyiidae", :family], 
+                 ["Resseliella", :genus]]
+
+      end
+    end
+
+    context 'no linnean fields are given' do
+      it 'returns empty linnean classification' do
+        res = normalizer.normalize
+        expect(res.first[1]).to be_kind_of DarwinCore::TaxonNormalized
+        expect(res.first[1].linnean_classification_path).to be_empty
+      end
+    end
+
+    context 'in the presence of scientificNameAuthorship field' do
+      let(:file_name) { 'sci_name_authorship.tar.gz' }
+      it 'returns normalized data' do
+        normalizer.normalize
+        expect(normalizer.darwin_core.file_name).
+          to eq 'sci_name_authorship.tar.gz'
+        expect(normalizer.normalized_data).to be_kind_of Hash
+        expect(normalizer.normalized_data.size).to be > 0
+        tn = normalizer.normalized_data['leptogastrinae:tid:2688']
+        expect(tn.current_name).to eq 'Leptogaster fornicata Martin, 1957'
+        expect(tn.current_name_canonical).to eq 'Leptogaster fornicata'
+      end
+    end
+
+    context 'when scientificNameAuthorship duplicates author info' do
+      let(:file_name) { 'sci_name_authorship_dup.tar.gz' }
+      it 'returns normalized data' do
+        normalizer.normalize
+        expect(normalizer.darwin_core.file_name).
+          to eq 'sci_name_authorship_dup.tar.gz'
+        expect(normalizer.normalized_data).to be_kind_of Hash
+        expect(normalizer.normalized_data.size).to be > 0
+        tn = normalizer.normalized_data['leptogastrinae:tid:2688']
+        expect(tn.current_name).to eq 'Leptogaster fornicata Martin, 1957'
+        expect(tn.current_name_canonical).to eq 'Leptogaster fornicata'
+      end
+    end
+
+    context 'coreid is empty' do
+      let(:file_name) { 'empty_coreid.tar.gz' }
+      it 'should ingest information' do
+        res = normalizer.normalize
+        expect(normalizer.darwin_core.file_name).
+          to eq 'empty_coreid.tar.gz'
+        tn = res['Taxon9']
+        expect(tn.current_name).to eq 'Amanita phalloides'
+      end
+    end
+
+    context 'vernacular locality info' do
+      let(:file_name) { 'language_locality.tar.gz' }
+      it 'should ingest locality and language' do
+        res = normalizer.normalize
+        tn = res['leptogastrinae:tid:42']
+        vn = tn.vernacular_names[0]
+        expect(vn.language).to eq 'en'
+        expect(vn.locality).to eq 'New England'
+      end
+    end
   end
 
   describe '#name_strings' do 
@@ -89,160 +218,6 @@ describe DarwinCore::ClassificationNormalizer do
 
     end
 
-  end
-
-  describe 'blabla' do
-    it "should traverse DarwinCore files and assemble data for every node in memory" do
-      file = File.join(file_dir, 'data.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      norm.class.should == Hash
-      path_encodings = []
-      norm.each do |taxon_id, taxon|
-        taxon.classification_path.each {|p| path_encodings << p.encoding}
-      end
-      path_encodings.uniq!
-      path_encodings.size.should == 1
-      path_encodings[0].to_s.should == "UTF-8"
-      norm['leptogastrinae:tid:2857'].class.should == DarwinCore::TaxonNormalized
-      norm['leptogastrinae:tid:2857'].source.should == 'http://leptogastrinae.lifedesks.org/pages/2857'
-    end
-
-    it "should assemble synonyms from core" do
-      file = File.join(file_dir, 'data.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      syn = norm.values.select {|n| n.synonyms.size > 0}[0].synonyms[0]
-      syn.id.should == 'leptogastrinae:tid:127'
-      syn.name.should == "Leptogastridae"
-      syn.source.should == 'http://leptogastrinae.lifedesks.org/pages/127'
-    end
-
-    it "should be able to assemble vernacular names from an extension" do
-      file = File.join(file_dir, 'data.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      norm.select { |k,v| !v.vernacular_names.empty? }.map { |k,v| v.vernacular_names }.size.should > 0
-    end
-
-    it "should be able to assemble synonyms from extension" do
-      file = File.join(file_dir, 'synonyms_in_extension.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
-    end
-
-    it "should not assemble synonyms from extension with scientificName, and file name not matching 'synonym'" do
-      file = File.join(file_dir, 'not_synonym_in_extension.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should == 0
-    end
-
-    it "should not attempt to assemble extensions with with_extensions opts set to false" do
-      file = File.join(file_dir, 'data.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      norm = cn.normalize(:with_extensions => false)
-      norm.select { |k,v| !v.vernacular_names.empty? }.size.should == 0
-      norm = cn.normalize()
-      norm.select { |k,v| !v.vernacular_names.empty? }.size.should > 0
-      file = File.join(file_dir, 'synonyms_in_extension.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      norm = cn.normalize(:with_extensions => false)
-      norm.select { |k,v| !v.synonyms.empty? }.size.should == 0
-      norm = cn.normalize()
-      norm.select { |k,v| !v.synonyms.empty? }.size.should > 0
-    end
-
-    it "should assemble linnean classification if terms for it exists" do
-      file = File.join(file_dir, 'linnean.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      norm = cn.normalize
-      cn.normalized_data.first.last.linnean_classification_path.should == [["Animalia", :kingdom], ["Arthropoda", :phylum], ["Insecta", :class], ["Diptera", :order], ["Cecidomyiidae", :family], ["Resseliella", :genus]]
-    end
-
-    it "should keep linnean classification empty if terms are not there" do
-      file = File.join(file_dir, 'data.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      norm = cn.normalize
-      cn.normalized_data.first.last.linnean_classification_path.should == []
-    end
-
-    it "should be able to assemble synonyms from core" do
-      file = File.join(file_dir, 'synonyms_in_core_accepted_name_field.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      norm.select { |k,v| !v.synonyms.empty? }.map { |k,v| v.synonyms }.size.should > 0
-    end
-
-    it "should be able to assemble synonyms from extension" do
-      file = File.join(file_dir, 'data.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      nodes_with_syn = norm.select { |k,v| !v.synonyms.empty? }
-      nodes_with_syn.map { |k,v| v.synonyms }.size.should > 0
-      nodes_with_syn.first[1].synonyms.first.status.should == 'synonym'
-    end
-
-    it "should be able work with files which have scientificNameAuthorship" do
-      file = File.join(file_dir, 'sci_name_authorship.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      norm = cn.normalize
-      path_encodings = norm.map {|taxon_id, taxon| taxon.classification_path}.flatten.map { |name| name.encoding.to_s }.uniq
-      path_encodings.size.should == 1
-      path_encodings[0].should == "UTF-8"
-      taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
-      taxa.size.should == 507
-      syn = norm.select{|k,v| v.synonyms.size > 0}.map {|k,v| v.synonyms}.flatten.select {|s| s.name.split(" ").size  > s.canonical_name.split(" ").size}
-      syn.size.should == 50
-    end
-
-    it "should be able work with files which repeat scientificNameAuthorship value in scientificName field" do
-      file = File.join(file_dir, 'sci_name_authorship_dup.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
-      taxa.size.should == 507
-      syn = norm.select{|k,v| v.synonyms.size > 0}.map {|k,v| v.synonyms}.flatten.select {|s| s.name.split(" ").size  > s.canonical_name.split(" ").size}
-      syn.size.should == 50
-    end
-
-    it "should be able open files where coreid is empty" do
-      file = File.join(file_dir, 'empty_coreid.tar.gz')
-      dwc = DarwinCore.new(file)
-      norm = dwc.normalize_classification
-      taxa = norm.select{|k,v| v.current_name_canonical.match " "}.select{|k,v| [v.current_name.split(" ").size >  v.current_name_canonical.split(" ").size]}
-      taxa.size.should == 2
-    end
-
-    it "should be able to get language and locality fields for vernacular names" do
-      file = File.join(file_dir, 'language_locality.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      cn.normalize
-      vn = cn.normalized_data['leptogastrinae:tid:42'].vernacular_names.first
-      vn.language.should == 'en'
-      vn.locality.should == 'New England'
-    end
-
-    it 'should be able to get uuids from gnub dataset' do
-      file = File.join(file_dir, 'gnub.tar.gz')
-      dwc = DarwinCore.new(file)
-      cn = DarwinCore::ClassificationNormalizer.new(dwc)
-      cn.normalize
-      vn = cn.normalized_data['9c399f90-cfb8-5a7f-9a21-18285a473488']
-      vn.class.should == DarwinCore::GnubTaxon
-      vn.uuid.should == '8faa91f6-663f-4cfe-b785-0ab4e9415a51'
-      vn.uuid_path.should == [
-        "9a9f9eeb-d5f9-4ff6-b6cb-a5ad345e33c3",
-        "bf4c91c0-3d1f-44c7-9d3b-249382182a26",
-        "8faa91f6-663f-4cfe-b785-0ab4e9415a51"]
-    end
   end
 
 end
