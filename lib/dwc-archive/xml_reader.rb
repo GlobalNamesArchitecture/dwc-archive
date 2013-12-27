@@ -7,12 +7,8 @@ class DarwinCore
   module XmlReader
     class << self
       def from_xml(xml_io) 
-        begin
-          result = Nokogiri::XML(xml_io)
-          return { result.root.name.to_sym => xml_node_to_hash(result.root)} 
-        rescue Exception => e
-          raise e
-        end
+        result = Nokogiri::XML(xml_io)
+        return { result.root.name.to_sym => xml_node_to_hash(result.root)} 
       end
 
       private
