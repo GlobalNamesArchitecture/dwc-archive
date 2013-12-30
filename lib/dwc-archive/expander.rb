@@ -1,5 +1,6 @@
 class DarwinCore
   class Expander
+
     def initialize(archive_path, tmp_dir)
       @archive_path = archive_path
       @tmp_dir = tmp_dir

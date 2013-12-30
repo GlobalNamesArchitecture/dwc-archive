@@ -1,7 +1,7 @@
-require 'nokogiri'
 class DarwinCore
   class Archive
     attr_reader :meta, :eml
+
     def initialize(archive_path, tmp_dir)
       @archive_path = archive_path
       @tmp_dir = tmp_dir
