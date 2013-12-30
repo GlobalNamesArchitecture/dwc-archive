@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:md="eml://ecoinformatics.org/methods-2.1.1" xmlns:proj="eml://ecoinformatics.org/project-2.1.1" xmlns:d="eml://ecoinformatics.org/dataset-2.1.1" xmlns:res="eml://ecoinformatics.org/resource-2.1.1" xmlns:dc="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packageId="1234/2013-12-30::19:45:33" system="http://globalnames.org" xml:lang="en" xsi:schemaLocation="eml_uri">
+  <dataset id="1234">
+    <title>Test Classification</title>
+    <license>http://creativecommons.org/licenses/by-sa/3.0/</license>
+    <creator id="1" scope="document">
+      <individualName>
+        <givenName>John</givenName>
+        <surName>Doe</surName>
+      </individualName>
+      <organizationName>Example</organizationName>
+      <positionName>Assistant Professor</positionName>
+      <onlineUrl>http://example.org</onlineUrl>
+      <electronicMailAddress>jdoe@example.com</electronicMailAddress>
+    </creator>
+    <creator id="2" scope="document">
+      <individualName>
+        <givenName>Jane</givenName>
+        <surName>Doe</surName>
+      </individualName>
+      <electronicMailAddress>jane@example.com</electronicMailAddress>
+    </creator>
+    <metadataProvider>
+      <individualName>
+        <givenName>Jim</givenName>
+        <surName>Doe</surName>
+      </individualName>
+      <onlineUrl>http://aggregator.example.org</onlineUrl>
+      <electronicMailAddress>jimdoe@example.com</electronicMailAddress>
+    </metadataProvider>
+    <pubDate>2013-12-30 14:45:33 -0500</pubDate>
+    <abstract>
+      <para>test classification</para>
+    </abstract>
+    <contact>
+      <references>1</references>
+    </contact>
+    <contact>
+      <references>2</references>
+    </contact>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <citation>Test classification: Doe John, Doe Jane, Taxnonmy, 10, 1, 2010</citation>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
