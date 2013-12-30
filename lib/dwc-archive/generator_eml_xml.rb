@@ -88,20 +88,6 @@ class DarwinCore
         end
       end
 
-      def build_header(xml)
-        xml.eml(packageId:      "%s/%s" % [@data[:id], timestamp],
-          system:               @data[:system] || 'http://globalnames.org',
-          :'xml:lang' =>         'en',
-          :'xmlns:eml' =>        'eml://ecoinformatics.org/eml-2.1.1',
-          :'xmlns:md' =>         'eml://ecoinformatics.org/methods-2.1.1',
-          :'xmlns:proj' =>       'eml://ecoinformatics.org/project-2.1.1',
-          :'xmlns:d' =>          'eml://ecoinformatics.org/dataset-2.1.1',
-          :'xmlns:res' =>        'eml://ecoinformatics.org/resource-2.1.1',
-          :'xmlns:dc' =>         'http://purl.org/dc/terms/',
-          :'xmlns:xsi' =>        'http://www.w3.org/2001/XMLSchema-instance',
-          :'xsi:schemaLocation' => 'eml_uri') 
-      end
-
       def build_person(xml, data)
         a = data
         xml.individualName do
