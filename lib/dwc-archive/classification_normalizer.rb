@@ -72,21 +72,11 @@ class DarwinCore
     end
 
     def name_strings(opts = {})
-      opts = { with_hash: false }.merge(opts)
-      if !!opts[:with_hash]
-        @name_strings
-      else
-        @name_strings.keys
-      end
+      process_strings(@name_strings, opts)
     end
 
     def vernacular_name_strings(opts = {})
-      opts = { with_hash: false }.merge(opts)
-      if !!opts[:with_hash]
-        @vernacular_name_strings
-      else
-        @vernacular_name_strings.keys
-      end
+      process_strings(@vernacular_name_strings, opts)
     end
 
     def normalize(opts = {})
@@ -109,6 +99,15 @@ class DarwinCore
     end
 
   private
+
+    def process_strings(strings, opts)
+      opts = { with_hash: false }.merge(opts)
+      if !!opts[:with_hash]
+        strings
+      else
+        strings.keys
+      end
+    end
 
     def get_canonical_name(a_scientific_name)
       if @with_canonical_names
