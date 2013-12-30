@@ -26,12 +26,12 @@ require_relative 'dwc-archive/version'
 class DarwinCore
 
   VERSION = DarwinCore::VERSION
+  DEFAULT_TMP_DIR = "/tmp"
 
   attr_reader :archive, :core, :metadata, :extensions, 
     :classification_normalizer
   alias :eml :metadata
 
-  DEFAULT_TMP_DIR = "/tmp"
 
   def self.nil_field?(field)
     return true if [nil, '', '/N'].include?(field)
