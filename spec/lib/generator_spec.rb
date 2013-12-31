@@ -50,16 +50,25 @@ describe DarwinCore::Generator do
                         'http://rs.gbif.org/terms/1.0/VernacularName')
 
       gen.add_meta_xml
-      meta = File.read(File.join(gen.path, 'meta.xml'))
-      expect(meta).to match %r|<location>core.csv</location>|
+      meta = File.read(File.join(gen.path, 'meta.xml')).strip
+      meta_from_file= File.read(File.expand_path(
+        '../../files/generator_meta.xml', 
+        __FILE__)).strip
+      expect(meta).to eq meta_from_file
     end
   end
 
   describe '#add_eml_data' do
     it 'adds eml data' do
       gen.add_eml_xml(EML_DATA)
-      eml = File.read(File.join(gen.path, 'eml.xml'))
-      expect(eml).to match /jdoe@example.com/
+      eml = File.read(File.join(gen.path, 'eml.xml')).strip
+      eml.gsub!(%r|(<pubDate>).*?(</pubDate>)|, '\12013-12-30 14:45:33 -0500\2')
+      eml.gsub!(/(packageId=").*?"/, '\11234/2013-12-30::19:45:33"')
+
+      eml_from_file = File.read(File.expand_path(
+        '../../files/generator_eml.xml', 
+        __FILE__)).strip
+      expect(eml.strip).to eq eml_from_file.strip
     end
   end
 

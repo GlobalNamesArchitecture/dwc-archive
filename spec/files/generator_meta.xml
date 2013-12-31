@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<archive xmlns="http://rs.tdwg.org/dwc/text/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://rs.tdwg.org/dwc/terms/xsd/archive/ http://darwincore.googlecode.com/svn/trunk/text/tdwg_dwc_text.xsd">
+  <core encoding="UTF-8" fieldsTerminatedBy="," fieldsEnclosedBy="&quot;" linesTerminatedBy="&#10;" rowType="http://rs.tdwg.org/dwc/terms/Taxon" ignoreHeaderLines="1">
+    <files>
+      <location>core.csv</location>
+    </files>
+    <id index="0"/>
+    <field term="http://rs.tdwg.org/dwc/terms/parentNameUsageID" index="1"/>
+    <field term="http://rs.tdwg.org/dwc/terms/scientificName" index="2"/>
+    <field term="http://rs.tdwg.org/dwc/terms/taxonRank" index="3"/>
+  </core>
+  <extension encoding="UTF-8" fieldsTerminatedBy="," fieldsEnclosedBy="&quot;" linesTerminatedBy="&#10;" rowType="http://rs.gbif.org/terms/1.0/VernacularName" ignoreHeaderLines="1">
+    <files>
+      <location>vern.csv</location>
+    </files>
+    <coreid index="0"/>
+    <field term="http://rs.tdwg.org/dwc/terms/vernacularName" index="1"/>
+  </extension>
+</archive>

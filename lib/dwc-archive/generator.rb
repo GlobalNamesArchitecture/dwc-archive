@@ -21,12 +21,7 @@ class DarwinCore
     def add_core(data, file_name, keep_headers = true)
       c = CSV.open(File.join(@path,file_name), @write)
       header = data.shift
-      fields = header.map do |f|
-        f.strip!
-        err = 'No header in core data, or header fields are not urls'
-        raise DarwinCore::GeneratorError.new(err) unless f.match(/^http:\/\//)
-        f.split('/')[-1]
-      end
+      fields = get_fields(header, 'core') 
       data.unshift(fields) if keep_headers
       ignore_header_lines = keep_headers ? 1 : 0
       @meta_xml_data[:core] = { fields: header, 
@@ -41,12 +36,7 @@ class DarwinCore
                       row_type = 'http://rs.tdwg.org/dwc/terms/Taxon')
       c = CSV.open(File.join(@path,file_name), @write)
       header = data.shift
-      fields = header.map do |f|
-        f.strip!
-        err = 'No header in core data, or header fields are not urls'
-        raise DarwinCore::GeneratorError.new(err) unless f.match(/^http:\/\//)
-        f.split('/')[-1]
-      end
+      fields = get_fields(header, 'extension')
       data.unshift(fields) if keep_headers
       ignore_header_lines = keep_headers ? 1 : 0
       @meta_xml_data[:extensions] << { fields: header, 
@@ -80,6 +70,17 @@ class DarwinCore
     def pack
       a = "cd #{@path}; tar -zcf #{@dwc_path} *"
       system(a)
+    end
+
+    private
+
+    def get_fields(header, file_type)
+      header.map do |f|
+        f.strip!
+        err = "No header in %s data, or header fields are not urls" % file_type
+        raise DarwinCore::GeneratorError.new(err) unless f.match(/^http:\/\//)
+        f.split('/')[-1]
+      end
     end
   end
 end
