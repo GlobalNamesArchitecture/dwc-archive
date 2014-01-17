@@ -25,7 +25,6 @@ require_relative 'dwc-archive/version'
 
 class DarwinCore
 
-  VERSION = DarwinCore::VERSION
   DEFAULT_TMP_DIR = "/tmp"
 
   attr_reader :archive, :core, :metadata, :extensions, 
