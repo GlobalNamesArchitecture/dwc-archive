@@ -29,5 +29,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'coveralls', '~> 0.7'
   gem.add_development_dependency 'debugger', '~> 1.6'
   gem.add_development_dependency 'git', '~> 1.2'
+  gem.add_development_dependency 'travis-lint', '~> 1.7'
 end
 
