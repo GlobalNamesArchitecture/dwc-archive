@@ -1,6 +1,6 @@
 describe DarwinCore::XmlReader do
-  describe '.from_xml' do
-    let(:file) { File.expand_path('../../files/meta.xml', __FILE__) }
+  describe ".from_xml" do
+    let(:file) { File.expand_path("../../files/meta.xml", __FILE__) }
     subject { DarwinCore::XmlReader.from_xml(File.read(file)) }
 
     it "reads xml to hash" do
@@ -9,7 +9,5 @@ describe DarwinCore::XmlReader do
       expect(subject[:archive][:core].keys.sort).
         to eq [:attributes, :field, :files, :id]
     end
-
   end
-
 end

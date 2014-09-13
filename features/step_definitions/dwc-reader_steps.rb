@@ -1,5 +1,6 @@
 Given /^path to a dwc file "([^\"]*)"$/ do |arg1|
-  @dwca_file = File.expand_path(File.dirname(__FILE__) + "../../../spec/files/" + arg1)
+  @dwca_file = File.expand_path(File.dirname(__FILE__) +
+                                "../../../spec/files/" + arg1)
   @tmp_dir = "/tmp"
 end
 
@@ -12,7 +13,8 @@ Then /^I should find that the archive is valid$/ do
 end
 
 Then /^I should see what files the archive has$/ do
-  @dwca.files.should == ["DarwinCore.txt", "VernacularName.txt", "eml.xml", "meta.xml", "metadata.txt"]
+  @dwca.files.should == ["DarwinCore.txt", "VernacularName.txt", "eml.xml",
+                         "meta.xml", "metadata.txt"]
 end
 
 When /^I delete expanded files$/ do
@@ -45,7 +47,7 @@ Then /^instance should have a core$/ do
 end
 
 Then /^I should see checksum$/ do
-  @dwc.checksum.should == '7d94fc28ffaf434b66fbc790aa5ef00d834057bf'
+  @dwc.checksum.should == "7d94fc28ffaf434b66fbc790aa5ef00d834057bf"
 end
 
 When /^I check core data$/ do
@@ -64,7 +66,8 @@ And /^core\.file_path$/ do
 end
 
 And /^core\.id$/ do
-  @core.id.should == {:index => 0, :term => 'http://rs.tdwg.org/dwc/terms/TaxonID'}
+  @core.id.should == {index: 0,
+                      term: "http://rs.tdwg.org/dwc/terms/TaxonID"}
 end
 
 And /^core\.fields$/ do
@@ -80,14 +83,21 @@ Then /^DarwinCore instance should have dwc\.metadata object$/ do
 end
 
 And /^I should find id, title, creators, metadata provider$/ do
-  @dwc.metadata.id.should == 'leptogastrinae:version:2.5'
-  @dwc.metadata.title.should == 'Leptogastrinae (Diptera: Asilidae) Classification'
+  @dwc.metadata.id.should == "leptogastrinae:version:2.5"
+  @dwc.metadata.title.should ==
+    "Leptogastrinae (Diptera: Asilidae) Classification"
   @dwc.metadata.authors.should == [
-      {:last_name=>"Bayless", :email=>"keith.bayless@gmail.com", :first_name=>"Keith"},
-      {:last_name=>"Dikow", :email=>"dshorthouse@eol.org", :first_name=>"Torsten"}]
-  @dwc.metadata.abstract.should == 'These are all the names in the Leptogastrinae classification.'
-  @dwc.metadata.citation.should == 'Dikow, Torsten. 2010. The Leptogastrinae classification.'
-  @dwc.metadata.url.should == 'http://leptogastrinae.lifedesks.org/files/leptogastrinae/classification_export/shared/leptogastrinae.tar.gz'
+    { last_name: "Bayless", email: "keith.bayless@gmail.com",
+      first_name: "Keith" },
+    { last_name: "Dikow", email: "dshorthouse@eol.org", first_name: "Torsten" }
+  ]
+  @dwc.metadata.abstract.should ==
+    "These are all the names in the Leptogastrinae classification."
+  @dwc.metadata.citation.should ==
+    "Dikow, Torsten. 2010. The Leptogastrinae classification."
+  @dwc.metadata.url.should ==
+    "http://leptogastrinae.lifedesks.org/files/leptogastrinae/"\
+    "classification_export/shared/leptogastrinae.tar.gz"
 end
 
 Then /^DarwinCore instance should have an extensions array$/ do
@@ -103,11 +113,18 @@ end
 
 Then /^extension should have properties, data, file_path, coreid, fields$/ do
   ext = @dwc.extensions[0]
-  ext.properties.should == {:ignoreHeaderLines=>1, :encoding=>"UTF-8", :rowType=>"http://rs.gbif.org/ipt/terms/1.0/VernacularName", :fieldsEnclosedBy=>"", :fieldsTerminatedBy=>"\\t", :linesTerminatedBy=>"\\n"}
+  ext.properties.should == {
+    ignoreHeaderLines: 1, encoding: "UTF-8",
+    rowType: "http://rs.gbif.org/ipt/terms/1.0/VernacularName",
+    fieldsEnclosedBy: "", fieldsTerminatedBy: "\\t", linesTerminatedBy: "\\n"
+  }
   ext.data.class.should == Hash
   ext.file_path.should match(/\/tmp\/dwc_[\d]+\/VernacularName.txt/)
-  ext.coreid.should == {:index=>0}
-  ext.fields.should == [{:term=>"http://rs.gbif.org/ecat/terms/vernacularName", :index=>1}, {:term=>"http://rs.gbif.org/thesaurus/languageCode", :index=>2}]
+  ext.coreid.should == { index: 0 }
+  ext.fields.should == [
+    { term: "http://rs.gbif.org/ecat/terms/vernacularName", index: 1 },
+    { term: "http://rs.gbif.org/thesaurus/languageCode", index: 2 }
+  ]
 end
 
 Given /^acces to DarwinCore gem$/ do
@@ -196,7 +213,8 @@ Then /^there are paths, synonyms and vernacular names in normalized classificati
     if v.vernacular_names.size > 0
       @vernaculars_are_generated = true
       vn = v.vernacular_names[0]
-      (vn.respond_to?('locality') && vn.respond_to?('country_code') && vn.respond_to?('language')).should be true
+      (vn.respond_to?("locality") && vn.respond_to?("country_code") &&
+       vn.respond_to?("language")).should be true
     end
     break if (@vernaculars_are_generated && @paths_are_generated && @synonyms_are_generated)
   end
@@ -208,10 +226,11 @@ end
 Then /^there are local_id and global_id methods in taxons and synonyms$/ do
   @normalized_classification.each do |k, v|
     if v.synonyms.size > 0
-      v.local_id.should == '2'
+      v.local_id.should == "2"
       v.global_id.should == "97498f29-2501-440d-9452-f3817da0d6c2"
-      v.synonyms.first.local_id.should == '1'
-      v.synonyms.first.global_id.should == "e017ed01-407d-4d09-82c5-8b3d9fa76e35"
+      v.synonyms.first.local_id.should == "1"
+      v.synonyms.first.global_id.should ==
+        "e017ed01-407d-4d09-82c5-8b3d9fa76e35"
       break
     end
   end

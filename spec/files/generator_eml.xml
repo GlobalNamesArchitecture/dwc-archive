@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:md="eml://ecoinformatics.org/methods-2.1.1" xmlns:proj="eml://ecoinformatics.org/project-2.1.1" xmlns:d="eml://ecoinformatics.org/dataset-2.1.1" xmlns:res="eml://ecoinformatics.org/resource-2.1.1" xmlns:dc="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packageId="1234/2013-12-30::19:45:33" system="http://globalnames.org" xml:lang="en" xsi:schemaLocation="eml_uri">
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:md="eml://ecoinformatics.org/methods-2.1.1" xmlns:proj="eml://ecoinformatics.org/project-2.1.1" xmlns:d="eml://ecoinformatics.org/dataset-2.1.1" xmlns:res="eml://ecoinformatics.org/resource-2.1.1" xmlns:dc="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packageId="1234/2013-12-30::19:45:33" system="http://globalnames.org" xml:lang="en" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.0.1/eml.xsd">
   <dataset id="1234">
     <title>Test Classification</title>
     <license>http://creativecommons.org/licenses/by-sa/3.0/</license>

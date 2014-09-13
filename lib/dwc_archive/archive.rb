@@ -1,4 +1,6 @@
 class DarwinCore
+  # Deals with handling DarwinCoreArchive file, and provides meta information
+  # and files information about archive
   class Archive
     attr_reader :meta, :eml
 
@@ -9,22 +11,24 @@ class DarwinCore
       @expander.unpack
       if valid?
         @meta = DarwinCore::XmlReader.
-          from_xml(open(File.join(@expander.path, 'meta.xml')))
-        @eml = files.include?("eml.xml") ? 
-          DarwinCore::XmlReader.
-            from_xml(open(File.join(@expander.path, 'eml.xml'))) : nil
+                from_xml(open(File.join(@expander.path, "meta.xml")))
+        @eml = nil
+        if  files.include?("eml.xml")
+          @eml = DarwinCore::XmlReader.
+                 from_xml(open(File.join(@expander.path, "eml.xml")))
+        end
       else
         clean
-        raise InvalidArchiveError
+        fail InvalidArchiveError
       end
     end
 
     def valid?
       valid = true
       valid = valid && @expander.path && FileTest.exists?(@expander.path)
-      valid = valid && files && files.include?('meta.xml')
+      valid && files && files.include?("meta.xml")
     end
-    
+
     def files
       @expander.files
     end

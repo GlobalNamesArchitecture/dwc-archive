@@ -1,7 +1,7 @@
 require "coveralls"
 Coveralls.wear!
 
-require "dwc-archive"
+require "dwc_archive"
 require "rspec"
 require "rspec/mocks"
 require "socket"
