@@ -8,7 +8,7 @@ When /^I create a new DarwinCore::Archive instance$/ do
 end
 
 Then /^I should find that the archive is valid$/ do
-  @dwca.valid?.should be_true
+  @dwca.valid?.should be true
 end
 
 Then /^I should see what files the archive has$/ do
@@ -20,7 +20,7 @@ When /^I delete expanded files$/ do
 end
 
 Then /^they should disappear$/ do
-  @dwca.files.should be_nil
+  @dwca.files.should be nil
 end
 
 When /^I create a new DarwinCore instance$/ do
@@ -37,7 +37,7 @@ When /^I create DarwinCore::ClassificationNormalizer instance$/ do
 end
 
 Then /^instance should have a valid archive$/ do
-  @dwc.archive.valid?.should be_true
+  @dwc.archive.valid?.should be true
 end
 
 Then /^instance should have a core$/ do
@@ -153,7 +153,7 @@ end
 
 Then /^I can read its core content using block$/ do
   res = []
-  @dwc.core.ignore_headers.should be_true
+  @dwc.core.ignore_headers.should be true
   read_result = @dwc.core.read(200) do |r, err|
     res << [r.size, err.size]
   end
@@ -164,7 +164,7 @@ end
 Then /^I can read extensions content using block$/ do
   res = []
   ext = @dwc.extensions[0]
-  ext.ignore_headers.should be_true
+  ext.ignore_headers.should be true
   ext.read(200) do |r, err|
     res << [r.size, err.size]
   end
@@ -196,13 +196,13 @@ Then /^there are paths, synonyms and vernacular names in normalized classificati
     if v.vernacular_names.size > 0
       @vernaculars_are_generated = true
       vn = v.vernacular_names[0]
-      (vn.respond_to?('locality') && vn.respond_to?('country_code') && vn.respond_to?('language')).should be_true
+      (vn.respond_to?('locality') && vn.respond_to?('country_code') && vn.respond_to?('language')).should be true
     end
     break if (@vernaculars_are_generated && @paths_are_generated && @synonyms_are_generated)
   end
-  @paths_are_generated.should be_true
-  @vernaculars_are_generated.should be_true
-  @synonyms_are_generated.should be_true
+  @paths_are_generated.should be true
+  @vernaculars_are_generated.should be true
+  @synonyms_are_generated.should be true
 end
 
 Then /^there are local_id and global_id methods in taxons and synonyms$/ do
@@ -229,8 +229,8 @@ Then /^there are id paths, no canonical names paths in normalized classification
       id_paths_generated = true
     end
   end
-  id_paths_generated.should be_true
-  canonical_paths_generated.should be_false
+  id_paths_generated.should be true
+  canonical_paths_generated.should be false
 end
 
 Then /^names used in classification can be accessed by "([^"]*)" method$/ do |name_strings|

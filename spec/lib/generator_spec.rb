@@ -1,14 +1,11 @@
-# encoding: utf-8
-require_relative '../spec_helper'
-
 describe DarwinCore::Generator do
   subject(:gen) { DarwinCore::Generator.new(dwc_path, tmp_dir) }
   let(:tmp_dir) { DarwinCore::DEFAULT_TMP_DIR }
-  let(:dwc_path) { File.join(tmp_dir, 'spec_dwca.tar.gz') } 
+  let(:dwc_path) { File.join(tmp_dir, 'spec_dwca.tar.gz') }
 
   describe '.new' do
     it 'initializes empty DwCA' do
-      expect(gen).to be_kind_of DarwinCore::Generator      
+      expect(gen).to be_kind_of DarwinCore::Generator
     end
   end
 
@@ -31,12 +28,12 @@ describe DarwinCore::Generator do
 
   describe '#add_extension' do
     it 'adds extension to DwCA instance' do
-      gen.add_extension(EXTENSION_DATA.dup, 
-                        'vern.csv', 
-                        true, 
+      gen.add_extension(EXTENSION_DATA.dup,
+                        'vern.csv',
+                        true,
                         'http://rs.gbif.org/terms/1.0/VernacularName')
       extension = File.read(File.join(gen.path, 'vern.csv'))
-      
+
       expect(extension).to match /Береза/
     end
   end
@@ -44,15 +41,15 @@ describe DarwinCore::Generator do
   describe '#add_meta_xml' do
     it 'creates metadata for DwCA' do
       gen.add_core(CORE_DATA.dup, 'core.csv', true)
-      gen.add_extension(EXTENSION_DATA.dup, 
-                        'vern.csv', 
-                        true, 
+      gen.add_extension(EXTENSION_DATA.dup,
+                        'vern.csv',
+                        true,
                         'http://rs.gbif.org/terms/1.0/VernacularName')
 
       gen.add_meta_xml
       meta = File.read(File.join(gen.path, 'meta.xml')).strip
       meta_from_file= File.read(File.expand_path(
-        '../../files/generator_meta.xml', 
+        '../../files/generator_meta.xml',
         __FILE__)).strip
       expect(meta).to eq meta_from_file
     end
@@ -66,7 +63,7 @@ describe DarwinCore::Generator do
       eml.gsub!(/(packageId=").*?"/, '\11234/2013-12-30::19:45:33"')
 
       eml_from_file = File.read(File.expand_path(
-        '../../files/generator_eml.xml', 
+        '../../files/generator_eml.xml',
         __FILE__)).strip
       expect(eml.strip).to eq eml_from_file.strip
     end
@@ -81,13 +78,13 @@ describe DarwinCore::Generator do
   describe '#files' do
     it 'returns created files' do
       gen.add_core(CORE_DATA.dup, 'core.csv', true)
-      gen.add_extension(EXTENSION_DATA.dup, 
-                        'vern.csv', 
-                        true, 
+      gen.add_extension(EXTENSION_DATA.dup,
+                        'vern.csv',
+                        true,
                         'http://rs.gbif.org/terms/1.0/VernacularName')
 
       gen.add_meta_xml
-      expect(gen.files).to match_array ['core.csv', 'meta.xml', 'vern.csv']  
+      expect(gen.files).to match_array ['core.csv', 'meta.xml', 'vern.csv']
     end
   end
 
@@ -95,15 +92,15 @@ describe DarwinCore::Generator do
     it 'creates final DwCA file' do
       FileUtils.rm dwc_path if File.exists?(dwc_path)
       gen.add_core(CORE_DATA.dup, 'core.csv', true)
-      gen.add_extension(EXTENSION_DATA.dup, 
-                        'vern.csv', 
-                        true, 
+      gen.add_extension(EXTENSION_DATA.dup,
+                        'vern.csv',
+                        true,
                         'http://rs.gbif.org/terms/1.0/VernacularName')
 
       gen.add_meta_xml
       gen.add_eml_xml(EML_DATA)
       gen.pack
-      expect(File.exists?(dwc_path)).to be_true 
+      expect(File.exists?(dwc_path)).to be true
     end
   end
 

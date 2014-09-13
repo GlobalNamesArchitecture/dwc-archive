@@ -1,15 +1,12 @@
-require_relative '../spec_helper'
-
-describe DarwinCore::XmlReader do 
-  
+describe DarwinCore::XmlReader do
   describe '.from_xml' do
+    let(:file) { File.expand_path('../../files/meta.xml', __FILE__) }
+    subject { DarwinCore::XmlReader.from_xml(File.read(file)) }
 
     it "reads xml to hash" do
-      file = File.expand_path('../../files/meta.xml', __FILE__)
-      meta = subject.from_xml(File.read(file))
-      expect(meta.is_a? Hash).to be_true
-      expect(meta[:archive].keys.sort).to eq [:core, :extension]
-      expect(meta[:archive][:core].keys.sort).
+      expect(subject).to be_kind_of Hash
+      expect(subject[:archive].keys.sort).to eq [:core, :extension]
+      expect(subject[:archive][:core].keys.sort).
         to eq [:attributes, :field, :files, :id]
     end
 

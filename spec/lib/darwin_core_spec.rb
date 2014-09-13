@@ -1,20 +1,6 @@
-require_relative '../spec_helper'
-
 describe DarwinCore do
   subject { DarwinCore }
   let(:file_dir) { File.expand_path('../../files', __FILE__) }
-
-  it 'breaks for ruby 1.8 and older' do
-    stub_const('RUBY_VERSION', '1.8.7') 
-    expect{load File.expand_path('../../../lib/dwc-archive.rb', __FILE__)}.
-      to raise_error
-  end
-
-  it 'continues for ruby 1.9.1 and higher' do
-    stub_const('RUBY_VERSION', '1.9.2') 
-    expect{load File.expand_path('../../../lib/dwc-archive.rb', __FILE__)}.
-      to_not raise_error
-  end
 
   describe 'redis connection' do
     it 'redis is running' do
@@ -26,19 +12,19 @@ describe DarwinCore do
   end
 
   it 'has version' do
-    expect(DarwinCore::VERSION =~ /\d+\.\d+\.\d/).to be_true
+    expect(DarwinCore::VERSION).to match /\d+\.\d+\.\d/
   end
 
   describe '.nil_field?' do
     it 'is true for nil fields' do
       [nil, '/N', ''].each do |i|
-        expect(DarwinCore.nil_field?(i)).to be_true
+        expect(DarwinCore.nil_field?(i)).to be true
       end
     end
 
     it 'is false for non-nil  fields' do
       [0, '0', '123', 123, 'dsdfs434343/N'].each do |i|
-        expect(subject.nil_field?(i)).to be_false
+        expect(subject.nil_field?(i)).to be false
       end
     end
   end
@@ -88,14 +74,14 @@ describe DarwinCore do
 
   describe '.new' do
     subject(:dwca) { DarwinCore.new(file_path) }
-   
-    context 'tar.gz and zip files supplied' do 
+
+    context 'tar.gz and zip files supplied' do
       files = %w(data.zip data.tar.gz minimal.tar.gz junk_dir_inside.zip)
       files.each do |file|
         let(:file_path) { File.join(file_dir, file) }
 
         it "creates archive from  %s" % file do
-          expect(dwca.archive.valid?).to be_true
+          expect(dwca.archive.valid?).to be true
         end
 
       end
@@ -127,23 +113,23 @@ describe DarwinCore do
       end
 
     end
-    
+
     context 'archive is not in utf-8 encoding' do
 
       let(:file_path) { File.join(file_dir, 'latin1.tar.gz') }
-      
+
       it 'raises wrong encoding error' do
         expect { dwca }.to raise_error DarwinCore::EncodingError
       end
 
     end
-    
+
     context 'filename with spaces and non-alphanumeric chars' do
 
       let(:file_path) { File.join(file_dir, 'file with characters(3).gz') }
-      
+
       it 'creates archive' do
-        expect(dwca.archive.valid?).to be_true
+        expect(dwca.archive.valid?).to be true
       end
 
     end
@@ -194,7 +180,7 @@ describe DarwinCore do
       expect(dwca.metadata).to be_kind_of DarwinCore::Metadata
     end
   end
-  
+
   describe '#extensions' do
     subject(:dwca) { DarwinCore.new(file_path) }
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }
@@ -221,14 +207,14 @@ describe DarwinCore do
     context 'has classification' do
       let(:file_path) { File.join(file_dir, 'data.tar.gz') }
       it 'returns true' do
-        expect(dwca.has_parent_id?).to be_true
+        expect(dwca.has_parent_id?).to be true
       end
     end
 
     context 'does not have classification' do
       let(:file_path) { File.join(file_dir, 'gnub.tar.gz') }
       it 'returns false' do
-        expect(dwca.has_parent_id?).to be_false
+        expect(dwca.has_parent_id?).to be false
       end
     end
   end
@@ -236,7 +222,7 @@ describe DarwinCore do
   describe '#classification_normalizer' do
     subject(:dwca) { DarwinCore.new(file_path) }
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }
-   
+
     context 'not initialized' do
       it 'is nil' do
         expect(dwca.classification_normalizer).to be_nil

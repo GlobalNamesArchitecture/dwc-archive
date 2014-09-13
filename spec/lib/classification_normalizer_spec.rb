@@ -5,15 +5,15 @@ describe DarwinCore::ClassificationNormalizer do
 
   subject(:dwca) { DarwinCore.new(file_path) }
   subject(:normalizer) { DarwinCore::ClassificationNormalizer.new(dwca) }
-  
+
   let(:file_dir) { File.expand_path('../../files', __FILE__) }
   let(:file_path) { File.join(file_dir, file_name) }
 
   describe '.new' do
     let(:file_path) { File.join(file_dir, 'data.tar.gz') }
     it { expect(normalizer.is_a? DarwinCore::ClassificationNormalizer).
-      to be_true }    
-  end 
+      to be true }
+  end
 
   describe '#normalize' do
     let(:file_name) { 'data.tar.gz' }
@@ -26,7 +26,7 @@ describe DarwinCore::ClassificationNormalizer do
 
     context 'flat list' do
       let(:file_path) { File.join(file_dir, 'flat_list.tar.gz') }
-      
+
       it 'returns flat list' do
         normalizer.normalize
         expect(normalizer.normalized_data).to be_kind_of Hash
@@ -85,11 +85,11 @@ describe DarwinCore::ClassificationNormalizer do
         res = normalizer.normalize
         expect(res.first[1]).to be_kind_of DarwinCore::TaxonNormalized
         expect(res.first[1].linnean_classification_path).
-          to eq [["Animalia", :kingdom], 
-                 ["Arthropoda", :phylum], 
-                 ["Insecta", :class], 
-                 ["Diptera", :order], 
-                 ["Cecidomyiidae", :family], 
+          to eq [["Animalia", :kingdom],
+                 ["Arthropoda", :phylum],
+                 ["Insecta", :class],
+                 ["Diptera", :order],
+                 ["Cecidomyiidae", :family],
                  ["Resseliella", :genus]]
 
       end
@@ -154,7 +154,7 @@ describe DarwinCore::ClassificationNormalizer do
     end
   end
 
-  describe '#name_strings' do 
+  describe '#name_strings' do
     let(:file_path) { File.join(file_dir, 'flat_list.tar.gz') }
 
     context 'before running #normalize' do
@@ -162,7 +162,7 @@ describe DarwinCore::ClassificationNormalizer do
         expect(normalizer.name_strings).to be_empty
       end
     end
-    
+
     context 'after running #normalize' do
       let(:normalized) { normalizer.tap { |n| n.normalize } }
 
@@ -194,7 +194,7 @@ describe DarwinCore::ClassificationNormalizer do
         expect(vern).to be_empty
       end
     end
-    
+
     context 'after running #normalize' do
       let(:normalized) { normalizer.tap { |n| n.normalize } }
       subject(:vern) { normalized.vernacular_name_strings }
@@ -204,14 +204,14 @@ describe DarwinCore::ClassificationNormalizer do
       context 'default attibutes' do
         it 'returns array' do
           expect(vern).to be_kind_of Array
-          expect(vern.size).to be > 0 
+          expect(vern.size).to be > 0
         end
       end
 
       context 'with_hash attribute' do
         it 'returns hash' do
           expect(vern_w_hash).to be_kind_of Hash
-          expect(vern_w_hash.size).to be > 0 
+          expect(vern_w_hash.size).to be > 0
           expect(vern_w_hash.values.uniq).to eq [1]
         end
       end

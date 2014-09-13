@@ -19,7 +19,7 @@ end
 
 Then /^these data should be saved as "([^\"]*)" file$/ do |file_name|
   file = File.join(@gen.path, file_name)
-  @gen.files.include?(file_name).should be_true
+  @gen.files.include?(file_name).should be true
   csv = CSV.open(file).count.should == 4
 end
 
@@ -51,7 +51,7 @@ end
 Then /^data are saved as "([^\"]*)" and "([^\"]*)"$/ do |file_name_1, file_name_2|
   [file_name_1, file_name_2].each do |file_name|
     file = File.join(@gen.path, file_name)
-    @gen.files.include?(file_name).should be_true
+    @gen.files.include?(file_name).should be true
     csv = CSV.open(file).count.should > 1
   end
 end
@@ -86,7 +86,7 @@ end
 
 Then /^there should be "([^\"]*)" file with core and extensions informations$/ do |file_name|
   meta = File.join(@gen.path, file_name)
-  @gen.files.include?(file_name).should be_true
+  @gen.files.include?(file_name).should be true
   dom = Nokogiri::XML(open(File.join(@gen.path, file_name)))
   dom.xpath('//xmlns:core//xmlns:location').text.should == 'darwin_core.txt'
   dom.xpath('//xmlns:extension[1]//xmlns:location').text.should == 'vernacular.txt'
@@ -94,7 +94,7 @@ end
 
 Then /^there should be "([^\"]*)" file with authoriship information$/ do |file_name|
   eml = File.join(@gen.path, file_name)
-  @gen.files.include?(file_name).should be_true
+  @gen.files.include?(file_name).should be true
 end
 
 Given /^a path to a new file \- "([^\"]*)"$/ do |file_name|
@@ -107,6 +107,6 @@ end
 
 Then /^there should be a valid new archive file$/ do
   dwc = DarwinCore.new('/tmp/dwc.tar.gz')
-  dwc.archive.valid?.should be_true
+  dwc.archive.valid?.should be true
 end
 

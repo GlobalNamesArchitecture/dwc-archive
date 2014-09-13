@@ -1,8 +1,3 @@
-# encoding: UTF-8
-
-recent_ruby = RUBY_VERSION >= '1.9.1'
-raise "IMPORTANT: dwc-archive gem  requires ruby >= 1.9.1" unless recent_ruby
-
 require 'fileutils'
 require 'ostruct'
 require 'digest'
@@ -27,7 +22,7 @@ class DarwinCore
 
   DEFAULT_TMP_DIR = "/tmp"
 
-  attr_reader :archive, :core, :metadata, :extensions, 
+  attr_reader :archive, :core, :metadata, :extensions,
     :classification_normalizer
   alias :eml :metadata
 
