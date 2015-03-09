@@ -28,7 +28,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec", "~> 3.1"
   gem.add_development_dependency "cucumber", "~> 1.3"
   gem.add_development_dependency "coveralls", "~> 0.7"
-  gem.add_development_dependency "byebug", "~> 3.4"
+  # gem.add_development_dependency "byebug", "~> 3.4"
   gem.add_development_dependency "git", "~> 1.2"
   gem.add_development_dependency "rubocop", "~> 0.26"
   gem.add_development_dependency "travis-lint", "~> 1.7"
