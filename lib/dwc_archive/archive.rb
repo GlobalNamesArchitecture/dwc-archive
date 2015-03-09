@@ -9,18 +9,7 @@ class DarwinCore
       @tmp_dir = tmp_dir
       @expander = DarwinCore::Expander.new(@archive_path, @tmp_dir)
       @expander.unpack
-      if valid?
-        @meta = DarwinCore::XmlReader.
-                from_xml(open(File.join(@expander.path, "meta.xml")))
-        @eml = nil
-        if  files.include?("eml.xml")
-          @eml = DarwinCore::XmlReader.
-                 from_xml(open(File.join(@expander.path, "eml.xml")))
-        end
-      else
-        clean
-        fail InvalidArchiveError
-      end
+      prepare_metadata
     end
 
     def valid?
@@ -39,6 +28,30 @@ class DarwinCore
 
     def clean
       @expander.clean
+    end
+
+    private
+
+    def prepare_metadata
+      if valid?
+        prepare_meta_file
+        prepare_eml_file
+      else
+        clean
+        fail InvalidArchiveError
+      end
+    end
+
+    def prepare_meta_file
+      meta_file = open(File.join(@expander.path, "meta.xml"))
+      @meta = DarwinCore::XmlReader.from_xml(meta_file)
+    end
+
+    def prepare_eml_file
+      @eml = nil
+      return unless files.include?("eml.xml")
+      eml_file = open(File.join(@expander.path, "eml.xml"))
+      @eml = DarwinCore::XmlReader.from_xml(eml_file)
     end
   end
 end
