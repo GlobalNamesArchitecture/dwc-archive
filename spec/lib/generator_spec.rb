@@ -1,3 +1,4 @@
+# encoding: utf-8
 describe DarwinCore::Generator do
   subject(:gen) { DarwinCore::Generator.new(dwc_path, tmp_dir) }
   let(:tmp_dir) { DarwinCore::DEFAULT_TMP_DIR }
