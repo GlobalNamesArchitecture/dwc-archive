@@ -4,28 +4,43 @@ class DarwinCore
   # http://stackoverflow.com/questions/1230741/
   # convert-a-nokogiri-document-to-a-ruby-hash/1231297#1231297
   module XmlReader
-    class << self
-      def from_xml(xml_io)
-        result = Nokogiri::XML(xml_io)
-        { result.root.name.to_sym => xml_node_to_hash(result.root) }
+    def self.from_xml(xml_io)
+      result = Nokogiri::XML(xml_io)
+      { result.root.name.to_sym => self::Node.new(result.root).value }
+    end
+
+    # Node is a helper class to parse xml into hash
+    class Node
+      def initialize(node)
+        @node = node
+        @val = {}
+      end
+
+      def value
+        if @node.element?
+          prepare_node_element
+        else
+          prepare(@node.content.to_s)
+        end
       end
 
       private
 
-      def xml_node_to_hash(node)
-        # If we are at the root of the document, start the hash
-        if node.element?
-          prepare_node_element(node)
-        else
-          return prepare(node.content.to_s)
-        end
+      def prepare_node_element
+        add_attributes
+        add_children if @node.children.size > 0
+        @val
       end
 
-      def add_attributes(node, result_hash)
-        return if node.attributes.empty?
-        result_hash[:attributes] = {}
-        node.attributes.keys.each do |key|
-          add_attribute(result_hash[:attributes], node.attributes[key])
+      def prepare(data)
+        (data.class == String && data.to_i.to_s == data) ? data.to_i : data
+      end
+
+      def add_attributes
+        return if @node.attributes.empty?
+        @val[:attributes] = {}
+        @node.attributes.keys.each do |key|
+          add_attribute(@val[:attributes], @node.attributes[key])
         end
       end
 
@@ -33,49 +48,39 @@ class DarwinCore
         attributes[attribute.name.to_sym] = prepare(attribute.value)
       end
 
-      def prepare_node_element(node)
-        result_hash = {}
-        add_attributes(node, result_hash)
-        result_hash = add_children(node, result_hash) if node.children.size > 0
-        result_hash
-      end
-
-      def add_children(node, result_hash)
-        node.children.each do |child|
-          text = process_child(child, result_hash)
-          return text if text
+      def add_children
+        @node.children.each do |child|
+          process_child(child)
         end
-        result_hash
       end
 
-      def process_child(node, result_hash)
-        result = xml_node_to_hash(node)
-        text = nil
-        if node.name == "text"
-          text = handle_text(node, result)
-        elsif result_hash[node.name.to_sym]
-          handle_child_node(node, result_hash, result)
+      def process_child(child)
+        value = DarwinCore::XmlReader::Node.new(child).value
+        if child.name == "text"
+          handle_text(child, value)
         else
-          result_hash[node.name.to_sym] = prepare(result)
+          add_child_to_value(child, value)
         end
-        text
       end
 
-      def handle_child_node(child, result_hash, result)
-        if result_hash[child.name.to_sym].is_a?(Object::Array)
-          result_hash[child.name.to_sym] << prepare(result)
+      def add_child_to_value(child, value)
+        if @val[child.name.to_sym]
+          handle_child_node(child.name.to_sym, value)
         else
-          result_hash[child.name.to_sym] =
-            [result_hash[child.name.to_sym]] << prepare(result)
+          @val[child.name.to_sym] = prepare(value)
         end
       end
 
-      def handle_text(child, result)
-        prepare(result) unless child.next_sibling || child.previous_sibling
+      def handle_child_node(child, val)
+        if @val[child].is_a?(Object::Array)
+          @val[child] << prepare(val)
+        else
+          @val[child] = [@val[child], prepare(val)]
+        end
       end
 
-      def prepare(data)
-        (data.class == String && data.to_i.to_s == data) ? data.to_i : data
+      def handle_text(child, val)
+        @val = prepare(val) unless child.next_sibling || child.previous_sibling
       end
     end
   end
