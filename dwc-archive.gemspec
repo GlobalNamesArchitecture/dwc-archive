@@ -23,13 +23,13 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "parsley-store", "~> 0.3"
   gem.add_runtime_dependency "archive-tar-minitar", "~> 0.5"
 
-  gem.add_development_dependency "rake", "~> 10.1"
-  gem.add_development_dependency "bundler", "~> 1.3"
-  gem.add_development_dependency "rspec", "~> 3.1"
+  gem.add_development_dependency "rake", "~> 10.4"
+  gem.add_development_dependency "bundler", "~> 1.9"
+  gem.add_development_dependency "rspec", "~> 3.2"
   gem.add_development_dependency "cucumber", "~> 2.0"
-  gem.add_development_dependency "coveralls", "~> 0.7"
+  gem.add_development_dependency "coveralls", "~> 0.8"
   # gem.add_development_dependency "byebug", "~> 3.4"
   gem.add_development_dependency "git", "~> 1.2"
-  gem.add_development_dependency "rubocop", "~> 0.26"
+  gem.add_development_dependency "rubocop", "~> 0.30"
   gem.add_development_dependency "travis-lint", "~> 2.0"
 end
