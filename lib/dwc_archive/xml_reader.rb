@@ -25,9 +25,12 @@ class DarwinCore
         return if node.attributes.empty?
         result_hash[:attributes] = {}
         node.attributes.keys.each do |key|
-          result_hash[:attributes][node.attributes[key].name.to_sym] =
-            prepare(node.attributes[key].value)
+          add_attribute(result_hash[:attributes], node.attributes[key])
         end
+      end
+
+      def add_attribute(attributes, attribute)
+        attributes[attribute.name.to_sym] = prepare(attribute.value)
       end
 
       def prepare_node_element(node)

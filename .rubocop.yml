@@ -3,7 +3,6 @@ AllCops:
     - features/**/*
     - .bundle/**/*
     - bundle_bin/**/*
-    - lib/dwc_archive/xml_reader.rb
     - lib/dwc_archive/ingester.rb
     - lib/dwc_archive/generator_meta_xml.rb
     - lib/dwc_archive/generator_eml_xml.rb
