@@ -67,7 +67,7 @@ describe DarwinCore::Generator do
     it "adds eml data" do
       gen.add_eml_xml(EML_DATA)
       eml = File.read(File.join(gen.path, "eml.xml")).strip
-      eml.gsub!(/(<pubDate>).*?(<\/pubDate>)/, '\12013-12-30 14:45:33 -0500\2')
+      eml.gsub!(%r{(<pubDate>).*?(</pubDate>)}, '\12013-12-30 14:45:33 -0500\2')
       eml.gsub!(/(packageId=").*?"/, '\11234/2013-12-30::19:45:33"')
 
       eml_from_file = File.read(

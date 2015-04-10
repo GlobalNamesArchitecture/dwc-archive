@@ -14,7 +14,7 @@ describe DarwinCore::Generator::MetaXml do
     end
 
     it "creates metadata file" do
-      expect(content).to match(/<location>core.csv<\/location>/)
+      expect(content).to match(%r{<location>core.csv</location>})
     end
   end
 end

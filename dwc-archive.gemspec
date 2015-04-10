@@ -15,8 +15,8 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = ">= 1.9.1"
   gem.files         = `git ls-files`.split($RS)
-  gem.executables   = gem.files.grep(/^bin\//) { |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(/^(test|spec|features)\//)
+  gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency "nokogiri", "~> 1.6"
