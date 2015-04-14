@@ -9,6 +9,7 @@ before_install:
 services:
   - redis-server
 script:
+  - gem install bundle
   - bundle exec cucumber
   - bundle exec rake
 branches:
