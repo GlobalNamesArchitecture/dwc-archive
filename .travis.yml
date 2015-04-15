@@ -1,14 +1,15 @@
 rvm:
+  - 1.9.3
   - 2.0
   - 2.1
   - 2.2
 before_install:
   - sudo apt-get update
+  - gem install bundle
 # bundler_args: --without development
 services:
   - redis-server
 script:
-  - gem install bundle
   - bundle exec cucumber
   - bundle exec rake
 branches:
