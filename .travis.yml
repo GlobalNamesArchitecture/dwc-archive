@@ -5,7 +5,6 @@ rvm:
   - 2.2
 before_install:
   - sudo apt-get update
-  - gem install bundle
 # bundler_args: --without development
 services:
   - redis-server
