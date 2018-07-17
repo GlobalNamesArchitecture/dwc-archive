@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.license       = "MIT"
 
   gem.required_ruby_version = ">= 2.4.1"
-  gem.files         = `git ls-files`.split($RS)
+  gem.files         = `git ls-files`.split("\n").map(&:strip)
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
