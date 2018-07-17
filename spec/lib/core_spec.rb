@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative "../spec_helper"
 
 describe DarwinCore::Core do
   subject(:dwca) { DarwinCore.new(file_path) }
   subject(:core) { DarwinCore::Core.new(dwca) }
   let(:file_path) do
-    File.join(File.expand_path("../../files", __FILE__), file_name)
+    File.join(File.expand_path("../files", __dir__), file_name)
   end
   let(:file_name) { "data.tar.gz" }
 
@@ -39,9 +41,9 @@ describe DarwinCore::Core do
   describe "#properties" do
     it "gers core properties" do
       expect(core.properties).to be_kind_of Hash
-      expect(core.properties.keys).to match_array [
-        :encoding, :fieldsTerminatedBy, :linesTerminatedBy, :fieldsEnclosedBy,
-        :ignoreHeaderLines, :rowType
+      expect(core.properties.keys).to match_array %i[
+        encoding fieldsTerminatedBy linesTerminatedBy fieldsEnclosedBy
+        ignoreHeaderLines rowType
       ]
     end
   end

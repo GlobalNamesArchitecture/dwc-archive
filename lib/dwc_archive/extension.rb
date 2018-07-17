@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class DarwinCore
   # Represents extensions of DarwinCore Archive
   class Extension
     include DarwinCore::Ingester
     attr_reader :coreid
-    alias_method :id, :coreid
+    alias id coreid
 
     def initialize(dwc, data)
       @dwc = dwc

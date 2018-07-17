@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 describe DarwinCore::TaxonNormalized do
   subject(:dwca) { DarwinCore.new(file_path) }
   subject(:normalizer) { DarwinCore::ClassificationNormalizer.new(dwca) }
-  let(:file_dir) { File.expand_path("../../files", __FILE__) }
+  let(:file_dir) { File.expand_path("../files", __dir__) }
 
   context "typical case" do
     let(:file_path) { File.join(file_dir, "data.tar.gz") }

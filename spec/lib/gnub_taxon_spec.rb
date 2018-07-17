@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 describe DarwinCore::GnubTaxon do
   subject(:dwca) { DarwinCore.new(file_path) }
   subject(:normalizer) { DarwinCore::ClassificationNormalizer.new(dwca) }
-  let(:file_dir) { File.expand_path("../../files", __FILE__) }
+  let(:file_dir) { File.expand_path("../files", __dir__) }
   let(:file_path) { File.join(file_dir, file_name) }
   let(:file_name) { "gnub.tar.gz" }
 

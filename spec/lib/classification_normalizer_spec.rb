@@ -1,16 +1,16 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 describe DarwinCore::ClassificationNormalizer do
   subject(:dwca) { DarwinCore.new(file_path) }
   subject(:normalizer) { DarwinCore::ClassificationNormalizer.new(dwca) }
 
-  let(:file_dir) { File.expand_path("../../files", __FILE__) }
+  let(:file_dir) { File.expand_path("../files", __dir__) }
   let(:file_path) { File.join(file_dir, file_name) }
 
   describe ".new" do
     let(:file_path) { File.join(file_dir, "data.tar.gz") }
     it do
-      expect(normalizer.is_a? DarwinCore::ClassificationNormalizer).to be true
+      expect(normalizer.is_a?(DarwinCore::ClassificationNormalizer)).to be true
     end
   end
 
@@ -37,7 +37,7 @@ describe DarwinCore::ClassificationNormalizer do
 
       it "ingests synonyms using accepted_name field" do
         res = normalizer.normalize
-        syn = res.select { |_, v| !v.synonyms.empty? }.values
+        syn = res.reject { |_, v| v.synonyms.empty? }.values
         expect(syn.size).to be > 0
         expect(syn[0].synonyms[0]).to be_kind_of DarwinCore::SynonymNormalized
       end
@@ -47,7 +47,7 @@ describe DarwinCore::ClassificationNormalizer do
       let(:file_name) { "synonyms_in_extension.tar.gz" }
       it "ingests synonyms from extension" do
         res = normalizer.normalize
-        syn = res.select { |_, v| !v.synonyms.empty? }.values
+        syn = res.reject { |_, v| v.synonyms.empty? }.values
         expect(syn.size).to be > 0
         expect(syn[0].synonyms[0]).to be_kind_of DarwinCore::SynonymNormalized
       end
@@ -58,7 +58,7 @@ describe DarwinCore::ClassificationNormalizer do
 
       it "does not ingest synonyms" do
         res = normalizer.normalize
-        syn = res.select { |_, v| !v.synonyms.empty? }.values
+        syn = res.reject { |_, v| v.synonyms.empty? }.values
         expect(syn).to be_empty
       end
     end
@@ -67,7 +67,7 @@ describe DarwinCore::ClassificationNormalizer do
       let(:file_name) { "synonyms_in_extension.tar.gz" }
       it "should not harvest extensions" do
         res = normalizer.normalize(with_extensions: false)
-        syn = res.select { |_, v| !v.synonyms.empty? }.values
+        syn = res.reject { |_, v| v.synonyms.empty? }.values
         expect(syn).to be_empty
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "fileutils"
 require "ostruct"
 require "digest"
@@ -37,7 +39,7 @@ class DarwinCore
 
     def files(path)
       return nil unless path && FileTest.exists?(path)
-      Dir.entries(path).select { |e| e !~ /[\.]{1,2}$/ }.sort
+      Dir.entries(path).reject { |e| e.match(/[\.]{1,2}$/) }.sort
     end
 
     def random_path(tmp_dir)
@@ -45,9 +47,8 @@ class DarwinCore
     end
   end
 
-  attr_reader :archive, :core, :metadata, :extensions,
-              :classification_normalizer
-  alias_method :eml, :metadata
+  attr_reader :archive, :core, :metadata, :classification_normalizer
+  alias eml metadata
 
   def self.nil_field?(field)
     return true if [nil, "", "/N"].include?(field)
@@ -72,7 +73,7 @@ class DarwinCore
   end
 
   def self.logger_write(obj_id, message, method = :info)
-    logger.send(method, format("|%s|%s|", obj_id, message))
+    logger.send(method, "|#{obj_id}|#{message}|")
   end
 
   def initialize(dwc_path, tmp_dir = DEFAULT_TMP_DIR)
@@ -106,7 +107,7 @@ class DarwinCore
   end
 
   def checksum
-    Digest::SHA1.hexdigest(open(@dwc_path).read)
+    Digest::SHA1.hexdigest(File.read(@dwc_path))
   end
 
   def extensions

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DarwinCore
   # Covers special case of Global Names Usage Bank data
   class GnubTaxon < TaxonNormalized

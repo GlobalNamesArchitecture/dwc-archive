@@ -1,4 +1,5 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 describe DarwinCore::Generator do
   subject(:gen) { DarwinCore::Generator.new(dwc_path, tmp_dir) }
   let(:tmp_dir) { DarwinCore::DEFAULT_TMP_DIR }
@@ -58,7 +59,8 @@ describe DarwinCore::Generator do
       gen.add_meta_xml
       meta = File.read(File.join(gen.path, "meta.xml")).strip
       meta_from_file = File.read(
-        File.expand_path("../../files/generator_meta.xml", __FILE__)).strip
+        File.expand_path("../files/generator_meta.xml", __dir__)
+      ).strip
       expect(meta).to eq meta_from_file
     end
   end
@@ -71,7 +73,8 @@ describe DarwinCore::Generator do
       eml.gsub!(/(packageId=").*?"/, '\11234/2013-12-30::19:45:33"')
 
       eml_from_file = File.read(
-        File.expand_path("../../files/generator_eml.xml", __FILE__)).strip
+        File.expand_path("../files/generator_eml.xml", __dir__)
+      ).strip
       expect(eml.strip).to eq eml_from_file.strip
     end
   end

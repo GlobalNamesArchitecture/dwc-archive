@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe DarwinCore::Generator::EmlXml do
   subject { DarwinCore::Generator::EmlXml.new(data, path) }
   let(:data) { EML_DATA }

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 describe DarwinCore do
   subject { DarwinCore }
-  let(:file_dir) { File.expand_path("../../files", __FILE__) }
+  let(:file_dir) { File.expand_path("../files", __dir__) }
 
   describe "redis connection" do
     it "redis is running" do
@@ -35,10 +37,10 @@ describe DarwinCore do
     it "cleans dwca directories" do
       Dir.chdir(tmp_dir)
       FileUtils.mkdir("dwc_123") unless File.exist?("dwc_123")
-      dwca_dirs =  Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
+      dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
       expect(dwca_dirs.size).to be > 0
       subject.clean_all
-      dwca_dirs =  Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
+      dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
       expect(dwca_dirs.size).to be 0
     end
 
@@ -46,7 +48,7 @@ describe DarwinCore do
       it "does nothing" do
         subject.clean_all
         subject.clean_all
-        dwca_dirs =  Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
+        dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
         expect(dwca_dirs.size).to be 0
       end
     end
@@ -76,7 +78,7 @@ describe DarwinCore do
     subject(:dwca) { DarwinCore.new(file_path) }
 
     context "tar.gz and zip files supplied" do
-      files = %w(data.zip data.tar.gz minimal.tar.gz junk_dir_inside.zip)
+      files = %w[data.zip data.tar.gz minimal.tar.gz junk_dir_inside.zip]
       files.each do |file|
         let(:file_path) { File.join(file_dir, file) }
 

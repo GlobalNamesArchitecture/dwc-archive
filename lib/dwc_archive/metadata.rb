@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class DarwinCore
   # Represents data from EML (Ecological Metadata Language) file
   class Metadata
     attr_reader :metadata
-    alias_method :data, :metadata
+    alias data metadata
 
     def initialize(archive = nil)
       @archive = archive

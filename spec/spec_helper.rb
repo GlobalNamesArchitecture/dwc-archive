@@ -1,4 +1,5 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 require "coveralls"
 Coveralls.wear!
 
@@ -37,7 +38,7 @@ unless defined?(SPEC_CONSTANTS)
       citation:
         "Test classification: Doe John, Doe Jane, Taxnonmy, 10, 1, 2010",
       url: "http://example.com"
-    }
+    }.freeze
   META_DATA = {
     extensions:
       [
@@ -58,7 +59,8 @@ unless defined?(SPEC_CONSTANTS)
                 "http://rs.tdwg.org/dwc/terms/taxonRank"
               ],
             ignoreHeaderLines: 1,
-            location: "core.csv" } }
+            location: "core.csv" }
+  }.freeze
   CORE_DATA = [
     ["http://rs.tdwg.org/dwc/terms/taxonID",
      "http://rs.tdwg.org/dwc/terms/parentNameUsageID",
@@ -67,7 +69,7 @@ unless defined?(SPEC_CONSTANTS)
     [1, 0, "Plantae", "kingdom"],
     [2, 1, "Betula", "genus"],
     [3, 2, "Betula verucosa", "species"]
-  ]
+  ].freeze
   EXTENSION_DATA = [
     ["http://rs.tdwg.org/dwc/terms/TaxonID",
      "http://rs.tdwg.org/dwc/terms/vernacularName"],
@@ -77,6 +79,6 @@ unless defined?(SPEC_CONSTANTS)
     [2, "Береза"],
     [3, "Wheeping Birch"],
     [3, "Береза плакучая"]
-  ]
+  ].freeze
   SPEC_CONSTANTS = true
 end

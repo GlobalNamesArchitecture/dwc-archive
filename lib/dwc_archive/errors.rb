@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DarwinCore
   class Error < RuntimeError; end
   class FileNotFoundError < Error; end

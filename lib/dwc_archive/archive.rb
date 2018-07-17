@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DarwinCore
   # Deals with handling DarwinCoreArchive file, and provides meta information
   # and files information about archive
@@ -38,19 +40,19 @@ class DarwinCore
         prepare_eml_file
       else
         clean
-        fail InvalidArchiveError
+        raise InvalidArchiveError
       end
     end
 
     def prepare_meta_file
-      meta_file = open(File.join(@expander.path, "meta.xml"))
+      meta_file = File.open(File.join(@expander.path, "meta.xml"))
       @meta = DarwinCore::XmlReader.from_xml(meta_file)
     end
 
     def prepare_eml_file
       @eml = nil
       return unless files.include?("eml.xml")
-      eml_file = open(File.join(@expander.path, "eml.xml"))
+      eml_file = File.open(File.join(@expander.path, "eml.xml"))
       @eml = DarwinCore::XmlReader.from_xml(eml_file)
     end
   end

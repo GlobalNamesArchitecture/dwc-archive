@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 describe DarwinCore::Metadata do
   subject(:eml) { DarwinCore::Metadata.new(dwca.archive) }
   let(:dwca) { DarwinCore.new(file_path) }
   let(:file_path) do
-    File.join(File.expand_path("../../files", __FILE__), file_name)
+    File.join(File.expand_path("../files", __dir__), file_name)
   end
   let(:file_name) { "data.tar.gz" }
 
@@ -58,7 +60,8 @@ describe DarwinCore::Metadata do
             email: "keith.bayless@gmail.com" },
           { first_name: "Torsten",
             last_name: "Dikow",
-            email: "dshorthouse@eol.org" }]
+            email: "dshorthouse@eol.org" }
+        ]
     end
 
     describe "#abstract" do

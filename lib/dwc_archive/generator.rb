@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DarwinCore
   # Creates csv files for core and extensions
   class Generator
@@ -72,15 +74,15 @@ class DarwinCore
 
       res = { fields: header, ignoreHeaderLines: ignore_header_lines,
               location: opts[:file_name] }
-      res.merge!(rowType: opts[:row_type]) if opts[:row_type]
+      res[:rowType] = opts[:row_type] if opts[:row_type]
       res
     end
 
     def init_fields(header, file_type)
       header.map do |f|
-        f.strip!
+        f = f.strip
         err = "No header in #{file_type} data, or header fields are not urls"
-        fail DarwinCore::GeneratorError, err unless f.match(%r{^http://})
+        raise DarwinCore::GeneratorError, err unless f =~ %r{^http://}
         f.split("/")[-1]
       end
     end

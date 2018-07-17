@@ -1,4 +1,5 @@
 AllCops:
+  TargetRubyVersion: 2.4
   Exclude:
     - features/**/*
     - .bundle/**/*
@@ -7,8 +8,16 @@ AllCops:
     - lib/dwc_archive/generator_meta_xml.rb
     - lib/dwc_archive/generator_eml_xml.rb
     - lib/dwc_archive/classification_normalizer.rb
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
-Style/DotPosition:
+
+Layout/DotPosition:
   EnforcedStyle: trailing
 
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '*.gemspec'
+    - '**/*.rake'
+    - 'spec/**/*spec.rb'

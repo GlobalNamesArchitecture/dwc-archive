@@ -1,31 +1,33 @@
+# frozen_string_literal: true
+
 class DarwinCore
   # Unpacks compressed archives into a temp directory
   class Expander
     def initialize(archive_path, tmp_dir)
       @archive_path = archive_path
       @tmp_dir = tmp_dir
-      @path = DarwinCore.random_path(tmp_dir)
+      @dir_path = DarwinCore.random_path(tmp_dir)
       @unpacker = init_unpacker
     end
 
     def unpack
       clean
-      fail DarwinCore::FileNotFoundError unless File.exist?(@archive_path)
-      success = @unpacker.call(@path, @archive_path) if @unpacker
-      if @unpacker && success && $CHILD_STATUS.exitstatus == 0
+      raise DarwinCore::FileNotFoundError unless File.exist?(@archive_path)
+      success = @unpacker.call(@dir_path, @archive_path) if @unpacker
+      if @unpacker && success && $CHILD_STATUS.exitstatus.zero?
         success
       else
         clean
-        fail DarwinCore::UnpackingError
+        raise DarwinCore::UnpackingError
       end
     end
 
     def path
-      @files_path ||= files_path
+      @path ||= files_path
     end
 
     def clean
-      DarwinCore.clean(@path)
+      DarwinCore.clean(@dir_path)
     end
 
     def files
@@ -38,8 +40,8 @@ class DarwinCore
       file_command = IO.popen("file -z " + esc(@archive_path))
       file_type    = file_command.read
       file_command.close
-      return tar_unpacker if file_type.match(/tar.*gzip/i)
-      return zip_unpacker if file_type.match(/Zip/)
+      return tar_unpacker if file_type =~ /tar.*gzip/i
+      return zip_unpacker if file_type =~ /Zip/
       nil
     end
 
@@ -63,18 +65,18 @@ class DarwinCore
     end
 
     def path_entries(dir)
-      Dir.entries(dir).select { |e| e !~ /[\.]{1,2}$/ }.sort
+      Dir.entries(dir).reject { |e| e.match(/[\.]{1,2}$/) }.sort
     end
 
     def files_path
-      entries = path_entries(@path)
-      entries.include?("meta.xml") ? @path : search_for_file_path(entries)
+      entries = path_entries(@dir_path)
+      entries.include?("meta.xml") ? @dir_path : search_for_file_path(entries)
     end
 
     def search_for_file_path(entries)
       res = nil
       entries.each do |e|
-        check_path = File.join(@path, e)
+        check_path = File.join(@dir_path, e)
         next unless FileTest.directory?(check_path) &&
                     path_entries(check_path).include?("meta.xml")
         res = check_path

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe DarwinCore::Generator::MetaXml do
   subject { DarwinCore::Generator::MetaXml.new(data, path) }
   let(:data) { META_DATA }

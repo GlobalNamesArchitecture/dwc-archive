@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DarwinCore
   # USAGE: Hash.from_xml:(YOUR_XML_STRING)
   # modified from
@@ -28,12 +30,12 @@ class DarwinCore
 
       def prepare_node_element
         add_attributes
-        add_children if @node.children.size > 0
+        add_children if @node.children.size.positive?
         @val
       end
 
       def prepare(data)
-        (data.class == String && data.to_i.to_s == data) ? data.to_i : data
+        data.class == String && data.to_i.to_s == data ? data.to_i : data
       end
 
       def add_attributes
