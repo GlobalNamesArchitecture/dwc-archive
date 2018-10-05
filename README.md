@@ -27,7 +27,7 @@ Usage
 
 ```ruby
 require 'rubygems'
-require 'dwc-archive'
+require 'dwc_archive'
 
 dwc = DarwinCore.new('/path_to_file/archive_file.tar.gz')
 dwc.archive.files      # the archive file list
