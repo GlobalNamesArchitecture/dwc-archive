@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
 
   # gem.add_runtime_dependency "minitar", "~> 0.6"
   gem.add_runtime_dependency "nokogiri", "~> 1.8"
-  gem.add_runtime_dependency "parsley-store", "~> 0.3"
+  gem.add_runtime_dependency "biodiversity", "~> 4.0"
 
   # gem.add_development_dependency "byebug", "~> 3.4"
   gem.add_development_dependency "bundler", "~> 1.16"

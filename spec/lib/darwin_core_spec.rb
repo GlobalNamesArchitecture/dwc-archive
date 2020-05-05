@@ -4,15 +4,6 @@ describe DarwinCore do
   subject { DarwinCore }
   let(:file_dir) { File.expand_path("../files", __dir__) }
 
-  describe "redis connection" do
-    it "redis is running" do
-      expect do
-        socket = TCPSocket.open("localhost", 6379)
-        socket.close
-      end.to_not raise_error
-    end
-  end
-
   it "has version" do
     expect(DarwinCore::VERSION).to match(/\d+\.\d+\.\d/)
   end
