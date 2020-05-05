@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "biodiversity", "~> 4.0"
 
   # gem.add_development_dependency "byebug", "~> 3.4"
-  gem.add_development_dependency "bundler", "~> 1.16"
+  gem.add_development_dependency "bundler", "~> 2.0"
   gem.add_development_dependency "coveralls", "~> 0.8"
   gem.add_development_dependency "cucumber", "~> 3.1"
   gem.add_development_dependency "git", "~> 1.4"
