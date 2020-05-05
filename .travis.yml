@@ -5,6 +5,7 @@ rvm:
   - 2.7
 before_install:
   - sudo apt-get update
+  - gem install bundler
 script:
   - bundle exec cucumber
   - bundle exec rake
