@@ -4,15 +4,6 @@ describe DarwinCore do
   subject { DarwinCore }
   let(:file_dir) { File.expand_path("../files", __dir__) }
 
-  describe "redis connection" do
-    it "redis is running" do
-      expect do
-        socket = TCPSocket.open("localhost", 6379)
-        socket.close
-      end.to_not raise_error
-    end
-  end
-
   it "has version" do
     expect(DarwinCore::VERSION).to match(/\d+\.\d+\.\d/)
   end
@@ -121,7 +112,7 @@ describe DarwinCore do
     end
 
     context "filename with spaces and non-alphanumeric chars" do
-      let(:file_path) { File.join(file_dir, "file with characters(3).gz") }
+      let(:file_path) { File.join(file_dir, "file with characters(3).tar.gz") }
 
       it "creates archive" do
         expect(dwca.archive.valid?).to be true

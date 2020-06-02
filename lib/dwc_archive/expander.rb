@@ -37,11 +37,8 @@ class DarwinCore
     private
 
     def init_unpacker
-      file_command = IO.popen("file -z " + esc(@archive_path))
-      file_type    = file_command.read
-      file_command.close
-      return tar_unpacker if file_type =~ /tar.*gzip/i
-      return zip_unpacker if file_type =~ /Zip/
+      return tar_unpacker if @archive_path =~ /tar.gz$/i
+      return zip_unpacker if @archive_path =~ /zip$/i
       nil
     end
 

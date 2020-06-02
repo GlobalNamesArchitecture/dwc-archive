@@ -2,5 +2,5 @@
 
 # Version constant of the class
 class DarwinCore
-  VERSION = "1.0.1"
+  VERSION = "1.1.0"
 end

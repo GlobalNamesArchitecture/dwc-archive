@@ -12,7 +12,7 @@ class DarwinCore
       @extensions = @dwc.extensions.map { |e| [e, find_fields(e)] }
       @normalized_data = {}
       @synonyms = {}
-      @parser = ParsleyStore.new(1, 2)
+      @parser = ::Biodiversity::Parser
       @name_strings = {}
       @vernacular_name_strings = {}
       @error_names = []
@@ -70,7 +70,9 @@ class DarwinCore
 
     def get_canonical_name(a_scientific_name)
       return nil unless @with_canonical_names
-      canonical_name = @parser.parse(a_scientific_name, canonical_only: true)
+      canonical_name = nil
+      parsed = @parser.parse(a_scientific_name)
+      canonical_name = parsed[:canonicalName][:simple] if parsed[:parsed]
       canonical_name.to_s.empty? ? a_scientific_name : canonical_name
     end
 

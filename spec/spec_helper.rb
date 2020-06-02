@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "coveralls"
-Coveralls.wear!
-
 require "dwc_archive"
 require "rspec"
 require "rspec/mocks"
