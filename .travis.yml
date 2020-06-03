@@ -1,14 +1,15 @@
 rvm:
-  - 2.6
-before_install:
-  - sudo apt-get update
-  - gem uninstall bundler -v 1.17.3
   - gem install bundler
 # bundler_args: --without development
+  - 2.5
+  - 2.6
+  - 2.7
+before_install:
+  - sudo apt-get update
+  - gem install bundler
 script:
   - bundle exec cucumber
   - bundle exec rake
 branches:
   only:
       - master
-
