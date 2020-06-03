@@ -1,6 +1,4 @@
 rvm:
-  - gem install bundler
-# bundler_args: --without development
   - 2.5
   - 2.6
   - 2.7
