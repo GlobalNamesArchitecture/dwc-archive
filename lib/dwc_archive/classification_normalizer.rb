@@ -1,10 +1,11 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 class DarwinCore
   # Returns tree representation of Darwin Core file with vernacular and
   # and synonyms attached to the taxon nodes
   class ClassificationNormalizer
     attr_reader :error_names, :tree, :normalized_data, :dwc
-    alias_method :darwin_core, :dwc
+    alias darwin_core dwc
 
     def initialize(dwc_instance)
       @dwc = dwc_instance
@@ -12,7 +13,6 @@ class DarwinCore
       @extensions = @dwc.extensions.map { |e| [e, find_fields(e)] }
       @normalized_data = {}
       @synonyms = {}
-      @parser = ::Biodiversity::Parser
       @name_strings = {}
       @vernacular_name_strings = {}
       @error_names = []
@@ -25,6 +25,7 @@ class DarwinCore
 
     def add_vernacular_name_string(name_string)
       return if @vernacular_name_strings[name_string]
+
       @vernacular_name_strings[name_string] = 1
     end
 
@@ -70,7 +71,9 @@ class DarwinCore
 
     def get_canonical_name(a_scientific_name)
       return nil unless @with_canonical_names
-      canonical_name = Biodiversity::Parser.parse(a_scientific_name).dig(:canonicalName, :full)
+
+      canonical_name = Biodiversity::Parser.parse(a_scientific_name).
+                       dig(:canonicalName, :simple)
       canonical_name.to_s.empty? ? a_scientific_name : canonical_name
     end
 
@@ -85,15 +88,13 @@ class DarwinCore
     end
 
     def status_synonym?(status)
-      status && status.match(/^syn/)
+      status&.match(/^syn/)
     end
 
     def add_synonym_from_core(taxon_id, row)
       cf = @core_fields
       @synonyms[row[cf[:id]]] = taxon_id
-      unless @normalized_data[row[taxon_id]]
-        @normalized_data[row[taxon_id]] = DarwinCore::TaxonNormalized.new
-      end
+      @normalized_data[row[taxon_id]] = DarwinCore::TaxonNormalized.new unless @normalized_data[row[taxon_id]]
 
       taxon = @normalized_data[row[taxon_id]]
       synonym = SynonymNormalized.new(
@@ -105,7 +106,7 @@ class DarwinCore
         cf[:localid] ? row[cf[:localid]] : nil,
         cf[:globalid] ? row[cf[:globalid]] : nil
       )
-      taxon.synonyms <<  synonym
+      taxon.synonyms << synonym
       add_name_string(synonym.name)
       add_name_string(synonym.canonical_name)
     end
@@ -115,14 +116,10 @@ class DarwinCore
       canonical_name = nil
       scientific_name = row[fields[:scientificname]].strip
       if separate_canonical_and_authorship?(row, fields)
-        if @with_canonical_names
-          canonical_name = row[fields[:scientificname]].strip
-        end
+        canonical_name = row[fields[:scientificname]].strip if @with_canonical_names
         scientific_name += " #{row[fields[:scientificnameauthorship]].strip}"
       else
-        if @with_canonical_names
-          canonical_name = get_canonical_name(row[fields[:scientificname]])
-        end
+        canonical_name = get_canonical_name(row[fields[:scientificname]]) if @with_canonical_names
       end
       fields[:canonicalname] = row.size
       row << canonical_name
@@ -131,18 +128,17 @@ class DarwinCore
 
     def separate_canonical_and_authorship?(row, fields)
       authorship = ""
-      if fields[:scientificnameauthorship]
-        authorship = row[fields[:scientificnameauthorship]].to_s.strip
-      end
+      authorship = row[fields[:scientificnameauthorship]].to_s.strip if fields[:scientificnameauthorship]
       !(authorship.empty? || row[fields[:scientificname]].index(authorship))
     end
 
     def ingest_core
       @normalized_data = {}
       has_name_and_id = @core_fields[:id] && @core_fields[:scientificname]
-      fail(DarwinCore::CoreFileError,
-           "Darwin Core core fields must contain taxon id and scientific name"
-      ) unless has_name_and_id
+      unless has_name_and_id
+        raise(DarwinCore::CoreFileError,
+              "Darwin Core core fields must contain taxon id and scientific name")
+      end
       @dwc.core.read do |rows|
         rows[1].each do |error|
           @error_names << { data: error,
@@ -161,32 +157,28 @@ class DarwinCore
             add_synonym_from_core(parent_id, r) if parent_id?
           else
             unless @normalized_data[r[@core_fields[:id]]]
-              if gnub_archive?
-                new_taxon = DarwinCore::GnubTaxon.new
-              else
-                new_taxon = DarwinCore::TaxonNormalized.new
-              end
+              new_taxon = if gnub_archive?
+                            DarwinCore::GnubTaxon.new
+                          else
+                            DarwinCore::TaxonNormalized.new
+                          end
               @normalized_data[r[@core_fields[:id]]] = new_taxon
             end
             taxon = @normalized_data[r[@core_fields[:id]]]
             if gnub_archive?
               taxon.uuid = r[@core_fields[:originalnameusageid]]
               taxon.uuid_path = r[@core_fields[:originalnameusageidpath]].
-                split("|")
+                                split("|")
             end
             taxon.id = r[@core_fields[:id]]
             taxon.current_name = r[@core_fields[:scientificname]]
             taxon.current_name_canonical = r[@core_fields[:canonicalname]]
             taxon.parent_id = parent_id? ? r[parent_id] : nil
             taxon.rank = r[@core_fields[:taxonrank]] if @core_fields[:taxonrank]
-            if @core_fields[:taxonomicstatus]
-              taxon.status = r[@core_fields[:taxonomicstatus]]
-            end
+            taxon.status = r[@core_fields[:taxonomicstatus]] if @core_fields[:taxonomicstatus]
             taxon.source = r[@core_fields[:source]] if @core_fields[:source]
             taxon.local_id = r[@core_fields[:localid]] if @core_fields[:localid]
-            if @core_fields[:globalid]
-              taxon.global_id = r[@core_fields[:globalid]]
-            end
+            taxon.global_id = r[@core_fields[:globalid]] if @core_fields[:globalid]
             taxon.linnean_classification_path =
               get_linnean_classification_path(r, taxon)
             add_name_string(taxon.current_name)
@@ -211,6 +203,7 @@ class DarwinCore
       @paths_num = 0
       @normalized_data.each do |_taxon_id, taxon|
         next unless taxon.classification_path_id.empty?
+
         res = get_classification_path(taxon)
         next if res == "error"
       end
@@ -218,6 +211,7 @@ class DarwinCore
 
     def get_classification_path(taxon)
       return unless taxon.classification_path_id.empty?
+
       @paths_num += 1
       if @paths_num % 10_000 == 0
         DarwinCore.logger_write(@dwc.object_id,
@@ -225,17 +219,13 @@ class DarwinCore
       end
       current_node = { taxon.id => {} }
       if DarwinCore.nil_field?(taxon.parent_id)
-        if @with_canonical_names
-          taxon.classification_path << taxon.current_name_canonical
-        end
+        taxon.classification_path << taxon.current_name_canonical if @with_canonical_names
         taxon.classification_path_id << taxon.id
         @tree.merge!(current_node)
       else
         parent_cp = parent_cpid = nil
         if @normalized_data[taxon.parent_id]
-          if @with_canonical_names
-            parent_cp = @normalized_data[taxon.parent_id].classification_path
-          end
+          parent_cp = @normalized_data[taxon.parent_id].classification_path if @with_canonical_names
           parent_cpid = @normalized_data[taxon.parent_id].
                         classification_path_id
         else
@@ -245,9 +235,7 @@ class DarwinCore
                               error: :deprecated_parent,
                               current_parent: current_parent }
 
-            if @with_canonical_names
-              parent_cp = current_parent.classification_path
-            end
+            parent_cp = current_parent.classification_path if @with_canonical_names
             parent_cpid = current_parent.classification_path_id
           else
             @error_names << { data: taxon,
@@ -256,6 +244,7 @@ class DarwinCore
           end
         end
         return "error" unless parent_cpid
+
         if parent_cpid.empty?
           res = "error"
           begin
@@ -266,6 +255,7 @@ class DarwinCore
                               current_parent: nil }
           end
           return res if res == "error"
+
           if @with_canonical_names
             taxon.classification_path += @normalized_data[taxon.parent_id].
                                          classification_path +
@@ -293,7 +283,7 @@ class DarwinCore
           rescue NoMethodError => e
             DarwinCore.logger_write(@dwc.object_id,
                                     "Error '#{e.message}' taxon #{taxon.id}")
-            return "error"
+            "error"
           end
         end
       end
@@ -379,8 +369,8 @@ class DarwinCore
 
     # Collect linnean classification path only on species level
     def get_linnean_classification_path(row, _taxon)
-      [:kingdom, :phylum, :class, :order, :family, :genus,
-       :subgenus].each_with_object([]) do |clade, res|
+      %i[kingdom phylum class order family genus
+         subgenus].each_with_object([]) do |clade, res|
         res << [row[@core_fields[clade]], clade] if @core_fields[clade]
       end
     end

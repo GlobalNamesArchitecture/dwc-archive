@@ -179,11 +179,11 @@ Note on Patches/Pull Requests
 Copyright
 ---------
 
-Author -- [Dmitry Mozzherin][13]
+Author -- [@dimus][13]
 
-Contributors -- [Matt Yoder][14]
+Contributors -- [@mjy][14], [@LocoDelAssembly][16]
 
-Copyright (c) 2010-2014 [Marine Biological Laboratory][15]. See LICENSE for details.
+Copyright (c) 2010-2020 [@dimus][15]. See LICENSE for details.
 
 [1]: https://badge.fury.io/rb/dwc-archive.png
 [2]: http://badge.fury.io/rb/dwc-archive
@@ -200,3 +200,4 @@ Copyright (c) 2010-2014 [Marine Biological Laboratory][15]. See LICENSE for deta
 [13]: https://github.com/dimus
 [14]: https://github.com/mjy
 [15]: http://mbl.edu
+[16]: https://github.com/LocoDelAssembly
