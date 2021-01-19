@@ -35,13 +35,14 @@ class DarwinCore
       end
 
       def prepare(data)
-        data.class == String && data.to_i.to_s == data ? data.to_i : data
+        data.instance_of?(String) && data.to_i.to_s == data ? data.to_i : data
       end
 
       def add_attributes
         return if @node.attributes.empty?
+
         @val[:attributes] = {}
-        @node.attributes.keys.each do |key|
+        @node.attributes.each_key do |key|
           add_attribute(@val[:attributes], @node.attributes[key])
         end
       end

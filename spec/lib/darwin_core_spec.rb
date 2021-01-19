@@ -28,10 +28,10 @@ describe DarwinCore do
     it "cleans dwca directories" do
       Dir.chdir(tmp_dir)
       FileUtils.mkdir("dwc_123") unless File.exist?("dwc_123")
-      dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
+      dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_\d+$/) }
       expect(dwca_dirs.size).to be > 0
       subject.clean_all
-      dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
+      dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_\d+$/) }
       expect(dwca_dirs.size).to be 0
     end
 
@@ -39,7 +39,7 @@ describe DarwinCore do
       it "does nothing" do
         subject.clean_all
         subject.clean_all
-        dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_[\d]+$/) }
+        dwca_dirs = Dir.entries(tmp_dir).select { |d| d.match(/^dwc_\d+$/) }
         expect(dwca_dirs.size).to be 0
       end
     end

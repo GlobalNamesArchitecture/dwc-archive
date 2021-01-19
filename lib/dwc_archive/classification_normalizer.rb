@@ -73,7 +73,7 @@ class DarwinCore
       return nil unless @with_canonical_names
 
       canonical_name = Biodiversity::Parser.parse(a_scientific_name).
-                       dig(:canonicalName, :simple)
+                       dig(:canonical, :simple)
       canonical_name.to_s.empty? ? a_scientific_name : canonical_name
     end
 

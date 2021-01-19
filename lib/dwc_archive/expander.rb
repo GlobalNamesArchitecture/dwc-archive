@@ -13,6 +13,7 @@ class DarwinCore
     def unpack
       clean
       raise DarwinCore::FileNotFoundError unless File.exist?(@archive_path)
+
       success = @unpacker.call(@dir_path, @archive_path) if @unpacker
       if @unpacker && success && $CHILD_STATUS.exitstatus.zero?
         success
@@ -39,6 +40,7 @@ class DarwinCore
     def init_unpacker
       return tar_unpacker if @archive_path =~ /tar.gz$/i
       return zip_unpacker if @archive_path =~ /zip$/i
+
       nil
     end
 
@@ -58,11 +60,11 @@ class DarwinCore
     end
 
     def esc(a_str)
-      "'" + a_str.gsub(92.chr, '\\\\\\').gsub("'", "\\\\'") + "'"
+      "'#{a_str.gsub(92.chr, '\\\\\\').gsub("'", "\\\\'")}'"
     end
 
     def path_entries(dir)
-      Dir.entries(dir).reject { |e| e.match(/[\.]{1,2}$/) }.sort
+      Dir.entries(dir).reject { |e| e.match(/\.{1,2}$/) }.sort
     end
 
     def files_path
@@ -76,6 +78,7 @@ class DarwinCore
         check_path = File.join(@dir_path, e)
         next unless FileTest.directory?(check_path) &&
                     path_entries(check_path).include?("meta.xml")
+
         res = check_path
         break
       end

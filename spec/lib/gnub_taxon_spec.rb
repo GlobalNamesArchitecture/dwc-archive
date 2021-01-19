@@ -13,10 +13,10 @@ describe DarwinCore::GnubTaxon do
     expect(tn).to be_kind_of DarwinCore::GnubTaxon
     expect(tn).to be_kind_of DarwinCore::TaxonNormalized
     expect(tn.uuid).to eq "8faa91f6-663f-4cfe-b785-0ab4e9415a51"
-    expect(tn.uuid_path).to eq [
-      "9a9f9eeb-d5f9-4ff6-b6cb-a5ad345e33c3",
-      "bf4c91c0-3d1f-44c7-9d3b-249382182a26",
-      "8faa91f6-663f-4cfe-b785-0ab4e9415a51"
+    expect(tn.uuid_path).to eq %w[
+      9a9f9eeb-d5f9-4ff6-b6cb-a5ad345e33c3
+      bf4c91c0-3d1f-44c7-9d3b-249382182a26
+      8faa91f6-663f-4cfe-b785-0ab4e9415a51
     ]
   end
 

@@ -52,6 +52,7 @@ class DarwinCore
     def prepare_eml_file
       @eml = nil
       return unless files.include?("eml.xml")
+
       eml_file = File.open(File.join(@expander.path, "eml.xml"))
       @eml = DarwinCore::XmlReader.from_xml(eml_file)
     end

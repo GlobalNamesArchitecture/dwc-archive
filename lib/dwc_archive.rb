@@ -39,11 +39,12 @@ class DarwinCore
 
     def files(path)
       return nil unless path && FileTest.exists?(path)
-      Dir.entries(path).reject { |e| e.match(/[\.]{1,2}$/) }.sort
+
+      Dir.entries(path).reject { |e| e.match(/[.]{1,2}$/) }.sort
     end
 
     def random_path(tmp_dir)
-      File.join(tmp_dir, "dwc_" + rand(10_000_000_000).to_s)
+      File.join(tmp_dir, "dwc_#{rand(10_000_000_000)}")
     end
   end
 
@@ -52,15 +53,14 @@ class DarwinCore
 
   def self.nil_field?(field)
     return true if [nil, "", "/N"].include?(field)
+
     false
   end
 
   def self.clean_all(tmp_dir = DEFAULT_TMP_DIR)
     Dir.entries(tmp_dir).each do |entry|
       path = File.join(tmp_dir, entry)
-      if FileTest.directory?(path) && entry.match(/^dwc_[\d]+$/)
-        FileUtils.rm_rf(path)
-      end
+      FileUtils.rm_rf(path) if FileTest.directory?(path) && entry.match(/^dwc_\d+$/)
     end
   end
 
@@ -96,6 +96,7 @@ class DarwinCore
   # list of synonyms and vernacular names.
   def normalize_classification
     return nil unless parent_id?
+
     @classification_normalizer ||=
       DarwinCore::ClassificationNormalizer.new(self)
     @classification_normalizer.normalize
@@ -112,9 +113,11 @@ class DarwinCore
 
   def extensions
     return @extensions if @extensions
+
     root_key = @archive.meta.keys[0]
     ext = @archive.meta[root_key][:extension]
     return @extensions = [] unless ext
+
     ext = [ext] if ext.class != Array
     @extensions = ext.map { |e| DarwinCore::Extension.new(self, e) }
   end

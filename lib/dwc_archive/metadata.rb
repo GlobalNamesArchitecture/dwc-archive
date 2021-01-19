@@ -25,6 +25,7 @@ class DarwinCore
 
     def authors
       return nil unless defined?(@metadata[:eml][:dataset][:creator])
+
       authors = [@metadata[:eml][:dataset][:creator]].flatten
       authors.map do |au|
         { first_name: au[:individualName][:givenName],

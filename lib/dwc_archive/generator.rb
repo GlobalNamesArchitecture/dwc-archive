@@ -12,7 +12,7 @@ class DarwinCore
       @meta_xml_data = { extensions: [] }
       @eml_xml_data = { id: nil, title: nil, authors: [], abstrac: nil,
                         citation: nil, url: nil }
-      @write = "w:utf-8"
+      @write = 'w:utf-8'
     end
 
     def clean
@@ -20,14 +20,14 @@ class DarwinCore
     end
 
     def add_core(data, file_name, keep_headers = true)
-      opts = { type: "core", data: data, file_name: file_name,
+      opts = { type: 'core', data: data, file_name: file_name,
                keep_headers: keep_headers }
       prepare_csv_file(opts)
     end
 
     def add_extension(data, file_name, keep_headers = true,
-                      row_type = "http://rs.tdwg.org/dwc/terms/Taxon")
-      opts = { type: "extension", data: data, file_name: file_name,
+                      row_type = 'http://rs.tdwg.org/dwc/terms/Taxon')
+      opts = { type: 'extension', data: data, file_name: file_name,
                keep_headers: keep_headers, row_type: row_type }
       prepare_csv_file(opts)
     end
@@ -57,7 +57,7 @@ class DarwinCore
     def prepare_csv_file(opts)
       c = CSV.open(File.join(@path, opts[:file_name]), @write)
       attributes = prepare_attributes(opts)
-      if opts[:type] == "core"
+      if opts[:type] == 'core'
         @meta_xml_data[:core] = attributes
       else
         @meta_xml_data[:extensions] << attributes
@@ -83,7 +83,8 @@ class DarwinCore
         f = f.strip
         err = "No header in #{file_type} data, or header fields are not urls"
         raise DarwinCore::GeneratorError, err unless f =~ %r{^http://}
-        f.split("/")[-1]
+
+        f.split('/')[-1]
       end
     end
   end
