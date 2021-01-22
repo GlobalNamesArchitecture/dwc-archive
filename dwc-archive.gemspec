@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   # gem.add_runtime_dependency "minitar", "~> 0.6"
-  gem.add_runtime_dependency "biodiversity", "~> 5"
+  gem.add_runtime_dependency "biodiversity", "~> 5.1.2"
   gem.add_runtime_dependency "nokogiri", "~> 1.11"
 
   gem.add_development_dependency "bundler", "~> 2.2"
