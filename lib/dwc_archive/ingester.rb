@@ -1,11 +1,9 @@
-# encoding: utf-8
 class DarwinCore
   # This module abstracts information for reading csv file to be used
   # in several classes which need such functionality
   module Ingester
-    attr_reader :data, :properties, :encoding, :fields_separator, :size
-    attr_reader :file_path, :fields, :line_separator, :quote_character,
-                :ignore_headers
+    attr_reader :data, :properties, :encoding, :fields_separator, :size, :file_path, :fields, :line_separator,
+                :quote_character, :ignore_headers
 
     def size
       @size ||= init_size
@@ -16,16 +14,19 @@ class DarwinCore
       res = []
       errors = []
       args = define_csv_args
-      min_size = @fields.map { |f| f[:index].to_i || 0 }.sort[-1] + 1
-      csv = CSV.new(open(@file_path), args)
+      min_size = @fields.map { |f| f[:index].to_i || 0 }.max + 1
+      csv = CSV.new(open(@file_path), **args)
       csv.each_with_index do |r, i|
         next if @ignore_headers && i == 0
+
         min_size > r.size ? errors << r : process_csv_row(res, errors, r)
         next if i == 0 || i % batch_size != 0
+
         DarwinCore.logger_write(@dwc.object_id,
                                 format("Ingested %s records from %s",
                                        i, name))
         next unless block_given?
+
         yield [res, errors]
         res = []
         errors = []
@@ -70,12 +71,14 @@ class DarwinCore
 
     def init_encoding
       @encoding = @properties[:encoding] || "UTF-8"
-      accepted_encoding = ["utf-8", "utf8", "utf-16", "utf16"].
+      accepted_encoding = %w[utf-8 utf8 utf-16 utf16].
                           include?(@encoding.downcase)
-      fail(
-        DarwinCore::EncodingError,
-        "No support for encodings other than utf-8 or utf-16 at the moment"
-      ) unless accepted_encoding
+      unless accepted_encoding
+        raise(
+          DarwinCore::EncodingError,
+          "No support for encodings other than utf-8 or utf-16 at the moment"
+        )
+      end
     end
 
     def init_file_path
@@ -83,14 +86,16 @@ class DarwinCore
              @data[:attributes][:location] ||
              @data[:files][:location]
       @file_path = File.join(@path, file)
-      fail DarwinCore::FileNotFoundError, "No file data" unless @file_path
+      raise DarwinCore::FileNotFoundError, "No file data" unless @file_path
     end
 
     def init_fields
       @data[:field] = [data[:field]] if data[:field].class != Array
       @fields = @data[:field].map { |f| f[:attributes] }
-      fail DarwinCore::InvalidArchiveError,
-           "No data fields are found" if @fields.empty?
+      if @fields.empty?
+        raise DarwinCore::InvalidArchiveError,
+              "No data fields are found"
+      end
     end
 
     def init_field_separator
@@ -100,7 +105,7 @@ class DarwinCore
     end
 
     def init_size
-      `wc -l #{@file_path}`.match(/^\s*([\d]+)\s/)[1].to_i
+      `wc -l #{@file_path}`.match(/^\s*(\d+)\s/)[1].to_i
     end
   end
 end

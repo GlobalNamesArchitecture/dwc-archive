@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "set"
+
 describe DarwinCore do
   subject { DarwinCore }
   let(:file_dir) { File.expand_path("../files", __dir__) }
@@ -228,7 +230,8 @@ describe DarwinCore do
     let(:file_path) { File.join(file_dir, "data.tar.gz") }
     let(:normalized) { dwca.normalize_classification }
     let(:encodings) do
-      normalized.each_with_object(Set.new) do |taxon, e|
+      set = Set.new
+      normalized.each_with_object(set) do |taxon, e|
         taxon[1].classification_path.each { |p| e << p.encoding }
       end
     end
