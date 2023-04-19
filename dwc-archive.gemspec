@@ -22,16 +22,16 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   # gem.add_runtime_dependency "minitar", "~> 0.6"
-  gem.add_runtime_dependency "biodiversity", "~> 5.5.2"
-  gem.add_runtime_dependency "nokogiri", "~> 1.11"
+  gem.add_runtime_dependency "biodiversity", "~> 5.7.2"
+  gem.add_runtime_dependency "nokogiri", "~> 1.14"
 
-  gem.add_development_dependency "bundler", "~> 2.2"
+  gem.add_development_dependency "bundler", "~> 2.4"
   gem.add_development_dependency "byebug", "~> 11.1"
-  gem.add_development_dependency "cucumber", "~> 5"
-  gem.add_development_dependency "git", "~> 1.8"
-  gem.add_development_dependency "rake", "~> 13"
-  gem.add_development_dependency "rspec", "~> 3.10"
-  gem.add_development_dependency "rubocop", "~> 1.8"
-  gem.add_development_dependency "solargraph", "~> 0.40"
-  gem.add_development_dependency "travis", "~> 1.10"
+  gem.add_development_dependency "cucumber", "~> 8"
+  gem.add_development_dependency "git", "~> 1.18"
+  gem.add_development_dependency "rake", "~> 13.0"
+  gem.add_development_dependency "rspec", "~> 3.12"
+  gem.add_development_dependency "rubocop", "~> 1.50"
+  gem.add_development_dependency "solargraph", "~> 0.49"
+  gem.add_development_dependency "travis", "~> 1.11"
 end
