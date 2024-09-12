@@ -16,7 +16,7 @@ class DarwinCore
 
     def valid?
       valid = true
-      valid = valid && @expander.path && FileTest.exists?(@expander.path)
+      valid = valid && @expander.path && FileTest.exist?(@expander.path)
       valid && files && files.include?("meta.xml")
     end
 

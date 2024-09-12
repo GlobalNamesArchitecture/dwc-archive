@@ -34,11 +34,11 @@ class DarwinCore
     attr_writer :logger
 
     def clean(path)
-      FileUtils.rm_rf(path) if FileTest.exists?(path)
+      FileUtils.rm_rf(path) if FileTest.exist?(path)
     end
 
     def files(path)
-      return nil unless path && FileTest.exists?(path)
+      return nil unless path && FileTest.exist?(path)
 
       Dir.entries(path).reject { |e| e.match(/[.]{1,2}$/) }.sort
     end
